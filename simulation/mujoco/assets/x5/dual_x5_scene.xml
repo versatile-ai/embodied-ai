@@ -1,0 +1,165 @@
+<mujoco model="MuJoCo Model">
+  <compiler angle="radian"/>
+
+  <option timestep="0.004"/>
+
+  <default>
+    <default class="left_main"/>
+    <default class="right_main"/>
+  </default>
+
+  <asset>
+    <texture name="wood" type="2d" file="wood.png"/>
+    <material name="woodmat" texture="wood" texuniform="true"/>
+    <mesh name="left_base_link" file="meshes/base_link.STL"/>
+    <mesh name="left_link1" file="meshes/link1.STL"/>
+    <mesh name="left_link2" file="meshes/link2.STL"/>
+    <mesh name="left_link3" file="meshes/link3.STL"/>
+    <mesh name="left_link4" file="meshes/link4.STL"/>
+    <mesh name="left_link5" file="meshes/link5.STL"/>
+    <mesh name="left_link6" file="meshes/link6.STL"/>
+    <mesh name="left_link7" file="meshes/link7.STL"/>
+    <mesh name="left_link8" file="meshes/link8.STL"/>
+    <mesh name="right_base_link" file="meshes/base_link.STL"/>
+    <mesh name="right_link1" file="meshes/link1.STL"/>
+    <mesh name="right_link2" file="meshes/link2.STL"/>
+    <mesh name="right_link3" file="meshes/link3.STL"/>
+    <mesh name="right_link4" file="meshes/link4.STL"/>
+    <mesh name="right_link5" file="meshes/link5.STL"/>
+    <mesh name="right_link6" file="meshes/link6.STL"/>
+    <mesh name="right_link7" file="meshes/link7.STL"/>
+    <mesh name="right_link8" file="meshes/link8.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="2 2 0.1" type="plane"/>
+    <geom name="table" size="1.1 0.7 0.4" pos="0 -0.15 0.365" type="box" material="woodmat"/>
+    <!-- RoboDojo head camera extrinsic: pos [0,-0.41,1.308], Rx=30deg. -->
+    <camera name="cam_base" pos="0 -0.41 1.308" quat="0.965926 0.258819 0.000000 0.000000" fovy="71.1"/>
+    <body name="left_base_link" pos="-0.3 -0.45 0.765" quat="0.707107 0 0 0.707107">
+      <inertial pos="-3.0001e-05 3.0589e-05 0.027324" mass="0.43995" diaginertia="0.00017 0.00017 0.00016"/>
+      <geom type="mesh" rgba="0 0 0 1" mesh="left_base_link"/>
+      <body name="left_link1" pos="0 0 0.0605">
+        <inertial pos="0.0054231 -0.0080289 0.017086" quat="0.653281 0.653281 -0.270598 0.270598" mass="0.066982" diaginertia="9e-05 7e-05 3e-05"/>
+        <joint name="left_joint1" pos="0 0 0" axis="0 0 1" range="-10 10" actuatorfrcrange="-100 100"/>
+        <geom type="mesh" rgba="0 0 0 1" mesh="left_link1"/>
+        <body name="left_link2" pos="0.02 0 0.04">
+          <inertial pos="-0.13237 0.0020852 0.00010549" quat="7.64729e-05 0.706196 -0.000379919 0.708016" mass="1.0795" diaginertia="0.0160501 0.01599 0.000509891"/>
+          <joint name="left_joint2" pos="0 0 0" axis="0 1 0" range="-10 10" actuatorfrcrange="-100 100"/>
+          <geom type="mesh" rgba="0 0 0 1" mesh="left_link2"/>
+          <body name="left_link3" pos="-0.264 0 0" quat="-3.67321e-06 1 0 0">
+            <inertial pos="0.18531 0.00068376 -0.051638" quat="0.223261 0.638184 0.206685 0.707218" mass="0.54534" diaginertia="0.00424842 0.004221 0.000320578"/>
+            <joint name="left_joint3" pos="0 0 0" axis="0 1 0" range="-10 10" actuatorfrcrange="-100 100"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="left_link3"/>
+            <body name="left_link4" pos="0.245 0 -0.056">
+              <inertial pos="0.040231 0.0044807 -0.035335" quat="0.911288 -0.0751532 0.308689 -0.261949" mass="0.11714" diaginertia="0.000275643 0.00021286 7.14977e-05"/>
+              <joint name="left_joint4" pos="0 0 0" axis="0 1 0" range="-10 10" actuatorfrcrange="-100 100"/>
+              <geom type="mesh" rgba="0 0 0 1" mesh="left_link4"/>
+              <body name="left_link5" pos="0.06775 0.0005 -0.0865">
+                <inertial pos="0.003612 -1.5455e-05 0.055214" quat="0.998188 0 -0.0601752 0" mass="0.63488" diaginertia="0.000838471 0.00082 0.000251529"/>
+                <joint name="left_joint5" pos="0 0 0" axis="0 0 1" range="-10 10" actuatorfrcrange="-100 100"/>
+                <geom type="mesh" rgba="0 0 0 1" mesh="left_link5"/>
+                <body name="left_link6" pos="0.02895 0 0.0865" quat="-3.67321e-06 -1 0 0">
+                  <inertial pos="0.041697 2.4368e-05 0.00014464" quat="0.5 0.5 -0.5 0.5" mass="0.44089" diaginertia="0.0005 0.00038 0.00028"/>
+                  <joint name="left_joint6" pos="0 0 0" axis="1 0 0" range="-3.14 3.14" actuatorfrcrange="-100 100"/>
+                  <geom type="mesh" rgba="0 0 0 1" mesh="left_link6"/>
+                  <!-- EEF is the physical grasp center between the two jaws,
+                       not the wrist joint origin (offset +Y by 86.57 mm). -->
+                  <site name="left_ee" pos="0.08657 0 -0.0002436" size="0.01" rgba="1 0 0 0.5"/>
+                  <body name="left_camera_base" pos="0.057 0 0" quat="-3.67321e-06 0 0 -1">
+                    <body name="left_camera" pos="-0.0275 0 0.05" quat="0 -0.173665 0 0.984805">
+                      <camera name="left_cam_wrist" pos="0 0 0.001" quat="0.541675 0.454519 -0.454519 -0.541675" fovy="62.2"/>
+                    </body>
+                  </body>
+                  <body name="left_link7" pos="0.08657 0.024896 -0.0002436">
+                    <inertial pos="-0.00035522 -0.007827 -0.0029883" quat="0.5 0.5 0.5 0.5" mass="0.064798" diaginertia="3e-05 3e-05 2e-05"/>
+                    <joint name="left_joint7" pos="0 0 0" axis="0 1 0" type="slide" range="-0.01 0.044" actuatorfrcrange="-100 100"/>
+                    <geom type="mesh" rgba="0 0 0 1" mesh="left_link7"/>
+                  </body>
+                  <body name="left_link8" pos="0.08657 -0.0249 -0.00024366">
+                    <inertial pos="-0.00035522 0.0078277 0.0024201" quat="0.5 0.5 0.5 0.5" mass="0.064798" diaginertia="3e-05 3e-05 2e-05"/>
+                    <joint name="left_joint8" pos="0 0 0" axis="0 -1 0" type="slide" range="-0.01 0.044" actuatorfrcrange="-100 100"/>
+                    <geom type="mesh" rgba="0 0 0 1" mesh="left_link8"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="right_base_link" pos="0.3 -0.45 0.765" quat="0.707107 0 0 0.707107">
+      <inertial pos="-3.0001e-05 3.0589e-05 0.027324" mass="0.43995" diaginertia="0.00017 0.00017 0.00016"/>
+      <geom type="mesh" rgba="0 0 0 1" mesh="right_base_link"/>
+      <body name="right_link1" pos="0 0 0.0605">
+        <inertial pos="0.0054231 -0.0080289 0.017086" quat="0.653281 0.653281 -0.270598 0.270598" mass="0.066982" diaginertia="9e-05 7e-05 3e-05"/>
+        <joint name="right_joint1" pos="0 0 0" axis="0 0 1" range="-10 10" actuatorfrcrange="-100 100"/>
+        <geom type="mesh" rgba="0 0 0 1" mesh="right_link1"/>
+        <body name="right_link2" pos="0.02 0 0.04">
+          <inertial pos="-0.13237 0.0020852 0.00010549" quat="7.64729e-05 0.706196 -0.000379919 0.708016" mass="1.0795" diaginertia="0.0160501 0.01599 0.000509891"/>
+          <joint name="right_joint2" pos="0 0 0" axis="0 1 0" range="-10 10" actuatorfrcrange="-100 100"/>
+          <geom type="mesh" rgba="0 0 0 1" mesh="right_link2"/>
+          <body name="right_link3" pos="-0.264 0 0" quat="-3.67321e-06 1 0 0">
+            <inertial pos="0.18531 0.00068376 -0.051638" quat="0.223261 0.638184 0.206685 0.707218" mass="0.54534" diaginertia="0.00424842 0.004221 0.000320578"/>
+            <joint name="right_joint3" pos="0 0 0" axis="0 1 0" range="-10 10" actuatorfrcrange="-100 100"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="right_link3"/>
+            <body name="right_link4" pos="0.245 0 -0.056">
+              <inertial pos="0.040231 0.0044807 -0.035335" quat="0.911288 -0.0751532 0.308689 -0.261949" mass="0.11714" diaginertia="0.000275643 0.00021286 7.14977e-05"/>
+              <joint name="right_joint4" pos="0 0 0" axis="0 1 0" range="-10 10" actuatorfrcrange="-100 100"/>
+              <geom type="mesh" rgba="0 0 0 1" mesh="right_link4"/>
+              <body name="right_link5" pos="0.06775 0.0005 -0.0865">
+                <inertial pos="0.003612 -1.5455e-05 0.055214" quat="0.998188 0 -0.0601752 0" mass="0.63488" diaginertia="0.000838471 0.00082 0.000251529"/>
+                <joint name="right_joint5" pos="0 0 0" axis="0 0 1" range="-10 10" actuatorfrcrange="-100 100"/>
+                <geom type="mesh" rgba="0 0 0 1" mesh="right_link5"/>
+                <body name="right_link6" pos="0.02895 0 0.0865" quat="-3.67321e-06 -1 0 0">
+                  <inertial pos="0.041697 2.4368e-05 0.00014464" quat="0.5 0.5 -0.5 0.5" mass="0.44089" diaginertia="0.0005 0.00038 0.00028"/>
+                  <joint name="right_joint6" pos="0 0 0" axis="1 0 0" range="-3.14 3.14" actuatorfrcrange="-100 100"/>
+                  <geom type="mesh" rgba="0 0 0 1" mesh="right_link6"/>
+                  <!-- Keep the right EEF contract identical to the left. -->
+                  <site name="right_ee" pos="0.08657 0 -0.0002436" size="0.01" rgba="1 0 0 0.5"/>
+                  <body name="right_camera_base" pos="0.057 0 0" quat="-3.67321e-06 0 0 -1">
+                    <body name="right_camera" pos="-0.0275 0 0.05" quat="0 -0.173665 0 0.984805">
+                      <camera name="right_cam_wrist" pos="0 0 0.001" quat="0.541675 0.454519 -0.454519 -0.541675" fovy="62.2"/>
+                    </body>
+                  </body>
+                  <body name="right_link7" pos="0.08657 0.024896 -0.0002436">
+                    <inertial pos="-0.00035522 -0.007827 -0.0029883" quat="0.5 0.5 0.5 0.5" mass="0.064798" diaginertia="3e-05 3e-05 2e-05"/>
+                    <joint name="right_joint7" pos="0 0 0" axis="0 1 0" type="slide" range="-0.01 0.044" actuatorfrcrange="-100 100"/>
+                    <geom type="mesh" rgba="0 0 0 1" mesh="right_link7"/>
+                  </body>
+                  <body name="right_link8" pos="0.08657 -0.0249 -0.00024366">
+                    <inertial pos="-0.00035522 0.0078277 0.0024201" quat="0.5 0.5 0.5 0.5" mass="0.064798" diaginertia="3e-05 3e-05 2e-05"/>
+                    <joint name="right_joint8" pos="0 0 0" axis="0 -1 0" type="slide" range="-0.01 0.044" actuatorfrcrange="-100 100"/>
+                    <geom type="mesh" rgba="0 0 0 1" mesh="right_link8"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <equality>
+    <joint joint1="left_joint7" joint2="left_joint8" polycoef="0 1 0 0 0"/>
+    <joint joint1="right_joint7" joint2="right_joint8" polycoef="0 1 0 0 0"/>
+  </equality>
+
+  <actuator>
+    <general name="left_joint1" joint="left_joint1" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="left_joint2" joint="left_joint2" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="left_joint3" joint="left_joint3" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="left_joint4" joint="left_joint4" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="left_joint5" joint="left_joint5" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="left_joint6" joint="left_joint6" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="left_gripper" joint="left_joint7" ctrlrange="-0.01 0.044" biastype="affine" gainprm="200" biasprm="0 -200 -20"/>
+    <general name="right_joint1" joint="right_joint1" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="right_joint2" joint="right_joint2" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="right_joint3" joint="right_joint3" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="right_joint4" joint="right_joint4" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="right_joint5" joint="right_joint5" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="right_joint6" joint="right_joint6" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
+    <general name="right_gripper" joint="right_joint7" ctrlrange="-0.01 0.044" biastype="affine" gainprm="200" biasprm="0 -200 -20"/>
+  </actuator>
+</mujoco>

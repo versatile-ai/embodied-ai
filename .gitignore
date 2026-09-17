@@ -1,0 +1,32 @@
+# Runtime state and generated evidence
+runs/
+dist/
+*.mp4
+*.jsonl
+latest.json
+observations/
+brain_io/
+
+# Local Python/tooling state
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+assets/usdz/.cache/
+
+# Machine-specific compiled artifact; build from encode_video.swift
+encode_video
+
+# Local secrets and private model mounts
+.env
+.env.*
+!.env.example
+weights/*
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.bin
+*.onnx
+*.gguf

@@ -1,0 +1,398 @@
+{
+  "Rigid": {
+    "bottle": [
+      {
+        "category": "bottle",
+        "category_idx": 60,
+        "group": null,
+        "xlim": [
+          -0.35,
+          0.05
+        ],
+        "ylim": [
+          -0.25,
+          0.02
+        ],
+        "zlim": null,
+        "qpos": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "rotate_deg": [
+          -90,
+          30
+        ],
+        "rotate_rand": true,
+        "relative_plane": "Table",
+        "place_tag": null,
+        "margin": 0.02,
+        "check_mode": "bbox",
+        "need_check_stable": true,
+        "label": "bottle0",
+        "default_pos": [
+          -0.05490427550747559,
+          -0.07083698120683998,
+          0.793307339414651
+        ],
+        "default_ori": [
+          0.5915337551487431,
+          -0.5335239817223517,
+          0.45892795836628436,
+          -0.3934782160126639
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "physics": {
+          "mass": 0.15,
+          "static_friction": 10000.0,
+          "dynamic_friction": 10000.0,
+          "type": "rigid"
+        },
+        "visual": {}
+      },
+      {
+        "category": "bottle",
+        "category_idx": 50,
+        "group": null,
+        "xlim": [
+          -0.35,
+          0.05
+        ],
+        "ylim": [
+          -0.25,
+          0.02
+        ],
+        "zlim": null,
+        "qpos": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "rotate_deg": [
+          -90,
+          30
+        ],
+        "rotate_rand": true,
+        "relative_plane": "Table",
+        "place_tag": null,
+        "margin": 0.02,
+        "check_mode": "bbox",
+        "need_check_stable": true,
+        "label": "bottle1",
+        "default_pos": [
+          -0.28752493558251824,
+          0.00429855147013547,
+          0.86
+        ],
+        "default_ori": [
+          0.7303373295038255,
+          0.0,
+          0.0,
+          -0.6830866600463082
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "physics": {
+          "mass": 0.15,
+          "static_friction": 10000.0,
+          "dynamic_friction": 10000.0,
+          "type": "rigid"
+        },
+        "visual": {}
+      },
+      {
+        "category": "bottle",
+        "category_idx": 41,
+        "group": null,
+        "xlim": [
+          0.05,
+          0.45
+        ],
+        "ylim": [
+          -0.25,
+          0.02
+        ],
+        "zlim": null,
+        "qpos": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "rotate_deg": [
+          -30,
+          90
+        ],
+        "rotate_rand": true,
+        "relative_plane": "Table",
+        "place_tag": null,
+        "margin": 0.02,
+        "check_mode": "bbox",
+        "need_check_stable": true,
+        "label": "bottle2",
+        "default_pos": [
+          0.10729841235176954,
+          -0.22736967072293207,
+          0.7918083141232688
+        ],
+        "default_ori": [
+          -0.6397434978867542,
+          0.6703458070351391,
+          0.23499852209406777,
+          -0.29349693442288705
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "physics": {
+          "mass": 0.15,
+          "static_friction": 10000.0,
+          "dynamic_friction": 10000.0,
+          "type": "rigid"
+        },
+        "visual": {}
+      },
+      {
+        "category": "bottle",
+        "category_idx": 59,
+        "group": null,
+        "xlim": [
+          -0.35,
+          0.05
+        ],
+        "ylim": [
+          -0.25,
+          0.02
+        ],
+        "zlim": null,
+        "qpos": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "rotate_deg": [
+          -90,
+          30
+        ],
+        "rotate_rand": true,
+        "relative_plane": "Table",
+        "place_tag": null,
+        "margin": 0.02,
+        "check_mode": "bbox",
+        "need_check_stable": true,
+        "label": "bottle3",
+        "default_pos": [
+          -0.2703703191458915,
+          -0.15321254988989558,
+          0.85
+        ],
+        "default_ori": [
+          0.9623281175693384,
+          0.0,
+          0.0,
+          -0.27189077611322826
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "physics": {
+          "mass": 0.15,
+          "static_friction": 10000.0,
+          "dynamic_friction": 10000.0,
+          "type": "rigid"
+        },
+        "visual": {}
+      }
+    ]
+  },
+  "Geometry": {
+    "dustbin": [
+      {
+        "category": "dustbin",
+        "category_idx": 0,
+        "group": null,
+        "xlim": [
+          -0.63,
+          -0.63
+        ],
+        "ylim": [
+          -0.1,
+          -0.1
+        ],
+        "zlim": [
+          0.35,
+          0.35
+        ],
+        "qpos": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "rotate_deg": 0,
+        "rotate_rand": false,
+        "relative_plane": "Ground",
+        "place_tag": null,
+        "margin": 0.01,
+        "check_mode": "bbox",
+        "need_check_stable": true,
+        "label": "dustbin",
+        "default_pos": [
+          -0.63,
+          -0.1,
+          0.39999999999999997
+        ],
+        "default_ori": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "physics": {
+          "mass": 1.8,
+          "friction": 0.38,
+          "type": "geometry"
+        },
+        "visual": {}
+      }
+    ],
+    "camera_stand": [
+      {
+        "category": "camera_stand",
+        "category_idx": 0,
+        "group": null,
+        "xlim": [
+          0.0,
+          0.0
+        ],
+        "ylim": [
+          -0.47,
+          -0.47
+        ],
+        "zlim": [
+          0.715,
+          0.715
+        ],
+        "qpos": [
+          0.707,
+          -0.707,
+          0.0,
+          0.0
+        ],
+        "rotate_deg": 0,
+        "rotate_rand": false,
+        "relative_plane": "Ground",
+        "place_tag": null,
+        "margin": 0.01,
+        "check_mode": "bbox",
+        "need_check_stable": true,
+        "label": "camera_stand",
+        "default_pos": [
+          0.0,
+          -0.47,
+          0.765
+        ],
+        "default_ori": [
+          0.707,
+          -0.707,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "physics": {
+          "type": "geometry"
+        },
+        "visual": {}
+      }
+    ]
+  },
+  "Room": {
+    "default": "Simple_Room_nolight",
+    "default_pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "default_rot": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scale": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "Table": {
+    "default": "material_0122",
+    "scale": [
+      1.4,
+      1.1,
+      0.05
+    ],
+    "default_pos": [
+      0.09,
+      -0.05,
+      0.74
+    ],
+    "default_ori": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "Ground": {
+    "geometry": "cube",
+    "thickness": 0.1,
+    "axis": "Z",
+    "default_pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "materials": {
+      "type": "mdl",
+      "default": "material_0564",
+      "random": false
+    },
+    "physics_material": {
+      "static_friction": 1.0,
+      "dynamic_friction": 1.0,
+      "restitution": 0.0,
+      "friction_combine_mode": "multiply",
+      "restitution_combine_mode": "multiply",
+      "compliant_contact_stiffness": 0.0,
+      "compliant_contact_damping": 0.0
+    }
+  },
+  "Background": {
+    "intensity": 1000,
+    "category_name": "brown_photostudio_02_4k.hdr"
+  }
+}
