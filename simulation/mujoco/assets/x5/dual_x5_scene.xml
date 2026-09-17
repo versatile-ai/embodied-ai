@@ -64,8 +64,8 @@
                   <joint name="left_joint6" pos="0 0 0" axis="1 0 0" range="-3.14 3.14" actuatorfrcrange="-100 100"/>
                   <geom type="mesh" rgba="0 0 0 1" mesh="left_link6"/>
                   <!-- EEF is the physical grasp center between the two jaws,
-                       not the wrist joint origin (offset +Y by 86.57 mm). -->
-                  <site name="left_ee" pos="0.08657 0 -0.0002436" size="0.01" rgba="1 0 0 0.5"/>
+                       40 mm forward of the finger roots, inside the effective gripping area. -->
+                  <site name="left_ee" pos="0.12657 0 -0.0002436" size="0.01" rgba="1 0 0 0.5"/>
                   <body name="left_camera_base" pos="0.057 0 0" quat="-3.67321e-06 0 0 -1">
                     <body name="left_camera" pos="-0.0275 0 0.05" quat="0 -0.173665 0 0.984805">
                       <camera name="left_cam_wrist" pos="0 0 0.001" quat="0.541675 0.454519 -0.454519 -0.541675" fovy="62.2"/>
@@ -116,7 +116,7 @@
                   <joint name="right_joint6" pos="0 0 0" axis="1 0 0" range="-3.14 3.14" actuatorfrcrange="-100 100"/>
                   <geom type="mesh" rgba="0 0 0 1" mesh="right_link6"/>
                   <!-- Keep the right EEF contract identical to the left. -->
-                  <site name="right_ee" pos="0.08657 0 -0.0002436" size="0.01" rgba="1 0 0 0.5"/>
+                  <site name="right_ee" pos="0.12657 0 -0.0002436" size="0.01" rgba="1 0 0 0.5"/>
                   <body name="right_camera_base" pos="0.057 0 0" quat="-3.67321e-06 0 0 -1">
                     <body name="right_camera" pos="-0.0275 0 0.05" quat="0 -0.173665 0 0.984805">
                       <camera name="right_cam_wrist" pos="0 0 0.001" quat="0.541675 0.454519 -0.454519 -0.541675" fovy="62.2"/>

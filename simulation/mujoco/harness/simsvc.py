@@ -61,11 +61,9 @@ GRIP_OPEN_CMD = float(os.environ.get("SIM_GRIP_OPEN_CMD", "0.80"))
 # RoboDojo X5 gripper joint7 range is [-0.01, 0.044] m.  Keep normalized
 # policy values 0..1 aligned with the official affine scale.
 GRIP_MIN, GRIP_MAX = -0.01, 0.044
-# The imported X5 finger meshes have a numerically unstable contact normal
-# when squeezing the primitive bottle collider.  A contact-triggered grasp
-# constraint makes the benchmark repeatable while keeping collision physics
-# active; set SIM_GRASP_ASSIST=0 to audit raw MuJoCo contact behaviour.
-GRASP_ASSIST = os.environ.get("SIM_GRASP_ASSIST", "1").lower() not in ("0", "false", "no")
+# Physical contact is the default. Legacy assisted attachment is opt-in only;
+# never enable it for physical-grasp acceptance or policy capability reports.
+GRASP_ASSIST = os.environ.get("SIM_GRASP_ASSIST", "0").lower() not in ("0", "false", "no")
 
 ARM_JOINTS = [f"joint{i}" for i in range(1, 7)]
 QPOS_IDS, CTRL_IDS = [], []
@@ -245,13 +243,17 @@ class Session:
                     ms = spec.add_mesh(name=mn, file=mesh_file)
                     gv = b.add_geom(type=mujoco.mjtGeom.mjGEOM_MESH)
                     gv.meshname = mn
-                    gv.mass = 0
-                    gv.contype = 0
-                    gv.conaffinity = 0
+                    gv.mass = mass
+                    gv.contype = 1
+                    gv.conaffinity = 1
+                    gv.friction = [1.0, 0.005, 0.0005]
+                    gv.condim = 4
+                    gv.solref = [0.002, 1]
+                    gv.solimp = [0.99, 0.999, 0.001, 0.5, 2]
                     gv.rgba = [0.85, 0.85, 0.88, 1.0]
                     lo = np.array(bbox["min"]); hi = np.array(bbox["max"])
-                    self._add_collider(b, lo, hi, mass,
-                                       open_top=(kind == "dustbin"))
+                    # Bottle contact uses the visible mesh convex hull instead
+                    # of an invisible axis-aligned bounding box.
                     gv.rgba = list(self.BOTTLE_COLOR.get(
                         entries.get("category_idx", 0), [0.85, 0.85, 0.88])) + [1.0]
                 else:
@@ -380,13 +382,13 @@ class Session:
                 for gid in range(int(b.geomnum[0])):
                     geom = m2.geom(int(b.geomadr[0]) + gid)
                     geom.rgba = [0.82, 0.83, 0.86, 1.0]
-                    # Only the two finger links participate in task-object
-                    # contact.  Collision meshes on upstream visual links
-                    # otherwise sweep through the table and launch bottles
-                    # during an otherwise valid overhead approach.
-                    if not bname.endswith(("_link7", "_link8")):
-                        geom.contype = 0
-                        geom.conaffinity = 0
+                    geom.contype = 1
+                    geom.conaffinity = 1
+                    if bname.endswith(("_link7", "_link8")):
+                        geom.friction = [1.0, 0.005, 0.0005]
+                        geom.condim = 4
+                        geom.solref = [0.002, 1]
+                        geom.solimp = [0.99, 0.999, 0.001, 0.5, 2]
         # Local arm servo tuning; not a copy of Isaac drive parameters.
         m2.opt.integrator = mujoco.mjtIntegrator.mjINT_IMPLICIT
         m2.opt.iterations = 50
@@ -656,7 +658,7 @@ class Session:
         hx, hy = getattr(self, "bin_inner", (BIN_R_IN, BIN_R_IN))
         n = 0
         for label, bid in self.obj_body_ids.items():
-            if "dustbin" in label:
+            if not label.startswith("bottle"):
                 continue
             p = self.data.xpos[bid]
             inside_xy = abs(p[0] - bin_xpos[0]) < hx and abs(p[1] - bin_xpos[1]) < hy
@@ -698,7 +700,7 @@ class Session:
             self.commanded_grip[side] = self.grip_target_norm[side]
         requested[6], requested[13] = grip_denorm(requested[6]), grip_denorm(requested[13])
         for side, idx in (("left", 6), ("right", 13)):
-            if self.grasped[side] is not None and self.commanded_grip[side] <= 0.8:
+            if GRASP_ASSIST and self.grasped[side] is not None and self.commanded_grip[side] <= 0.8:
                 requested[idx] = self.grasp_opening[side]
         # Slew-limit and low-pass the target in actuator space.  This removes
         # the high-frequency component while retaining the exact end target.
@@ -729,6 +731,19 @@ class Session:
     def _update_grasps(self):
         """Acquire/release stable grasp constraints from real finger contacts."""
         if not GRASP_ASSIST:
+            # Observation only: no position/velocity writes or equality activation.
+            for side in ("left", "right"):
+                touching = {}
+                for c in self.data.contact:
+                    if c.dist > 0: continue
+                    b1, b2 = int(self.model.geom_bodyid[c.geom1]), int(self.model.geom_bodyid[c.geom2])
+                    for finger, other in ((b1,b2),(b2,b1)):
+                        if finger not in self.finger_body_ids[side]: continue
+                        for name, bid in self.obj_body_ids.items():
+                            if bid == other and name.startswith("bottle"):
+                                touching.setdefault(name,set()).add(finger)
+                self.grasped[side] = next((name for name, fingers in touching.items()
+                                           if len(fingers) == 2), None)
             return
         # First release explicitly opened grippers.
         for side in ("left", "right"):
@@ -816,6 +831,7 @@ class Session:
         return {"t": self.t, "done": bool(self.done), "success": bool(self.success),
                 "score": float(self.score), "bottles_in": self.bottles_in_bin(),
                 "grasped": {side: label for side, label in self.grasped.items()},
+                "object_positions": {name: self.data.xpos[bid].tolist() for name,bid in self.obj_body_ids.items() if name.startswith("bottle") or name == "dustbin"},
                 "remaining_steps": max(0,self.step_limit-self.t),
                 "termination": self.error or ("success" if self.success else "step_limit" if self.t>=self.step_limit else None)}
 
@@ -844,7 +860,7 @@ class Handler(BaseHTTPRequestHandler):
         if path in ('/','/live'):
             return self.send_bytes((Path(__file__).with_name('live.html')).read_bytes(),'text/html; charset=utf-8')
         if path=='/health':
-            return self._send({'ok':True,'version':'astra-isolated-v4-grip-sync','port':PORT,
+            return self._send({'ok':True,'version':'astra-isolated-v5-physical-grasp','port':PORT,
                                'physics_hz':PHYS_HZ,'control_hz':CTRL_HZ,
                                'eef':'jaw_center','grasp_assist':GRASP_ASSIST,
                                'arm_ctrl_step':ARM_CTRL_STEP,

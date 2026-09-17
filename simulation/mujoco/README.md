@@ -307,7 +307,7 @@ curl http://127.0.0.1:8763/health
   "physics_hz": 1000,
   "control_hz": 25,
   "eef": "jaw_center",
-  "grasp_assist": true,
+  "grasp_assist": false,
   "arm_ctrl_step": 0.028,
   "grip_ctrl_step": 0.008,
   "ctrl_smooth": 0.85
@@ -478,13 +478,11 @@ runs/<session_id>/right_cam_wrist.mp4
 
 ### 9.2 抓取辅助
 
-默认 `SIM_GRASP_ASSIST=1`。当同一侧两根手指同时接触同一瓶子且夹爪闭合时，服务建立稳定的抓取约束；夹爪打开后释放。该辅助机制使用 MuJoCo weld equality，在真实双指接触时记录相对位姿、启用约束，明确打开时停用；不再逐步重写物体位置或清零关节速度。它仍是辅助抓取，不代表纯接触物理或官方等价性。
+默认 `SIM_GRASP_ASSIST=0`：瓶子靠双指接触与摩擦支撑，不启用 weld，不写入物体位置或清零速度。`grasped` 在此模式仅表示当前双指都与同一瓶子接触，不是附着状态。
 
-如需审计原始接触物理：
+瓶子使用可见 mesh 的凸包碰撞，替换旧的透明包围盒；恢复手掌、手腕和其他连杆碰撞，保留相邻部件自碰撞排除。有效夹持目标点从指根前移 40 mm。瓶子和夹指采用 2 ms 接触时间常数，匹配 1 ms 积分步长，减少夹持穿透。
 
-```sh
-SIM_GRASP_ASSIST=0 python3 harness/simsvc.py
-```
+`SIM_GRASP_ASSIST=1` 仅保留为旧版对照；物理抓取验收测试要求此项关闭。凸包仍是形状近似，凹陷、螺纹等局部外观不等同于三角网格逐面碰撞。
 
 ### 9.3 评分
 
@@ -668,10 +666,10 @@ git commit -m "Add reproducible Astra MuJoCo evaluation environment"
 
 ### 夹爪抖动回归
 
-运行 `python3 test_gripper_stability.py`，无需图形环境；保留真实物理、控制与接触，只替换渲染和 HTTP 传输。检查两个夹指（joint7、joint8），而不是只检查策略接口中的 joint7：全程同步误差 <0.3 mm，抬升/搬运每帧位移 <0.5 mm、开度漂移 <1 mm，静止开爪 2 秒峰峰值 <0.1 mm，并要求真实双指接触后抓取、保持、释放、瓶子入桶。
+运行 `python3 test_gripper_stability.py`，无需图形环境；保留真实物理、控制与接触，只替换渲染和 HTTP 传输。检查两个夹指（joint7、joint8），而不是只检查策略接口中的 joint7：全程同步误差 <0.3 mm，抬升/搬运每帧位移 <0.5 mm；保持阶段夹指开度漂移 <0.5 mm、瓶子高度漂移 <5 mm；抬升/搬运双指接触帧占比至少 98%，3 秒保持阶段为 100%，瓶子接触穿透 <1 mm，静止开爪 2 秒峰峰值 <0.1 mm，并要求没有激活任何 weld equality、恢复连杆碰撞、目标瓶自然释放并入桶。
 
 双指加入对称位置驱动、被动阻尼和更紧的 mimic equality；物理积分使用 1 ms 步长。14 维外部动作接口不变，新增内部 follower 驱动不对策略暴露。`states.jsonl` 的 `fingers` 记录两指实际位置和目标。基础测试在 1.12 m 高度水平搬运并在桶口上方释放，避免旧路线碰撞 bottle3 和桌沿。
 
 左右夹爪独立自检：`python3 test_pick_place.py --side left` 使用原布局，`python3 test_pick_place.py --side right` 使用物体、桶和桌面位置的左右镜像布局。两者均执行开爪、接近、闭合、抬升、高位搬运和释放，要求至少一个瓶子入桶，并保存完整三路视频。镜像布局仅用于右臂功能验证，不属于官方评测。`test_gripper_stability.py` 同时覆盖左右两臂的稳定性。
 
-当前限制：瓶子的可见 mesh 使用透明包围盒作为碰撞体，辅助抓取通过 weld 保持。因此功能测试通过并不代表双指始终贴合可见瓶身，也不代表无辅助的纯物理抓取通过。
+当前物理验收：辅助附着关闭；两侧分别夹取目标瓶，抬升并保持 3 秒、搬运、张开后自然落下；额外静置 2 秒后检查目标 bottle0 自身位于桶内，不能用其他瓶子的计数代替。

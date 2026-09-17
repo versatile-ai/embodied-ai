@@ -2,7 +2,7 @@
 """Deterministic dual-X5 pick/place smoke test (no GPT or π0.5).
 
 Exercises the real HTTP EEF path: approach bottle0, close until the grasp
-assist acquires it, lift/carry to the dustbin, release, and assert that the
+contacts support it, lift/carry to the dustbin, release, and assert that the
 scorer sees the bottle inside.  Every waypoint is subdivided to respect the
 service's 5 cm EEF safety bound.
 """
@@ -80,6 +80,16 @@ def main(side="left"):
     if obs.get("grasped", {}).get(side) != "bottle0":
         raise AssertionError(f"grasp not acquired: {obs.get('grasped')}")
     move(sid, [bottle[0], bottle[1], 1.12], 0.0, "lift")
+    # Hold the measured arm pose for 3 simulated seconds with closed jaws.
+    obs, _ = client.observe(sid)
+    held = obs["ee"]
+    held[side]["gripper"] = 0.0
+    for _ in range(15):
+        obs, _ = client.observe(sid)
+        client.execute(sid, obs["t"], "eef", {"goals": held, "steps": 5}, "hold 3 seconds")
+        after, _ = client.observe(sid)
+        if after.get("grasped", {}).get(side) != "bottle0":
+            raise AssertionError("lost bilateral contact during hold")
     move(sid, [-0.63*sign, -0.10, 1.12], 0.0, "carry")
     # Stay above the other bottles and bin rim; the old diagonal carry and
     # z=.72 insertion collided with bottle3/table and forced the jaws apart.
@@ -98,6 +108,17 @@ def main(side="left"):
     obs, _ = client.observe(sid)
     if obs.get("bottles_in", 0) < 1:
         raise AssertionError(f"bottle not in bin: {obs.get('bottles_in')}")
+    # Require the target itself, not another displaced bottle, to be in bin.
+    for _ in range(10):
+        obs, _ = client.observe(sid)
+        goals = obs["ee"]
+        goals["left"]["gripper"] = goals["right"]["gripper"] = 1.0
+        client.execute(sid, obs["t"], "eef", {"goals": goals, "steps": 5}, "settle target in bin")
+    obs, _ = client.observe(sid)
+    positions = obs["object_positions"]
+    relative = np.array(positions["bottle0"]) - np.array(positions["dustbin"])
+    if not (abs(relative[0]) < 0.15 and abs(relative[1]) < 0.13 and 0 < relative[2] < 0.4):
+        raise AssertionError(f"target bottle0 outside bin: {relative}")
     result = client.execute(sid, obs["t"], "finish", {}, "pick-place smoke test complete")
     print(json.dumps({"session_id": sid, "result": result}, ensure_ascii=False))
 
