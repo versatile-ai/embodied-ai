@@ -65,6 +65,17 @@ def main():
     # nominal body centre (z=.40) can put the grasp offset below the collider.
     move_left(sid, [-0.63, -0.10, 0.72], 0.0, "lower into bin")
     move_left(sid, [-0.63, -0.10, 0.72], 1.0, "release")
+    # Let the released bottle settle through the opening before evaluating
+    # containment; contact resolution can take several control ticks.
+    for _ in range(6):
+        obs, _ = client.observe(sid)
+        if obs.get("bottles_in", 0) >= 1:
+            break
+        goals = {s: {"xyz": obs["ee"][s]["xyz"],
+                     "quat_wxyz": obs["ee"][s]["quat_wxyz"],
+                     "gripper": 1.0}
+                 for s in ("left", "right")}
+        client.execute(sid, obs["t"], "eef", {"goals": goals, "steps": 2}, "settle after release")
     obs, _ = client.observe(sid)
     if obs.get("bottles_in", 0) < 1:
         raise AssertionError(f"bottle not in bin: {obs.get('bottles_in')}")
