@@ -30,6 +30,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from PIL import Image
 from control import solve_step, validate_goals
+from video import encode_video
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import mujoco
@@ -41,6 +42,7 @@ RUN_ROOT.mkdir(parents=True, exist_ok=True)
 SCENE_XML = os.environ.get("SIMSCENE", str(ROOT / "assets/x5/dual_x5_scene.xml"))
 PORT = int(os.environ.get("SIMPORT", "8763"))
 CAMERA_PROFILE = os.environ.get("SIM_CAMERA_PROFILE", "wide").lower()
+HOST = os.environ.get("SIMHOST", "127.0.0.1")
 
 CTRL_HZ = 25
 PHYS_HZ = 1000
@@ -84,12 +86,18 @@ def grip_denorm(g):
 
 
 class Session:
-    def __init__(self, layout, instruction, task="put_bottles", record_dir=None):
+    def __init__(self, layout, instruction, task="put_bottles", record_dir=None, overview_yaw=None):
         if task not in ("put_bottles", "classify_objects"):
             raise ValueError("Unsupported task")
+        if overview_yaw is not None:
+            overview_yaw = float(overview_yaw)
+            if not np.isfinite(overview_yaw) or abs(overview_yaw) > 180:
+                raise ValueError('overview_yaw must be finite and within +/-180 degrees')
+        self.overview_yaw = overview_yaw
         self.record_dir = Path(record_dir) if record_dir else None
         if self.record_dir: self.record_dir.mkdir(parents=True, exist_ok=False)
         self.frame_cache = {}
+        self.closed = False
         self.requests = {}
         self.success = False
         self.error = None
@@ -133,7 +141,7 @@ class Session:
         if self.record_dir:
             (self.record_dir / "reset_check.json").write_text(json.dumps(self.reset_check, indent=2))
         if self.record_dir:
-            (self.record_dir / "initialization.json").write_text(json.dumps({"layout": layout, "instruction": instruction, "task": task}, indent=2))
+            (self.record_dir / "initialization.json").write_text(json.dumps({"layout": layout, "instruction": instruction, "task": task, "overview_yaw": self.overview_yaw}, indent=2))
         self.capture()
 
     def verify_initial_state(self):
@@ -216,7 +224,6 @@ class Session:
         # scene.  Keep it static and non-colliding so it cannot affect scores.
         for stand in geoms.get("camera_stand", []):
             sb = world.add_body(); sb.name = stand.get("label", "camera_stand")
-            sb.add_joint(type=mujoco.mjtJoint.mjJNT_FREE)
             sb.pos = stand.get("default_pos", [0.0, -0.47, 0.765])
             sb.quat = stand.get("default_ori", [0.707, -0.707, 0.0, 0.0])
             for size, pos in [([0.025, 0.025, 0.20], [0, 0, 0.20]),
@@ -234,7 +241,8 @@ class Session:
             b = world.add_body()
             b.name = label
             b.quat = quat
-            b.add_joint(type=mujoco.mjtJoint.mjJNT_FREE)
+            if not is_bin:
+                b.add_joint(type=mujoco.mjtJoint.mjJNT_FREE)
             if is_bin:
                 # layout z is the bin centre; our body origin is the bin bottom
                 pos[2] = 0.0
@@ -316,15 +324,9 @@ class Session:
                 eq.active = False
                 eq.solref = [0.008, 1]
                 eq.solimp = [0.99, 0.999, 0.001, 0.5, 2]
-        self.model = spec.compile()
-        self.model.opt.timestep = 1.0 / PHYS_HZ
-        self.data = mujoco.MjData(self.model)
-        mujoco.mj_resetData(self.model, self.data)  # seed free-joint qpos from body poses
+        # Calibrate cameras using the small robot-only model. Task meshes do
+        # not change robot kinematics; compiling them twice doubles peak RAM.
         m2 = self.model
-        for label, (pos, quat) in self.obj_poses.items():
-            qa = m2.jnt_qposadr[m2.body(label).jntadr[0]]
-            self.data.qpos[qa:qa + 3] = pos
-            self.data.qpos[qa + 3:qa + 7] = quat
         mujoco.mj_forward(self.model, self.data)
         # wrist cams: remount relative to the EE site so the view matches the
         # official demo wrist frames (above/behind gripper, looking down-forward
@@ -386,12 +388,25 @@ class Session:
                 mujoco.mju_euler2Quat(hq, np.array([hdeg, 0.0, 0.0]) * np.pi / 180.0, "xyz")
                 sc.quat = list(map(float, hq))
                 sc.fovy = 71.1 if CAMERA_PROFILE == "official" else 78.0
+                if self.overview_yaw is not None:
+                    # Explicit visual-demo override only; default policy camera is unchanged.
+                    yaw = np.deg2rad(self.overview_yaw)
+                    target = np.array([-0.3, 0.0, 0.65])
+                    offset = np.array([1.8*np.sin(yaw), -1.8*np.cos(yaw), 1.4])
+                    z = offset / np.linalg.norm(offset)
+                    x = np.cross([0., 0., 1.], z); x /= np.linalg.norm(x)
+                    y = np.cross(z, x)
+                    mujoco.mju_mat2Quat(hq, np.stack([x, y, z], axis=1).ravel())
+                    sc.pos = list(map(float, target + offset))
+                    sc.quat = list(map(float, hq))
         m2 = spec.compile()
         m2.opt.timestep = 1.0 / PHYS_HZ
         self.model = m2
         self.data = mujoco.MjData(m2)
         mujoco.mj_resetData(m2, self.data)
         for label, (pos, quat) in self.obj_poses.items():
+            if not int(m2.body(label).jntnum[0]):
+                continue
             qa = int(m2.jnt_qposadr[m2.body(label).jntadr[0]])
             self.data.qpos[qa:qa + 3] = pos
             self.data.qpos[qa + 3:qa + 7] = quat
@@ -445,6 +460,10 @@ class Session:
         except Exception:  # noqa: BLE001
             pass
         self.obj_body_ids = {label: m.body(label).id for label in self.obj_bodies}
+        # Do not retain MjsBody handles (and their owning mesh specification).
+        self.obj_bodies = dict.fromkeys(self.obj_body_ids)
+        self.bottle_labels = {entry.get('label', f'bottle{i}')
+                              for i, entry in enumerate(rigids.get('bottle', []))}
         self.bin_id = next((v for k, v in self.obj_body_ids.items()
                             if "dustbin" in k), None)
 
@@ -628,6 +647,8 @@ class Session:
 
     # ---------- io ----------
     def state14(self):
+        if self.closed:
+            return self.final_state
         q = self.data.qpos
         s = [float(q[i]) for i in self.qpos_ids[:6]] + [grip_norm(q[self.qpos_ids[6]])] + \
             [float(q[i]) for i in self.qpos_ids[7:13]] + [grip_norm(q[self.qpos_ids[13]])]
@@ -654,6 +675,8 @@ class Session:
                 for side, idx in (("left", 6), ("right", 13))}
 
     def ee_poses(self):
+        if self.closed:
+            return self.final_ee
         result = {}
         for side in ("left", "right"):
             site = self.model.site(side+"_ee").id
@@ -680,7 +703,7 @@ class Session:
         hx, hy = getattr(self, "bin_inner", (BIN_R_IN, BIN_R_IN))
         n = 0
         for label, bid in self.obj_body_ids.items():
-            if not label.startswith("bottle"):
+            if label not in self.bottle_labels:
                 continue
             p = self.data.xpos[bid]
             inside_xy = abs(p[0] - bin_xpos[0]) < hx and abs(p[1] - bin_xpos[1]) < hy
@@ -850,6 +873,8 @@ class Session:
             return self._status()
 
     def _status(self):
+        if self.closed:
+            return dict(self.final_status)
         return {"t": self.t, "done": bool(self.done), "success": bool(self.success),
                 "score": float(self.score), "bottles_in": self.bottles_in_bin(),
                 "grasped": {side: label for side, label in self.grasped.items()},
@@ -857,21 +882,40 @@ class Session:
                 "remaining_steps": max(0,self.step_limit-self.t),
                 "termination": self.error or ("success" if self.success else "step_limit" if self.t>=self.step_limit else None)}
 
+    def close(self):
+        """Release heavy simulation resources, retaining final API evidence."""
+        if self.closed:
+            return
+        if not self.done:
+            raise ValueError('Finish the active session before releasing it')
+        self.final_status = self._status()
+        self.final_state = self.state14()
+        self.final_ee = self.ee_poses()
+        self.renderer.close()
+        self.renderer = self.data = self.model = None
+        self.closed = True
+
 
 SESSIONS = {}
 LATEST = None
 
 class Handler(BaseHTTPRequestHandler):
+    # Browsers may preconnect without sending a request. Keep the renderer on
+    # this single server thread, but bound idle socket waits so actions proceed.
+    timeout = 2
+
     def log_message(self, *args): pass
 
     def send_bytes(self, body, content_type, code=200):
-        self.send_response(code)
-        self.send_header('Content-Type',content_type)
-        self.send_header('Content-Length',str(len(body)))
-        self.send_header('Cache-Control','no-store')
-        self.end_headers()
-        try: self.wfile.write(body)
-        except (BrokenPipeError,ConnectionResetError): pass
+        try:
+            self.send_response(code)
+            self.send_header('Content-Type',content_type)
+            self.send_header('Content-Length',str(len(body)))
+            self.send_header('Cache-Control','no-store')
+            self.end_headers()
+            self.wfile.write(body)
+        except (BrokenPipeError, ConnectionResetError, TimeoutError):
+            pass
 
     def _send(self, obj, code=200):
         self.send_bytes(json.dumps(obj,allow_nan=False).encode(),'application/json',code)
@@ -883,6 +927,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_bytes((Path(__file__).with_name('live.html')).read_bytes(),'text/html; charset=utf-8')
         if path=='/health':
             return self._send({'ok':True,'version':'astra-isolated-v5-physical-grasp','port':PORT,
+                               'render_backend':os.environ.get('MUJOCO_GL','default'),
                                'physics_hz':PHYS_HZ,'control_hz':CTRL_HZ,
                                'eef':'jaw_center','grasp_assist':GRASP_ASSIST,
                                'arm_ctrl_step':ARM_CTRL_STEP,
@@ -915,8 +960,14 @@ class Handler(BaseHTTPRequestHandler):
             if not 0<size<10_000_000:raise ValueError('Invalid body size')
             req=json.loads(self.rfile.read(size))
             if parts==['session']:
+                if any(not s.done for s in SESSIONS.values()):
+                    return self._send({'error':'Finish the active session before creating another'},409)
+                for old in SESSIONS.values():
+                    old.close()
+                while len(SESSIONS) >= 8:
+                    SESSIONS.pop(next(iter(SESSIONS)))
                 sid=uuid.uuid4().hex[:12]
-                sess=Session(req['layout'],req['instruction'],req.get('task','put_bottles'),RUN_ROOT/sid)
+                sess=Session(req['layout'],req['instruction'],req.get('task','put_bottles'),RUN_ROOT/sid,req.get('overview_yaw'))
                 SESSIONS[sid]=sess;LATEST=sid
                 return self._send({'session_id':sid,**sess._status(),'record_dir':str(sess.record_dir)})
             if len(parts)!=3 or parts[0]!='session' or parts[2] not in ('act','eef','finish'):
@@ -931,19 +982,21 @@ class Handler(BaseHTTPRequestHandler):
                 if old!=digest:return self._send({'error':'request_id payload conflict'},409)
                 return self._send(result,code)
             if type(req.get('expected_step')) is not int or req['expected_step']!=sess.t:return self._send({'error':'stale observation',**sess._status()},409)
+            if sess.done and parts[2] in ('act','eef'):
+                return self._send({'error':'Session has ended',**sess._status()},409)
             with (sess.record_dir/'requests.jsonl').open('a') as f:f.write(json.dumps({'route':parts[2],'request':req})+'\n')
             try:
                 if parts[2]=='act': result=sess.act(req['joints'])
                 elif parts[2]=='eef': result=sess.eef(req['goals'],req.get('steps',1))
                 else:
                     if not sess.done:sess.error='stopped_by_operator';sess.done=True
-                    import subprocess
                     videos=[]
                     for cam in sess.frame_cache:
                         dest=sess.record_dir/(cam+'.mp4')
-                        subprocess.run([str(ROOT/'encode_video'),str(sess.record_dir/cam),str(dest),str(CTRL_HZ)],check=True,timeout=60,capture_output=True)
+                        encode_video(ROOT, sess.record_dir/cam, dest, CTRL_HZ)
                         videos.append(str(dest))
                     result={**sess._status(),'videos':videos}
+                    sess.close()
                 code=200
             except ValueError as exc:
                 result={'error':str(exc),**sess._status()};code=400
@@ -959,4 +1012,4 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     print(f'simsvc on :{PORT}',flush=True)
     HTTPServer.allow_reuse_address = True
-    HTTPServer(('127.0.0.1',PORT),Handler).serve_forever()
+    HTTPServer((HOST,PORT),Handler).serve_forever()

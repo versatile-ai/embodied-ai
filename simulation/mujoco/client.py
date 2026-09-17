@@ -8,12 +8,13 @@ from PIL import Image
 ROOT=Path(__file__).resolve().parent
 SIM=os.environ.get('ASTRA_SIM','http://127.0.0.1:8763')
 PI=os.environ.get('ASTRA_PI05','http://127.0.0.1:8642')
+HTTP_TIMEOUT=float(os.environ.get('ASTRA_HTTP_TIMEOUT','90'))
 CAM={'cam_base':'cam_high','left_cam_wrist':'cam_left_wrist','right_cam_wrist':'cam_right_wrist'}
 DIRECT_STEP=float(os.environ.get('ASTRA_DIRECT_STEP','0.018'))
 def http(url,payload=None):
     req=urllib.request.Request(url,data=None if payload is None else json.dumps(payload,allow_nan=False).encode(),headers={'Content-Type':'application/json'})
     try:
-        with urllib.request.urlopen(req,timeout=90) as r:return json.load(r)
+        with urllib.request.urlopen(req,timeout=HTTP_TIMEOUT) as r:return json.load(r)
     except urllib.error.HTTPError as e:raise RuntimeError(f'HTTP {e.code}: {e.read().decode()}') from e
 
 def observe(sid):
@@ -36,6 +37,14 @@ def infer(sid,obs):
     path=ROOT/'runs'/sid/f"proposal_{obs['t']:06d}.json";path.write_text(json.dumps(out));return path,out
 
 def execute(sid,step,route,payload,reason):
+    if route == 'act' and 'joints' in payload:
+        actions = np.asarray(payload['joints'], dtype=float).copy()
+        if actions.ndim != 2 or actions.shape[1] != 14 or not np.isfinite(actions).all():
+            raise ValueError('Expected finite joint rows of width 14')
+        clipped = int(np.count_nonzero((actions[:, [6,13]] < 0) | (actions[:, [6,13]] > 1)))
+        actions[:, [6,13]] = np.clip(actions[:, [6,13]], 0, 1)
+        payload = {**payload, 'joints': actions.tolist()}
+        reason += f' (gripper values clipped to [0,1]: {clipped})'
     body={'request_id':uuid.uuid4().hex,'expected_step':step,**payload,'decision_summary':reason}
     return http(f'{SIM}/session/{sid}/{route}',body)
 

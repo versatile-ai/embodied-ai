@@ -9,12 +9,15 @@ try:
   raise RuntimeError('8763 occupied by another service')
  print('Already running: http://127.0.0.1:8763/live');sys.exit(0)
 except OSError:pass
-if not (root/'encode_video').exists():
+if sys.platform == 'darwin' and not (root/'encode_video').exists():
  subprocess.run(['swiftc','-module-cache-path','/tmp/astra-swift-module-cache',str(root/'encode_video.swift'),'-o',str(root/'encode_video')],check=True)
+(root/'runs').mkdir(exist_ok=True)
+process_options = ({'creationflags': subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP}
+                   if os.name == 'nt' else {'start_new_session': True})
 with (root/'runs/server.log').open('ab') as log:
- proc=subprocess.Popen([sys.executable,'-u',str(root/'harness/simsvc.py')],cwd=root,env={**os.environ,'SIMPORT':'8763','ASTRA_RUN':str(root/'runs')},stdin=subprocess.DEVNULL,stdout=log,stderr=log,start_new_session=True)
+ proc=subprocess.Popen([sys.executable,'-u',str(root/'harness/simsvc.py')],cwd=root,env={**os.environ,'SIMPORT':'8763','ASTRA_RUN':str(root/'runs')},stdin=subprocess.DEVNULL,stdout=log,stderr=log,**process_options)
 (root/'runs/server.pid').write_text(str(proc.pid))
-for _ in range(30):
+for _ in range(150):
  if proc.poll() is not None:raise RuntimeError('Server exited; inspect runs/server.log')
  try:
   with urllib.request.urlopen('http://127.0.0.1:8763/health',timeout=1) as response:

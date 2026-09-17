@@ -1,5 +1,30 @@
 # Astra 双臂仿真环境搭建与集成文档
 
+> 2026-09-17 部署更新：支持将物理、渲染、录像全部放到 Linux 服务器，Windows 仅显示页面。192 服务器使用独立 OSMesa 软件渲染容器，部署与验收记录见 [服务器部署说明](../../docs/server_192_deployment.md)。下文 Mac/NPU 分工是原始部署方式，并非必须在 PC 渲染。
+
+### 短程自动试运行
+
+手动观察演示可在 `POST /session` 中指定 `overview_yaw: -45`：将主相机拉远并移到左侧 45° 方位，显示桌边的垃圾桶（正角度为相机移到右侧，该侧垃圾桶可能被桌子遮挡）。该参数会记录在 `initialization.json`；不传时保持原相机标定。此演示视角改变了策略输入图像，不应用于与原标定的策略成绩直接比较；结束演示后新建不带该参数的会话即可恢复。
+
+`run_demo.py` 会循环观测 → π0.5 推理 → 小批执行，达到步数上限或任务结束后自动生成三路录像。默认新建瓶子场景，执行 30 步，每批 3 步；这只是运行演示，不保证抓取成功。
+
+在 192 上运行（容器已配置仿真、推理地址和 300 秒等待）：
+
+```sh
+docker exec robodojo-sim /opt/sim-venv/bin/python -u run_demo.py --steps 30
+```
+
+已有活动会话时，新建会被拒绝；如需继续该会话，显式添加 `--session SESSION_ID`。`--steps` 是本次追加步数，正常完成后会结束该会话并编码录像。不要同时启动多个控制脚本。
+
+也可从 Windows 本目录运行，但须保持 8763（仿真）和 8642（推理）两个 SSH 转发可用：
+
+```powershell
+$env:ASTRA_HTTP_TIMEOUT = '300'
+.\.venv\Scripts\python.exe -u run_demo.py --steps 30
+```
+
+查看 `http://127.0.0.1:8763/live`；每批完成后画面更新，CPU 软件渲染非实时。按 Ctrl+C 停止控制循环，已提交的一批动作仍可能完成。发生超时或错误时脚本不自动重发或追加 finish，应先查看 `/status`。正常结束输出录像路径；在服务器运行时文件位于 `/data_nv0/robodojo-sim-20260917/runs/SESSION_ID/`。
+
 本文档描述当前可交付给同事复现的独立仿真环境：组件、目录、安装方式、服务协议、GPT/π 推理接入、验收标准和已知边界。
 
 ## 1. 环境目标
@@ -231,6 +256,38 @@ astra_eval/
 ```
 
 ## 5. 从零安装
+
+### Windows 启动
+
+在项目根目录的 PowerShell 中执行（已安装 `uv`）：
+
+```powershell
+uv venv --python 3.12 simulation/mujoco/.venv
+uv pip install --python simulation/mujoco/.venv/Scripts/python.exe -r simulation/mujoco/requirements.txt
+cd simulation/mujoco
+.venv/Scripts/python.exe start_server.py
+```
+
+Windows 使用 FFmpeg 编码录像（`imageio-ffmpeg` 自带可执行文件），不需要 Swift。
+首次安装后可执行 `.venv/Scripts/python.exe verify_http.py` 检查动作、幂等、过期请求与录像。
+
+另开终端保持到 192 推理服务的隧道；跳板机已有访问其内网端口的权限：
+
+```powershell
+ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -L 127.0.0.1:8642:192.168.0.192:8642 root@159.138.11.11
+```
+
+回到仿真目录创建场景，并在浏览器打开 `http://127.0.0.1:8763/live`：
+
+```powershell
+.venv/Scripts/python.exe client.py start --task put_bottles --layout 0
+# 把 SESSION_ID 替换为上一条命令返回的 session_id
+.venv/Scripts/python.exe client.py infer --session SESSION_ID
+.venv/Scripts/python.exe client.py follow --session SESSION_ID --steps 5
+```
+
+页面用于查看画面，动作由客户端命令驱动；等待期间仿真暂停。推理和执行可重复进行，
+结束时使用 `client.py finish --session SESSION_ID` 生成三路 MP4。关掉隧道会中断后续远程推理。
 
 ### 5.1 获取源码包
 

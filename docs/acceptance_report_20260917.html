@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>仿真环境验收 · 2026-09-17</title>
+<style>body{font:16px/1.7 system-ui,sans-serif;background:#f4f6fa;color:#182337;max-width:1100px;margin:40px auto;padding:24px}section{background:white;border-radius:12px;padding:24px;margin:20px 0}td,th{text-align:left;border-bottom:1px solid #dce2eb;padding:12px}table{width:100%;border-collapse:collapse}.warn{color:#9b4c00}a{color:#165cb4}code{overflow-wrap:anywhere}video{max-width:100%}</style>
+<h1>仿真环境验收报告</h1><p>2026-09-17 · 提交 dd63456 加本地兼容修改 · v5 physical grasp · 默认关闭 weld 辅助</p>
+<section><strong>后续修复：</strong>右臂夹指阻尼调整后，原左右完整物理回归均通过，右臂搬运接触率提升至98.79%。<a href="right_gripper_fix_20260917.md">修复与验证记录</a>。下方保留修复前验收结果，内存及隧道风险仍有效。</section>
+<section><h2>结论：功能链路通过，尚未全面验收</h2><p>已执行计划中的有界测试与补测。左右臂单瓶入桶、接口、录像、六次复位、故障停止与真实 GPT6＋π0.5 六步闭环均通过。右臂接触稳定性仍不达标，分类场景存在资源敏感性，推理 SSH 隧道也出现过断开。没有修改生产物理参数或降低阈值。</p><p>最终恢复布局0，第0步，8项复位检查全部通过。正式三局实验没有重新启动。</p></section>
+<section><h2>结果明细</h2><table><tr><th>检查</th><th>结果</th><th>证据与边界</th></tr>
+<tr><td>单元与物理回归</td><td class="warn">有失败</td><td>34项：30通过、1失败、3错误。右臂搬运双指接触率97.5758% &lt; 98%；分类场景bad allocation影响后续两项IK。两项IK独立复测通过。</td></tr>
+<tr><td>分类场景独立复测</td><td class="warn">断言通过，有警告</td><td>45.37秒；出现OpenGL 0x505内存警告。并非已修复内存问题；检查时系统提交内存约36.1GB/44.6GB。</td></tr>
+<tr><td>真实HTTP链路</td><td>通过</td><td>观测、末端控制、关节动作、重复请求去重、过期观测拒绝、结束与编码；约15秒。</td></tr>
+<tr><td>左臂单瓶入桶</td><td>通过</td><td>535步，10分，目标瓶入桶；300.95秒；会话329e8b0f6823。</td></tr>
+<tr><td>右臂镜像单瓶入桶</td><td>通过</td><td>535步，10分，目标瓶入桶；301.78秒；会话e88a124203fb。镜像仅功能测试，非官方布局成绩。</td></tr>
+<tr><td>6次连续复位与释放</td><td>通过</td><td>每次新会话第0步校验，通过1步后结束；结束后仍能读最终状态。预热后私有内存增加56,983,552字节（约54.3MiB），小于256MiB筛查阈值。不能代替长时内存泄漏测试。</td></tr>
+<tr><td>停止与推理故障</td><td>通过</td><td>STOP、π0.5超时注入、真实本地连接拒绝、GPT超时注入均停于0步。超时项确认注入调用次数/异常来源；不是拔网线或动作已提交后丢响应的完整网络故障矩阵。</td></tr>
+<tr><td>真实GPT6＋π0.5闭环</td><td>补测通过</td><td>实际隧道断开使首轮未完成，恢复后6步/2次审核成功，均follow。GPT6每次17.86–18.41秒；π0.5约2.7–2.9秒。仅验证链路，不证明任务成功或纠偏有效。</td></tr>
+<tr><td>物体真值隔离</td><td>通过</td><td>递归过滤测试通过；补测两次实际brain_input.txt均无object_positions。原始观测继续保留真值用于审计。</td></tr>
+<tr><td>录像</td><td>通过</td><td>主批8会话×3相机=24文件，以及模型补测3文件，全部存在且解码通过。检查了左臂主视角抓取帧、右腕夹持帧；不是逐帧人工审片。</td></tr>
+</table></section>
+<section><h2>右臂失败定位</h2><p>无渲染物理测试多次复现同一结果。搬运165帧中4帧未满足双指同时接触：采样索引332、352、355、362。瓶子高度约1.102–1.112米，最终仍入桶；因此不能把此失败解释为整段掉瓶，也不能因入桶而忽略稳定性阈值。当前证据未确定更深层物理原因，尚未修改摩擦、轨迹、接触判定或阈值。</p></section>
+<section><h2>记录与视频</h2><ul>
+<li><a href="../simulation/mujoco/runs/acceptance_20260917_194533/report.json">主批原始报告</a>（保留首轮失败，未覆盖）</li>
+<li><a href="../simulation/mujoco/runs/model_retest_20260917_195911/report.json">模型补测报告</a></li>
+<li><a href="../simulation/mujoco/runs/acceptance_20260917_194533/unit_and_physics.log">回归日志</a></li>
+<li><a href="../simulation/mujoco/runs/acceptance_20260917_194533/memory_cycles.json">六次内存采样</a></li>
+<li><a href="../simulation/mujoco/runs/d345b14d2438/reset_check.json">最终复位校验</a></li>
+<li><a href="../simulation/mujoco/runs/329e8b0f6823/cam_base.mp4">左臂主相机录像</a> · <a href="../simulation/mujoco/runs/e88a124203fb/cam_base.mp4">右臂主相机录像</a></li>
+</ul><p>准备批acceptance_20260917_194342因加强测试断言主动中止；随后194456批因仍有活动测试会话而被预检拒绝。两者不计入本表完成统计，记录保留。主要测试代码为acceptance_audit.py，补测为acceptance_model_retest.py。</p></section>
+<section><h2>建议下一步</h2><p>正式实验继续保持停止。优先修复右臂稳定性并重新验收；分类场景内存与SSH隧道稳定性另行处理。若继续采用每3步调用GPT6，等待仍是主要耗时；本次未改变实验协议。</p></section></html>
