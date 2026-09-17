@@ -327,8 +327,8 @@ class Session:
                 # Wide profile: aim just below the jaw centre rather than a
                 # distant table point. Convert this mount to body-local pose
                 # once so it follows the wrist without auto-tracking.
-                cam_world = ee + np.array([0.0, -0.12, 0.30])
-                target = ee + np.array([0.0, 0.015, -0.035])
+                cam_world = ee + np.array([0.0, -0.04, 0.18])
+                target = ee + np.array([0.0, 0.025, -0.025])
             f = target - cam_world
             f /= np.linalg.norm(f)
             up0 = np.array([0.0, 0.0, 1.0])
@@ -352,7 +352,7 @@ class Session:
                         sc.pos = list(map(float, lp))
                     sc.quat = list(map(float, lq))
                     if CAMERA_PROFILE != "official":
-                        sc.fovy = 78.0
+                        sc.fovy = 70.0
         for sc in spec.cameras:
             if sc.name == "cam_base":
                 sc.pos = ([0.0, -0.41, 1.308] if CAMERA_PROFILE == "official"
