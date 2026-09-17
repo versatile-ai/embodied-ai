@@ -30,3 +30,7 @@ weights/*
 *.bin
 *.onnx
 *.gguf
+
+# One-off episode controllers (archived under runs; not reusable entrypoints)
+fresh_policy/
+hybrid_policy/

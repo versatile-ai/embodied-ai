@@ -30,49 +30,55 @@ def validate_goals(goals):
     return result
 
 
-def solve_step(model, measured, goals):
-    targets=validate_goals(goals)
-    data=mujoco.MjData(model);data.qpos[:]=measured.qpos
-    mujoco.mj_forward(model,data)
-    row=[]
-    for side in ('left','right'):
-        site=model.site(side+'_ee').id
-        qids=np.array([model.joint(f'{side}_joint{i}').qposadr[0] for i in range(1,7)])
-        dids=np.array([model.joint(f'{side}_joint{i}').dofadr[0] for i in range(1,7)])
-        pos,rot,grip=targets[side]
-        start_pos=data.site_xpos[site].copy();start_rot=data.site_xmat[site].reshape(3,3).copy()
-        if np.linalg.norm(pos-start_pos)>.050001 or np.linalg.norm(rotation_error(rot,start_rot))>.350001:
+def solve_step(model, measured, goals, *, check_initial_bound=True):
+    """One bounded 6D DLS update; measured physics state is never written.
+
+    5cm/.35rad validates a decision once. Subsequent tracking updates may
+    compensate disturbances beyond that distance using the same small bounds.
+    """
+    targets = validate_goals(goals)
+    data = mujoco.MjData(model)
+    data.qpos[:] = measured.qpos
+    mujoco.mj_forward(model, data)
+    row = []
+    def bounded(value, limit):
+        return value * min(1.0, limit / max(np.linalg.norm(value), 1e-12))
+    for side in ('left', 'right'):
+        site = model.site(side + '_ee').id
+        joints = [model.joint(f'{side}_joint{i}') for i in range(1, 7)]
+        qids = np.array([j.qposadr[0] for j in joints])
+        dids = np.array([j.dofadr[0] for j in joints])
+        pos, rot, grip = targets[side]
+        dp = pos - data.site_xpos[site]
+        dr = rotation_error(rot, data.site_xmat[site].reshape(3, 3))
+        if check_initial_bound and (np.linalg.norm(dp) > .050001 or np.linalg.norm(dr) > .350001):
             raise ValueError('Target exceeds 5 cm / 0.35 rad from the measured EEF pose')
-        q0=data.qpos[qids].copy()
-        # Solve the complete EEF pose.  Position-only IK lets the redundant
-        # wrist joints drift into a different orientation while translating;
-        # with the X5 meshes that turns the fingers into table/object
-        # collisions.  A damped 6D solve with a small bounded joint increment
-        # keeps the requested grasp orientation stable, including near home.
-        for _ in range(80):
-            mujoco.mj_forward(model,data)
-            pos_err = pos-data.site_xpos[site]
-            rot_err = rotation_error(rot, data.site_xmat[site].reshape(3,3))
-            if np.linalg.norm(pos_err)<.0005 and np.linalg.norm(rot_err)<.005:
-                break
-            jp=np.zeros((3,model.nv)); jr=np.zeros((3,model.nv))
-            mujoco.mj_jacSite(model,data,jp,jr,site)
-            # The orientation row is slightly down-weighted, but still
-            # actively regulated so the grasp frame stays fixed.
-            j=np.vstack((jp[:,dids], 0.7*jr[:,dids]))
-            err=np.r_[pos_err, 0.7*rot_err]
-            dq=j.T@np.linalg.solve(j@j.T+np.eye(6)*1e-2,err)
-            data.qpos[qids] += np.clip(0.5*dq, -0.025, 0.025)
-            for qi,i in zip(qids,range(1,7)):
-                joint=model.joint(f'{side}_joint{i}')
-                if joint.limited[0]:data.qpos[qi]=np.clip(data.qpos[qi],*joint.range)
-        mujoco.mj_forward(model,data)
-        # Bound the final command, rather than merely each solver iteration.
-        for _ in range(12):
-            dp=np.linalg.norm(data.site_xpos[site]-start_pos)
-            dr=np.linalg.norm(rotation_error(data.site_xmat[site].reshape(3,3),start_rot))
-            if dp<=.05 and dr<=.35:break
-            data.qpos[qids]=q0+(data.qpos[qids]-q0)*.5
-            mujoco.mj_forward(model,data)
-        row.extend(data.qpos[qids].tolist()+[grip])
+        jp, jr = np.zeros((3, model.nv)), np.zeros((3, model.nv))
+        mujoco.mj_jacSite(model, data, jp, jr, site)
+        jac = np.vstack((jp[:, dids], jr[:, dids]))
+        error = np.r_[bounded(dp, .02), bounded(dr, .1)]
+        dq = jac.T @ np.linalg.solve(jac @ jac.T + .05**2 * np.eye(6), error)
+        q0 = data.qpos[qids].copy()
+        low, high = q0 - .05, q0 + .05
+        for i, joint in enumerate(joints):
+            if joint.limited[0]:
+                low[i] = max(low[i], joint.range[0])
+                high[i] = min(high[i], joint.range[1])
+        if np.any(low > high):
+            raise ValueError('Measured joint outside bounded valid interval')
+        # Do not independently clip every joint.  For coupled Cartesian
+        # motions (especially wrist rotation), component-wise clipping can
+        # flatten unequal joint increments into equal ones and cancel the
+        # intended EEF motion.  Scale the complete DLS direction until its
+        # first joint reaches a per-tick or model limit, preserving the
+        # kinematic coordination selected by the solver.
+        positive = dq > 0
+        negative = dq < 0
+        fractions = [1.0]
+        if np.any(positive):
+            fractions.extend(((high[positive] - q0[positive]) / dq[positive]).tolist())
+        if np.any(negative):
+            fractions.extend(((low[negative] - q0[negative]) / dq[negative]).tolist())
+        scale = float(np.clip(min(fractions), 0.0, 1.0))
+        row.extend((q0 + scale * dq).tolist() + [grip])
     return row

@@ -27,6 +27,44 @@ $env:ASTRA_HTTP_TIMEOUT = '300'
 
 本文档描述当前可交付给同事复现的独立仿真环境：组件、目录、安装方式、服务协议、GPT/π 推理接入、验收标准和已知边界。
 
+## 当前测试入口（替代旧 runner）
+
+所有正式回合从新的 `start` 开始。旧 runner 使用过时协议，不能只改端口继续执行。`run_hybrid.py` 现可执行显式单条混合决策；其他旧入口保留迁移提示。`client.py` 仅保留为环境自检库，其旧 CLI 已停用。
+
+```bash
+# 在 simulation/mujoco/ 或本地 astra_eval/ 目录运行
+python3 eval_control.py start --mode hybrid --task put_bottles --layout 0
+# 使用 start 返回的 session_id，不复用上一轮 ID
+python3 eval_control.py observe --session <session_id>
+python3 eval_control.py infer --session <session_id>
+# GPT 看三路画面、机器人状态和 proposal 后决定执行长度
+python3 eval_control.py follow --session <session_id> --steps 5 --reason '本轮观察依据和接受理由'
+# 重新 observe + infer，再进行下一次决策；不复用旧动作块剩余部分
+python3 eval_control.py finish --session <session_id> --reason '本轮结束原因'
+```
+
+`--mode direct` 禁止 π 调用；`--mode hybrid` 允许 GPT 审查 π 建议和 EEF 修正；`--mode pi05` 允许 π 建议执行、禁止 GPT EEF 修正。这些是控制接口，不会自己启动模型或自动完成任务。GPT 会话/代理必须由调用方以全新上下文创建：不给它旧会话、旧报告或旧策略，只允许读取当前 `runs/<session>/policy/` 的净化观测与建议。接口新建仿真不等于自动清空外部模型上下文。
+
+启动检查 `8763` 的当前服务版本及该回合 8 项复位证据；默认 π 地址 `8642`。环境变量 `ASTRA_SIM`、`ASTRA_PI05` 可覆盖，回合启动后记录并锁定端点。启动检查要求能够读取同一 Mac 服务的 reset_check.json；远程仿真需先提供可信复位证据接口，不能跳过校验。
+
+默认 π 相机键为部署服务已验证的 `cam_high`、`cam_left_wrist`、`cam_right_wrist`。`infer` 只发送图像、state14 和任务文本；接受有限数值的 50×14 绝对关节动作，只裁剪两列归一化夹爪值并记录次数。物体真值和 grasped 标签保存在仿真离线日志，不传给策略。
+
+EEF 修正使用 `python3 eval_control.py eef --session <id> --payload <json>`，JSON 必须含当前 `expected_step`、双臂 `goals`、`steps: 1..5` 与 `decision_summary`。双臂 goal 各含 `xyz`、`quat_wxyz`、`gripper`。未动的手也应传入当前实测位姿。客户端检查目标有限数值、5 cm/0.35 rad 范围与新鲜步号；每次对一个固定双臂目标闭环跟踪 1–5 步：决策开始校验 5 cm/0.35 rad，每个真实控制 ACK 后从实测关节重算 6D DLS，任务增量限制 2 cm/0.1 rad、关节增量限制 0.05 rad。只更新执行器控制目标，不修改实测 qpos/qvel；即使位置已到达也执行夹爪命令。EEF 步进将机械臂控制插值起点重新锚定到实测关节，避免沿用上一段 π 指令的未执行目标。当前仍采用本地 jaw-center site，而非官方 link6，所以不宣称坐标契约完全等价。
+
+审计文件位于 `runs/<session>/policy/`：manifest.json、trace.jsonl、净化观测图像、proposal 文件。每条动作有唯一 request_id 与 expected_step；HTTP 开始/结束耗时、状态码、π 服务端 ms、图像解码落盘耗时分别保存。桌面 GPT 的纯推理时延仍不可由此接口获得，禁止把整个决策周期标为模型推理时间。底层 `runs/<session>/` 的 states/requests/responses 和视频供离线评估，控制模型不得读取。
+
+公平比较先固定同一动作窗口（如 5 步）、相机、布局、预算与录像设置，再另设各自最优配置组。视频按控制时间记录所有执行帧，不记录 GPT 等待的墙钟时间。先记录失败，再修复问题，不能复位重跑替代失败样本。
+
+每回合最多 180 次已提交动作决策，计数在 `policy/decision_count` 持久化，重启 CLI 不会清空；输入预检拒绝不计入，已发出但失败/结果不确定的动作计入。达到预算后下一动作请求转为 finish，记录 `decision_budget_exhausted:180`。`finish` 不占决策额度。
+
+follow 后记录 `chunk_discard`：请求执行步数、实际执行步数、剩余丢弃数与不可复用标记，并将 proposal 改名为 `.invalidated.json`。50 步 chunk 执行 15 步时正常记录 discarded=35；若响应不确定则实际执行/丢弃数记 null，不伪造已执行数。correct 会丢弃该观测下全部未执行的 π 建议。
+
+可用 `python3 harness/run_hybrid.py --session <id> --decision <json>` 执行一条经 GPT 审查的决策。follow JSON 为 `{"action":"follow","steps":5,"reason":"..."}`；correct 为 `{"action":"correct","expected_step":0,"side":"left","pose":[x,y,z,g],"steps":5,"reason":"..."}`，或用明确双臂 `goals` 代替 pose。pose 是单目标，不能传入多个 waypoint；省略姿态时保持开始决策时的实测姿态。可选 edit 模式尚未实现，明确拒绝，不静默回退。
+
+此闭环模式需重启新版本服务，`/health` 应报告 `eef_tracking=bounded_dls_v2`。
+
+验证接口：`python3 test_eval_control.py`（无真实模型调用或机械臂动作）。
+
 ## 1. 环境目标
 
 这套环境用于在 Mac 上复现双 X5 机械臂的视觉控制评测，当前优先支持 `put_bottles_into_dustbin`，同时保留 `classify_objects` 场景。仿真服务与上游 `pi05_hybrid` 代码和服务隔离，使用本目录中的场景、资产、控制器和会话录像。
@@ -39,7 +77,7 @@ $env:ASTRA_HTTP_TIMEOUT = '300'
 
 ```text
 ┌──────────────────────── Mac ────────────────────────┐
-│ Astra 控制端 / client.py                            │
+│ Astra 控制端 / eval_control.py                            │
 │       │ observe                                      │
 │       ▼                                              │
 │ simsvc.py :8763 ◄────动作──── Astra                  │
@@ -64,13 +102,13 @@ $env:ASTRA_HTTP_TIMEOUT = '300'
 | 双 X5 场景 | `assets/x5/dual_x5_scene.xml` | 机器人、执行器、相机、桌面和基础材质 |
 | OBJ 与碰撞资产 | `assets/meshes/` | 瓶子、篮筐、垃圾桶等视觉网格和 bbox |
 | 任务布局 | `layouts/*.json` | 物体初始位姿、缩放、类别和任务配置 |
-| HTTP 客户端 | `client.py` | 观测保存、动作提交、推理服务适配、录像流程 |
+| HTTP 客户端 | `eval_control.py` | 净化观测、复位校验、动作/推理适配、分段计时与录像结束 |
 | 直播页面 | `harness/live.html` | 显示主相机、左右腕相机和当前会话状态 |
 | 视频编码器 | `encode_video.swift` | 使用 macOS AVFoundation 将 PNG 帧编码为 MP4 |
 | 启动器 | `start_server.py` | 后台启动服务、检查端口和记录 PID/日志 |
 | 回归与集成测试 | `test_service.py`、`check_render.py`、`verify_http.py` | 环境、渲染、协议和录像验收 |
 
-推理服务不包含在仿真包内。`client.py` 可以调用兼容的 `/infer` HTTP 服务；GPT 或 π 的 checkpoint、NPU 服务和 token 需要由测试方单独配置。π0.5 通过 `pi05-hybrid` 容器镜像在 NPU 主机启动，Mac 仿真仓库只通过 HTTP 调用它。
+推理服务不包含在仿真包内。`eval_control.py` 可以调用兼容的 `/infer` HTTP 服务；GPT 或 π 的 checkpoint、NPU 服务和 token 需要由测试方单独配置。π0.5 通过 `pi05-hybrid` 容器镜像在 NPU 主机启动，Mac 仿真仓库只通过 HTTP 调用它。
 
 ## 3.1 权重与推理服务路径
 
@@ -94,7 +132,7 @@ asset_id = arx_x5_sim
 
 镜像内服务入口是 `/data/pi05_hybrid/scripts/pi05_service.py`，默认监听 `:8642`，通过 `ASTRA_PI05` 接入本机客户端。Mac 与 NPU 主机之间可以使用上游 `harness/tunnel_8642.sh` 的 SSH 隧道。权重路径、部署方式和私有配置详见本 README 的“权重与推理服务路径”章节。
 
-GPT 大脑适配器是上游 `harness/llm_brain.py`，使用 OpenAI-compatible `/chat/completions`，通过 `QWEN_BASE_URL`、`QWEN_API_KEY`、`QWEN_MODEL` 配置。API key 只能放在本机 secret 文件或密码管理器，不能提交 GitHub。
+当前 GPT/GPT+π 控制入口是 `eval_control.py`，由本地全新 GPT 会话调用，不会自动调用 Qwen 或选择其他模型。上游旧 runner 已停用；`llm_brain.py` 仅为可选外部 LLM 适配器，必须显式配置 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL`，其模型身份与桌面 GPT 会话不能混称。
 
 ## 3.2 π0.5 NPU 容器部署
 
@@ -145,7 +183,7 @@ ssh -N -L 8642:127.0.0.1:8642 <npu-user>@<npu-host>
 export ASTRA_PI05=http://127.0.0.1:8642
 ```
 
-先验证 `/health`，再执行 `client.py infer`。第一次推理还应检查 `/infer` 返回 `(50,14)` 动作、`ms` 延迟和输入相机键映射。容器日志和镜像 digest 应随每次策略评测一并记录。
+先验证 `/health`，再执行 `eval_control.py infer`。第一次推理还应检查 `/infer` 返回 `(50,14)` 动作、`ms` 延迟和输入相机键映射。容器日志和镜像 digest 应随每次策略评测一并记录。
 
 ## 3.3 同事实际操作顺序
 
@@ -177,10 +215,10 @@ ssh -N -L 8642:127.0.0.1:8642 <npu-user>@<npu-host>
 cd astra_eval
 source .venv/bin/activate
 export ASTRA_PI05=http://127.0.0.1:8642
-python3 client.py start --task put_bottles --layout 0
-python3 client.py observe --session <session_id>
-python3 client.py infer --session <session_id>
-python3 client.py follow --session <session_id> --steps 1 --reason 'Astra reviewed action'
+python3 eval_control.py start --mode hybrid --task put_bottles --layout 0
+python3 eval_control.py observe --session <session_id>
+python3 eval_control.py infer --session <session_id>
+python3 eval_control.py follow --session <session_id> --steps 1 --reason 'Astra reviewed action'
 open http://127.0.0.1:8763/live
 ```
 
@@ -192,7 +230,7 @@ open http://127.0.0.1:8763/live
 
 本次核对以仓库内的 `docs/robodojo_task_port_spec.md`、`docs/alignment_audit.md`、官方布局 JSON 结构以及当前 `harness/simsvc.py`/`assets/x5/dual_x5_scene.xml` 为准。结论是：**当前两个场景可用于 Astra/π0.5 的接口和控制回归，但还不是官方 RoboDojo 的等价仿真环境**。因此目前的分数只能作为本地回归分数，不能与官方 benchmark 分数直接横向比较。
 
-控制接口保持 25 Hz；当前 MuJoCo 为稳定双指接触改用 1000 Hz 物理步（每个动作 40 步），不再声称物理步长与官方相同。其余移植部分包括：桌面、地面摩擦和弹性；双 X5 根位姿、6+1 关节/夹爪结构；头部相机外参和头部/腕部相机视场角；布局中的固定物体位姿、类别和质量；两个任务的步数上限、主要成功条件和录像/HTTP 协议。`put_bottles_into_dustbin` 的 4 瓶布局和 `classify_objects` 的 3 类物体+3 个篮筐也能从当前 JSON 复现。
+已对齐的部分包括：25 Hz 控制、桌面、地面摩擦和弹性；双 X5 根位姿、6+1 关节/夹爪结构；头部相机外参和头部/腕部相机视场角；布局中的固定物体位姿、类别和质量；两个任务的步数上限、主要成功条件和录像/HTTP 协议。MuJoCo 采用本地稳定性设置：1000 Hz 物理步、每个控制步40个物理子步；这不是与官方 Isaac Sim 的频率等价声明。`put_bottles_into_dustbin` 的 4 瓶布局和 `classify_objects` 的 3 类物体+3 个篮筐也能从当前 JSON 复现。
 
 | 对比项 | 当前实现 | 与官方的影响 | 优先级 |
 |---|---|---|---|
@@ -242,7 +280,8 @@ astra_eval/
 │   ├── simsvc.py           # 仿真 HTTP 服务
 │   ├── control.py          # 6D 阻尼 IK
 │   └── live.html           # 直播页面
-├── client.py               # 统一客户端与推理适配
+├── eval_control.py         # 正式策略入口、净化观测和计时
+├── client.py               # 环境自检内部库（CLI停用）
 ├── start_server.py         # 后台启动器
 ├── test_service.py         # 10 项回归测试
 ├── check_render.py         # 场景/相机检查
@@ -447,7 +486,7 @@ left_cam_wrist  左腕相机
 right_cam_wrist 右腕相机
 ```
 
-推理服务使用的兼容键是 `cam_high`、`cam_left_wrist`、`cam_right_wrist`；`client.py` 会自动完成映射。
+推理服务使用的兼容键是 `cam_high`、`cam_left_wrist`、`cam_right_wrist`；`eval_control.py` 会自动完成映射。
 
 ### 8.3 提交关节动作
 
@@ -530,16 +569,11 @@ runs/<session_id>/right_cam_wrist.mp4
 - 目标在前 32 个物理子步线性插值，后 8 个子步保持。
 - 6D 阻尼 IK 同时控制末端位置和姿态，避免腕部姿态漂移。
 - 服务端对关节目标做限速和低通，默认值为 `SIM_ARM_CTRL_STEP=0.028`、`SIM_GRIP_CTRL_STEP=0.008`、`SIM_CTRL_SMOOTH=0.85`。
-- 夹爪指令增加滞回：`0.20` 以下才确认闭合、`0.80` 以上才确认打开，中间区间保持上一次明确指令；可用 `SIM_GRIP_CLOSE_CMD`、`SIM_GRIP_OPEN_CMD` 调整。这避免策略小幅噪声导致夹爪来回抖动。
-- `ASTRA_DIRECT_STEP` 是 `client.py move` 的笛卡尔 waypoint 步长，默认 0.018 m。
+- 正式 EEF 修正使用 `eval_control.py eef` 跟踪同一目标 1–5 个控制步；环境自检内部库仍可使用 waypoint 辅助函数。
 
 ### 9.2 抓取辅助
 
-默认 `SIM_GRASP_ASSIST=0`：瓶子靠双指接触与摩擦支撑，不启用 weld，不写入物体位置或清零速度。`grasped` 在此模式仅表示当前双指都与同一瓶子接触，不是附着状态。
-
-瓶子使用可见 mesh 的凸包碰撞，替换旧的透明包围盒；恢复手掌、手腕和其他连杆碰撞，保留相邻部件自碰撞排除。有效夹持目标点从指根前移 40 mm。瓶子和夹指采用 2 ms 接触时间常数，匹配 1 ms 积分步长，减少夹持穿透。
-
-`SIM_GRASP_ASSIST=1` 仅保留为旧版对照；物理抓取验收测试要求此项关闭。凸包仍是形状近似，凹陷、螺纹等局部外观不等同于三角网格逐面碰撞。
+默认 `SIM_GRASP_ASSIST=0`，使用物理接触抓取。观测里的双侧接触标记不等于稳定持物，必须验证提起及搬运时物体随动。历史焊接辅助模式只供诊断，不得混入正式结果。
 
 ### 9.3 评分
 
@@ -549,7 +583,7 @@ runs/<session_id>/right_cam_wrist.mp4
 
 ### 10.1 推理输入
 
-`client.py infer` 从最新观测生成：
+`eval_control.py infer` 从最新观测生成：
 
 ```json
 {
@@ -564,12 +598,12 @@ runs/<session_id>/right_cam_wrist.mp4
 }
 ```
 
-相机默认使用 `SIM_CAMERA_PROFILE=wide` 的直播视角：主相机覆盖整张桌面，腕相机采用夹爪近景：参考姿态下位于夹爪中心后方 4 cm、上方 18 cm，朝向中心前方 2.5 cm、下方 2.5 cm；垂直视场角为 70°，显示双指及夹持区域，减少机械臂本体入镜。相机固定在对应腕部坐标系，随腕运动而不自动追踪。该配置也影响提供给策略的腕部图像。需要对齐官方 π0.5 图像分布时设置 `SIM_CAMERA_PROFILE=official`。
+相机默认使用 `SIM_CAMERA_PROFILE=wide` 的直播视角：主相机覆盖整张桌面，腕相机同时保留夹爪尖端和目标物体。需要对齐官方 π0.5 图像分布时设置 `SIM_CAMERA_PROFILE=official`。
 
 默认推理地址为 `http://127.0.0.1:8642/infer`，可通过环境变量替换：
 
 ```sh
-ASTRA_PI05=http://127.0.0.1:8642 python3 client.py infer --session <id>
+ASTRA_PI05=http://127.0.0.1:8642 python3 eval_control.py infer --session <id>
 ```
 
 直接调用 π0.5 服务时，图像应为 HWC `uint8` 数组，状态为 14 个浮点数；服务返回 50×14 的绝对关节目标：
@@ -599,7 +633,7 @@ def pi05_infer(images, state, prompt, endpoint="http://127.0.0.1:8642"):
 执行前应重新获取观测并确认 `observation_id` / `expected_step` 没有过期：
 
 ```sh
-python3 client.py follow --session <id> --steps 1 --reason 'reviewed action'
+python3 eval_control.py follow --session <id> --steps 1 --reason 'reviewed action'
 ```
 
 不要在推理服务或客户端里隐式 fallback 到另一个策略；失败应保留请求、响应和观测，方便复盘。
@@ -607,13 +641,13 @@ python3 client.py follow --session <id> --steps 1 --reason 'reviewed action'
 ### 10.3 端到端最小流程
 
 ```sh
-python3 client.py start --task put_bottles --layout 0
+python3 eval_control.py start --mode hybrid --task put_bottles --layout 0
 # 记录输出的 session_id
-python3 client.py observe --session <session_id>
-python3 client.py infer --session <session_id>
-python3 client.py follow --session <session_id> --steps 1 --reason 'accept first action'
-python3 client.py observe --session <session_id>
-python3 client.py finish --session <session_id>
+python3 eval_control.py observe --session <session_id>
+python3 eval_control.py infer --session <session_id>
+python3 eval_control.py follow --session <session_id> --steps 1 --reason 'accept first action'
+python3 eval_control.py observe --session <session_id>
+python3 eval_control.py finish --session <session_id> --reason 'test complete'
 ```
 
 完整策略测试应由同事固定模型版本、checkpoint、预处理、推理端点和随机种子后再比较结果。
@@ -680,6 +714,8 @@ requirements.txt
 setup_colleague.sh
 validate_colleague.sh
 start_server.py
+eval_control.py
+test_eval_control.py
 client.py
 test_service.py
 check_render.py
@@ -712,7 +748,7 @@ encode_video           # 本机编译产物，会由 setup_colleague.sh 生成
 cd /path/to/astra_eval
 git init
 git add README.md requirements.txt setup_colleague.sh validate_colleague.sh \
-  start_server.py client.py test_service.py check_render.py verify_http.py \
+  start_server.py eval_control.py test_eval_control.py client.py test_service.py check_render.py verify_http.py \
   bridge.py probe_inference.py fix_mesh_axes.py harness assets layouts docs \
   encode_video.swift .gitignore
 git diff --cached --stat
@@ -720,21 +756,3 @@ git commit -m "Add reproducible Astra MuJoCo evaluation environment"
 ```
 
 公开仓库前请确认 X5、RoboDojo 资产和上游文档的许可证允许再分发。π0.5 镜像应使用完整的 tag 和 digest 记录；模型权重和 API key 不进入 GitHub。
-
-### 夹爪抖动回归
-
-运行 `python3 test_gripper_stability.py`，无需图形环境；保留真实物理、控制与接触，只替换渲染和 HTTP 传输。检查两个夹指（joint7、joint8），而不是只检查策略接口中的 joint7：全程同步误差 <0.3 mm，抬升/搬运每帧位移 <0.5 mm；保持阶段夹指开度漂移 <0.5 mm、瓶子高度漂移 <5 mm；抬升/搬运双指接触帧占比至少 98%，3 秒保持阶段为 100%，瓶子接触穿透 <1 mm，静止开爪 2 秒峰峰值 <0.1 mm，并要求没有激活任何 weld equality、恢复连杆碰撞、目标瓶自然释放并入桶。
-
-双指加入对称位置驱动、被动阻尼和更紧的 mimic equality；物理积分使用 1 ms 步长。14 维外部动作接口不变，新增内部 follower 驱动不对策略暴露。`states.jsonl` 的 `fingers` 记录两指实际位置和目标。基础测试在 1.12 m 高度水平搬运并在桶口上方释放，避免旧路线碰撞 bottle3 和桌沿。
-
-左右夹爪独立自检：`python3 test_pick_place.py --side left` 使用原布局，`python3 test_pick_place.py --side right` 使用物体、桶和桌面位置的左右镜像布局。两者均执行开爪、接近、闭合、抬升、高位搬运和释放，要求至少一个瓶子入桶，并保存完整三路视频。镜像布局仅用于右臂功能验证，不属于官方评测。`test_gripper_stability.py` 同时覆盖左右两臂的稳定性。
-
-当前物理验收：辅助附着关闭；两侧分别夹取目标瓶，抬升并保持 3 秒、搬运、张开后自然落下；额外静置 2 秒后检查目标 bottle0 自身位于桶内，不能用其他瓶子的计数代替。
-
-### 正式测试前复位
-
-每次正式测试必须先执行 `python3 client.py start --task put_bottles --layout 0`（或对应场景），使用返回的全新 `session_id`。不要在旧会话上接着执行动作。`test_pick_place.py` 已在每次运行时创建新会话。
-
-服务端重新创建独立模型和物理状态，再校验关节/夹爪 home、零速度、物体初始位置和姿态、步数与评分清零、无残留抓取及 weld。任一校验失败将拒绝创建会话。通过后才记录第 0 帧，并把检查结果写入 `runs/<session_id>/reset_check.json`；旧会话和录像保留。
-
-复位使用场景定义的夹爪初始开度，不假定 home 就是完全张开；测试中的张开动作由测试脚本显式执行。

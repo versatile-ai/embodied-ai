@@ -84,25 +84,7 @@ def direct_move(sid, side, target_xyz, gripper, reason, tolerance=0.012):
     raise RuntimeError('direct_move did not converge')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['start','observe','infer','follow','eef','move','finish']);p.add_argument('--session');p.add_argument('--task',default='put_bottles',choices=['put_bottles','classify_objects']);p.add_argument('--layout',type=int,default=0);p.add_argument('--steps',type=int,default=1);p.add_argument('--goals');p.add_argument('--side',choices=['left','right']);p.add_argument('--xyz',nargs=3,type=float);p.add_argument('--gripper',type=float,default=1);p.add_argument('--reason',default='operator command');args=p.parse_args()
-    sid=args.session
-    if args.command=='start':
-        name='put_bottles_into_dustbin' if args.task=='put_bottles' else args.task
-        instruction='Pick up the bottles and throw them into the dustbin, using handover when needed.' if args.task=='put_bottles' else 'Sort the objects by category into the three baskets.'
-        result=http(SIM+'/session',{'layout':json.loads((ROOT/'layouts'/f'{name}_{args.layout}.json').read_text()),'instruction':instruction,'task':args.task});sid=result['session_id'];print(json.dumps(result))
-    if not sid:p.error('--session required')
-    obs,summary=observe(sid)
-    if args.command=='infer':
-        path,out=infer(sid,obs);print(json.dumps({'proposal':str(path),'shape':np.asarray(out['actions']).shape,'service_ms':out.get('ms'),'wall_ms':out['wall_ms']}))
-    elif args.command=='follow':
-        if not 1<=args.steps<=15:p.error('follow steps must be 1..15')
-        out=json.loads((ROOT/'runs'/sid/f"proposal_{obs['t']:06d}.json").read_text())
-        if out['observation_id']!=obs['observation_id']:raise ValueError('Stale proposal')
-        print(execute(sid,obs['t'],'act',{'joints':out['actions'][:args.steps]},args.reason));obs,summary=observe(sid)
-    elif args.command=='eef':
-        goals=json.loads(Path(args.goals).read_text());print(execute(sid,obs['t'],'eef',{'goals':goals,'steps':args.steps},args.reason));obs,summary=observe(sid)
-    elif args.command=='move':
-        if args.side is None or args.xyz is None:p.error('move requires --side and --xyz')
-        obs=direct_move(sid,args.side,args.xyz,args.gripper,args.reason);print(json.dumps({'t':obs['t'],'ee':obs['ee'],'score':obs['score'],'bottles_in':obs['bottles_in']}))
-    elif args.command=='finish':print(json.dumps(execute(sid,obs['t'],'finish',{},args.reason)))
-    print(json.dumps(summary))
+    raise SystemExit(
+        'Legacy diagnostic CLI retired: use python3 eval_control.py --help. '
+        'client.py remains an internal library for environment tests; its raw observations are not policy inputs.'
+    )
