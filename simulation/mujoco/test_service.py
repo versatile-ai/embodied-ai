@@ -19,6 +19,8 @@ class Regression(unittest.TestCase):
  def setUp(self):
   s=self.s;mujoco.mj_resetData(s.model,s.data);s.data.qpos[:]=self.initial;s.data.ctrl[s.ctrl_ids]=s.data.qpos[s.qpos_ids];mujoco.mj_forward(s.model,s.data)
   s.command_ctrl=s.data.ctrl[s.ctrl_ids].copy()
+  s.grip_target_norm={'left':simsvc.grip_norm(s.data.qpos[s.qpos_ids[6]]),'right':simsvc.grip_norm(s.data.qpos[s.qpos_ids[13]])}
+  s.commanded_grip=s.grip_target_norm.copy()
   s.t=0;s.done=False;s.success=False;s.score=0;s.error=None
  def test_scene_data_matches_rebuilt_model(self):
   s=self.s
@@ -57,6 +59,18 @@ class Regression(unittest.TestCase):
   goal=.03+simsvc.CTRL_SMOOTH*simsvc.GRIP_CTRL_STEP
   self.assertAlmostEqual(seen[0],.03+(goal-.03)/8)
   self.assertAlmostEqual(seen[-1],goal)
+
+ def test_gripper_hysteresis_holds_noisy_commands(self):
+  s=self.s; row=s.state14(); row[6]=0.0
+  with patch.object(s,'capture'):
+   s._step(row)
+   self.assertEqual(s.commanded_grip['left'],0.0)
+   row=s.state14(); row[6]=0.55  # policy noise in the deadband
+   s._step(row)
+   self.assertEqual(s.commanded_grip['left'],0.0)
+   row=s.state14(); row[6]=0.95
+   s._step(row)
+   self.assertEqual(s.commanded_grip['left'],1.0)
  def test_eef_rejects_large_and_invalid_goals(self):
   goals=self.s.ee_poses();goals['left']['xyz'][0]+=.1
   with self.assertRaises(ValueError):solve_step(self.s.model,self.s.data,goals)

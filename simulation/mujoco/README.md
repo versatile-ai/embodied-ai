@@ -473,6 +473,7 @@ runs/<session_id>/right_cam_wrist.mp4
 - 目标在前 8 个物理子步线性插值，后 2 个子步保持。
 - 6D 阻尼 IK 同时控制末端位置和姿态，避免腕部姿态漂移。
 - 服务端对关节目标做限速和低通，默认值为 `SIM_ARM_CTRL_STEP=0.028`、`SIM_GRIP_CTRL_STEP=0.008`、`SIM_CTRL_SMOOTH=0.85`。
+- 夹爪指令增加滞回：`0.20` 以下才确认闭合、`0.80` 以上才确认打开，中间区间保持上一次明确指令；可用 `SIM_GRIP_CLOSE_CMD`、`SIM_GRIP_OPEN_CMD` 调整。这避免策略小幅噪声导致夹爪来回抖动。
 - `ASTRA_DIRECT_STEP` 是 `client.py move` 的笛卡尔 waypoint 步长，默认 0.018 m。
 
 ### 9.2 抓取辅助

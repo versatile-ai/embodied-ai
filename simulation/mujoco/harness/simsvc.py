@@ -56,6 +56,10 @@ TABLE_Z = 0.765
 ARM_CTRL_STEP = float(os.environ.get("SIM_ARM_CTRL_STEP", "0.028"))
 GRIP_CTRL_STEP = float(os.environ.get("SIM_GRIP_CTRL_STEP", "0.008"))
 CTRL_SMOOTH = float(os.environ.get("SIM_CTRL_SMOOTH", "0.85"))
+# Normalized gripper commands use 0=closed, 1=open.  Keep a deadband around
+# the last explicit command so small policy noise cannot chatter the fingers.
+GRIP_CLOSE_CMD = float(os.environ.get("SIM_GRIP_CLOSE_CMD", "0.20"))
+GRIP_OPEN_CMD = float(os.environ.get("SIM_GRIP_OPEN_CMD", "0.80"))
 # RoboDojo X5 gripper joint7 range is [-0.01, 0.044] m.  Keep normalized
 # policy values 0..1 aligned with the official affine scale.
 GRIP_MIN, GRIP_MAX = -0.01, 0.044
@@ -96,6 +100,7 @@ class Session:
         self.grasped = {"left": None, "right": None}
         self.grasp_offsets = {}
         self.commanded_grip = {"left": 0.0, "right": 0.0}
+        self.grip_target_norm = {"left": 0.0, "right": 0.0}
         self.step_limit = 1100 if task == "classify_objects" else 700
         self.model = mujoco.MjModel.from_xml_path(SCENE_XML)
         self.model.opt.timestep = 1.0 / PHYS_HZ
@@ -111,6 +116,11 @@ class Session:
         self.task = task
         self._add_objects(layout)
         mujoco.mj_forward(self.model, self.data)
+        # Start from the actual joint state, then only change it on an
+        # unambiguous open/close command (hysteresis in normalized space).
+        self.grip_target_norm["left"] = grip_norm(self.data.qpos[self.qpos_ids[6]])
+        self.grip_target_norm["right"] = grip_norm(self.data.qpos[self.qpos_ids[13]])
+        self.commanded_grip = self.grip_target_norm.copy()
         self.q_home = self.data.qpos.copy()
         self.t = 0
         self.score = 0.0
@@ -662,7 +672,15 @@ class Session:
     def _step(self, target):
         cur = self.command_ctrl.copy()  # already physical units
         requested = np.asarray(target, float).copy()
-        self.commanded_grip["left"], self.commanded_grip["right"] = float(requested[6]), float(requested[13])
+        for side, idx in (("left", 6), ("right", 13)):
+            raw = float(requested[idx])
+            if raw <= GRIP_CLOSE_CMD:
+                self.grip_target_norm[side] = 0.0
+            elif raw >= GRIP_OPEN_CMD:
+                self.grip_target_norm[side] = 1.0
+            # Values in the deadband hold the previous explicit target.
+            requested[idx] = self.grip_target_norm[side]
+            self.commanded_grip[side] = self.grip_target_norm[side]
         requested[6], requested[13] = grip_denorm(requested[6]), grip_denorm(requested[13])
         # Slew-limit and low-pass the target in actuator space.  This removes
         # the high-frequency component while retaining the exact end target.
