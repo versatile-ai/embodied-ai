@@ -697,6 +697,11 @@ class Session:
             warnings = [w.number for w in self.data.warning]
             mujoco.mj_step(self.model, self.data)
             self._update_grasps()
+            for side, idx in (("left", 6), ("right", 13)):
+                if self.grasped[side] is not None:
+                    qid = self.qpos_ids[idx]
+                    self.data.ctrl[self.ctrl_ids[idx]] = self.data.qpos[qid]
+                    self.data.qvel[self.model.jnt_dofadr[self.model.jnt_qposadr.tolist().index(qid)]] = 0.0
             if not np.isfinite(self.data.qpos).all() or not np.isfinite(self.data.qvel).all() or any(w.number > n for w,n in zip(self.data.warning,warnings)):
                 self.error = "physics_error"; self.done = True
                 raise RuntimeError("Physics warning/nonfinite state; episode terminated")
