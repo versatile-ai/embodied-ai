@@ -57,7 +57,7 @@ class Regression(unittest.TestCase):
   # The normalized input is converted to metres once, then the physical
   # target is slew-limited and interpolated over the first 8 substeps.
   goal=.03+simsvc.CTRL_SMOOTH*simsvc.GRIP_CTRL_STEP
-  self.assertAlmostEqual(seen[0],.03+(goal-.03)/8)
+  self.assertAlmostEqual(seen[0],.03+(goal-.03)/simsvc.INTERP_SUBSTEPS)
   self.assertAlmostEqual(seen[-1],goal)
 
  def test_gripper_hysteresis_holds_noisy_commands(self):

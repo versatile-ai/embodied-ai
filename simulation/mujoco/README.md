@@ -167,7 +167,7 @@ open http://127.0.0.1:8763/live
 
 本次核对以仓库内的 `docs/robodojo_task_port_spec.md`、`docs/alignment_audit.md`、官方布局 JSON 结构以及当前 `harness/simsvc.py`/`assets/x5/dual_x5_scene.xml` 为准。结论是：**当前两个场景可用于 Astra/π0.5 的接口和控制回归，但还不是官方 RoboDojo 的等价仿真环境**。因此目前的分数只能作为本地回归分数，不能与官方 benchmark 分数直接横向比较。
 
-已对齐的部分包括：250 Hz 物理步、25 Hz 控制、每个动作推进 10 个物理步；桌面、地面摩擦和弹性；双 X5 根位姿、6+1 关节/夹爪结构；头部相机外参和头部/腕部相机视场角；布局中的固定物体位姿、类别和质量；两个任务的步数上限、主要成功条件和录像/HTTP 协议。`put_bottles_into_dustbin` 的 4 瓶布局和 `classify_objects` 的 3 类物体+3 个篮筐也能从当前 JSON 复现。
+控制接口保持 25 Hz；当前 MuJoCo 为稳定双指接触改用 1000 Hz 物理步（每个动作 40 步），不再声称物理步长与官方相同。其余移植部分包括：桌面、地面摩擦和弹性；双 X5 根位姿、6+1 关节/夹爪结构；头部相机外参和头部/腕部相机视场角；布局中的固定物体位姿、类别和质量；两个任务的步数上限、主要成功条件和录像/HTTP 协议。`put_bottles_into_dustbin` 的 4 瓶布局和 `classify_objects` 的 3 类物体+3 个篮筐也能从当前 JSON 复现。
 
 | 对比项 | 当前实现 | 与官方的影响 | 优先级 |
 |---|---|---|---|
@@ -200,7 +200,7 @@ open http://127.0.0.1:8763/live
 - NumPy 2.0.2
 - Pillow 11.3.0
 - Xcode Command Line Tools（提供 `swiftc` 和 AVFoundation 编码依赖）
-- MuJoCo 物理频率 250 Hz，控制频率 25 Hz
+- MuJoCo 物理频率 1000 Hz，控制频率 25 Hz
 - 本地仿真端口 `127.0.0.1:8763`
 
 离屏渲染依赖 macOS 图形上下文。若在无图形会话的 SSH、沙箱或 CI 进程中直接运行渲染测试，可能出现 `invalid CoreGraphics connection`；应在有图形上下文的 macOS 用户会话中运行，或为 CI 单独配置 MuJoCo EGL/OSMesa 后端。
@@ -304,7 +304,7 @@ curl http://127.0.0.1:8763/health
 ```json
 {
   "ok": true,
-  "physics_hz": 250,
+  "physics_hz": 1000,
   "control_hz": 25,
   "eef": "jaw_center",
   "grasp_assist": true,
@@ -469,8 +469,8 @@ runs/<session_id>/right_cam_wrist.mp4
 
 ### 9.1 物理和控制
 
-- 物理步长为 1/250 秒；每个 25Hz 控制步包含 10 个物理子步。
-- 目标在前 8 个物理子步线性插值，后 2 个子步保持。
+- 物理步长为 1/1000 秒；每个 25Hz 控制步包含 40 个物理子步。
+- 目标在前 32 个物理子步线性插值，后 8 个子步保持。
 - 6D 阻尼 IK 同时控制末端位置和姿态，避免腕部姿态漂移。
 - 服务端对关节目标做限速和低通，默认值为 `SIM_ARM_CTRL_STEP=0.028`、`SIM_GRIP_CTRL_STEP=0.008`、`SIM_CTRL_SMOOTH=0.85`。
 - 夹爪指令增加滞回：`0.20` 以下才确认闭合、`0.80` 以上才确认打开，中间区间保持上一次明确指令；可用 `SIM_GRIP_CLOSE_CMD`、`SIM_GRIP_OPEN_CMD` 调整。这避免策略小幅噪声导致夹爪来回抖动。
@@ -478,7 +478,7 @@ runs/<session_id>/right_cam_wrist.mp4
 
 ### 9.2 抓取辅助
 
-默认 `SIM_GRASP_ASSIST=1`。当同一侧两根手指同时接触同一瓶子且夹爪闭合时，服务建立稳定的抓取约束；夹爪打开后释放。该机制用于抵消导入网格接触法向的数值不稳定，保持任务可重复。
+默认 `SIM_GRASP_ASSIST=1`。当同一侧两根手指同时接触同一瓶子且夹爪闭合时，服务建立稳定的抓取约束；夹爪打开后释放。该辅助机制使用 MuJoCo weld equality，在真实双指接触时记录相对位姿、启用约束，明确打开时停用；不再逐步重写物体位置或清零关节速度。它仍是辅助抓取，不代表纯接触物理或官方等价性。
 
 如需审计原始接触物理：
 
@@ -665,3 +665,9 @@ git commit -m "Add reproducible Astra MuJoCo evaluation environment"
 ```
 
 公开仓库前请确认 X5、RoboDojo 资产和上游文档的许可证允许再分发。π0.5 镜像应使用完整的 tag 和 digest 记录；模型权重和 API key 不进入 GitHub。
+
+### 夹爪抖动回归
+
+运行 `python3 test_gripper_stability.py`，无需图形环境；保留真实物理、控制与接触，只替换渲染和 HTTP 传输。检查两个夹指（joint7、joint8），而不是只检查策略接口中的 joint7：全程同步误差 <0.3 mm，抬升/搬运每帧位移 <0.5 mm、开度漂移 <1 mm，静止开爪 2 秒峰峰值 <0.1 mm，并要求真实双指接触后抓取、保持、释放、瓶子入桶。
+
+双指加入对称位置驱动、被动阻尼和更紧的 mimic equality；物理积分使用 1 ms 步长。14 维外部动作接口不变，新增内部 follower 驱动不对策略暴露。`states.jsonl` 的 `fingers` 记录两指实际位置和目标。基础测试在 1.12 m 高度水平搬运并在桶口上方释放，避免旧路线碰撞 bottle3 和桌沿。

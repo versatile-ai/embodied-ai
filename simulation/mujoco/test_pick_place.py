@@ -60,14 +60,13 @@ def main():
     if obs.get("grasped", {}).get("left") != "bottle0":
         raise AssertionError(f"grasp not acquired: {obs.get('grasped')}")
     move_left(sid, [bottle[0], bottle[1], 1.12], 0.0, "lift")
-    move_left(sid, [-0.63, -0.10, 0.95], 0.0, "carry")
-    # Release above the bin floor, through the opening.  Releasing at the
-    # nominal body centre (z=.40) can put the grasp offset below the collider.
-    move_left(sid, [-0.63, -0.10, 0.72], 0.0, "lower into bin")
-    move_left(sid, [-0.63, -0.10, 0.72], 1.0, "release")
+    move_left(sid, [-0.63, -0.10, 1.12], 0.0, "carry")
+    # Stay above the other bottles and bin rim; the old diagonal carry and
+    # z=.72 insertion collided with bottle3/table and forced the jaws apart.
+    move_left(sid, [-0.63, -0.10, 1.12], 1.0, "release")
     # Let the released bottle settle through the opening before evaluating
     # containment; contact resolution can take several control ticks.
-    for _ in range(6):
+    for _ in range(25):
         obs, _ = client.observe(sid)
         if obs.get("bottles_in", 0) >= 1:
             break

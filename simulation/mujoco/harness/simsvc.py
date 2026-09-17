@@ -11,8 +11,8 @@ Implements the segment-boundary protocol in docs/sim_protocol.md:
   GET  /session/<id>/result  -> {"score": float, "success": bool, "steps": int,
                                  "bottles_in": int}
 
-Physics 250Hz, control 25Hz: each control step = 10 substeps, ctrl linearly
-interpolated over the first 8 substeps then held (RoboDojo process_control_info).
+Physics 1000Hz, control 25Hz: 40 substeps, interpolation over 32 substeps.
+These are local MuJoCo stability settings, not an official-equivalence claim.
 Scoring mirrors RoboDojo put_bottles_into_dustbin: transition scores
 [10, 25, 40, 100] for [1,2,3,4] bottles in the dustbin (each tier also requires
 all grippers open); success = 4 bottles in + arms back at origin.
@@ -43,9 +43,9 @@ PORT = int(os.environ.get("SIMPORT", "8763"))
 CAMERA_PROFILE = os.environ.get("SIM_CAMERA_PROFILE", "wide").lower()
 
 CTRL_HZ = 25
-PHYS_HZ = 250
-SUBSTEPS = PHYS_HZ // CTRL_HZ          # 10
-INTERP_SUBSTEPS = 8                    # first 8 substeps interpolate, last 2 hold
+PHYS_HZ = 1000
+SUBSTEPS = PHYS_HZ // CTRL_HZ
+INTERP_SUBSTEPS = SUBSTEPS * 4 // 5
 STEP_LIM = 700                         # control steps (RoboDojo put_bottles)
 TABLE_Z = 0.765
 # Smooth the low-level target stream.  The policy runs at 25 Hz and may move
@@ -56,8 +56,6 @@ TABLE_Z = 0.765
 ARM_CTRL_STEP = float(os.environ.get("SIM_ARM_CTRL_STEP", "0.028"))
 GRIP_CTRL_STEP = float(os.environ.get("SIM_GRIP_CTRL_STEP", "0.008"))
 CTRL_SMOOTH = float(os.environ.get("SIM_CTRL_SMOOTH", "0.85"))
-# Normalized gripper commands use 0=closed, 1=open.  Keep a deadband around
-# the last explicit command so small policy noise cannot chatter the fingers.
 GRIP_CLOSE_CMD = float(os.environ.get("SIM_GRIP_CLOSE_CMD", "0.20"))
 GRIP_OPEN_CMD = float(os.environ.get("SIM_GRIP_OPEN_CMD", "0.80"))
 # RoboDojo X5 gripper joint7 range is [-0.01, 0.044] m.  Keep normalized
@@ -98,7 +96,7 @@ class Session:
         self.success = False
         self.error = None
         self.grasped = {"left": None, "right": None}
-        self.grasp_offsets = {}
+        self.grasp_opening = {}
         self.commanded_grip = {"left": 0.0, "right": 0.0}
         self.grip_target_norm = {"left": 0.0, "right": 0.0}
         self.step_limit = 1100 if task == "classify_objects" else 700
@@ -116,8 +114,6 @@ class Session:
         self.task = task
         self._add_objects(layout)
         mujoco.mj_forward(self.model, self.data)
-        # Start from the actual joint state, then only change it on an
-        # unambiguous open/close command (hysteresis in normalized space).
         self.grip_target_norm["left"] = grip_norm(self.data.qpos[self.qpos_ids[6]])
         self.grip_target_norm["right"] = grip_norm(self.data.qpos[self.qpos_ids[13]])
         self.commanded_grip = self.grip_target_norm.copy()
@@ -282,6 +278,20 @@ class Session:
                 ex = spec.add_exclude()
                 ex.bodyname1 = a
                 ex.bodyname2 = b
+        # Contact-triggered assisted grasp, solved by MuJoCo rather than
+        # teleporting a bottle and zeroing its velocity after every step.
+        for side in ("left", "right"):
+            for label in self.obj_poses:
+                if not label.startswith("bottle"):
+                    continue
+                eq = spec.add_equality()
+                eq.name = f"grasp_{side}_{label}"
+                eq.type = mujoco.mjtEq.mjEQ_WELD
+                eq.objtype = mujoco.mjtObj.mjOBJ_BODY
+                eq.name1, eq.name2 = side+"_link6", label
+                eq.active = False
+                eq.solref = [0.008, 1]
+                eq.solimp = [0.99, 0.999, 0.001, 0.5, 2]
         self.model = spec.compile()
         self.model.opt.timestep = 1.0 / PHYS_HZ
         self.data = mujoco.MjData(self.model)
@@ -374,14 +384,13 @@ class Session:
                     if not bname.endswith(("_link7", "_link8")):
                         geom.contype = 0
                         geom.conaffinity = 0
-        # stiffer arm drives: kp=400/kd=40 removes gravity sag at hold (official
-        # Isaac drives hold home pose exactly; kp=100 sagged 33mm in 200ms)
-        m2.opt.integrator = mujoco.mjtIntegrator.mjINT_IMPLICITFAST
+        # Local arm servo tuning; not a copy of Isaac drive parameters.
+        m2.opt.integrator = mujoco.mjtIntegrator.mjINT_IMPLICIT
         m2.opt.iterations = 50
         m2.opt.tolerance = 1e-8
         for i in range(m2.nu):
             aname = mujoco.mj_id2name(m2, mujoco.mjtObj.mjOBJ_ACTUATOR, i) or ""
-            if "gripper" not in aname:
+            if "gripper" not in aname and "follower" not in aname:
                 # Keep the same bounded, critically damped position drive on
                 # every arm joint.  The old mass-based cap reduced distal
                 # joints to single-digit kp, allowing pose drift and contact
@@ -389,7 +398,6 @@ class Session:
                 kp = 1000.0
                 dof = int(m2.joint(aname).dofadr[0])
                 m0 = float(m2.dof_M0[dof])
-                dt = 1.0 / PHYS_HZ
                 kd = max(80.0, 2.0 * np.sqrt(kp * max(m0, 1e-4)))
                 m2.actuator_gainprm[i][0] = kp
                 m2.actuator_biasprm[i][0] = float(self.data.qfrc_bias[dof])
@@ -611,7 +619,12 @@ class Session:
                 (directory / f"{self.t:06d}.png").write_bytes(buf.getvalue())
         if self.record_dir:
             with (self.record_dir / "states.jsonl").open("a") as f:
-                f.write(json.dumps({**self._status(), "state": self.state14(), "ee": self.ee_poses()})+"\n")
+                f.write(json.dumps({**self._status(), "state": self.state14(), "ee": self.ee_poses(), "fingers": self.finger_state()})+"\n")
+
+    def finger_state(self):
+        return {side: {"q": [float(self.data.qpos[self.model.joint(f"{side}_joint{i}").qposadr[0]]) for i in (7, 8)],
+                       "target": float(self.command_ctrl[idx])}
+                for side, idx in (("left", 6), ("right", 13))}
 
     def ee_poses(self):
         result = {}
@@ -678,10 +691,12 @@ class Session:
                 self.grip_target_norm[side] = 0.0
             elif raw >= GRIP_OPEN_CMD:
                 self.grip_target_norm[side] = 1.0
-            # Values in the deadband hold the previous explicit target.
             requested[idx] = self.grip_target_norm[side]
             self.commanded_grip[side] = self.grip_target_norm[side]
         requested[6], requested[13] = grip_denorm(requested[6]), grip_denorm(requested[13])
+        for side, idx in (("left", 6), ("right", 13)):
+            if self.grasped[side] is not None and self.commanded_grip[side] <= 0.8:
+                requested[idx] = self.grasp_opening[side]
         # Slew-limit and low-pass the target in actuator space.  This removes
         # the high-frequency component while retaining the exact end target.
         delta = requested - cur
@@ -694,14 +709,12 @@ class Session:
         for sub in range(SUBSTEPS):
             frac = min(1.0, (sub + 1) / INTERP_SUBSTEPS)
             self.data.ctrl[self.ctrl_ids] = cur + (goal - cur) * frac
+            for side, idx in (("left", 6), ("right", 13)):
+                self.data.ctrl[self.model.actuator(side+"_follower").id] = self.data.ctrl[self.ctrl_ids[idx]]
             warnings = [w.number for w in self.data.warning]
             mujoco.mj_step(self.model, self.data)
+            mujoco.mj_forward(self.model, self.data)
             self._update_grasps()
-            for side, idx in (("left", 6), ("right", 13)):
-                if self.grasped[side] is not None:
-                    qid = self.qpos_ids[idx]
-                    self.data.ctrl[self.ctrl_ids[idx]] = self.data.qpos[qid]
-                    self.data.qvel[self.model.jnt_dofadr[self.model.jnt_qposadr.tolist().index(qid)]] = 0.0
             if not np.isfinite(self.data.qpos).all() or not np.isfinite(self.data.qvel).all() or any(w.number > n for w,n in zip(self.data.warning,warnings)):
                 self.error = "physics_error"; self.done = True
                 raise RuntimeError("Physics warning/nonfinite state; episode terminated")
@@ -718,8 +731,10 @@ class Session:
         for side in ("left", "right"):
             if self.grasped[side] is not None:
                 if self.commanded_grip[side] > 0.8:
+                    eq = self.model.equality(f"grasp_{side}_{self.grasped[side]}").id
+                    self.data.eq_active[eq] = False
+                    self.grasp_opening.pop(side, None)
                     self.grasped[side] = None
-                    self.grasp_offsets.pop(side, None)
 
         # Acquire only when both fingers touch the same bottle while closed.
         for side in ("left", "right"):
@@ -743,21 +758,21 @@ class Session:
             candidate = next((label for label, fingers in touched.items() if len(fingers) >= 2), None)
             if candidate is None:
                 continue
-            site = int(self.model.site(f"{side}_ee").id)
             bid = self.obj_body_ids[candidate]
             self.grasped[side] = candidate
-            self.grasp_offsets[side] = self.data.xpos[bid].copy() - self.data.site_xpos[site].copy()
-
-        # Hold acquired objects at the measured EEF offset until release.
-        for side, label in self.grasped.items():
-            if label is None:
-                continue
-            site = int(self.model.site(f"{side}_ee").id)
-            bid = self.obj_body_ids[label]
-            qa = int(self.model.jnt_qposadr[self.model.body(bid).jntadr[0]])
-            self.data.qpos[qa:qa + 3] = self.data.site_xpos[site] + self.grasp_offsets[side]
-            self.data.qvel[self.model.jnt_dofadr[self.model.body(bid).jntadr[0]]:
-                          self.model.jnt_dofadr[self.model.body(bid).jntadr[0]] + 6] = 0.0
+            self.grasp_opening[side] = float(self.data.qpos[self.model.joint(side+"_joint7").qposadr[0]])
+            parent = self.model.body(side+"_link6").id
+            eq = self.model.equality(f"grasp_{side}_{candidate}").id
+            rot = self.data.xmat[parent].reshape(3,3)
+            relpos = rot.T @ (self.data.xpos[bid] - self.data.xpos[parent])
+            inv = np.zeros(4); relquat = np.zeros(4)
+            mujoco.mju_negQuat(inv, self.data.xquat[parent])
+            mujoco.mju_mulQuat(relquat, inv, self.data.xquat[bid])
+            self.model.eq_data[eq, :3] = 0
+            self.model.eq_data[eq, 3:6] = relpos
+            self.model.eq_data[eq, 6:10] = relquat
+            self.model.eq_data[eq, 10] = 0.1
+            self.data.eq_active[eq] = True
 
     def act(self, joints):
         rows = np.asarray(joints, float)
@@ -826,7 +841,7 @@ class Handler(BaseHTTPRequestHandler):
         if path in ('/','/live'):
             return self.send_bytes((Path(__file__).with_name('live.html')).read_bytes(),'text/html; charset=utf-8')
         if path=='/health':
-            return self._send({'ok':True,'version':'astra-isolated-v3','port':PORT,
+            return self._send({'ok':True,'version':'astra-isolated-v4-grip-sync','port':PORT,
                                'physics_hz':PHYS_HZ,'control_hz':CTRL_HZ,
                                'eef':'jaw_center','grasp_assist':GRASP_ASSIST,
                                'arm_ctrl_step':ARM_CTRL_STEP,
