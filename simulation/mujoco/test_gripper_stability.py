@@ -15,19 +15,25 @@ import test_pick_place as scenario
 
 
 class GripperStability(unittest.TestCase):
-    def test_full_pick_place_and_finger_sync(self):
+    def test_left_pick_place_and_finger_sync(self):
+        self.check_side("left")
+
+    def test_right_pick_place_and_finger_sync(self):
+        self.check_side("right")
+
+    def check_side(self, side):
         samples = []
         physical = []
         original_step = simsvc.mujoco.mj_step
         def step(model, data):
             original_step(model, data)
-            q = [float(data.qpos[model.joint(f"left_joint{i}").qposadr[0]]) for i in (7,8)]
+            q = [float(data.qpos[model.joint(f"{side}_joint{i}").qposadr[0]]) for i in (7,8)]
             physical.append(q)
         phase = ['initial']
         session = []
         def capture(s):
-            samples.append({'phase': phase[0], 'q': s.finger_state()['left']['q'],
-                            'grasped': s.grasped['left']})
+            samples.append({'phase': phase[0], 'q': s.finger_state()[side]['q'],
+                            'grasped': s.grasped[side]})
         def start(url, payload):
             session.append(simsvc.Session(payload['layout'], payload['instruction']))
             return {'session_id': 'headless'}
@@ -43,11 +49,11 @@ class GripperStability(unittest.TestCase):
              patch.object(scenario.client, 'http', start), \
              patch.object(scenario.client, 'observe', observe), \
              patch.object(scenario.client, 'execute', execute):
-            scenario.main()  # asserts real contact acquisition and bottle in bin
+            scenario.main(side)  # asserts real contact acquisition and bottle in bin
             q = np.asarray([r['q'] for r in samples])
             sync_mm = np.max(np.abs(q[:, 0]-q[:, 1]))*1000
             self.assertLess(sync_mm, 0.3, 'two fingers lost synchronization')
-            metrics = {'max_sync_error_mm': float(sync_mm)}
+            metrics = {'side': side, 'max_sync_error_mm': float(sync_mm)}
             for name in ('lift', 'carry'):
                 rows = [r for r in samples if r['phase'] == name]
                 self.assertTrue(all(r['grasped'] == 'bottle0' for r in rows))
@@ -57,7 +63,7 @@ class GripperStability(unittest.TestCase):
                 self.assertLess(jump, 0.5, name+' finger jump >0.5mm/frame')
                 self.assertLess(span, 1.0, name+' opening drift >1mm')
                 metrics[name] = {'max_frame_delta_mm': jump, 'opening_span_mm': span}
-            self.assertIsNone(session[0].grasped['left'])
+            self.assertIsNone(session[0].grasped[side])
             # With fixed arm/gripper commands, check both hands after settling.
             s = session[0]; row = s.state14(); row[6] = row[13] = 1.0
             for _ in range(50): s._step(row)

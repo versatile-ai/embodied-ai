@@ -671,3 +671,7 @@ git commit -m "Add reproducible Astra MuJoCo evaluation environment"
 运行 `python3 test_gripper_stability.py`，无需图形环境；保留真实物理、控制与接触，只替换渲染和 HTTP 传输。检查两个夹指（joint7、joint8），而不是只检查策略接口中的 joint7：全程同步误差 <0.3 mm，抬升/搬运每帧位移 <0.5 mm、开度漂移 <1 mm，静止开爪 2 秒峰峰值 <0.1 mm，并要求真实双指接触后抓取、保持、释放、瓶子入桶。
 
 双指加入对称位置驱动、被动阻尼和更紧的 mimic equality；物理积分使用 1 ms 步长。14 维外部动作接口不变，新增内部 follower 驱动不对策略暴露。`states.jsonl` 的 `fingers` 记录两指实际位置和目标。基础测试在 1.12 m 高度水平搬运并在桶口上方释放，避免旧路线碰撞 bottle3 和桌沿。
+
+左右夹爪独立自检：`python3 test_pick_place.py --side left` 使用原布局，`python3 test_pick_place.py --side right` 使用物体、桶和桌面位置的左右镜像布局。两者均执行开爪、接近、闭合、抬升、高位搬运和释放，要求至少一个瓶子入桶，并保存完整三路视频。镜像布局仅用于右臂功能验证，不属于官方评测。`test_gripper_stability.py` 同时覆盖左右两臂的稳定性。
+
+当前限制：瓶子的可见 mesh 使用透明包围盒作为碰撞体，辅助抓取通过 weld 保持。因此功能测试通过并不代表双指始终贴合可见瓶身，也不代表无辅助的纯物理抓取通过。
