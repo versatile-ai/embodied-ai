@@ -129,9 +129,31 @@ class Session:
         # target so consecutive action rows cannot introduce a discontinuous
         # command into the actuator interpolation below.
         self.command_ctrl = self.data.ctrl[self.ctrl_ids].copy()
+        self.reset_check = self.verify_initial_state()
+        if self.record_dir:
+            (self.record_dir / "reset_check.json").write_text(json.dumps(self.reset_check, indent=2))
         if self.record_dir:
             (self.record_dir / "initialization.json").write_text(json.dumps({"layout": layout, "instruction": instruction, "task": task}, indent=2))
         self.capture()
+
+    def verify_initial_state(self):
+        """A new episode must start from its own model/layout, never prior data."""
+        checks = {
+            "step_zero": self.t == 0 and self.data.time == 0,
+            "joints_home": bool(np.allclose(self.data.qpos[self.qpos_ids], self.model.qpos0[self.qpos_ids], atol=1e-9, rtol=0)),
+            "velocities_zero": bool(np.all(self.data.qvel == 0)),
+            "controls_match_joints": bool(np.allclose(self.command_ctrl, self.data.qpos[self.qpos_ids], atol=1e-9, rtol=0)),
+            "objects_at_layout": all(np.allclose(self.data.xpos[self.model.body(name).id], pos, atol=1e-9, rtol=0)
+                                     and abs(float(np.dot(self.data.xquat[self.model.body(name).id], np.asarray(quat)/np.linalg.norm(quat)))) > 1-1e-8
+                                     for name,(pos,quat) in self.obj_poses.items()),
+            "no_grasp": all(v is None for v in self.grasped.values()),
+            "no_weld": not any(self.data.eq_active[i] for i in range(self.model.neq)
+                               if self.model.eq_type[i] == mujoco.mjtEq.mjEQ_WELD),
+            "clean_episode": not self.requests and not self.done and not self.success and self.score == 0 and self.error is None,
+        }
+        if not all(checks.values()):
+            raise RuntimeError("Initial reset verification failed: " + str(checks))
+        return {"passed": True, "checks": checks, "initial_state14": self.state14()}
 
     # ---------- scene ----------
     def _add_objects(self, layout):

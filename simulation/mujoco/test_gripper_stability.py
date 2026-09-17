@@ -15,6 +15,23 @@ import test_pick_place as scenario
 
 
 class GripperStability(unittest.TestCase):
+    def test_new_episode_resets_previous_state(self):
+        layout = json.loads((Path(__file__).resolve().parent/'layouts/put_bottles_into_dustbin_0.json').read_text())
+        with patch.object(simsvc.mujoco, 'Renderer', MagicMock()), patch.object(simsvc.Session, 'capture'):
+            old = simsvc.Session(layout, 'old')
+            old.data.qpos[old.qpos_ids[0]] = 0.5
+            old.data.qpos[old.model.jnt_qposadr[old.model.body('bottle0').jntadr[0]]] += 0.3
+            old.data.qvel[:] = 1
+            old.t = 20; old.score = 10; old.grasped['left'] = 'bottle0'
+            old.requests['old-request'] = {'done': True}
+            fresh = simsvc.Session(layout, 'new')
+            self.assertTrue(fresh.reset_check['passed'])
+            self.assertEqual(fresh.t, 0)
+            self.assertEqual(fresh.requests, {})
+            self.assertIsNot(fresh.data, old.data)
+            self.assertIsNot(fresh.model, old.model)
+            self.assertEqual(old.t, 20)  # evidence from old run is preserved
+
     def test_left_pick_place_and_finger_sync(self):
         self.check_side("left")
 

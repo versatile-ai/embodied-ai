@@ -673,3 +673,11 @@ git commit -m "Add reproducible Astra MuJoCo evaluation environment"
 左右夹爪独立自检：`python3 test_pick_place.py --side left` 使用原布局，`python3 test_pick_place.py --side right` 使用物体、桶和桌面位置的左右镜像布局。两者均执行开爪、接近、闭合、抬升、高位搬运和释放，要求至少一个瓶子入桶，并保存完整三路视频。镜像布局仅用于右臂功能验证，不属于官方评测。`test_gripper_stability.py` 同时覆盖左右两臂的稳定性。
 
 当前物理验收：辅助附着关闭；两侧分别夹取目标瓶，抬升并保持 3 秒、搬运、张开后自然落下；额外静置 2 秒后检查目标 bottle0 自身位于桶内，不能用其他瓶子的计数代替。
+
+### 正式测试前复位
+
+每次正式测试必须先执行 `python3 client.py start --task put_bottles --layout 0`（或对应场景），使用返回的全新 `session_id`。不要在旧会话上接着执行动作。`test_pick_place.py` 已在每次运行时创建新会话。
+
+服务端重新创建独立模型和物理状态，再校验关节/夹爪 home、零速度、物体初始位置和姿态、步数与评分清零、无残留抓取及 weld。任一校验失败将拒绝创建会话。通过后才记录第 0 帧，并把检查结果写入 `runs/<session_id>/reset_check.json`；旧会话和录像保留。
+
+复位使用场景定义的夹爪初始开度，不假定 home 就是完全张开；测试中的张开动作由测试脚本显式执行。
