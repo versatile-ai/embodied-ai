@@ -140,7 +140,7 @@ curl http://127.0.0.1:8642/health
 
 ```sh
 git clone <astra-repo-url>
-cd simulation/mujoco
+cd astra_eval
 ./setup_colleague.sh
 python3 start_server.py
 ssh -N -L 8642:127.0.0.1:8642 <npu-user>@<npu-host>
@@ -149,7 +149,7 @@ ssh -N -L 8642:127.0.0.1:8642 <npu-user>@<npu-host>
 另开一个 Mac 终端：
 
 ```sh
-cd simulation/mujoco
+cd astra_eval
 source .venv/bin/activate
 export ASTRA_PI05=http://127.0.0.1:8642
 python3 client.py start --task put_bottles --layout 0
@@ -165,7 +165,7 @@ open http://127.0.0.1:8763/live
 
 ## 3.4 官方场景对比审计（2026-09-17）
 
-本次核对以仓库内的 `../../docs/robodojo_task_port_spec.md`、`../../docs/alignment_audit.md`、官方布局 JSON 结构以及当前 `harness/simsvc.py`/`assets/x5/dual_x5_scene.xml` 为准。结论是：**当前两个场景可用于 Astra/π0.5 的接口和控制回归，但还不是官方 RoboDojo 的等价仿真环境**。因此目前的分数只能作为本地回归分数，不能与官方 benchmark 分数直接横向比较。
+本次核对以仓库内的 `docs/robodojo_task_port_spec.md`、`docs/alignment_audit.md`、官方布局 JSON 结构以及当前 `harness/simsvc.py`/`assets/x5/dual_x5_scene.xml` 为准。结论是：**当前两个场景可用于 Astra/π0.5 的接口和控制回归，但还不是官方 RoboDojo 的等价仿真环境**。因此目前的分数只能作为本地回归分数，不能与官方 benchmark 分数直接横向比较。
 
 已对齐的部分包括：250 Hz 物理步、25 Hz 控制、每个动作推进 10 个物理步；桌面、地面摩擦和弹性；双 X5 根位姿、6+1 关节/夹爪结构；头部相机外参和头部/腕部相机视场角；布局中的固定物体位姿、类别和质量；两个任务的步数上限、主要成功条件和录像/HTTP 协议。`put_bottles_into_dustbin` 的 4 瓶布局和 `classify_objects` 的 3 类物体+3 个篮筐也能从当前 JSON 复现。
 
@@ -189,7 +189,7 @@ open http://127.0.0.1:8763/live
 
 建议的修复顺序是：先把头部/腕部相机外参和真实 mesh/bbox 碰撞校准，再关闭默认 grasp assist 做一组纯物理基线；随后移植功能点/support metadata 和官方评分状态机。完成这些后，再决定是否投入 PhysX/Isaac 原生环境和剩余 8 个任务。当前最小可交付边界应明确写成“两个刚体 pick-place 场景的 MuJoCo 复现”。
 
-可复核依据：`../../docs/alignment_audit.md` 记录了已对齐与近似项，`../../docs/robodojo_task_port_spec.md` 记录了官方 10 任务、相机链、功能点/support metadata 和物理参数；运行时差异可直接在 `harness/simsvc.py` 与 `assets/x5/dual_x5_scene.xml` 中检查。
+可复核依据：`docs/alignment_audit.md` 记录了已对齐与近似项，`docs/robodojo_task_port_spec.md` 记录了官方 10 任务、相机链、功能点/support metadata 和物理参数；运行时差异可直接在 `harness/simsvc.py` 与 `assets/x5/dual_x5_scene.xml` 中检查。
 
 ## 3. 已验证的运行基线
 
@@ -507,6 +507,8 @@ SIM_GRASP_ASSIST=0 python3 harness/simsvc.py
   "prompt": "task instruction"
 }
 ```
+
+相机默认使用 `SIM_CAMERA_PROFILE=wide` 的直播视角：主相机覆盖整张桌面，腕相机同时保留夹爪尖端和目标物体。需要对齐官方 π0.5 图像分布时设置 `SIM_CAMERA_PROFILE=official`。
 
 默认推理地址为 `http://127.0.0.1:8642/infer`，可通过环境变量替换：
 

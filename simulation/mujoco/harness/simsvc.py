@@ -40,6 +40,7 @@ RUN_ROOT = Path(os.environ.get("ASTRA_RUN", str(ROOT / "runs")))
 RUN_ROOT.mkdir(parents=True, exist_ok=True)
 SCENE_XML = os.environ.get("SIMSCENE", str(ROOT / "assets/x5/dual_x5_scene.xml"))
 PORT = int(os.environ.get("SIMPORT", "8763"))
+CAMERA_PROFILE = os.environ.get("SIM_CAMERA_PROFILE", "wide").lower()
 
 CTRL_HZ = 25
 PHYS_HZ = 250
@@ -299,8 +300,14 @@ class Session:
             bpos = self.data.xpos[bid].copy()
             bx = self.data.xmat[bid].reshape(3, 3)
             ee = self.data.site_xpos[int(m2.site(eename).id)].copy()
-            cam_world = ee + np.array([0.0, 0.04, 0.20])
-            target = np.array([ee[0], ee[1] + 0.30, TABLE_Z])
+            if CAMERA_PROFILE == "official":
+                cam_world = ee + np.array([0.0, 0.04, 0.20])
+                target = np.array([ee[0], ee[1] + 0.30, TABLE_Z])
+            else:
+                # Operator/live profile: pull the wrist camera back so the
+                # jaws and the target remain visible throughout a move.
+                cam_world = ee + np.array([0.0, 0.06, 0.22])
+                target = np.array([ee[0], ee[1] + 0.20, TABLE_Z + 0.03])
             f = target - cam_world
             f /= np.linalg.norm(f)
             up0 = np.array([0.0, 0.0, 1.0])
@@ -325,10 +332,13 @@ class Session:
                     sc.quat = list(map(float, lq))
         for sc in spec.cameras:
             if sc.name == "cam_base":
-                sc.pos = [0.0, -0.41, 1.308]
+                sc.pos = ([0.0, -0.41, 1.308] if CAMERA_PROFILE == "official"
+                          else [0.0, -0.72, 1.45])
                 hq = np.zeros(4)
-                mujoco.mju_euler2Quat(hq, np.array([30.0, 0.0, 0.0]) * np.pi / 180.0, "xyz")
+                hdeg = 30.0 if CAMERA_PROFILE == "official" else 38.0
+                mujoco.mju_euler2Quat(hq, np.array([hdeg, 0.0, 0.0]) * np.pi / 180.0, "xyz")
                 sc.quat = list(map(float, hq))
+                sc.fovy = 71.1 if CAMERA_PROFILE == "official" else 78.0
         m2 = spec.compile()
         m2.opt.timestep = 1.0 / PHYS_HZ
         self.model = m2
