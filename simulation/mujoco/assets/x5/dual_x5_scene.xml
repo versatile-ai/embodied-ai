@@ -153,13 +153,13 @@
     <general name="left_joint4" joint="left_joint4" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="left_joint5" joint="left_joint5" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="left_joint6" joint="left_joint6" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
-    <general name="left_gripper" joint="left_joint7" ctrlrange="-0.01 0.044" biastype="affine" gainprm="200" biasprm="0 -200 -20"/>
+    <general name="left_gripper" joint="left_joint7" ctrlrange="-0.01 0.044" biastype="affine" gainprm="80" biasprm="0 -80 -35"/>
     <general name="right_joint1" joint="right_joint1" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="right_joint2" joint="right_joint2" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="right_joint3" joint="right_joint3" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="right_joint4" joint="right_joint4" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="right_joint5" joint="right_joint5" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
     <general name="right_joint6" joint="right_joint6" ctrllimited="true" ctrlrange="-10 10" biastype="affine" gainprm="100" biasprm="0 -100 -10"/>
-    <general name="right_gripper" joint="right_joint7" ctrlrange="-0.01 0.044" biastype="affine" gainprm="200" biasprm="0 -200 -20"/>
+    <general name="right_gripper" joint="right_joint7" ctrlrange="-0.01 0.044" biastype="affine" gainprm="80" biasprm="0 -80 -35"/>
   </actuator>
 </mujoco>
