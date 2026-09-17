@@ -324,10 +324,11 @@ class Session:
                 cam_world = ee + np.array([0.0, 0.04, 0.20])
                 target = np.array([ee[0], ee[1] + 0.30, TABLE_Z])
             else:
-                # Operator/live profile: pull the wrist camera back so the
-                # jaws and the target remain visible throughout a move.
-                cam_world = ee + np.array([0.0, 0.06, 0.22])
-                target = np.array([ee[0], ee[1] + 0.20, TABLE_Z + 0.03])
+                # Wide profile: aim just below the jaw centre rather than a
+                # distant table point. Convert this mount to body-local pose
+                # once so it follows the wrist without auto-tracking.
+                cam_world = ee + np.array([0.0, -0.12, 0.30])
+                target = ee + np.array([0.0, 0.015, -0.035])
             f = target - cam_world
             f /= np.linalg.norm(f)
             up0 = np.array([0.0, 0.0, 1.0])
@@ -350,6 +351,8 @@ class Session:
                     if lp is not None:
                         sc.pos = list(map(float, lp))
                     sc.quat = list(map(float, lq))
+                    if CAMERA_PROFILE != "official":
+                        sc.fovy = 78.0
         for sc in spec.cameras:
             if sc.name == "cam_base":
                 sc.pos = ([0.0, -0.41, 1.308] if CAMERA_PROFILE == "official"

@@ -509,7 +509,7 @@ SIM_GRASP_ASSIST=0 python3 harness/simsvc.py
 }
 ```
 
-相机默认使用 `SIM_CAMERA_PROFILE=wide` 的直播视角：主相机覆盖整张桌面，腕相机同时保留夹爪尖端和目标物体。需要对齐官方 π0.5 图像分布时设置 `SIM_CAMERA_PROFILE=official`。
+相机默认使用 `SIM_CAMERA_PROFILE=wide` 的直播视角：主相机覆盖整张桌面，腕相机后移并提高，朝向夹爪中心下方 3.5 cm，垂直视场角为 78°，显示完整双指、基座及近处操作区域。相机固定在对应腕部坐标系，随腕运动而不自动追踪。该配置也影响提供给策略的腕部图像。需要对齐官方 π0.5 图像分布时设置 `SIM_CAMERA_PROFILE=official`。
 
 默认推理地址为 `http://127.0.0.1:8642/infer`，可通过环境变量替换：
 
