@@ -1,5 +1,6 @@
 # coding: utf-8
 import copy
+import base64
 import json
 from pathlib import Path
 import tempfile
@@ -41,13 +42,36 @@ class InterfaceTests(unittest.TestCase):
         with patch.object(self.c,'session_http',side_effect=[self.obs,{'t':1}]) as http:
             self.c.eef(good);self.assertEqual(http.call_args_list[-1].args[1]['steps'],1)
     def test_pi_camera_contract_and_clipping(self):
-        raw={**self.obs,'images':{k:'encoded' for k in CAMERAS},'shapes':{k:[1,1,3] for k in CAMERAS}}
+        pixel=base64.b64encode(bytes([1,2,3])).decode()
+        raw={**self.obs,'images':{k:pixel for k in CAMERAS},'shapes':{k:[1,1,3] for k in CAMERAS}}
         arr=np.zeros((50,14));arr[:,6]=1.01
-        with patch.object(self.c,'session_http',return_value=raw),patch.object(self.c,'http',return_value={'actions':arr.tolist(),'ms':3}) as http:
+        response={'actions':arr.tolist(),'ms':3,'provider':'npu'}
+        with patch.object(self.c,'session_http',return_value=raw),patch.object(self.c,'http',return_value=response) as http:
             out=self.c.infer();sent=http.call_args.args[2]
             self.assertEqual(set(sent),{'images','shapes','state','prompt'})
             self.assertEqual(set(sent['images']),set(CAMERAS.values()))
             self.assertEqual(out['gripper_clips'],50)
+        audit=self.directory/'pi/000000'
+        self.assertEqual(json.loads((audit/'raw_response.json').read_text()),response)
+        saved=json.loads((audit/'input.json').read_text())
+        self.assertEqual(saved['images']['cam_base']['pixel_sha256'],
+                         '039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81')
+
+    def test_gpt_record_keeps_final_io_and_timing_without_private_state(self):
+        observation=self.directory/'observations/000000';observation.mkdir(parents=True)
+        (observation/'observation.json').write_text(json.dumps(public_state(self.obs)))
+        payload={'observation_id':self.sid+':0','model':'gpt-6-astra',
+                 'input':{'system_prompt':'supervise','candidate':{'proposal':'pi/000000'}},
+                 'output':{'decision':'follow','reason':'visible bottle approach'},
+                 'timing':{'wall_ms':123.4,'input_tokens':88,'output_tokens':12}}
+        result=self.c.record_gpt(payload)
+        root=Path(result['record_dir'])
+        self.assertEqual(json.loads((root/'output.json').read_text()),payload['output'])
+        self.assertEqual(json.loads((root/'timing.json').read_text()),payload['timing'])
+        bad=copy.deepcopy(payload);bad['output']['analysis']='hidden'
+        with self.assertRaisesRegex(ValueError,'internal reasoning'):self.c.record_gpt(bad)
+        report=self.c.audit_report()
+        self.assertEqual(report['gpt_count'],1)
     def test_direct_mode_cannot_infer(self):
         self.c.mode='direct'
         with patch.object(self.c,'http') as http:

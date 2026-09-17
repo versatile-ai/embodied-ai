@@ -449,4 +449,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(
+        'Legacy runner retired: it bypasses eval_control.py session reset and I/O audit. '
+        'Use eval_control.py start/observe/infer/record-gpt/follow|eef/audit-report.'
+    )

@@ -3,7 +3,9 @@
 import argparse
 import fcntl
 import base64
+import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -20,10 +22,29 @@ SAFE = {'t', 'done', 'success', 'remaining_steps', 'termination', 'state', 'ee',
         'instruction', 'observation_id', 'error'}
 CAMERAS = {'cam_base': 'cam_high', 'left_cam_wrist': 'cam_left_wrist',
            'right_cam_wrist': 'cam_right_wrist'}
+PRIVATE_FIELDS = {'object_positions', 'grasped', 'obj_poses', 'privileged_state'}
+THOUGHT_FIELDS = {'analysis', 'chain_of_thought', 'reasoning', 'thoughts'}
 
 
 def public_state(value):
     return {k: v for k, v in value.items() if k in SAFE}
+
+
+def write_json(path, value):
+    """Atomically persist a JSON audit artifact without lossy float coercion."""
+    path = Path(path)
+    temporary = path.with_suffix(path.suffix + '.tmp')
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False))
+    temporary.replace(path)
+
+
+def contains_forbidden(value, forbidden):
+    if isinstance(value, dict):
+        return any(key in forbidden or contains_forbidden(item, forbidden)
+                   for key, item in value.items())
+    if isinstance(value, list):
+        return any(contains_forbidden(item, forbidden) for item in value)
+    return False
 
 
 class Controller:
@@ -114,22 +135,35 @@ class Controller:
             self.log(event)
         return {'session_id': sid, 'mode': mode, 'reset_passed': True, 'policy_dir': str(self.directory)}
 
-    def observe(self):
-        begin = time.perf_counter_ns()
-        raw = self.session_http('observe')
-        tick = time.perf_counter_ns()
+    def save_observation(self, raw):
+        """Save the exact pixel tensors supplied to a policy for one observation."""
         safe = public_state(raw)
         directory = self.directory / 'observations' / f"{raw['t']:06d}"
         directory.mkdir(parents=True, exist_ok=True)
         safe['images'] = {}
+        fingerprints = {}
         for camera, encoded in raw['images'].items():
             if camera not in CAMERAS:
                 continue
+            pixels = base64.b64decode(encoded)
+            array = np.frombuffer(pixels, np.uint8).reshape(raw['shapes'][camera])
             dest = directory / (camera + '.png')
-            arr = np.frombuffer(base64.b64decode(encoded), np.uint8).reshape(raw['shapes'][camera])
-            Image.fromarray(arr).save(dest)
+            Image.fromarray(array).save(dest)
             safe['images'][camera] = str(dest)
-        (directory / 'observation.json').write_text(json.dumps(safe, indent=2))
+            fingerprints[camera] = {
+                'shape': raw['shapes'][camera],
+                'pixel_sha256': hashlib.sha256(pixels).hexdigest(),
+                'file': str(dest),
+            }
+        safe['image_fingerprints'] = fingerprints
+        write_json(directory / 'observation.json', safe)
+        return safe
+
+    def observe(self):
+        begin = time.perf_counter_ns()
+        raw = self.session_http('observe')
+        tick = time.perf_counter_ns()
+        safe = self.save_observation(raw)
         self.log({'type': 'observation', 'observation': safe,
                   'decode_save_ms': (time.perf_counter_ns() - tick) / 1e6,
                   'total_ms': (time.perf_counter_ns() - begin) / 1e6})
@@ -141,6 +175,7 @@ class Controller:
         raw = self.session_http('observe')
         if raw['done']:
             raise ValueError('Episode is finished')
+        observation = self.save_observation(raw)
         payload = {'images': {v: raw['images'][k] for k, v in CAMERAS.items()},
                    'shapes': {v: raw['shapes'][k] for k, v in CAMERAS.items()},
                    'state': raw['state'], 'prompt': raw['instruction']}
@@ -158,11 +193,116 @@ class Controller:
                 'actions': actions.tolist(), 'service_ms': result.get('ms'),
                 'roundtrip_ms': elapsed, 'gripper_clips': int(np.count_nonzero(actions != original))}
         dest = self.directory / f"proposal_{raw['t']:06d}.json"
-        dest.write_text(json.dumps(data, allow_nan=False))
+        write_json(dest, data)
+        audit = self.directory / 'pi' / f"{raw['t']:06d}"
+        audit.mkdir(parents=True, exist_ok=False)
+        # Images are losslessly retained under observations/.  Keep their pixel
+        # hashes and the complete non-image request here rather than duplicating
+        # large base64 blobs in every audit file.
+        write_json(audit / 'input.json', {
+            'observation_id': raw['observation_id'],
+            'camera_keys': CAMERAS,
+            'images': observation['image_fingerprints'],
+            'shapes': payload['shapes'], 'state': payload['state'], 'prompt': payload['prompt'],
+        })
+        write_json(audit / 'raw_response.json', result)
+        write_json(audit / 'normalized_proposal.json', data)
         summary = {k: v for k, v in data.items() if k != 'actions'}
-        summary.update(proposal_path=str(dest), first_action=actions[0].tolist(), shape=[50,14])
+        summary.update(proposal_path=str(dest), audit_dir=str(audit),
+                       first_action=actions[0].tolist(), shape=[50,14])
         self.log({'type': 'pi_inference', 'summary': summary})
         return summary
+
+    def record_gpt(self, payload):
+        """Store a model-visible GPT request, final decision and provider timings.
+
+        This is an audit sink, not a model caller.  The external GPT adapter must
+        submit exactly the prompt/candidate it supplied and its final structured
+        output.  Chain-of-thought fields and simulator private fields are refused.
+        """
+        observation_id = payload.get('observation_id')
+        if not isinstance(observation_id, str) or not observation_id.startswith(self.session + ':'):
+            raise ValueError('Invalid GPT observation_id')
+        try:
+            step = int(observation_id.rsplit(':', 1)[1])
+        except (IndexError, ValueError):
+            raise ValueError('Invalid GPT observation_id') from None
+        source = self.directory / 'observations' / f'{step:06d}' / 'observation.json'
+        if not source.is_file():
+            raise ValueError('Observe before recording a GPT decision')
+        supplied = payload.get('input')
+        output = payload.get('output')
+        timing = payload.get('timing')
+        model = payload.get('model')
+        if not isinstance(supplied, dict) or not isinstance(output, dict) or not isinstance(timing, dict):
+            raise ValueError('GPT record requires object input, output and timing')
+        if not isinstance(model, str) or not model:
+            raise ValueError('GPT record requires a model name')
+        if contains_forbidden(supplied, PRIVATE_FIELDS) or contains_forbidden(output, PRIVATE_FIELDS):
+            raise ValueError('GPT record contains simulator private fields')
+        if contains_forbidden(supplied, THOUGHT_FIELDS) or contains_forbidden(output, THOUGHT_FIELDS):
+            raise ValueError('GPT record must not include internal reasoning')
+
+        def valid_timing(value):
+            if isinstance(value, dict):
+                return all(isinstance(key, str) and valid_timing(item) for key, item in value.items())
+            if isinstance(value, list):
+                return all(valid_timing(item) for item in value)
+            return not isinstance(value, bool) and (not isinstance(value, (int, float)) or
+                                                    (math.isfinite(value) and value >= 0))
+        if not valid_timing(timing):
+            raise ValueError('GPT timing metrics must be finite non-negative numbers')
+
+        root = self.directory / 'gpt'
+        root.mkdir(exist_ok=True)
+        occurrence = len(list(root.glob(f'{step:06d}_*')))
+        audit = root / f'{step:06d}_{occurrence:02d}'
+        audit.mkdir()
+        canonical = json.loads(source.read_text())
+        write_json(audit / 'input.json', {
+            'observation_id': observation_id, 'model': model,
+            'observation': canonical,
+            # This is the exact model-visible prompt/candidate supplied by the adapter.
+            'input': supplied,
+        })
+        write_json(audit / 'output.json', output)
+        write_json(audit / 'timing.json', timing)
+        event = {'type': 'gpt_decision', 'observation_id': observation_id, 'model': model,
+                 'input_path': str(audit / 'input.json'), 'output_path': str(audit / 'output.json'),
+                 'timing_path': str(audit / 'timing.json'), 'timing': timing}
+        self.log(event)
+        return {'record_dir': str(audit), 'observation_id': observation_id, 'model': model}
+
+    def audit_report(self):
+        """Make one machine-readable index linking every policy I/O to timings."""
+        pi = []
+        for directory in sorted((self.directory / 'pi').glob('*')) if (self.directory / 'pi').exists() else []:
+            proposal = json.loads((directory / 'normalized_proposal.json').read_text())
+            pi.append({'t': proposal['t'], 'observation_id': proposal['observation_id'],
+                       'input_path': str(directory / 'input.json'),
+                       'raw_output_path': str(directory / 'raw_response.json'),
+                       'normalized_output_path': str(directory / 'normalized_proposal.json'),
+                       'service_ms': proposal.get('service_ms'), 'roundtrip_ms': proposal.get('roundtrip_ms'),
+                       'gripper_clips': proposal['gripper_clips']})
+        gpt = []
+        for directory in sorted((self.directory / 'gpt').glob('*')) if (self.directory / 'gpt').exists() else []:
+            timing = json.loads((directory / 'timing.json').read_text())
+            output = json.loads((directory / 'output.json').read_text())
+            gpt.append({'record_dir': str(directory), 'input_path': str(directory / 'input.json'),
+                        'output_path': str(directory / 'output.json'), 'timing': timing,
+                        'decision': output.get('decision'), 'reason': output.get('reason')})
+        trace = [json.loads(line) for line in (self.directory / 'trace.jsonl').read_text().splitlines()]
+        execution = [event for event in trace if event['type'] == 'http_timing' and
+                     event['route'].rsplit('/', 1)[-1] in {'act', 'eef', 'finish'}]
+        report = {'session_id': self.session, 'pi_inferences': pi, 'gpt_decisions': gpt,
+                  'execution_http': execution,
+                  'summary': {'pi_count': len(pi), 'gpt_count': len(gpt),
+                              'execution_count': len(execution),
+                              'pi_roundtrip_ms_total': sum(x['roundtrip_ms'] or 0 for x in pi)}}
+        path = self.directory / 'audit_report.json'
+        write_json(path, report)
+        self.log({'type': 'audit_report', 'path': str(path), 'summary': report['summary']})
+        return {'report_path': str(path), **report['summary']}
 
     def execute(self, route, obs, payload, reason):
         if obs['done'] and route != 'finish':
@@ -246,7 +386,7 @@ class Controller:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['start','observe','infer','follow','eef','finish'])
+    parser.add_argument('command', choices=['start','observe','infer','record-gpt','audit-report','follow','eef','finish'])
     parser.add_argument('--session')
     parser.add_argument('--mode', choices=['direct','hybrid','pi05'], default='direct')
     parser.add_argument('--task', choices=['put_bottles','classify_objects'], default='put_bottles')
@@ -259,13 +399,17 @@ def main():
         parser.error('--session required; create a fresh episode with start')
     if args.command in ('follow','finish') and not args.reason:
         parser.error('--reason required')
-    if args.command == 'eef' and args.payload is None:
+    if args.command in ('eef', 'record-gpt') and args.payload is None:
         parser.error('--payload required')
     controller = Controller(args.session)
     if args.command == 'start':
         out = controller.start(args.task, args.layout, args.mode)
     elif args.command == 'eef':
         out = controller.eef(json.loads(args.payload.read_text()))
+    elif args.command == 'record-gpt':
+        out = controller.record_gpt(json.loads(args.payload.read_text()))
+    elif args.command == 'audit-report':
+        out = controller.audit_report()
     elif args.command == 'follow':
         out = controller.follow(args.steps, args.reason)
     elif args.command == 'finish':

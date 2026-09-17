@@ -53,6 +53,28 @@ EEF 修正使用 `python3 eval_control.py eef --session <id> --payload <json>`�
 
 审计文件位于 `runs/<session>/policy/`：manifest.json、trace.jsonl、净化观测图像、proposal 文件。每条动作有唯一 request_id 与 expected_step；HTTP 开始/结束耗时、状态码、π 服务端 ms、图像解码落盘耗时分别保存。桌面 GPT 的纯推理时延仍不可由此接口获得，禁止把整个决策周期标为模型推理时间。底层 `runs/<session>/` 的 states/requests/responses 和视频供离线评估，控制模型不得读取。
 
+正式 GPT+π 回合必须额外保存每轮模型 I/O。`infer` 自动写入 `policy/pi/<step>/input.json`、`raw_response.json` 和 `normalized_proposal.json`；三张输入图像保存为无损 PNG，并在 input 中记录原始像素 SHA-256。外部 GPT 调用完成后，适配器必须调用 `record-gpt` 保存实际送入模型的 prompt/candidate、最终结构化输出及 provider 计时，最后执行 `audit-report` 生成单一索引。内部逐字推理不写入任何审计文件。
+
+```sh
+cat > /tmp/gpt_record.json <<'JSON'
+{
+  "observation_id": "<session_id>:<step>",
+  "model": "gpt-6-astra",
+  "input": {
+    "system_prompt": "实际传给 GPT 的系统提示词",
+    "user_prompt": "实际传给 GPT 的本轮提示词",
+    "candidate": {"pi_proposal": "policy/proposal_<step>.json"}
+  },
+  "output": {"decision": "follow", "reason": "可见画面中的短理由"},
+  "timing": {"wall_ms": 1234.5, "model_ms": 980.1, "input_tokens": 1200, "output_tokens": 80}
+}
+JSON
+python3 eval_control.py record-gpt --session <session_id> --payload /tmp/gpt_record.json
+python3 eval_control.py audit-report --session <session_id>
+```
+
+`audit_report.json` 将 π 的完整输入/原始输出/归一化输出、GPT 的输入/最终输出/计时和每个 act/eef/finish HTTP 时间关联起来。`model_ms` 仅在 provider 返回时记录；缺失时保持缺失，不能用整段墙钟时间替代。
+
 公平比较先固定同一动作窗口（如 5 步）、相机、布局、预算与录像设置，再另设各自最优配置组。视频按控制时间记录所有执行帧，不记录 GPT 等待的墙钟时间。先记录失败，再修复问题，不能复位重跑替代失败样本。
 
 每回合最多 180 次已提交动作决策，计数在 `policy/decision_count` 持久化，重启 CLI 不会清空；输入预检拒绝不计入，已发出但失败/结果不确定的动作计入。达到预算后下一动作请求转为 finish，记录 `decision_budget_exhausted:180`。`finish` 不占决策额度。
@@ -628,7 +650,7 @@ def pi05_infer(images, state, prompt, endpoint="http://127.0.0.1:8642"):
 
 ### 10.2 推理输出
 
-`/infer` 必须返回 `actions`，形状为 `(50, 14)` 或 `(1, 50, 14)`，且所有值为有限数。客户端会检查形状后保存 `proposal_<step>.json`。
+`/infer` 必须返回 `actions`，形状为 `(50, 14)` 或 `(1, 50, 14)`，且所有值为有限数。客户端会检查形状后保存 `proposal_<step>.json`，并同时保存完整请求清单、原始服务响应与归一化 proposal 到 `policy/pi/<step>/`。
 
 执行前应重新获取观测并确认 `observation_id` / `expected_step` 没有过期：
 
