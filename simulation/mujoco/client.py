@@ -28,6 +28,10 @@ def infer(sid,obs):
     begin=time.monotonic();out=http(PI+'/infer',payload);a=np.asarray(out['actions'],float)
     if a.shape==(1,50,14):a=a[0]
     if a.shape!=(50,14) or not np.isfinite(a).all():raise ValueError(f'Invalid proposal shape/content: {a.shape}')
+    # Pi0.5 occasionally emits tiny normalized gripper overshoots.  The
+    # simulator protocol is explicitly [0,1]; clamp only the two gripper
+    # columns and preserve all arm joint values for replay/audit.
+    a[:, [6, 13]] = np.clip(a[:, [6, 13]], 0.0, 1.0)
     out.update(actions=a.tolist(),observation_id=obs['observation_id'],wall_ms=(time.monotonic()-begin)*1000,instruction=obs['instruction'])
     path=ROOT/'runs'/sid/f"proposal_{obs['t']:06d}.json";path.write_text(json.dumps(out));return path,out
 
