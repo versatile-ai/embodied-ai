@@ -35,3 +35,6 @@ weights/*
 /external/GPT-as-Policy/
 /external/robodojo-x5-reference/
 /external/usd-inspector/
+# One-off episode controllers (archived under runs; not reusable entrypoints)
+fresh_policy/
+hybrid_policy/

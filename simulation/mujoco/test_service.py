@@ -20,14 +20,19 @@ class Regression(unittest.TestCase):
  def setUp(self):
   s=self.s;mujoco.mj_resetData(s.model,s.data);s.data.qpos[:]=self.initial;s.data.ctrl[s.ctrl_ids]=s.data.qpos[s.qpos_ids];mujoco.mj_forward(s.model,s.data)
   s.command_ctrl=s.data.ctrl[s.ctrl_ids].copy()
-  s.grip_target_norm={'left':simsvc.grip_norm(s.data.qpos[s.qpos_ids[6]]),'right':simsvc.grip_norm(s.data.qpos[s.qpos_ids[13]])}
-  s.commanded_grip=s.grip_target_norm.copy()
   s.t=0;s.done=False;s.success=False;s.score=0;s.error=None
  def test_scene_data_matches_rebuilt_model(self):
   s=self.s
   self.assertEqual(s.model.nq,len(s.data.qpos))
   for name,(pos,_) in s.obj_poses.items():np.testing.assert_allclose(s.data.xpos[s.model.body(name).id],pos,atol=1e-9)
   self.assertGreater(s.data.cam_xpos[s.cam_ids[0],2],1)
+ def test_dustbin_is_static_and_does_not_drift(self):
+  s=self.s;bid=s.obj_body_ids['dustbin']
+  self.assertEqual(int(s.model.body(bid).jntnum[0]),0)
+  before=s.data.xpos[bid].copy();row=s.state14()
+  with patch.object(s,'capture'):
+   for _ in range(50):s._step(row)
+  np.testing.assert_allclose(s.data.xpos[bid],before,atol=1e-12)
  def test_score_does_not_imply_success(self):
   self.s.score=100
   self.assertFalse(self.s._status()['success'])
@@ -72,6 +77,12 @@ class Regression(unittest.TestCase):
    row=s.state14(); row[6]=0.95
    s._step(row)
    self.assertEqual(s.commanded_grip['left'],0.95)
+ def test_pi_midrange_gripper_command_is_continuous(self):
+  s=self.s;before=s.state14()[6];row=s.state14();row[6]=.56;row[13]=.63
+  with patch.object(s,'capture'):s.act([row])
+  self.assertAlmostEqual(s.commanded_grip['left'],.56)
+  self.assertAlmostEqual(s.commanded_grip['right'],.63)
+  self.assertLess(s.state14()[6],before) # reset jaws now start open
  def test_eef_rejects_large_and_invalid_goals(self):
   goals=self.s.ee_poses();goals['left']['xyz'][0]+=.1
   with self.assertRaises(ValueError):solve_step(self.s.model,self.s.data,goals)
@@ -100,6 +111,38 @@ class Regression(unittest.TestCase):
    for entry in layout['Geometry']['basket']:
     np.testing.assert_allclose(s.data.xpos[s.model.body(entry['label']).id],entry['default_pos'],atol=1e-8)
   finally:s.renderer.close()
+
+ def test_bounded_ik_does_not_write_measured_state(self):
+  s=self.s;before=s.data.qpos.copy();velocity=s.data.qvel.copy()
+  goals=s.ee_poses();goals['left']['xyz'][2]+=.04
+  row=np.asarray(solve_step(s.model,s.data,goals));state=np.asarray(s.state14())
+  arms=[i for i in range(14) if i not in (6,13)]
+  self.assertLessEqual(np.max(np.abs(row[arms]-state[arms])),.050001)
+  np.testing.assert_array_equal(s.data.qpos,before);np.testing.assert_array_equal(s.data.qvel,velocity)
+ def test_bounded_ik_preserves_coupled_wrist_direction(self):
+  s=self.s;goals=s.ee_poses();q=np.asarray(goals['left']['quat_wxyz'])
+  yaw=np.array([np.cos(.05),0,0,np.sin(.05)]);out=np.zeros(4)
+  mujoco.mju_mulQuat(out,yaw,q);goals['left']['quat_wxyz']=out.tolist()
+  delta=np.asarray(solve_step(s.model,s.data,goals))[:6]-np.asarray(s.state14())[:6]
+  self.assertLess(np.max(np.abs(delta)),.050001)
+  # At home, a world-z wrist move needs unequal joint1/joint5 increments.
+  # Equal component clipping cancels their rotational contribution.
+  self.assertLess(abs(delta[0]/delta[4]),.75)
+ def test_closed_loop_remeasures_after_disturbance(self):
+  s=self.s;goals=s.ee_poses();seen=[];original=simsvc.solve_step
+  def solve(m,d,g,**kwargs):
+   seen.append(d.qpos.copy());return original(m,d,g,**kwargs)
+  def disturbance(row,**kwargs):
+   s.data.qpos[s.qpos_ids[0]]+=.15
+   mujoco.mj_forward(s.model,s.data);s.t+=1
+  with patch.object(simsvc,'solve_step',solve),patch.object(s,'_step',disturbance):s.eef(goals,3)
+  self.assertEqual(s.t,3);self.assertFalse(s.done)
+  self.assertEqual(len(seen),4) # initial validation plus each actual update
+  self.assertNotEqual(seen[1][s.qpos_ids[0]],seen[2][s.qpos_ids[0]])
+ def test_at_target_still_executes_gripper_and_physics(self):
+  s=self.s;goals=s.ee_poses();goals['left']['gripper']=1
+  with patch.object(s,'capture'):s.eef(goals,2)
+  self.assertEqual(s.t,2);self.assertGreater(s.state14()[6],.1852)
 
  def test_rotation_error_world_frame(self):
   q=np.array([np.cos(.05),0,0,np.sin(.05)]);mat=np.zeros(9);mujoco.mju_quat2Mat(mat,q)

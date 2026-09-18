@@ -68,6 +68,8 @@ ARM_CTRL_STEP = float(os.environ.get("SIM_ARM_CTRL_STEP", "0.15"))
 EEF_ARM_CTRL_STEP = 0.028
 GRIP_CTRL_STEP = float(os.environ.get("SIM_GRIP_CTRL_STEP", "0.008"))
 CTRL_SMOOTH = float(os.environ.get("SIM_CTRL_SMOOTH", "0.85"))
+ARM_KP = float(os.environ.get("SIM_ARM_KP", "2400"))
+ARM_KD_FLOOR = float(os.environ.get("SIM_ARM_KD_FLOOR", "8"))
 # RoboDojo X5 gripper joint7 range is [-0.01, 0.044] m.  Keep normalized
 # policy values 0..1 aligned with the official affine scale.
 GRIP_MIN, GRIP_MAX = -0.01, 0.044
@@ -271,10 +273,11 @@ class Session:
             b = world.add_body()
             b.name = label
             b.quat = quat
-            if not is_bin:
-                b.add_joint(type=mujoco.mjtJoint.mjJNT_FREE)
             if is_bin:
-                # layout z is the bin centre; our body origin is the bin bottom
+                # The task layout defines the dustbin as a Geometry fixture on
+                # the ground.  It must not acquire a free joint: gravity and
+                # object contacts otherwise move the scoring volume between
+                # observations.  Its local origin is the bin bottom.
                 pos[2] = 0.0
                 if list(scale) == [1.0, 1.0, 1.0]:   # native-mesh scale: use measured dims
                     hx, hy, hz = 0.15, 0.13, 0.40
@@ -295,6 +298,7 @@ class Session:
                     g.rgba = [0.25, 0.3, 0.35, 1.0]
                 self.bin_inner = (hx, hy)
             else:
+                b.add_joint(type=mujoco.mjtJoint.mjJNT_FREE)
                 mass = rigid_mass(entries.get("physics", {}))
                 kind = "bottle" if label.startswith("bottle") else "dustbin"
                 mesh_file, bbox = self._find_mesh(kind, entries)
@@ -435,9 +439,10 @@ class Session:
         self.data = mujoco.MjData(m2)
         mujoco.mj_resetData(m2, self.data)
         for label, (pos, quat) in self.obj_poses.items():
-            if not int(m2.body(label).jntnum[0]):
+            body = m2.body(label)
+            if int(body.jntnum[0]) == 0:
                 continue
-            qa = int(m2.jnt_qposadr[m2.body(label).jntadr[0]])
+            qa = int(m2.jnt_qposadr[body.jntadr[0]])
             self.data.qpos[qa:qa + 3] = pos
             self.data.qpos[qa + 3:qa + 7] = quat
         mujoco.mj_forward(m2, self.data)
@@ -467,10 +472,16 @@ class Session:
                 # every arm joint.  The old mass-based cap reduced distal
                 # joints to single-digit kp, allowing pose drift and contact
                 # impulses during a 40 ms control interval.
-                kp = 1000.0
+                kp = ARM_KP
                 dof = int(m2.joint(aname).dofadr[0])
                 m0 = float(m2.dof_M0[dof])
-                kd = max(80.0, 2.0 * np.sqrt(kp * max(m0, 1e-4)))
+                # The previous fixed 80 damping floor was 3–60x the
+                # critical value for this X5's 0.00046–0.195 kg m² joint
+                # inertias.  It made short measured-state EEF segments move
+                # only millimetres and consumed the task step budget before a
+                # grasp could be carried.  Use critical damping per joint;
+                # retain a small floor for the light wrist joints.
+                kd = max(ARM_KD_FLOOR, 2.0 * np.sqrt(kp * max(m0, 1e-4)))
                 m2.actuator_gainprm[i][0] = kp
                 m2.actuator_biasprm[i][0] = float(self.data.qfrc_bias[dof])
                 m2.actuator_biasprm[i][1] = -kp
@@ -770,13 +781,24 @@ class Session:
             self.success = bool(n >= 4 and self.arms_home())
         self.done = bool(self.success or self.t >= self.step_limit or self.error)
 
-    def _step(self, target, *, arm_ctrl_step=None):
+    def _step(self, target, *, arm_ctrl_step=None, measured_anchor=False):
         cur = self.command_ctrl.copy()  # already physical units
+        if measured_anchor:
+            # Do not carry a pending Pi joint target into a measured-state
+            # correction. Re-anchor arm commands, without changing qpos/qvel.
+            arm_cols = [i for i in range(14) if i not in (6, 13)]
+            cur[arm_cols] = self.data.qpos[[self.qpos_ids[i] for i in arm_cols]]
         requested = np.asarray(target, float).copy()
         for side, idx in (("left", 6), ("right", 13)):
-            self.grip_target_norm[side] = float(np.clip(requested[idx], 0.0, 1.0))
-            requested[idx] = self.grip_target_norm[side]
-            self.commanded_grip[side] = self.grip_target_norm[side]
+            # π0.5 emits a continuous normalized jaw position.  Do not turn
+            # the middle of [0, 1] into a hold band: its typical 0.55--0.8
+            # commands then leave a jaw at its reset position forever, so no
+            # physical grasp can happen.  The policy contract is the official
+            # affine mapping [0,1] -> [GRIP_MIN, GRIP_MAX].
+            raw = float(np.clip(requested[idx], 0.0, 1.0))
+            self.grip_target_norm[side] = raw
+            requested[idx] = raw
+            self.commanded_grip[side] = raw
         requested[6], requested[13] = grip_denorm(requested[6]), grip_denorm(requested[13])
         for side, idx in (("left", 6), ("right", 13)):
             if GRASP_ASSIST and self.grasped[side] is not None and self.commanded_grip[side] <= 0.8:
@@ -894,16 +916,18 @@ class Session:
         if isinstance(steps,bool) or not isinstance(steps,int) or not 1<=steps<=5 or steps>self.step_limit-self.t:
             raise ValueError("EEF step count must be 1..5 within budget")
         validate_goals(goals)
-        solve_step(self.model,self.data,goals) # reject invalid initial target before moving
         with self.lock:
+            # Validate the initial decision only; disturbances during tracking
+            # are handled by bounded updates, not by reapplying this gate.
+            solve_step(self.model, self.data, goals)
             for _ in range(steps):
                 if self.done: break
                 try:
-                    row = solve_step(self.model, self.data, goals)
+                    row = solve_step(self.model, self.data, goals, check_initial_bound=False)
                 except ValueError as exc:
                     self.error = "eef_tracking_error"; self.done = True
                     raise RuntimeError(str(exc)) from exc
-                self._step(row, arm_ctrl_step=min(ARM_CTRL_STEP, EEF_ARM_CTRL_STEP)) # solve again only AFTER a real physics/control step
+                self._step(row, arm_ctrl_step=min(ARM_CTRL_STEP, EEF_ARM_CTRL_STEP), measured_anchor=True) # fresh IK only after real physics
             return self._status()
 
     def _status(self):
@@ -967,11 +991,13 @@ class Handler(BaseHTTPRequestHandler):
                                'initial_gripper_open':True,
                                'render_backend':os.environ.get('MUJOCO_GL','default'),
                                'physics_hz':PHYS_HZ,'control_hz':CTRL_HZ,
-                               'eef':'jaw_center','grasp_assist':GRASP_ASSIST,
+                               'eef':'jaw_center','eef_tracking':'bounded_dls_v2','grasp_assist':GRASP_ASSIST,
                                'arm_ctrl_step':ARM_CTRL_STEP,
                                'eef_arm_ctrl_step':min(ARM_CTRL_STEP, EEF_ARM_CTRL_STEP),
                                'grip_ctrl_step':GRIP_CTRL_STEP,
-                               'ctrl_smooth':CTRL_SMOOTH})
+                               'ctrl_smooth':CTRL_SMOOTH,
+                               'arm_kp':ARM_KP,
+                               'arm_kd_floor':ARM_KD_FLOOR})
         if path=='/status':
             sess=SESSIONS.get(LATEST)
             return self._send({**sess._status(),'session_id':LATEST,'instruction':sess.instruction} if sess else {'session_id':None})

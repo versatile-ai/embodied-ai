@@ -8,7 +8,16 @@ import sys
 def encode_video(root: Path, frames: Path, destination: Path, fps: int) -> None:
     """Encode a session's contiguous, zero-based PNG frames to MP4."""
     if sys.platform == "darwin":
-        command = [str(root / "encode_video"), str(frames), str(destination), str(fps)]
+        binary = root / "encode_video"
+        if not binary.exists():
+            source = root / "encode_video.swift"
+            if not source.exists():
+                raise RuntimeError(f"Missing macOS video encoder source: {source}")
+            subprocess.run([
+                "swiftc", "-module-cache-path", "/tmp/astra-swift-module-cache",
+                str(source), "-o", str(binary),
+            ], check=True, timeout=120, capture_output=True)
+        command = [str(binary), str(frames), str(destination), str(fps)]
     else:
         import imageio_ffmpeg
 
