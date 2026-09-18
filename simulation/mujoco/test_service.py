@@ -61,17 +61,17 @@ class Regression(unittest.TestCase):
   self.assertAlmostEqual(seen[0],.03+(goal-.03)/simsvc.INTERP_SUBSTEPS)
   self.assertAlmostEqual(seen[-1],goal)
 
- def test_gripper_hysteresis_holds_noisy_commands(self):
+ def test_gripper_continuous_commands(self):
   s=self.s; row=s.state14(); row[6]=0.0
   with patch.object(s,'capture'):
    s._step(row)
    self.assertEqual(s.commanded_grip['left'],0.0)
-   row=s.state14(); row[6]=0.55  # policy noise in the deadband
+   row=s.state14(); row[6]=0.55  # continuous ARX opening, not a deadband
    s._step(row)
-   self.assertEqual(s.commanded_grip['left'],0.0)
+   self.assertEqual(s.commanded_grip['left'],0.55)
    row=s.state14(); row[6]=0.95
    s._step(row)
-   self.assertEqual(s.commanded_grip['left'],1.0)
+   self.assertEqual(s.commanded_grip['left'],0.95)
  def test_eef_rejects_large_and_invalid_goals(self):
   goals=self.s.ee_poses();goals['left']['xyz'][0]+=.1
   with self.assertRaises(ValueError):solve_step(self.s.model,self.s.data,goals)

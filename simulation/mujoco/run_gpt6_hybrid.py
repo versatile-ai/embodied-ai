@@ -231,11 +231,13 @@ def report_html(root: Path, report: dict) -> None:
         )
     page = '<!doctype html><html lang="zh"><meta charset="utf-8"><title>GPT6 + π0.5 实验报告</title><style>body{font:16px system-ui;max-width:1200px;margin:40px auto;padding:20px;background:#f6f8fb;color:#172234}td,th{padding:10px;border-bottom:1px solid #ccd}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>'
     page += (
-        "<h1>GPT6 + π0.5 三局实验</h1><p>状态："
+        "<h1>GPT6 + π0.5 实验记录</h1><p>状态："
         + html.escape(report["state"])
-        + "</p><p>布局0，每局700步，每段3步；抓取辅助状态："
+        + "</p><p>布局0，每局700步，动作段："
+        + html.escape(str(report.get("batch_steps", 3)))
+        + "；抓取辅助状态："
         + html.escape(str(report.get("sim_health", {}).get("grasp_assist", "尚未确认")))
-        + "（true为weld辅助，false为物理接触）。三局仅初步验证，无同期基线，不是官方评测。短程验证不计入成绩。</p>"
+        + "（true为weld辅助，false为物理接触）。本次仅初步验证，无同期基线，不是官方评测。短程验证不计入成绩。</p>"
     )
     page += (
         "<table><tr><th>局</th><th>状态</th><th>会话</th><th>步数</th><th>得分</th><th>入桶</th><th>成功</th><th>决策</th><th>纠偏</th></tr>"

@@ -1,5 +1,9 @@
 # 192 服务器部署记录
 
+2026-09-18 连接更新：当前跳板机改为 `root@121.91.172.53`。已实测通过
+`ssh -J root@121.91.172.53 root@192.168.0.192` 登录目标机，主机名为
+`aura-0916-3.novalocal`。下文旧 IP 保留于历史部署记录，不再用于新连接。
+
 部署日期：2026-09-17。目标：`192.168.0.192`（`aura-0916-3.novalocal`），经 `root@159.138.11.11` 跳转。
 
 ## 当前生效方案（同日最终更新）
@@ -9,7 +13,7 @@
 本地启动：在 `simulation/mujoco` 执行 `.\.venv\Scripts\python.exe start_server.py`。远程推理只需转发 8642：
 
 ```powershell
-ssh -N -o ConnectTimeout=8 -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -L 127.0.0.1:8642:192.168.0.192:8642 root@159.138.11.11
+ssh -N -o ConnectTimeout=8 -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -L 127.0.0.1:8642:192.168.0.192:8642 root@121.91.172.53
 ```
 
 切换后已运行 `verify_http.py`：会话 `6c687d6cda72`，抬臂 5 步、保持 20 步，幂等及过期请求保护通过。26 条状态（t=0..25）全部有限，三路相机均更新；三路 MP4 全量解码通过，每路 26 帧。输出在本地 `simulation/mujoco/runs/6c687d6cda72/`。测试已正常结束，页面保留最后一帧；未启动正式实验。

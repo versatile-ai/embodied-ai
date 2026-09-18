@@ -274,7 +274,7 @@ Windows 使用 FFmpeg 编码录像（`imageio-ffmpeg` 自带可执行文件）�
 另开终端保持到 192 推理服务的隧道；跳板机已有访问其内网端口的权限：
 
 ```powershell
-ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -L 127.0.0.1:8642:192.168.0.192:8642 root@159.138.11.11
+ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -L 127.0.0.1:8642:192.168.0.192:8642 root@121.91.172.53
 ```
 
 回到仿真目录创建场景，并在浏览器打开 `http://127.0.0.1:8763/live`：

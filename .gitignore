@@ -30,3 +30,8 @@ weights/*
 *.bin
 *.onnx
 *.gguf
+
+# Read-only upstream checkouts, binary reference assets and inspection runtime
+/external/GPT-as-Policy/
+/external/robodojo-x5-reference/
+/external/usd-inspector/

@@ -55,11 +55,19 @@ TABLE_Z = 0.765
 # directly to a high-gain position actuator creates stop-go motion and visible
 # joint chatter (especially in the wrist camera).  These limits are per
 # control tick, in physical joint units.
-ARM_CTRL_STEP = float(os.environ.get("SIM_ARM_CTRL_STEP", "0.028"))
+# At 25 Hz the former 0.028 limit plus 0.85 smoothing capped target motion at
+# 0.595 rad/s, so even a 1 rad/s feasible ramp accumulated tracking lag.
+# Corrected ARX proposals also contain ~2.5 rad/s ramps: 0.05 still accumulated
+# 0.48 rad of filter lag on the recorded smoke test. 0.15 permits 3.1875 rad/s
+# after smoothing without making target changes unbounded. Keep the
+# interpolation, actuator gains, contact physics and slower jaw limit intact.
+ARM_CTRL_STEP = float(os.environ.get("SIM_ARM_CTRL_STEP", "0.15"))
+# The iterative EEF/grasp controller was validated at the slower rate. It is
+# feedback-driven, unlike the time-indexed joint trajectory. Preserve its rate
+# rather than speeding up contact manipulation along with policy playback.
+EEF_ARM_CTRL_STEP = 0.028
 GRIP_CTRL_STEP = float(os.environ.get("SIM_GRIP_CTRL_STEP", "0.008"))
 CTRL_SMOOTH = float(os.environ.get("SIM_CTRL_SMOOTH", "0.85"))
-GRIP_CLOSE_CMD = float(os.environ.get("SIM_GRIP_CLOSE_CMD", "0.20"))
-GRIP_OPEN_CMD = float(os.environ.get("SIM_GRIP_OPEN_CMD", "0.80"))
 # RoboDojo X5 gripper joint7 range is [-0.01, 0.044] m.  Keep normalized
 # policy values 0..1 aligned with the official affine scale.
 GRIP_MIN, GRIP_MAX = -0.01, 0.044
@@ -77,8 +85,20 @@ ORIGIN_TOL = 0.12                      # rad, arms back at home
 GRIP_OPEN_TH = 0.8
 
 
+def rigid_mass(physics: dict) -> float:
+    """Match RoboDojo RigidObject runtime mass (kg), not raw asset mass.
+
+    Upstream ee67a146 env/scene_manager/objects/rigid.py caps at 0.5 kg
+    and replaces nonpositive mass with 0.05 kg. Geometry is not capped.
+    """
+    mass = float(physics.get("mass", 0.5))
+    if not np.isfinite(mass):
+        raise ValueError("Rigid mass must be finite")
+    return min(mass, 0.5) if mass > 0 else 0.05
+
+
 def grip_norm(j7):
-    return float(np.clip((j7 - GRIP_MIN) / (GRIP_MAX - GRIP_MIN), 0.0, 1.0))
+    return float(np.clip((float(np.asarray(j7).item()) - GRIP_MIN) / (GRIP_MAX - GRIP_MIN), 0.0, 1.0))
 
 
 def grip_denorm(g):
@@ -119,6 +139,11 @@ class Session:
                         ("cam_base", "left_cam_wrist", "right_cam_wrist")]
         self.task = task
         self._add_objects(layout)
+        # Match the native ARX reset: both jaws start open. Do not change
+        # model.qpos0, which also defines MuJoCo joint reference geometry.
+        for side in ("left", "right"):
+            for joint in (7, 8):
+                self.data.qpos[self.model.joint(f"{side}_joint{joint}").qposadr[0]] = GRIP_MAX
         mujoco.mj_forward(self.model, self.data)
         self.grip_target_norm["left"] = grip_norm(self.data.qpos[self.qpos_ids[6]])
         self.grip_target_norm["right"] = grip_norm(self.data.qpos[self.qpos_ids[13]])
@@ -133,6 +158,8 @@ class Session:
         self.ctrl_ids = [self.model.actuator(side + j).id for side in ("left_", "right_") for j in ARM_JOINTS + ["gripper"]]
         self.qpos_ids = [int(np.asarray(i).item()) for i in self.qpos_ids]
         self.data.ctrl[self.ctrl_ids] = self.data.qpos[self.qpos_ids]
+        for side in ("left", "right"):
+            self.data.ctrl[self.model.actuator(side+"_follower").id] = GRIP_MAX
         # Last physically applied target.  Keep this separate from the policy
         # target so consecutive action rows cannot introduce a discontinuous
         # command into the actuator interpolation below.
@@ -146,9 +173,12 @@ class Session:
 
     def verify_initial_state(self):
         """A new episode must start from its own model/layout, never prior data."""
+        expected = self.model.qpos0[self.qpos_ids].copy()
+        expected[[6, 13]] = GRIP_MAX
         checks = {
             "step_zero": self.t == 0 and self.data.time == 0,
-            "joints_home": bool(np.allclose(self.data.qpos[self.qpos_ids], self.model.qpos0[self.qpos_ids], atol=1e-9, rtol=0)),
+            "joints_home": bool(np.allclose(self.data.qpos[self.qpos_ids], expected, atol=1e-9, rtol=0)),
+            "both_jaws_open": all(abs(float(self.data.qpos[self.model.joint(f"{side}_joint{joint}").qposadr[0]]) - GRIP_MAX) < 1e-9 for side in ("left", "right") for joint in (7, 8)),
             "velocities_zero": bool(np.all(self.data.qvel == 0)),
             "controls_match_joints": bool(np.allclose(self.command_ctrl, self.data.qpos[self.qpos_ids], atol=1e-9, rtol=0)),
             "objects_at_layout": all(np.allclose(self.data.xpos[self.model.body(name).id], pos, atol=1e-9, rtol=0)
@@ -265,7 +295,7 @@ class Session:
                     g.rgba = [0.25, 0.3, 0.35, 1.0]
                 self.bin_inner = (hx, hy)
             else:
-                mass = entries.get("physics", {}).get("mass", 0.15)
+                mass = rigid_mass(entries.get("physics", {}))
                 kind = "bottle" if label.startswith("bottle") else "dustbin"
                 mesh_file, bbox = self._find_mesh(kind, entries)
                 if mesh_file:
@@ -578,7 +608,7 @@ class Session:
                     elif label.startswith("cat"):
                         cidx = int(label.split("_")[0][3:])
                         catname = label.split("_")[0]
-                        mass = e.get("physics", {}).get("mass", 0.05)
+                        mass = rigid_mass(e.get("physics", {}))
                         b = world.add_body()
                         b.name = label
                         b.add_joint(type=mujoco.mjtJoint.mjJNT_FREE)
@@ -654,6 +684,14 @@ class Session:
             [float(q[i]) for i in self.qpos_ids[7:13]] + [grip_norm(q[self.qpos_ids[13]])]
         return s
 
+    def policy_state14(self):
+        """Native policy contract: measured arm joints, commanded jaw openings."""
+        if self.closed:
+            return list(self.final_policy_state)
+        state = self.state14()
+        state[6], state[13] = self.commanded_grip["left"], self.commanded_grip["right"]
+        return state
+
     def capture(self):
         import io
         for name, cid in zip(("cam_base", "left_cam_wrist", "right_cam_wrist"), self.cam_ids):
@@ -667,7 +705,7 @@ class Session:
                 (directory / f"{self.t:06d}.png").write_bytes(buf.getvalue())
         if self.record_dir:
             with (self.record_dir / "states.jsonl").open("a") as f:
-                f.write(json.dumps({**self._status(), "state": self.state14(), "ee": self.ee_poses(), "fingers": self.finger_state()})+"\n")
+                f.write(json.dumps({**self._status(), "state": self.policy_state14(), "measured_state": self.state14(), "ee": self.ee_poses(), "fingers": self.finger_state()})+"\n")
 
     def finger_state(self):
         return {side: {"q": [float(self.data.qpos[self.model.joint(f"{side}_joint{i}").qposadr[0]]) for i in (7, 8)],
@@ -732,15 +770,11 @@ class Session:
             self.success = bool(n >= 4 and self.arms_home())
         self.done = bool(self.success or self.t >= self.step_limit or self.error)
 
-    def _step(self, target):
+    def _step(self, target, *, arm_ctrl_step=None):
         cur = self.command_ctrl.copy()  # already physical units
         requested = np.asarray(target, float).copy()
         for side, idx in (("left", 6), ("right", 13)):
-            raw = float(requested[idx])
-            if raw <= GRIP_CLOSE_CMD:
-                self.grip_target_norm[side] = 0.0
-            elif raw >= GRIP_OPEN_CMD:
-                self.grip_target_norm[side] = 1.0
+            self.grip_target_norm[side] = float(np.clip(requested[idx], 0.0, 1.0))
             requested[idx] = self.grip_target_norm[side]
             self.commanded_grip[side] = self.grip_target_norm[side]
         requested[6], requested[13] = grip_denorm(requested[6]), grip_denorm(requested[13])
@@ -750,7 +784,7 @@ class Session:
         # Slew-limit and low-pass the target in actuator space.  This removes
         # the high-frequency component while retaining the exact end target.
         delta = requested - cur
-        limits = np.full(14, ARM_CTRL_STEP, dtype=float)
+        limits = np.full(14, ARM_CTRL_STEP if arm_ctrl_step is None else arm_ctrl_step, dtype=float)
         limits[[6, 13]] = GRIP_CTRL_STEP
         bounded = cur + np.clip(delta, -limits, limits)
         alpha = float(np.clip(CTRL_SMOOTH, 0.0, 1.0))
@@ -869,7 +903,7 @@ class Session:
                 except ValueError as exc:
                     self.error = "eef_tracking_error"; self.done = True
                     raise RuntimeError(str(exc)) from exc
-                self._step(row) # solve again only AFTER a real physics/control step
+                self._step(row, arm_ctrl_step=min(ARM_CTRL_STEP, EEF_ARM_CTRL_STEP)) # solve again only AFTER a real physics/control step
             return self._status()
 
     def _status(self):
@@ -890,6 +924,7 @@ class Session:
             raise ValueError('Finish the active session before releasing it')
         self.final_status = self._status()
         self.final_state = self.state14()
+        self.final_policy_state = self.policy_state14()
         self.final_ee = self.ee_poses()
         self.renderer.close()
         self.renderer = self.data = self.model = None
@@ -926,11 +961,15 @@ class Handler(BaseHTTPRequestHandler):
         if path in ('/','/live'):
             return self.send_bytes((Path(__file__).with_name('live.html')).read_bytes(),'text/html; charset=utf-8')
         if path=='/health':
-            return self._send({'ok':True,'version':'astra-isolated-v5-physical-grasp','port':PORT,
+            return self._send({'ok':True,'version':'astra-isolated-v7-rigid-mass','port':PORT,
+                               'rigid_mass_cap_kg':0.5,
+                               'gripper_control':'continuous','policy_gripper_state':'commanded',
+                               'initial_gripper_open':True,
                                'render_backend':os.environ.get('MUJOCO_GL','default'),
                                'physics_hz':PHYS_HZ,'control_hz':CTRL_HZ,
                                'eef':'jaw_center','grasp_assist':GRASP_ASSIST,
                                'arm_ctrl_step':ARM_CTRL_STEP,
+                               'eef_arm_ctrl_step':min(ARM_CTRL_STEP, EEF_ARM_CTRL_STEP),
                                'grip_ctrl_step':GRIP_CTRL_STEP,
                                'ctrl_smooth':CTRL_SMOOTH})
         if path=='/status':
@@ -944,12 +983,12 @@ class Handler(BaseHTTPRequestHandler):
             if not sess:return self._send({'error':'session not found'},404)
             if parts[2]=='result':return self._send(sess._status())
             if parts[2]=='state':
-                return self._send({**sess._status(),'state':sess.state14(),
+                return self._send({**sess._status(),'state':sess.policy_state14(),'measured_state':sess.state14(),
                                    'ee':sess.ee_poses(),'instruction':sess.instruction,
                                    'observation_id':f'{parts[1]}:{sess.t}'})
             if parts[2]=='observe':
                 imgs,shapes=sess.images()
-                return self._send({**sess._status(),'images':imgs,'shapes':shapes,'state':sess.state14(),'ee':sess.ee_poses(),'instruction':sess.instruction,'observation_id':f'{parts[1]}:{sess.t}'})
+                return self._send({**sess._status(),'images':imgs,'shapes':shapes,'state':sess.policy_state14(),'measured_state':sess.state14(),'ee':sess.ee_poses(),'instruction':sess.instruction,'observation_id':f'{parts[1]}:{sess.t}'})
         self._send({'error':'not found'},404)
 
     def do_POST(self):
