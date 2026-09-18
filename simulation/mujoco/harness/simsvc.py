@@ -60,8 +60,6 @@ GRIP_CTRL_STEP = float(os.environ.get("SIM_GRIP_CTRL_STEP", "0.008"))
 CTRL_SMOOTH = float(os.environ.get("SIM_CTRL_SMOOTH", "0.85"))
 ARM_KP = float(os.environ.get("SIM_ARM_KP", "2400"))
 ARM_KD_FLOOR = float(os.environ.get("SIM_ARM_KD_FLOOR", "8"))
-GRIP_CLOSE_CMD = float(os.environ.get("SIM_GRIP_CLOSE_CMD", "0.20"))
-GRIP_OPEN_CMD = float(os.environ.get("SIM_GRIP_OPEN_CMD", "0.80"))
 # RoboDojo X5 gripper joint7 range is [-0.01, 0.044] m.  Keep normalized
 # policy values 0..1 aligned with the official affine scale.
 GRIP_MIN, GRIP_MAX = -0.01, 0.044
@@ -752,13 +750,15 @@ class Session:
             cur[arm_cols] = self.data.qpos[[self.qpos_ids[i] for i in arm_cols]]
         requested = np.asarray(target, float).copy()
         for side, idx in (("left", 6), ("right", 13)):
-            raw = float(requested[idx])
-            if raw <= GRIP_CLOSE_CMD:
-                self.grip_target_norm[side] = 0.0
-            elif raw >= GRIP_OPEN_CMD:
-                self.grip_target_norm[side] = 1.0
-            requested[idx] = self.grip_target_norm[side]
-            self.commanded_grip[side] = self.grip_target_norm[side]
+            # π0.5 emits a continuous normalized jaw position.  Do not turn
+            # the middle of [0, 1] into a hold band: its typical 0.55--0.8
+            # commands then leave a jaw at its reset position forever, so no
+            # physical grasp can happen.  The policy contract is the official
+            # affine mapping [0,1] -> [GRIP_MIN, GRIP_MAX].
+            raw = float(np.clip(requested[idx], 0.0, 1.0))
+            self.grip_target_norm[side] = raw
+            requested[idx] = raw
+            self.commanded_grip[side] = raw
         requested[6], requested[13] = grip_denorm(requested[6]), grip_denorm(requested[13])
         for side, idx in (("left", 6), ("right", 13)):
             if GRASP_ASSIST and self.grasped[side] is not None and self.commanded_grip[side] <= 0.8:

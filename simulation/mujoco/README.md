@@ -47,7 +47,7 @@ python3 eval_control.py finish --session <session_id> --reason '本轮结束原�
 
 启动检查 `8763` 的当前服务版本及该回合 8 项复位证据；默认 π 地址 `8642`。环境变量 `ASTRA_SIM`、`ASTRA_PI05` 可覆盖，回合启动后记录并锁定端点。启动检查要求能够读取同一 Mac 服务的 reset_check.json；远程仿真需先提供可信复位证据接口，不能跳过校验。
 
-默认 π 相机键为部署服务已验证的 `cam_high`、`cam_left_wrist`、`cam_right_wrist`。`infer` 只发送图像、state14 和任务文本；接受有限数值的 50×14 绝对关节动作，只裁剪两列归一化夹爪值并记录次数。物体真值和 grasped 标签保存在仿真离线日志，不传给策略。
+默认 π 相机键为部署服务已验证的 `cam_high`、`cam_left_wrist`、`cam_right_wrist`。`infer` 只发送图像、state14 和任务文本；接受有限数值的 50×14 绝对关节动作，只裁剪两列归一化夹爪值并记录次数。π 的两列夹爪值是连续位置，逐值按官方 affine 区间 `[0,1] → [-0.01,0.044] m` 映射；不得用中间保持区或离散开闭阈值改写动作。物体真值和 grasped 标签保存在仿真离线日志，不传给策略。
 
 EEF 修正使用 `python3 eval_control.py eef --session <id> --payload <json>`，JSON 必须含当前 `expected_step`、双臂 `goals`、`steps: 1..5` 与 `decision_summary`。双臂 goal 各含 `xyz`、`quat_wxyz`、`gripper`。未动的手也应传入当前实测位姿。客户端检查目标有限数值、5 cm/0.35 rad 范围与新鲜步号；每次对一个固定双臂目标闭环跟踪 1–5 步：决策开始校验 5 cm/0.35 rad，每个真实控制 ACK 后从实测关节重算 6D DLS，任务增量限制 2 cm/0.1 rad、关节增量限制 0.05 rad。只更新执行器控制目标，不修改实测 qpos/qvel；即使位置已到达也执行夹爪命令。EEF 步进将机械臂控制插值起点重新锚定到实测关节，避免沿用上一段 π 指令的未执行目标。当前仍采用本地 jaw-center site，而非官方 link6，所以不宣称坐标契约完全等价。
 

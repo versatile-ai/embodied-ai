@@ -65,6 +65,12 @@ class Regression(unittest.TestCase):
   goal=.03+simsvc.CTRL_SMOOTH*simsvc.GRIP_CTRL_STEP
   self.assertAlmostEqual(seen[0],.03+(goal-.03)/simsvc.INTERP_SUBSTEPS)
   self.assertAlmostEqual(seen[-1],goal)
+ def test_pi_midrange_gripper_command_is_continuous(self):
+  s=self.s;before=s.state14()[6];row=s.state14();row[6]=.56;row[13]=.63
+  with patch.object(s,'capture'):s.act([row])
+  self.assertAlmostEqual(s.commanded_grip['left'],.56)
+  self.assertAlmostEqual(s.commanded_grip['right'],.63)
+  self.assertGreater(s.state14()[6],before)
  def test_eef_rejects_large_and_invalid_goals(self):
   goals=self.s.ee_poses();goals['left']['xyz'][0]+=.1
   with self.assertRaises(ValueError):solve_step(self.s.model,self.s.data,goals)
