@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "c180367581af4ff08e55a1effc987e18",
+  "reason": "Continue rotating the stationary wrists toward lengthwise approaches to the lying bottles.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.16691149771213531,
+        -0.30655768513679504,
+        0.9412857294082642
+      ],
+      "quaternion_wxyz": [
+        0.8387712592272195,
+        -0.056163102374805575,
+        0.08815841176390538,
+        0.5343562248737143
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.18648993968963623,
+        -0.31241047382354736,
+        0.8791673183441162
+      ],
+      "quaternion_wxyz": [
+        0.519636262908508,
+        -0.08912516610021275,
+        0.054615972029312725,
+        0.8479693123205478
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "3cb81db4876d4d83844c5733c13ab8b5",
+  "reason": "Turn the left gripper farther along yellow's length and reposition the right wrist above the final bottle's right side.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.16467195749282837,
+        -0.30538761615753174,
+        0.9422597885131836
+      ],
+      "quaternion_wxyz": [
+        0.913300811407433,
+        -0.08426323885239127,
+        0.3144746886074361,
+        0.24471821486331075
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.249,
+        -0.285,
+        0.916
+      ],
+      "quaternion_wxyz": [
+        0.46716800332069397,
+        -0.12012695521116257,
+        0.05810527876019478,
+        0.8740407228469849
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

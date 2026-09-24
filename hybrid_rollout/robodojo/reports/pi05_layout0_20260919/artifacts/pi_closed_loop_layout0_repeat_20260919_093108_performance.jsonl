@@ -1,0 +1,15 @@
+{"decision": 0, "obs_ms": 177.71, "infer_roundtrip_ms": 3005.311, "chunk_execute_ms": 8896.246, "chunk_steps": 50, "total_steps": 50, "reward": 0.0, "success": false}
+{"decision": 1, "obs_ms": 83.237, "infer_roundtrip_ms": 3543.292, "chunk_execute_ms": 8803.864, "chunk_steps": 50, "total_steps": 100, "reward": 0.0, "success": false}
+{"decision": 2, "obs_ms": 81.571, "infer_roundtrip_ms": 3007.687, "chunk_execute_ms": 8574.001, "chunk_steps": 50, "total_steps": 150, "reward": 0.0, "success": false}
+{"decision": 3, "obs_ms": 80.902, "infer_roundtrip_ms": 3210.178, "chunk_execute_ms": 9061.829, "chunk_steps": 50, "total_steps": 200, "reward": 0.0, "success": false}
+{"decision": 4, "obs_ms": 80.286, "infer_roundtrip_ms": 3792.288, "chunk_execute_ms": 8997.46, "chunk_steps": 50, "total_steps": 250, "reward": 0.0, "success": false}
+{"decision": 5, "obs_ms": 80.426, "infer_roundtrip_ms": 2641.168, "chunk_execute_ms": 9287.444, "chunk_steps": 50, "total_steps": 300, "reward": 0.0, "success": false}
+{"decision": 6, "obs_ms": 82.448, "infer_roundtrip_ms": 3168.481, "chunk_execute_ms": 9194.328, "chunk_steps": 50, "total_steps": 350, "reward": 0.0, "success": false}
+{"decision": 7, "obs_ms": 76.595, "infer_roundtrip_ms": 2640.011, "chunk_execute_ms": 9028.321, "chunk_steps": 50, "total_steps": 400, "reward": 0.0, "success": false}
+{"decision": 8, "obs_ms": 83.536, "infer_roundtrip_ms": 3061.377, "chunk_execute_ms": 9360.605, "chunk_steps": 50, "total_steps": 450, "reward": 0.0, "success": false}
+{"decision": 9, "obs_ms": 77.422, "infer_roundtrip_ms": 2412.384, "chunk_execute_ms": 9184.319, "chunk_steps": 50, "total_steps": 500, "reward": 0.0, "success": false}
+{"decision": 10, "obs_ms": 79.598, "infer_roundtrip_ms": 2673.509, "chunk_execute_ms": 8826.701, "chunk_steps": 50, "total_steps": 550, "reward": 0.0, "success": false}
+{"decision": 11, "obs_ms": 78.675, "infer_roundtrip_ms": 3383.031, "chunk_execute_ms": 8852.718, "chunk_steps": 50, "total_steps": 600, "reward": 0.0, "success": false}
+{"decision": 12, "obs_ms": 80.007, "infer_roundtrip_ms": 3667.693, "chunk_execute_ms": 8791.639, "chunk_steps": 50, "total_steps": 650, "reward": 0.0, "success": false}
+{"decision": 13, "obs_ms": 78.466, "infer_roundtrip_ms": 3603.653, "chunk_execute_ms": 8969.216, "chunk_steps": 50, "total_steps": 700, "reward": 0.0, "success": false}
+{"summary": {"success": false, "decisions": 14, "steps": 700, "wall_s": 170.864, "trajectory": "/root/RoboDojo/eval_result/pi05_npu_traces/pi_closed_loop_layout0_repeat_20260919_093108_executed.jsonl", "performance": "/root/RoboDojo/eval_result/pi05_npu_traces/pi_closed_loop_layout0_repeat_20260919_093108_performance.jsonl"}}

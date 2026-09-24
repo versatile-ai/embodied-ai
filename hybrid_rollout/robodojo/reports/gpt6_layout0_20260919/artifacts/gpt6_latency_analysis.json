@@ -1,0 +1,133 @@
+{
+  "measurement_scope": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "xhigh",
+    "decisions": 140,
+    "action_generation_attempts": 143,
+    "accepted_attempts": 140,
+    "rejected_attempts": 3,
+    "model_calls_in_decision_windows": 153,
+    "control_steps_per_decision": 5,
+    "control_dt_seconds": 0.04,
+    "wall_seconds": 5471.343127332861
+  },
+  "decision_latency_ms": {
+    "definition": "Client-observed wait from the previous simulator observation ACK until an accepted action tool dispatch; includes retries within that decision.",
+    "mean": 33915.142857142855,
+    "median": 33760.5,
+    "p95": 65459.4,
+    "min": 7370.0,
+    "max": 94128.0,
+    "sum": 4748120.0
+  },
+  "accepted_attempt_latency_ms": {
+    "definition": "Client-observed wait for the accepted action-generating attempt only.",
+    "mean": 33365.81428571429,
+    "median": 33465.5,
+    "p95": 60110.95,
+    "min": 7370.0,
+    "max": 94128.0,
+    "sum": 4671214.0
+  },
+  "ttft_proxy_ms": {
+    "definition": "Previous simulator observation ACK to first observable reasoning or tool-dispatch event; not provider-side TTFT.",
+    "coverage": 140,
+    "mean": 26097.821428571428,
+    "median": 25140.0,
+    "p95": 44984.1,
+    "min": 3323.0,
+    "max": 63536.0
+  },
+  "after_first_visible_event_ms": {
+    "definition": "Accepted attempt latency minus TTFT proxy; contains visible reasoning, hidden processing, tool-argument generation and streaming.",
+    "mean": 7267.992857142857,
+    "median": 5304.5,
+    "p95": 18692.35,
+    "min": 0.0,
+    "max": 69358.0
+  },
+  "tpot_proxy_ms_per_output_token": {
+    "definition": "First observable event to action dispatch divided by output tokens; not provider-side TPOT.",
+    "coverage": 127,
+    "median": 33.48453608247423,
+    "p95": 59.65823986631895,
+    "mean": 44.370622417459366,
+    "max": 739.7931034482758
+  },
+  "time_budget": {
+    "model_wait_seconds": 4748.12,
+    "model_wait_minutes": 79.13533333333334,
+    "model_wait_share_of_wall": 0.8678161631428492,
+    "execution_seconds": 582.18,
+    "execution_minutes": 9.703,
+    "execution_share_of_wall": 0.10640531702200111,
+    "startup_observation_and_finalize_seconds": 141.0431273328606,
+    "startup_observation_and_finalize_share_of_wall": 0.025778519835149786
+  },
+  "context_growth_evidence": {
+    "first_action_input_tokens": 20823,
+    "last_action_input_tokens": 221298,
+    "first_20_decisions_mean_input_tokens": 88642.3,
+    "last_40_decisions_mean_input_tokens": 199503.7,
+    "first_20_decisions_mean_wait_ms": 19251.75,
+    "last_40_decisions_mean_wait_ms": 49495.35,
+    "last_20_decisions_mean_wait_ms": 51944.45,
+    "correlation_decision_tokens_vs_wait": 0.831,
+    "correlation_accepted_input_tokens_vs_ttft_proxy": 0.9039297893691172,
+    "first_20_accepted_calls_mean_ttft_proxy_ms": 8728.55,
+    "last_40_accepted_calls_mean_ttft_proxy_ms": 41952.325,
+    "overall_input_cache_hit_rate": 0.9881328330289617
+  },
+  "prefill_vs_decode_assessment": {
+    "accepted_wait_mean_ms": 33365.81428571429,
+    "pre_first_visible_mean_ms": 26097.821428571428,
+    "pre_first_visible_share": 0.7821724716529792,
+    "post_first_visible_mean_ms": 7267.992857142857,
+    "post_first_visible_share": 0.21782752834702068,
+    "median_input_tokens": 141236.0,
+    "median_output_tokens": 152.0,
+    "conclusion": "The pre-first-visible stage is the dominant observed bottleneck. It is broader than pure model prefill because it also contains queueing, network transfer, vision processing and hidden reasoning."
+  },
+  "retry_evidence": {
+    "rejected_attempt_wait_ms": 76893.0,
+    "rejected_attempt_wait_seconds": 76.893,
+    "rejection_rate": 0.02097902097902098,
+    "single_call_decisions": 134,
+    "single_call_decision_mean_wait_ms": 33204.22
+  },
+  "relative_to_pi05_700_step_repeat": {
+    "comparison_scope": "Throughput comparison over 700 controls. GPT uses 5-step EEF targets; pi0.5 uses 50-step joint-action chunks, so the protocols and success outcomes are not equivalent.",
+    "gpt": {
+      "decisions": 140,
+      "wall_seconds": 5471.343127332861,
+      "strategy_wait_seconds": 4748.12,
+      "execution_seconds": 582.18,
+      "wall_seconds_per_control_step": 7.816204467618372,
+      "execution_seconds_per_control_step": 0.8316857142857143
+    },
+    "pi05_repeat": {
+      "decisions": 14,
+      "wall_seconds": 170.864,
+      "observation_seconds": 1.220879,
+      "inference_roundtrip_seconds": 43.810063,
+      "execution_seconds": 125.828691,
+      "wall_seconds_per_control_step": 0.24409142857142857,
+      "execution_seconds_per_control_step": 0.17975527285714288,
+      "estimated_server_inference_seconds_per_decision_from_148_call_aggregate": 0.5552
+    },
+    "ratios": {
+      "decision_count": 10.0,
+      "strategy_wait_per_decision": 10.8379666105479,
+      "strategy_wait_total": 108.378,
+      "execution_per_control_step": 4.626766720477128,
+      "wall_per_control_step": 32.021626131501435
+    }
+  },
+  "interpretation": [
+    "The logs measure client-observed end-to-end model wait, not pure accelerator compute time.",
+    "The dominant multiplier is 140 serialized GPT decisions for 700 controls: each model turn advances only 0.2 seconds of simulated time.",
+    "Growing multimodal context is the strongest measured latency correlate; cached tokens still remain part of the attended context, and each turn adds fresh images and state.",
+    "xhigh reasoning and three-camera visual interpretation plausibly add latency, but this run has no provider telemetry that can isolate their individual shares.",
+    "Safety rejections and auxiliary calls add overhead but are not the primary cause: 134 of 140 decisions used one model call and still averaged 33.20 seconds of model wait."
+  ]
+}

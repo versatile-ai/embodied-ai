@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>π0.5 × RoboDojo Layout 0 测试报告</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #667085;
+      --paper: #f5f2ea;
+      --surface: #fffdf8;
+      --line: #d8d3c8;
+      --accent: #0f5b52;
+      --accent-soft: #dcebe6;
+      --warn: #955619;
+      --warn-soft: #f7e8d4;
+      --bad: #913b3b;
+      --bad-soft: #f2dddd;
+      --code: #20282f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    header { background: var(--code); color: #fff; padding: 54px 0 46px; }
+    header .kicker { color: #9fc9be; letter-spacing: .11em; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    h1 { max-width: 820px; margin: 10px 0 10px; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; letter-spacing: -.035em; }
+    header p { max-width: 820px; margin: 0; color: #c9d2d8; font-size: 17px; }
+    .stamp { margin-top: 22px; color: #9faeb8; font-size: 13px; }
+    nav { position: sticky; top: 0; z-index: 5; background: rgba(255,253,248,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
+    nav .wrap { display: flex; gap: 20px; overflow-x: auto; padding: 12px 0; white-space: nowrap; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 650; }
+    main { padding: 36px 0 80px; }
+    section { margin: 0 0 50px; scroll-margin-top: 64px; }
+    h2 { margin: 0 0 18px; font-size: 26px; line-height: 1.25; letter-spacing: -.02em; }
+    h3 { margin: 0 0 9px; font-size: 17px; }
+    p { margin: 0 0 12px; }
+    .lead { font-size: 18px; line-height: 1.75; max-width: 980px; }
+    .verdict {
+      display: grid;
+      grid-template-columns: 1.45fr .55fr;
+      gap: 18px;
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--accent);
+    }
+    .verdict strong { color: var(--accent); }
+    .verdict .mark { display: grid; place-items: center; border-left: 1px solid var(--line); text-align: center; }
+    .verdict .mark b { display: block; color: var(--accent); font-size: 42px; line-height: 1; }
+    .verdict .mark span { color: var(--muted); font-size: 12px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+    .metric { padding: 17px; background: var(--surface); border: 1px solid var(--line); }
+    .metric .value { font-size: 27px; font-weight: 760; line-height: 1.1; letter-spacing: -.02em; }
+    .metric .label { margin-top: 6px; color: var(--muted); font-size: 12px; }
+    .callout { padding: 18px 20px; border: 1px solid #e2c59f; background: var(--warn-soft); }
+    .callout.bad { border-color: #dbb2b2; background: var(--bad-soft); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .panel { padding: 20px; background: var(--surface); border: 1px solid var(--line); }
+    .panel p:last-child { margin-bottom: 0; }
+    .tag { display: inline-block; margin: 0 6px 6px 0; padding: 3px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; background: var(--surface); font-size: 13px; }
+    th, td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-size: 11px; letter-spacing: .04em; text-align: left; text-transform: uppercase; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .scroll { overflow-x: auto; border: 1px solid var(--line); }
+    .scroll table { min-width: 980px; }
+    .status-ok { color: var(--accent); font-weight: 700; }
+    .status-warn { color: var(--warn); font-weight: 700; }
+    .chart-wrap { padding: 18px; background: var(--surface); border: 1px solid var(--line); }
+    .chart-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 10px; }
+    select { padding: 8px 10px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+    svg { width: 100%; height: auto; display: block; }
+    .legend { display: flex; gap: 16px; margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .dot { width: 9px; height: 9px; display: inline-block; margin-right: 5px; border-radius: 50%; }
+    .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: stretch; }
+    .step { position: relative; padding: 16px; background: var(--surface); border: 1px solid var(--line); min-height: 118px; }
+    .step .n { color: var(--accent); font-size: 12px; font-weight: 800; }
+    .step:not(:last-child)::after { content: "→"; position: absolute; right: -15px; top: 42%; z-index: 1; color: var(--muted); font-size: 19px; }
+    .video-shell { background: #0d1115; padding: 14px; border: 1px solid #313a42; }
+    video { display: block; width: 100%; max-height: 78vh; background: #000; }
+    .caption { margin-top: 9px; color: var(--muted); font-size: 12px; }
+    .camera-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
+    figure { margin: 0; background: var(--surface); border: 1px solid var(--line); }
+    figure img { display: block; width: 100%; }
+    figcaption { padding: 8px 10px; color: var(--muted); font-size: 12px; }
+    .ability { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .ability > div { padding: 19px; background: var(--surface); border-top: 4px solid var(--line); }
+    .ability .strong { border-top-color: var(--accent); }
+    .ability .limit { border-top-color: var(--warn); }
+    code { padding: 2px 5px; border-radius: 3px; background: #e9e6df; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .files { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .file { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); overflow-wrap: anywhere; }
+    .file small { display: block; color: var(--muted); }
+    .raw-controls { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 10px; align-items: end; }
+    .raw-controls label { color: var(--muted); font-size: 12px; }
+    .raw-controls select, .raw-controls button, .raw-toolbar button, .raw-toolbar input {
+      width: 100%; margin-top: 4px; padding: 9px 10px; border: 1px solid var(--line); background: #fff; color: var(--ink);
+    }
+    .raw-controls button, .raw-toolbar button { width: auto; cursor: pointer; font-weight: 650; }
+    .raw-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+    .raw-toolbar input { width: min(320px, 100%); margin: 0; }
+    .raw-toolbar span { color: var(--muted); font-size: 12px; margin-right: auto; }
+    .raw-view {
+      max-height: 620px; margin: 0; padding: 16px; overflow: auto; border: 1px solid #313a42;
+      background: var(--code); color: #dce4e8; white-space: pre-wrap; overflow-wrap: anywhere;
+      font: 11px/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    footer { padding: 24px 0 45px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    @media (max-width: 800px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .metrics, .ability, .pipeline, .grid-2 { grid-template-columns: 1fr; }
+      .verdict { grid-template-columns: 1fr; }
+      .verdict .mark { border-left: 0; border-top: 1px solid var(--line); padding-top: 18px; }
+      .step:not(:last-child)::after { display: none; }
+      .camera-grid, .files, .raw-controls { grid-template-columns: 1fr; }
+    }
+    @media print {
+      nav { display: none; }
+      body { background: #fff; }
+      .wrap { width: 100%; padding: 0 16px; }
+      section { break-inside: avoid; }
+      .video-shell { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="kicker">RoboDojo evaluation · π0.5 on NPU</div>
+      <h1>Layout 0 四瓶入桶测试报告</h1>
+      <p>官方 Isaac Sim 场景、双 ARX X5 机械臂、Mac 实时监控与 NPU 推理服务的九轮闭环测试汇总。</p>
+      <div class="stamp">测试日期：2026-09-19 · 报告版本：v5 · 数据范围：9 次有效运行 / 204 次决策 / 10200 个控制步</div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#summary">结论</a><a href="#performance">性能</a><a href="#trajectory">轨迹</a><a href="#completion">完成情况</a><a href="#ability">模型能力</a><a href="#method">参数与原理</a><a href="#runs">测试数据</a><a href="#video">录屏</a><a href="#artifacts">原始文件</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="summary">
+      <div class="verdict">
+        <div>
+          <h2>结论：第 4 次 700 步测试视觉完成，四轮成功率 1/4</h2>
+          <p class="lead">第 4 次有完整录像的 700 步复测完成了 4 个瓶子的抓取、交接与投放，并在约 step 656 释放最后一瓶，step 700 时双臂已归位。四轮完成度为 2/4、3/4、3/4、4/4，视觉完成率为 1/4；700 步对 π0.5 是可达但余量很小的预算。</p>
+          <p>九轮日志中的 <code>reward=0</code> 不能单独作为失败证据，因为自定义测试循环没有调用官方 <code>reward_manager.step()</code>。本轮通过结论来自完整录像逐帧检查和终态画面，属于视觉判定；官方几何评分仍待修复后复测。</p>
+        </div>
+        <div class="mark"><div><b>视觉通过</b><span>第 4 次 700 步测试</span></div></div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="value">1 / 4</div><div class="label">700 步完整录像测试视觉成功率</div></div>
+        <div class="metric"><div class="value">554 ms</div><div class="label">204 次决策的 NPU 纯推理均值</div></div>
+        <div class="metric"><div class="value">5.55 s</div><div class="label">端到端推理往返均值</div></div>
+        <div class="metric"><div class="value">10.0%</div><div class="label">NPU 纯推理占端到端时延比例</div></div>
+      </div>
+    </section>
+
+    <section id="performance">
+      <h2>性能分析</h2>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>性能瓶颈不在 NPU 计算</h3>
+          <p>全部 204 次决策中，NPU 纯推理均值为 <strong>553.8 ms</strong>，P95 为 <strong>585.3 ms</strong>，波动很小。端到端往返均值为 <strong>5549.7 ms</strong>，P95 为 <strong>11161.0 ms</strong>，平均约有 <strong>4995.9 ms</strong> 花在图像传输、序列化、排队和服务处理上。</p>
+          <p>因此下一步应优先优化链路，而不是继续压缩模型计算时间。每次请求约 <strong>3.687 MB</strong>，三路 RGB 图像是主要载荷。</p>
+        </div>
+        <div class="panel">
+          <h3>仿真执行慢于实时</h3>
+          <p>每个 50 步动作块代表 2 秒仿真时间，但执行与四视角渲染平均约需 9 秒。2500 步完整录屏轮的 100 秒仿真轨迹耗时 874.06 秒，实时因子为 <strong>0.114×</strong>，即约 8.74 秒墙钟时间推进 1 秒仿真。</p>
+          <p>四次 700 步录像的块执行均值分别为 9.23、9.09、9.14 和 9.25 秒，说明 MP4 编码没有形成明显新增瓶颈；墙钟差异主要来自推理往返波动。</p>
+        </div>
+      </div>
+      <div class="chart-wrap" style="margin-top:18px">
+        <div class="chart-head"><div><h3>各轮决策时延</h3><div class="caption">单位：毫秒；横轴为测试运行，纵轴为每次决策平均时延。</div></div><select id="metricSelect"><option value="mean">均值</option><option value="p95">P95</option></select></div>
+        <svg id="latencyChart" viewBox="0 0 1040 370" role="img" aria-label="各轮端到端和NPU推理时延柱状图"></svg>
+        <div class="legend"><span><i class="dot" style="background:#0f5b52"></i>端到端往返</span><span><i class="dot" style="background:#9ba7ad"></i>NPU 纯推理</span></div>
+      </div>
+    </section>
+
+    <section id="trajectory">
+      <h2>轨迹分析</h2>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>控制跟踪总体稳定</h3>
+          <p>2500 步完整录屏轮中，左臂关节命令与实测值的绝对误差均值为 <strong>0.000818 rad</strong>，P95 为 <strong>0.001251 rad</strong>；右臂分别为 <strong>0.000395 rad</strong> 和 <strong>0.000717 rad</strong>。绝大多数控制步的关节跟踪误差很小。</p>
+          <p>左臂与右臂命令轨迹累计 L2 路径长度分别为 <strong>54.46 rad</strong> 和 <strong>34.52 rad</strong>，左臂承担了更多操作。</p>
+        </div>
+        <div class="panel">
+          <h3>动作块边界没有明显跳变</h3>
+          <p>该 2500 步轮次左臂在 50 步块边界处的平均命令变化为 <strong>0.0192 rad</strong>，低于块内平均的 <strong>0.0218 rad</strong>；右臂为 <strong>0.0104 rad</strong> 对 <strong>0.0139 rad</strong>。当前 50 步 chunk 没有表现出系统性边界冲击。</p>
+          <p>日志存在少量最大误差离群点（左臂 0.760 rad、右臂 0.311 rad），与总体 P95 相差很大。报告将其视为瞬态事件，后续应按时间点对照碰撞和复位画面。</p>
+        </div>
+        <div class="panel">
+          <h3>夹爪动作有切换，但未到零值</h3>
+          <p>该 2500 步轮次左夹爪命令范围为 0.415–1.003，共跨越 0.5 阈值 20 次；右夹爪范围为 0.418–1.008，共切换 6 次。命令大部分时间高于 0.8。</p>
+          <p>由于当前归一化方向和实际开合距离需要结合 ARX X5 配置解释，仅凭数值不能判定抓取力；应在后续报告中同时记录实测夹爪宽度和接触力。</p>
+        </div>
+        <div class="panel">
+          <h3>700 步可达，但成功余量很小</h3>
+          <p>700 步对应 14 次模型决策和 28 秒仿真时间；1000 步对应 40 秒；2500 步对应 100 秒。第 4 次 700 步运行在约 step 656 释放最后一瓶并完成归位，证明官方预算内存在成功轨迹；前三次停在 2/4、3/4、3/4，说明该预算下策略成功余量很小。</p>
+          <p>但当前只有布局 0、种子 0，尚不能把这一观察外推到官方评测集。</p>
+        </div>
+        <div class="panel">
+          <h3>四次 700 步行为对比</h3>
+          <p>四轮前 50 步动作都很相似，两两动作向量 L2 差异均值为 <strong>0.060–0.160</strong>；最后 50 步差异增至 <strong>2.255–3.506</strong>，说明后半程会因策略采样和物体状态变化明显分叉。四轮分别完成约 2、3、3、4 瓶。</p>
+          <p>共同点是逐瓶串行抓放、双臂没有形成稳定的并行流水。每瓶约占用 150–250 个控制步；成功轮直到约 step 656 才释放最后一瓶，因此只剩约 44 步用于归位，容易受后半程轨迹分叉影响。</p>
+        </div>
+        <div class="panel">
+          <h3>控制链路不是主要失败点</h3>
+          <p>最新成功轮左臂关节跟踪绝对误差均值约 <strong>0.000621 rad</strong>、P95 <strong>0.002177 rad</strong>；右臂均值约 <strong>0.000251 rad</strong>、P95 <strong>0.001061 rad</strong>。机械臂按命令运动，14 次 NPU 推理也全部成功。</p>
+          <p>四轮推理往返均值分别为 <strong>8.61、3.60、5.06、3.01 秒</strong>，墙钟耗时分别为 251.02、179.03、200.01、172.98 秒。网络等待影响墙钟耗时；是否在 700 仿真步内完成主要由策略轨迹决定。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="completion">
+      <h2>完成情况与评分有效性</h2>
+      <div class="callout bad">
+        <h3>自动 reward 当前无效</h3>
+        <p>官方任务成功条件是 4 个瓶子都位于 <code>dustbin</code> 底部有效区域，并且双臂末端回到初始位姿（位置容差 0.15 m、旋转容差 20°）。自定义执行器只调用了 <code>get_reward()</code>，没有像官方 <code>src/eval_client/eval_env.py</code> 那样先调用 <code>reward_manager.step()</code>，因此九轮的 reward 都保持为 0。</p>
+        <p>尝试直接调用 <code>is_A_on_B_bottom</code> 时，官方 <code>geometry.get_state()</code> 又出现 <code>cuda:0</code> 与 CPU 张量不一致异常。修复这两项并重跑之前，不能报告官方成功率。</p>
+      </div>
+      <div class="grid-2" style="margin-top:18px">
+        <div class="panel"><h3>人工视觉结论</h3><p><span class="status-ok">本轮 700 步视觉通过。</span>逐帧画面显示最后一瓶在约 step 656 进入桶侧，随后双臂归位；step 700 桌面清空。两次 2500 步扩展运行也保持视觉完成。</p></div>
+        <div class="panel"><h3>结论边界</h3><p>录像能证明物体离开桌面并进入桶口方向，但不能替代官方几何判定，也不能确认每个瓶子是否落在奖励函数定义的桶底高度范围。最终结论应写为“视觉完成，官方评分待修复后复测”。</p></div>
+        <div class="panel"><h3>四次 700 步复测</h3><p><span class="status-ok">1/4 视觉通过。</span>四段录像各 701 帧，完成度为 2/4、3/4、3/4、4/4。最新轮在约 step 656 投放最后一瓶，并在截止前完成双臂归位。</p></div>
+      </div>
+    </section>
+
+    <section id="ability">
+      <h2>模型能力分析</h2>
+      <div class="ability">
+        <div class="strong"><h3>已经验证</h3><p>能够理解三路相机输入并连续生成双臂 14 维动作；能够在同一布局中执行长时程、多物体、双臂抓取与搬运动作；一次 700 步和两次 2500 步运行最终清空桌面。</p></div>
+        <div><h3>表现特点</h3><p>左臂动作路径显著长于右臂；50 步动作块衔接平滑；NPU 纯推理稳定在约 0.55 秒；延长预算后完成度明显提高。</p></div>
+        <div class="limit"><h3>尚未验证</h3><p>官方成功率、不同布局与随机种子的泛化、首次成功步数、瓶子最终几何位置、夹爪接触力、故障恢复能力，以及与 GPT/混合策略的公平性能对比。</p></div>
+      </div>
+    </section>
+
+    <section id="method">
+      <h2>参数配置与执行原理</h2>
+      <div class="pipeline">
+        <div class="step"><div class="n">01 · OBSERVE</div><h3>采集观测</h3><p>头部、左腕、右腕 RGB，相机关节状态；overview 仅用于监控。</p></div>
+        <div class="step"><div class="n">02 · INFER</div><h3>NPU 推理</h3><p>一次请求约 3.687 MB，π0.5 返回 50 × 14 动作块。</p></div>
+        <div class="step"><div class="n">03 · CONTROL</div><h3>25 Hz 控制</h3><p>每个动作含左右臂各 6 关节与各 1 个夹爪值。</p></div>
+        <div class="step"><div class="n">04 · PHYSICS</div><h3>250 Hz 物理</h3><p>每个控制步执行 10 个 PhysX 子步，合计 40 ms 仿真时间。</p></div>
+        <div class="step"><div class="n">05 · CLOSE LOOP</div><h3>重新观测</h3><p>50 步执行完重新采图和推理，最多 50 次决策。</p></div>
+      </div>
+      <div class="scroll" style="margin-top:18px">
+        <table>
+          <tbody>
+            <tr><th>任务 / 布局</th><td><code>put_bottles_into_dustbin</code> / 官方 Layout 0 / seed 0</td><th>机器人</th><td>双 ARX X5，关节位置控制</td></tr>
+            <tr><th>策略输入</th><td>cam_head、cam_left_wrist、cam_right_wrist + 14 维状态</td><th>监控输入</th><td>额外 cam_monitor_overview，不送入策略</td></tr>
+            <tr><th>动作</th><td>50 步 chunk，每步 14 维</td><th>频率</th><td>25 Hz 控制 / 250 Hz PhysX</td></tr>
+            <tr><th>最大预算</th><td>14、20、50 次决策；对应 700、1000、2500 控制步</td><th>录屏</th><td>四视角 2×2，H.264，1280×960，25 fps</td></tr>
+            <tr><th>NPU 服务</th><td><code>robodojo-arx-x5-v2</code>，<code>use_delta_joint_actions=true</code></td><th>GPU→NPU</th><td>反向 SSH 隧道，经 <code>127.0.0.1:18642</code></td></tr>
+            <tr><th>模型权重</th><td><code>/data/pi05_hybrid/weights/robodojo_pi05_pt/</code></td><th>容器镜像</th><td><code>/data/pi05_hybrid/pi05-hybrid-v1.tar.gz</code>，镜像不含权重</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">说明：官方任务默认 step limit 为 700。1000/2500 步是诊断性扩展预算，不能直接作为官方同口径成绩。</p>
+    </section>
+
+    <section id="runs">
+      <h2>具体测试数据</h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Run ID</th><th class="num">决策</th><th class="num">控制步</th><th class="num">仿真秒</th><th class="num">墙钟秒</th><th class="num">往返均值</th><th class="num">往返 P95</th><th class="num">NPU 均值</th><th class="num">块执行均值</th><th>完成判定</th></tr></thead>
+          <tbody>
+            <tr><td>layout0_700_video_repeat4_210134</td><td class="num">14</td><td class="num">700</td><td class="num">28</td><td class="num">172.979</td><td class="num">3014.1 ms</td><td class="num">4620.2 ms</td><td class="num">549.7 ms</td><td class="num">9250.6 ms</td><td class="status-ok">视觉通过：step ≈656 投放第 4 瓶并归位</td></tr>
+            <tr><td>layout0_700_video_repeat3_182547</td><td class="num">14</td><td class="num">700</td><td class="num">28</td><td class="num">200.009</td><td class="num">5056.9 ms</td><td class="num">8313.2 ms</td><td class="num">543.1 ms</td><td class="num">9136.3 ms</td><td class="status-warn">3 瓶完成，第 4 瓶仍在桌面</td></tr>
+            <tr><td>layout0_700_video_repeat_180809</td><td class="num">14</td><td class="num">700</td><td class="num">28</td><td class="num">179.027</td><td class="num">3602.5 ms</td><td class="num">5046.9 ms</td><td class="num">556.9 ms</td><td class="num">9091.2 ms</td><td class="status-warn">3 瓶完成，第 4 瓶抓持中</td></tr>
+            <tr><td>layout0_700_video_174926</td><td class="num">14</td><td class="num">700</td><td class="num">28</td><td class="num">251.020</td><td class="num">8607.5 ms</td><td class="num">11179.1 ms</td><td class="num">550.5 ms</td><td class="num">9231.8 ms</td><td class="status-warn">视觉未完成 + 完整录像</td></tr>
+            <tr><td>layout0_v2_091940</td><td class="num">14</td><td class="num">700</td><td class="num">28</td><td class="num">197.656</td><td class="num">5035.7 ms</td><td class="num">9506.6 ms</td><td class="num">562.6 ms</td><td class="num">8964.6 ms</td><td class="status-warn">无完整录像结论</td></tr>
+            <tr><td>layout0_repeat_093108</td><td class="num">14</td><td class="num">700</td><td class="num">28</td><td class="num">170.864</td><td class="num">3100.3 ms</td><td class="num">3684.9 ms</td><td class="num">549.2 ms</td><td class="num">8987.8 ms</td><td class="status-warn">无完整录像结论</td></tr>
+            <tr><td>layout0_extended20_094605</td><td class="num">20</td><td class="num">1000</td><td class="num">40</td><td class="num">284.854</td><td class="num">5088.6 ms</td><td class="num">8531.1 ms</td><td class="num">548.8 ms</td><td class="num">9038.3 ms</td><td class="status-warn">无完整录像结论</td></tr>
+            <tr><td>layout0_extended50_095349</td><td class="num">50</td><td class="num">2500</td><td class="num">100</td><td class="num">674.138</td><td class="num">4204.4 ms</td><td class="num">7254.7 ms</td><td class="num">553.8 ms</td><td class="num">9166.1 ms</td><td class="status-ok">视觉通过</td></tr>
+            <tr><td>layout0_extended50_video_101824</td><td class="num">50</td><td class="num">2500</td><td class="num">100</td><td class="num">874.060</td><td class="num">8363.9 ms</td><td class="num">13933.6 ms</td><td class="num">558.6 ms</td><td class="num">9011.9 ms</td><td class="status-ok">视觉通过 + 完整录像</td></tr>
+          </tbody>
+          <tfoot><tr><th>合计 / 加权</th><th class="num">204</th><th class="num">10200</th><th class="num">408</th><th class="num">3004.607</th><th class="num">5549.7 ms</th><th class="num">11161.0 ms</th><th class="num">553.8 ms</th><th class="num">9092.8 ms</th><th>自动评分无效</th></tr></tfoot>
+        </table>
+      </div>
+      <p class="caption">往返统计来自策略 trace 中的 inference 事件；NPU 时间由推理服务返回；动作块执行时间来自 GPU 端 performance 日志。失败启动和仅运行 1 轮的诊断过程未纳入汇总。</p>
+    </section>
+
+    <section id="video">
+      <h2>完整录屏与终态</h2>
+      <h3>第四次 700 步测试（视觉完成，约 step 656 投放第 4 瓶）</h3>
+      <div class="video-shell">
+        <video controls preload="metadata" src="artifacts/pi_closed_loop_layout0_700_video_repeat4_20260919_210134_four_views.mp4"></video>
+      </div>
+      <p class="caption">28.04 秒 · 701 帧 · H.264 · 1280×960 · 25 fps；墙钟耗时 172.98 秒。录像包含初始帧和全部 700 个控制步。</p>
+      <div class="camera-grid">
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat4_20260919_210134_overview_only_chunks.jpg" alt="第四次 700 步逐 chunk 总览"><figcaption>每 50 步一个总览画面：四瓶依次完成，step 700 桌面清空。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat4_20260919_210134_steps650_660.jpg" alt="最后一瓶释放逐帧证据"><figcaption>step 650–660 逐帧证据：最后一瓶约在 step 656 离开夹爪并进入桶侧。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat4_20260919_210134_final_four_views.jpg" alt="第四次测试终态四视角"><figcaption>step 700 终态：桌面无瓶子，双臂回到 home 位。</figcaption></figure>
+      </div>
+      <h3 style="margin-top:28px">第三次 700 步测试（3 瓶完成，第 4 瓶仍在桌面）</h3>
+      <div class="video-shell">
+        <video controls preload="metadata" src="artifacts/pi_closed_loop_layout0_700_video_repeat3_20260919_182547_four_views.mp4"></video>
+      </div>
+      <p class="caption">28.04 秒 · 701 帧 · H.264 · 1280×960 · 25 fps；墙钟耗时 200.01 秒。录像包含初始帧和全部 700 个控制步。</p>
+      <div class="camera-grid">
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat3_20260919_182547_overview_chunks.jpg" alt="第三次 700 步逐 chunk 时间线"><figcaption>每 50 步一个画面；前三瓶完成，最后绿色瓶子在截止时仍位于桌面。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat3_20260919_182547_final_overview.jpg" alt="第三次 700 步终态总览"><figcaption>step 700 总览：垃圾桶在左侧，最后绿色瓶子留在桌面中央。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat3_20260919_182547_final_head.jpg" alt="第三次 700 步终态头部相机"><figcaption>头部近景确认最后一瓶尚未被夹持，双臂也未归位。</figcaption></figure>
+      </div>
+      <h3 style="margin-top:28px">第二次 700 步测试（3 瓶完成，第 4 瓶抓持中）</h3>
+      <div class="video-shell">
+        <video controls preload="metadata" src="artifacts/pi_closed_loop_layout0_700_video_repeat_20260919_180809_four_views.mp4"></video>
+      </div>
+      <p class="caption">28.04 秒 · 701 帧 · H.264 · 1280×960 · 25 fps；墙钟耗时 179.03 秒。录像包含初始帧和全部 700 个控制步。</p>
+      <div class="camera-grid">
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat_20260919_180809_overview_chunks.jpg" alt="第二次 700 步逐 chunk 时间线"><figcaption>每 50 步一个画面，按从左到右、从上到下排列；展示逐瓶串行处理与最终截断。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat_20260919_180809_final_overview.jpg" alt="第二次 700 步终态总览"><figcaption>step 700：前三瓶已离开桌面，最后绿色瓶子由右臂抓持。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_repeat_20260919_180809_final_head.jpg" alt="第二次 700 步终态头部相机"><figcaption>头部近景确认最后一个瓶子已抓稳，但未移动到桶口释放。</figcaption></figure>
+      </div>
+      <h3 style="margin-top:28px">第一次 700 步正式预算复测（约 2 瓶完成）</h3>
+      <div class="video-shell">
+        <video controls preload="metadata" src="artifacts/pi_closed_loop_layout0_700_video_20260919_174926_four_views.mp4"></video>
+      </div>
+      <p class="caption">28.04 秒 · 701 帧 · H.264 · 1280×960 · 25 fps；墙钟耗时 251.02 秒。录像包含初始帧和全部 700 个控制步。</p>
+      <div class="camera-grid">
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_20260919_174926_overview_timeline.jpg" alt="700 步总览时间线"><figcaption>总览时间线：step 0、200、400、600、700；可见部分投放过程及未完成终态。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_20260919_174926_final_overview.jpg" alt="700 步终态总览"><figcaption>step 700 终态：黄色、白色瓶子仍在桌面。</figcaption></figure>
+        <figure><img src="artifacts/pi_closed_loop_layout0_700_video_20260919_174926_final_head.jpg" alt="700 步终态头部相机"><figcaption>step 700 头部视角：右臂仍位于黄色瓶子上方。</figcaption></figure>
+      </div>
+      <h3 style="margin-top:28px">2500 步扩展预算历史测试（视觉完成）</h3>
+      <div class="video-shell">
+        <video controls preload="metadata" src="artifacts/pi_closed_loop_layout0_extended50_video_20260919_101824_four_views.mp4"></video>
+      </div>
+      <p class="caption">100.04 秒 · H.264 · 1280×960 · 25 fps · 四视角：头部、总览、左腕、右腕。视频时间对应仿真时间；整轮墙钟耗时 874.06 秒。</p>
+      <div class="camera-grid">
+        <figure><img src="artifacts/cam_monitor_overview.jpg" alt="测试终态总览"><figcaption>终态总览：桌面清空，垃圾桶位于左侧。</figcaption></figure>
+        <figure><img src="artifacts/cam_head.jpg" alt="测试终态头部相机"><figcaption>终态头部视角：桌面区域无瓶子。</figcaption></figure>
+        <figure><img src="artifacts/cam_left_wrist.jpg" alt="测试终态左腕相机"><figcaption>终态左腕视角。</figcaption></figure>
+        <figure><img src="artifacts/cam_right_wrist.jpg" alt="测试终态右腕相机"><figcaption>终态右腕视角。</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="artifacts">
+      <h2>原始数据内置查看器</h2>
+      <p>九次有效运行的模型 trace、逐步执行轨迹和逐决策性能日志都可在当前报告内查看。数据按原始 JSONL 行展示，不修改字段或数值；大文件采用分页渲染，避免一次显示 2500 行造成页面卡顿。</p>
+      <div class="panel">
+        <div class="raw-controls">
+          <label>测试运行<select id="rawRun">
+            <option value="pi_closed_loop_layout0_700_video_repeat4_20260919_210134">700 步第四次 + 完整录像（视觉通过，最新）</option>
+            <option value="pi_closed_loop_layout0_700_video_repeat3_20260919_182547">700 步第三次 + 完整录像</option>
+            <option value="pi_closed_loop_layout0_700_video_repeat_20260919_180809">700 步第二次 + 完整录像</option>
+            <option value="pi_closed_loop_layout0_700_video_20260919_174926">700 步 + 完整录像</option>
+            <option value="pi_closed_loop_layout0_extended50_video_20260919_101824">2500 步 + 完整录像</option>
+            <option value="pi_closed_loop_layout0_extended50_20260919_095349">2500 步</option>
+            <option value="pi_closed_loop_layout0_extended20_retry_20260919_094605">1000 步</option>
+            <option value="pi_closed_loop_layout0_repeat_20260919_093108">700 步重复</option>
+            <option value="pi_closed_loop_layout0_v2_20260919_091940">700 步基线</option>
+          </select></label>
+          <label>原始数据类型<select id="rawType">
+            <option value="_performance.jsonl">逐决策性能</option>
+            <option value="_executed.jsonl">逐控制步执行轨迹</option>
+            <option value=".jsonl">模型请求与 50×14 动作 trace</option>
+          </select></label>
+          <button id="rawLoad" type="button">在本页载入</button>
+        </div>
+        <div class="raw-toolbar">
+          <span id="rawStatus">准备载入最新一轮性能日志</span>
+          <input id="rawSearch" type="search" placeholder="筛选当前数据，例如 decision 或 reward">
+          <button id="rawPrev" type="button">上一页</button>
+          <button id="rawNext" type="button">下一页</button>
+          <button id="rawCopy" type="button">复制当前页</button>
+        </div>
+        <pre id="rawView" class="raw-view" aria-live="polite">正在载入…</pre>
+      </div>
+      <p class="caption">每页 20 行。查看器读取本报告同目录的原始证据文件，但内容始终显示在本页，不发生页面跳转。完整四视角录像已在上一节内嵌播放。</p>
+      <div class="callout" style="margin-top:18px"><strong>下一次正式评分前必须修复：</strong>在每个动作步或判定点调用 <code>reward_manager.step(env_idx_list=[0])</code>；修复 geometry 状态中环境原点张量的设备一致性；同时记录 4 个瓶子的独立判定、双臂归位判定和首次成功步数。修复后用官方 700 步预算与扩展预算各跑多 seed。</div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">数据来源：GPU 服务器 RoboDojo/Isaac Sim 执行日志、NPU π0.5 服务 trace、Mac 实时监控终态与四视角录屏。报告未包含任何服务器凭据。</div></footer>
+
+  <script>
+    const runs = [
+      {name:'700-video-4', mean:3014.1, p95:4620.2, npu:549.7},
+      {name:'700-video-3', mean:5056.9, p95:8313.2, npu:543.1},
+      {name:'700-repeat-video', mean:3602.5, p95:5046.9, npu:556.9},
+      {name:'700+video', mean:8607.5, p95:11179.1, npu:550.5},
+      {name:'700-v2', mean:5035.7, p95:9506.6, npu:562.6},
+      {name:'700-repeat', mean:3100.3, p95:3684.9, npu:549.2},
+      {name:'1000', mean:5088.6, p95:8531.1, npu:548.8},
+      {name:'2500', mean:4204.4, p95:7254.7, npu:553.8},
+      {name:'2500+video', mean:8363.9, p95:13933.6, npu:558.6}
+    ];
+    const svg = document.getElementById('latencyChart');
+    const select = document.getElementById('metricSelect');
+    function draw(metric) {
+      const W=1040,H=370, left=78,right=24,top=24,bottom=70, plotW=W-left-right,plotH=H-top-bottom;
+      const max = metric==='p95' ? 15000 : 9000;
+      const grid = [0,.25,.5,.75,1].map(t => {
+        const y=top+plotH*(1-t), val=Math.round(max*t);
+        return `<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#d8d3c8"/><text x="${left-12}" y="${y+4}" text-anchor="end" fill="#667085" font-size="12">${val}</text>`;
+      }).join('');
+      const groupW=plotW/runs.length, bw=groupW*.26;
+      const bars=runs.map((r,i)=>{
+        const x=left+i*groupW+groupW*.2, main=r[metric], mh=main/max*plotH, nh=r.npu/max*plotH;
+        return `<rect x="${x}" y="${top+plotH-mh}" width="${bw}" height="${mh}" fill="#0f5b52"><title>${r.name}: ${main.toFixed(1)} ms</title></rect><rect x="${x+bw+7}" y="${top+plotH-nh}" width="${bw}" height="${nh}" fill="#9ba7ad"><title>${r.name} NPU: ${r.npu.toFixed(1)} ms</title></rect><text x="${x+bw}" y="${H-39}" text-anchor="middle" fill="#667085" font-size="12">${r.name}</text>`;
+      }).join('');
+      svg.innerHTML=`${grid}<line x1="${left}" y1="${top}" x2="${left}" y2="${top+plotH}" stroke="#8e969b"/><line x1="${left}" y1="${top+plotH}" x2="${W-right}" y2="${top+plotH}" stroke="#8e969b"/><text x="15" y="${top+plotH/2}" transform="rotate(-90 15 ${top+plotH/2})" text-anchor="middle" fill="#667085" font-size="12">Latency (ms)</text><text x="${left+plotW/2}" y="${H-8}" text-anchor="middle" fill="#667085" font-size="12">Test run</text>${bars}`;
+    }
+    select.addEventListener('change', e => draw(e.target.value));
+    draw('mean');
+
+    const rawState = { lines: [], filtered: [], page: 0, pageSize: 20, source: '' };
+    const rawRun = document.getElementById('rawRun');
+    const rawType = document.getElementById('rawType');
+    const rawStatus = document.getElementById('rawStatus');
+    const rawView = document.getElementById('rawView');
+    const rawSearch = document.getElementById('rawSearch');
+    function renderRaw() {
+      const start = rawState.page * rawState.pageSize;
+      const page = rawState.filtered.slice(start, start + rawState.pageSize);
+      rawView.textContent = page.map((line, i) => `${start + i + 1}\t${line}`).join('\n') || '当前筛选条件没有匹配行。';
+      const totalPages = Math.max(1, Math.ceil(rawState.filtered.length / rawState.pageSize));
+      rawStatus.textContent = `${rawState.source} · ${rawState.filtered.length}/${rawState.lines.length} 行 · 第 ${rawState.page + 1}/${totalPages} 页`;
+      document.getElementById('rawPrev').disabled = rawState.page === 0;
+      document.getElementById('rawNext').disabled = rawState.page + 1 >= totalPages;
+    }
+    async function loadRaw() {
+      const file = rawRun.value + rawType.value;
+      rawStatus.textContent = `正在载入 ${file}…`;
+      rawView.textContent = '正在载入原始数据…';
+      try {
+        const response = await fetch(`artifacts/${file}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const text = await response.text();
+        rawState.lines = text.split(/\r?\n/).filter(Boolean);
+        rawState.filtered = rawState.lines;
+        rawState.page = 0;
+        rawState.source = file;
+        rawSearch.value = '';
+        renderRaw();
+      } catch (error) {
+        rawStatus.textContent = `载入失败：${error.message}`;
+        rawView.textContent = '请通过本报告提供的本地 HTTP 预览地址打开，浏览器直接打开 file:// 页面时可能禁止读取同目录数据。';
+      }
+    }
+    document.getElementById('rawLoad').addEventListener('click', loadRaw);
+    document.getElementById('rawPrev').addEventListener('click', () => { if (rawState.page > 0) { rawState.page--; renderRaw(); } });
+    document.getElementById('rawNext').addEventListener('click', () => { if ((rawState.page + 1) * rawState.pageSize < rawState.filtered.length) { rawState.page++; renderRaw(); } });
+    rawSearch.addEventListener('input', () => {
+      const q = rawSearch.value.trim().toLowerCase();
+      rawState.filtered = q ? rawState.lines.filter(line => line.toLowerCase().includes(q)) : rawState.lines;
+      rawState.page = 0;
+      renderRaw();
+    });
+    document.getElementById('rawCopy').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(rawView.textContent); rawStatus.textContent += ' · 当前页已复制'; }
+      catch (_) { rawStatus.textContent += ' · 浏览器未允许剪贴板访问'; }
+    });
+    loadRaw();
+  </script>
+</body>
+</html>

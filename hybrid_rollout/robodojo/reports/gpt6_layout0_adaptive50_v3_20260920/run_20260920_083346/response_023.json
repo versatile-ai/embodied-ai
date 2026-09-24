@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b829cafae1144b8bbb5827e48627f312",
+  "reason": "The white bottle has returned to the right gripper center. Align the left fingers under its lower body and approach from the front.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.06825076866149903,
+        -0.22142890071868898,
+        0.9419244027137756
+      ],
+      "quaternion_wxyz": [
+        0.7071073651313782,
+        -1.486820480067763e-07,
+        -1.3198713304518606e-06,
+        0.7071061134338379
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07462291419506073,
+        -0.19864006340503693,
+        1.0580575466156006
+      ],
+      "quaternion_wxyz": [
+        0.7071044445037842,
+        -0.0002481382107362151,
+        -5.4894640925340354e-05,
+        0.7071089744567871
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

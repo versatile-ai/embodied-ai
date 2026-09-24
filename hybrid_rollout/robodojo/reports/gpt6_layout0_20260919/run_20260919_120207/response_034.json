@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "7add63c4d4324f98bbc2450b2c9ba785",
+  "reason": "Finish withdrawing the right fingers from white before moving the bottle sideways.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.056973449885845184,
+        -0.1430463194847107,
+        0.9208725094795227
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        -0.061,
+        -0.222,
+        1.048
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

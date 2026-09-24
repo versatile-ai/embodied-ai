@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "5bc2010f7b484239ad4f4277f11b48c1",
+  "reason": "Continue the left hand's approach behind the yellow bottle while transporting the held bottle across the center.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.0030702516138553654,
+        -0.4010908455848694,
+        0.8903990387916565
+      ],
+      "quaternion_wxyz": [
+        0.7077513337135315,
+        -0.0011815865291282535,
+        0.008358939550817013,
+        0.7064111828804016
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.03650337702035904,
+        -0.14570783078670502,
+        1.0483880043029785
+      ],
+      "quaternion_wxyz": [
+        0.7072886824607849,
+        -6.886267556183157e-07,
+        0.7069246768951416,
+        9.14490592549555e-05
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

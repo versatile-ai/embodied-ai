@@ -1,0 +1,84 @@
+{
+  "request_id": "1f52c180cf54469e9af07b631b75e761",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The yellow bottle slipped onto the table. The new proposal opens and clears the hands, then redirects the left hand toward the fallen bottle, so allow this self-recovery preparation.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into dustbin."
+      ],
+      "currently_attempting": "Recover yellow bottle lying near the back-center of the table.",
+      "remaining": [
+        "Regrasp yellow bottle and place it in dustbin.",
+        "Place white and pale horizontal bottles in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Clear hands and prepare yellow-bottle retry.",
+    "execution_status": "failed",
+    "execution_evidence": "The yellow bottle is lying on the table away from both empty hands after separation; the handover did not retain it.",
+    "expected_next_intent": "Open and reposition the left hand for a new grasp of the fallen yellow bottle.",
+    "predicted_next_intent": "Both hands clear the failed handover; the left opens, then approaches the fallen bottle from above later in the proposal.",
+    "intent_status": "aligned",
+    "intent_evidence": "The prefix opens the left gripper while withdrawing. Later FK rows reverse toward y 0.04 with a downward-facing pitch near 71 degrees and a closing phase, consistent with a retry."
+  }
+}

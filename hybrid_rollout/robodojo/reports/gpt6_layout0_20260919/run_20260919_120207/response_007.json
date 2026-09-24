@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "5849b5fbd35444d58ca51a9076be820e",
+  "reason": "The pink bottle is now enclosed by the left fingers; close that grip. Bring the right fingers farther around the white bottle.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.224,
+        -0.19,
+        0.931
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.431,
+        -0.196,
+        0.948
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

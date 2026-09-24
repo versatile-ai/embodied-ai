@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "9e61098674f2427e8893a2c930588ca1",
+  "reason": "Hold both returned arm poses through the remaining five steps and read the episode's native outcome.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.29958438873291016,
+        -0.352311372756958,
+        0.9214986562728882
+      ],
+      "quaternion_wxyz": [
+        0.7070038318634033,
+        -7.717365519965824e-07,
+        8.427932698396035e-07,
+        0.7072097063064575
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.30047091841697693,
+        -0.35229986906051636,
+        0.921500027179718
+      ],
+      "quaternion_wxyz": [
+        0.7069998383522034,
+        -2.4786304564372585e-08,
+        -7.532293722078975e-08,
+        0.7072136402130127
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

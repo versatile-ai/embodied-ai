@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "5701a9e64bcd4fe58bdfd5f953f51483",
+  "reason": "Close the right fingers around yellow's body and move white above the bin interior.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.438,
+        -0.146,
+        0.955
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.115,
+        -0.366,
+        0.867
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "c1e590db807c49d9971a539effa614f4",
+  "reason": "Withdraw left fingers upward after the white release. Center the horizontal bottle between the overhead fingers and begin lowering.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.43296265602111816,
+        -0.20907069742679596,
+        1.0022800397872924
+      ],
+      "quaternion_wxyz": [
+        0.7077370882034302,
+        -0.0011852580355480313,
+        0.008341830223798752,
+        0.7064255475997925
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3727050724029541,
+        -0.14579425406455992,
+        1.0313321676254272
+      ],
+      "quaternion_wxyz": [
+        0.7071073055267334,
+        4.835178970097331e-06,
+        0.7071061730384827,
+        2.848632220775471e-06
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

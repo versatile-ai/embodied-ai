@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "3008321e3f8d475f855ecad8b0d2ed02",
+  "reason": "Align the left fingers over the displaced bottle body with a nearly vertical wrist while moving the right arm back toward its starting side.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.10157364410161972,
+        -0.17202522039413454,
+        0.9655789976119995
+      ],
+      "quaternion_wxyz": [
+        0.7273831791381877,
+        0.0008893208916140984,
+        0.6853132406626652,
+        0.03547783027244669
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.15691672831773756,
+        -0.19482981491088866,
+        1.0497398376464844
+      ],
+      "quaternion_wxyz": [
+        0.6885712457020734,
+        0.20500490625439718,
+        0.49517818483418613,
+        0.48850914569685716
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

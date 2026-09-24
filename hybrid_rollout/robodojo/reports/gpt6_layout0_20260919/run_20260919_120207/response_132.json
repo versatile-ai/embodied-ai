@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "051db6e91a924753ab831d808f8a3918",
+  "reason": "Set the left hand at its starting position and reduce its remaining wrist orientation error.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.299529076,
+        -0.352299869,
+        0.921500027
+      ],
+      "quaternion_wxyz": [
+        0.7614591348725784,
+        0.0809362226938077,
+        0.0959082003901879,
+        0.6359487968712888
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004409968852997,
+        -0.35221824049949646,
+        0.9215083718299866
+      ],
+      "quaternion_wxyz": [
+        0.7070017457008362,
+        3.7380507365014637e-06,
+        -3.7322949992812937e-06,
+        0.7072116732597351
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

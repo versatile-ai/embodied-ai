@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "38fdfaaf022249e38367f3db26cce427",
+  "reason": "Release yellow onto the table and begin backing the right gripper away.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.28097301721572876,
+        -0.2893742322921753,
+        0.9437652230262756
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.14,
+        -0.295,
+        0.87
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

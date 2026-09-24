@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "872d512b581a49edb162b77ea1a9ca3b",
+  "reason": "Left fingers contact the pink bottle on both sides. Lift to verify the grasp, and close the centered right fingers around the white bottle.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.2222081571817398,
+        -0.21890640258789062,
+        0.9733184924125672
+      ],
+      "quaternion_wxyz": [
+        0.7072208523750305,
+        0.0025976249016821384,
+        -0.005962817929685116,
+        0.7069627046585083
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.43045592308044434,
+        -0.20247489273548125,
+        0.9216904044151306
+      ],
+      "quaternion_wxyz": [
+        0.707000732421875,
+        -1.6805266568553634e-05,
+        2.3897335267974995e-05,
+        0.7072127461433411
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

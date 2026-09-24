@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "2bcc3b3ae72a425fb66b3538c1416c8b",
+  "reason": "The lower bottle body is between the open left fingers. Center slightly left and advance a little before closing.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.057,
+        -0.143,
+        0.921
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.060740333050489426,
+        -0.12776824831962585,
+        1.0488121509552002
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

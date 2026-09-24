@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "90c93949391244f9a431967d47a3e382",
+  "reason": "Lift the pink bottle to verify grasp and approach the white bottle with a corrected bounded move.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.224,
+        -0.19,
+        0.98
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.434,
+        -0.158,
+        0.927
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

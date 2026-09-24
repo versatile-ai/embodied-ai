@@ -1,0 +1,10 @@
+{
+  "schema": "robodojo.manual_visual_review.v1",
+  "episode_id": "596392a01b6046b0bdcd20ab65f742f6",
+  "visual_success": true,
+  "visual_completion": "4/4 bottles placed and both arms returned",
+  "native_success": false,
+  "native_score": 0.4,
+  "reporting_rule": "preserve manual visual and native evaluator outcomes as separate labels",
+  "correction": "previous report text equating native 0.4 with visual 3/4 was withdrawn after full-video review"
+}

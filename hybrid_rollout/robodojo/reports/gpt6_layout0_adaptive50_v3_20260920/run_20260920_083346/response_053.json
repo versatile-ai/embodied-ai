@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "5fc4b211f4e048cc871d22abc3e79b08",
+  "reason": "Move the empty left hand away from the right forearm and lift the held bottle forward to separate the contact region.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.07277473935484886,
+        -0.3731999397277832,
+        0.9254154562950134
+      ],
+      "quaternion_wxyz": [
+        0.7210407257080078,
+        -0.00514640798792243,
+        -0.007400115020573139,
+        0.6928339600563049
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.062317077070474625,
+        -0.1354540990591049,
+        1.0696971607208252
+      ],
+      "quaternion_wxyz": [
+        0.7047519087791443,
+        0.008797612972557545,
+        0.7093976736068726,
+        0.0014469112502411008
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "fdf50bfcc5e04e2990170c29388c6ed5",
+  "reason": "Move the right arm away and bring the left fingers over the final bottle's center.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.347,
+        -0.219,
+        0.957
+      ],
+      "quaternion_wxyz": [
+        0.9238764643669128,
+        -0.00203694892115891,
+        0.3826785981655121,
+        0.0022851265966892242
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.104,
+        -0.205,
+        0.995
+      ],
+      "quaternion_wxyz": [
+        0.17785446757377002,
+        -0.28682791081872255,
+        -0.07322678190049435,
+        0.9384749828151528
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

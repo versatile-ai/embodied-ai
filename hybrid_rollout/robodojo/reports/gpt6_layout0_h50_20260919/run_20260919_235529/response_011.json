@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "65737ad6c1604cca85a085aa05e45937",
+  "steps": 50,
+  "reason": "Pink bottle is above the bin interior with visible right-rim clearance. Open the left gripper and withdraw vertically before sideways retraction.",
+  "target": {
+    "left": {
+      "position": [
+        -0.412,
+        -0.199,
+        1.012
+      ],
+      "quaternion_wxyz": [
+        0.7070006132125854,
+        -0.0007814473938196898,
+        0.0002613492833916098,
+        0.7072123289108276
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004709482192993,
+        -0.35229983925819397,
+        0.921500027179718
+      ],
+      "quaternion_wxyz": [
+        0.7069999575614929,
+        1.633044277582485e-08,
+        -2.661703035755636e-08,
+        0.7072135806083679
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

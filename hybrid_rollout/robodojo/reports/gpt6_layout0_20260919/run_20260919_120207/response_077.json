@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "45b1b3b5a33f4f9da8ba963d294d44ca",
+  "reason": "Lift yellow to verify the regrasp and continue the right wrist's final alignment.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.125,
+        -0.196,
+        0.973
+      ],
+      "quaternion_wxyz": [
+        0.9228138327598572,
+        0.0029379946645349264,
+        0.3778802752494812,
+        -0.07491602748632431
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.4256306290626526,
+        -0.10932478308677673,
+        0.975124180316925
+      ],
+      "quaternion_wxyz": [
+        0.0936278560160792,
+        -0.17802264675056667,
+        -0.12222730938778101,
+        0.9719064577085067
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b11e4bdc9fe04550a1954e05d6fae57f",
+  "reason": "Continue moving the left wrist toward its start while restoring the starting orientation.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.515,
+        -0.228,
+        1.06
+      ],
+      "quaternion_wxyz": [
+        0.8752367731783461,
+        0.06708463373254295,
+        0.2626055355847626,
+        0.4006227165432567
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.30044102668762207,
+        -0.3522181808948517,
+        0.921508252620697
+      ],
+      "quaternion_wxyz": [
+        0.7070019841194153,
+        3.4256806884513935e-06,
+        -3.4858715025620768e-06,
+        0.7072114944458008
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

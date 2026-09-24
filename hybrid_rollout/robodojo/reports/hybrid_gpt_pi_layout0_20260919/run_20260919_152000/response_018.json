@@ -1,0 +1,85 @@
+{
+  "request_id": "bb6a1297f8514df4a76f4f28033fe735",
+  "mode": "student",
+  "steps": 15,
+  "reason": "Close the receiving fingers around the white bottle before the donor hand opens.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink and yellow bottles released into the dustbin.",
+        "Tall white bottle lifted with the right hand."
+      ],
+      "currently_attempting": "Secure the white bottle with the left hand.",
+      "remaining": [
+        "Complete handover and place the white bottle.",
+        "Place the pale bottle.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Receive the white bottle.",
+    "execution_status": "progressing",
+    "execution_evidence": "The left fingers bracket the lower white bottle body while the right grip maintains its suspension.",
+    "expected_next_intent": "Close the left grasp before releasing the right.",
+    "predicted_next_intent": "Left fingers close first; right fingers retain grip until the end of the selected interval.",
+    "intent_status": "aligned",
+    "intent_evidence": "Left opening reduces from 1 to 0.41; right opening stays at or below 0.45 until row 14 and poses remain near the handover."
+  },
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  }
+}

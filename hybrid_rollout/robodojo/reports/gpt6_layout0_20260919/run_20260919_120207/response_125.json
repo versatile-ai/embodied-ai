@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "313f552d4dfb4b54af0457505f7702d9",
+  "reason": "Bring the left wrist inward toward its base to complete the return without excessive reach.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.461,
+        -0.266,
+        1.085
+      ],
+      "quaternion_wxyz": [
+        0.8192192291420987,
+        0.09035313628261596,
+        0.15311640057535023,
+        0.5452261384847178
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004409968852997,
+        -0.35221824049949646,
+        0.9215083718299866
+      ],
+      "quaternion_wxyz": [
+        0.7070017457008362,
+        3.7380507365014637e-06,
+        -3.7322949992812937e-06,
+        0.7072116732597351
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

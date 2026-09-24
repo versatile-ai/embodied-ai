@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "26b172ca7d9e4a0f88978a9bcc4bef88",
+  "reason": "Shift the left wrist toward the bottle center seen to the left in its downward image, retaining clearance for the fingers.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.09413032770156861,
+        -0.13692471027374267,
+        0.97788445520401
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0.7071067811865476,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.19499593317508698,
+        -0.21666341423988342,
+        1.0433535223007202
+      ],
+      "quaternion_wxyz": [
+        0.7088205186976663,
+        0.17007553671355805,
+        0.3630906011157999,
+        0.5803558915123304
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

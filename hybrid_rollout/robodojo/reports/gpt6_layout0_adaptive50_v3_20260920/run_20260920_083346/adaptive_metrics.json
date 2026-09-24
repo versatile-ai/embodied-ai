@@ -1,0 +1,2265 @@
+{
+  "fixed5": {
+    "summary": {
+      "decisions": 140,
+      "steps": 700,
+      "chunk_min": 5,
+      "chunk_median": 5.0,
+      "chunk_mean": 5,
+      "chunk_p90": 5,
+      "chunk_max": 5,
+      "wall_seconds": 5471.343127332861,
+      "total_tokens": 20765748,
+      "input_tokens": 20736710,
+      "cached_input_tokens": 20490624,
+      "output_tokens": 29038,
+      "reasoning_tokens": 13189,
+      "avg_model_wait_s": 33.97931380271912,
+      "median_model_wait_s": 33.82146179676056,
+      "total_model_wait_s": 4757.103932380676,
+      "avg_execution_s": 2.597996071406773,
+      "total_execution_s": 363.71944999694824,
+      "stop_reasons": {
+        "fixed_or_budget": 140
+      }
+    },
+    "per_decision": [
+      {
+        "decision": 0,
+        "start": 0,
+        "end": 5,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 72.745,
+        "execution_s": 2.688,
+        "reason": "The pink bottle is ahead of the left gripper. Approach it with the gripper open while holding the right arm."
+      },
+      {
+        "decision": 1,
+        "start": 5,
+        "end": 10,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.297,
+        "execution_s": 2.628,
+        "reason": "Both upright bottles are to the right of their nearby wrist centers; adjust lateral alignment and advance with open fingers."
+      },
+      {
+        "decision": 2,
+        "start": 10,
+        "end": 15,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 26.228,
+        "execution_s": 2.534,
+        "reason": "Continue aligning the open grippers with the two upright bottles."
+      },
+      {
+        "decision": 3,
+        "start": 15,
+        "end": 20,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 9.598,
+        "execution_s": 2.482,
+        "reason": "The bottles remain ahead of the fingers; advance while refining horizontal alignment."
+      },
+      {
+        "decision": 4,
+        "start": 20,
+        "end": 25,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 7.449,
+        "execution_s": 2.504,
+        "reason": "The left gripper is nearly centered on the pink bottle; lower toward its body while advancing. Continue approaching the white bottle."
+      },
+      {
+        "decision": 5,
+        "start": 25,
+        "end": 30,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 31.154,
+        "execution_s": 2.577,
+        "reason": "Pink is centered between the open jaws, with white slightly right of center. Advance to surround the bottle bodies."
+      },
+      {
+        "decision": 6,
+        "start": 30,
+        "end": 35,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 9.949,
+        "execution_s": 2.44,
+        "reason": "Advance the aligned open fingers around the upright bottles, keeping the grip near the body below the caps."
+      },
+      {
+        "decision": 7,
+        "start": 35,
+        "end": 40,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 13.148,
+        "execution_s": 2.48,
+        "reason": "The pink bottle is now enclosed by the left fingers; close that grip. Bring the right fingers farther around the white bottle."
+      },
+      {
+        "decision": 8,
+        "start": 40,
+        "end": 45,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 33.592,
+        "execution_s": 2.535,
+        "reason": "Lift the pink bottle to verify grasp and approach the white bottle with a corrected bounded move."
+      },
+      {
+        "decision": 9,
+        "start": 45,
+        "end": 50,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 9.694,
+        "execution_s": 2.533,
+        "reason": "The pink bottle rose with the left hand, confirming its grasp. Lift it for rim clearance and close the right fingers around the white bottle."
+      },
+      {
+        "decision": 10,
+        "start": 50,
+        "end": 55,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 19.116,
+        "execution_s": 2.488,
+        "reason": "Raise both secured upright bottles above the table and bin rim before lateral transport."
+      },
+      {
+        "decision": 11,
+        "start": 55,
+        "end": 60,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 18.352,
+        "execution_s": 2.5,
+        "reason": "Both bottles followed their grippers. Move the elevated pink bottle toward the left dustbin while continuing to raise the white bottle."
+      },
+      {
+        "decision": 12,
+        "start": 60,
+        "end": 65,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 15.265,
+        "execution_s": 2.473,
+        "reason": "Carry the pink bottle left above the bin rim and begin bringing the raised white bottle toward the center for transfer."
+      },
+      {
+        "decision": 13,
+        "start": 65,
+        "end": 70,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 12.346,
+        "execution_s": 2.52,
+        "reason": "Continue transporting the secured bottles at clearance height."
+      },
+      {
+        "decision": 14,
+        "start": 70,
+        "end": 75,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 15.211,
+        "execution_s": 2.506,
+        "reason": "Move the pink bottle deeper over the visible bin opening while the right arm carries white inward."
+      },
+      {
+        "decision": 15,
+        "start": 75,
+        "end": 80,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 14.957,
+        "execution_s": 2.832,
+        "reason": "Center pink above the bin and move white toward the transfer area."
+      },
+      {
+        "decision": 16,
+        "start": 80,
+        "end": 85,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 16.484,
+        "execution_s": 2.461,
+        "reason": "Lower pink vertically into the bin opening before release; continue moving white toward the center."
+      },
+      {
+        "decision": 17,
+        "start": 85,
+        "end": 90,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 9.652,
+        "execution_s": 2.551,
+        "reason": "Release pink over the interior of the bin; carry white a further small distance inward."
+      },
+      {
+        "decision": 18,
+        "start": 90,
+        "end": 95,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 11.75,
+        "execution_s": 2.513,
+        "reason": "Withdraw the empty left fingers upward from the bin. Bring white into the central transfer area."
+      },
+      {
+        "decision": 19,
+        "start": 95,
+        "end": 100,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 17.279,
+        "execution_s": 2.532,
+        "reason": "Pink is inside the bin. Move the left arm toward the central white bottle while the right hand presents it for transfer."
+      },
+      {
+        "decision": 20,
+        "start": 100,
+        "end": 105,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 14.101,
+        "execution_s": 2.534,
+        "reason": "Bring the hands closer while keeping the receiving left hand below the right-hand grip."
+      },
+      {
+        "decision": 21,
+        "start": 105,
+        "end": 110,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 15.591,
+        "execution_s": 2.763,
+        "reason": "Continue approaching the transfer position with the receiving fingers open and lower than the holding hand."
+      },
+      {
+        "decision": 22,
+        "start": 110,
+        "end": 115,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.999,
+        "execution_s": 2.619,
+        "reason": "Position white near the left arm and lower the open receiving gripper toward the bottle body."
+      },
+      {
+        "decision": 23,
+        "start": 115,
+        "end": 120,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 14.59,
+        "execution_s": 2.536,
+        "reason": "Lower the receiving hand beneath the right gripper while keeping white stationary."
+      },
+      {
+        "decision": 24,
+        "start": 120,
+        "end": 125,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 13.499,
+        "execution_s": 2.578,
+        "reason": "Approach the lower white bottle body with vertical clearance beneath the holding hand."
+      },
+      {
+        "decision": 25,
+        "start": 125,
+        "end": 130,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 11.52,
+        "execution_s": 2.543,
+        "reason": "Translate the receiving left gripper toward white while the right arm maintains its grasp."
+      },
+      {
+        "decision": 26,
+        "start": 130,
+        "end": 135,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 14.632,
+        "execution_s": 2.622,
+        "reason": "White is visible at the right edge of the left wrist view; center the left fingers on its lower body."
+      },
+      {
+        "decision": 27,
+        "start": 135,
+        "end": 140,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 29.255,
+        "execution_s": 2.536,
+        "reason": "The receiving side finger touched white before centering. Back the open left gripper away slightly to clear the bottle, while the right hand holds it."
+      },
+      {
+        "decision": 28,
+        "start": 140,
+        "end": 145,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 14.085,
+        "execution_s": 2.658,
+        "reason": "Center the left gripper behind white with its fingers clear of the body."
+      },
+      {
+        "decision": 29,
+        "start": 145,
+        "end": 150,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.485,
+        "execution_s": 2.618,
+        "reason": "White is centered in the receiving wrist view. Advance the open left fingers around the lower body."
+      },
+      {
+        "decision": 30,
+        "start": 150,
+        "end": 155,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 31.932,
+        "execution_s": 2.549,
+        "reason": "Refine the receiving grasp after the bottle shifted slightly; move lower and right to center its body between the left jaws."
+      },
+      {
+        "decision": 31,
+        "start": 155,
+        "end": 160,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 18.367,
+        "execution_s": 2.547,
+        "reason": "The lower bottle body is between the open left fingers. Center slightly left and advance a little before closing."
+      },
+      {
+        "decision": 32,
+        "start": 160,
+        "end": 165,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 14.287,
+        "execution_s": 2.608,
+        "reason": "Close the receiving left fingers on the lower white bottle body while retaining the right grip."
+      },
+      {
+        "decision": 33,
+        "start": 165,
+        "end": 170,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 15.498,
+        "execution_s": 2.55,
+        "reason": "The left gripper closed against the bottle body. Release the right grip and retract it to verify the handover."
+      },
+      {
+        "decision": 34,
+        "start": 170,
+        "end": 175,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 17.601,
+        "execution_s": 2.818,
+        "reason": "Finish withdrawing the right fingers from white before moving the bottle sideways."
+      },
+      {
+        "decision": 35,
+        "start": 175,
+        "end": 180,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 44.635,
+        "execution_s": 2.604,
+        "reason": "Raise white for transport and move the empty right hand toward the small yellow bottle."
+      },
+      {
+        "decision": 36,
+        "start": 180,
+        "end": 185,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 26.173,
+        "execution_s": 2.459,
+        "reason": "Separate the two arms laterally while carrying white toward the bin."
+      },
+      {
+        "decision": 37,
+        "start": 185,
+        "end": 190,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.945,
+        "execution_s": 2.486,
+        "reason": "Carry white toward the bin at clearance height; move the right hand behind and above the small yellow bottle."
+      },
+      {
+        "decision": 38,
+        "start": 190,
+        "end": 195,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 28.629,
+        "execution_s": 2.409,
+        "reason": "Continue the white-bottle carry and lower the right hand toward the yellow-bottle approach height."
+      },
+      {
+        "decision": 39,
+        "start": 195,
+        "end": 200,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 20.937,
+        "execution_s": 2.443,
+        "reason": "Continue carrying white and move the right hand backward and down so it can approach yellow from the front."
+      },
+      {
+        "decision": 40,
+        "start": 200,
+        "end": 205,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 17.09,
+        "execution_s": 2.382,
+        "reason": "Maintain white clearance during the carry and lower the right gripper toward yellow."
+      },
+      {
+        "decision": 41,
+        "start": 205,
+        "end": 210,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 23.287,
+        "execution_s": 2.405,
+        "reason": "Move white farther over the bin and lower the right gripper to yellow's body height."
+      },
+      {
+        "decision": 42,
+        "start": 210,
+        "end": 215,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 18.426,
+        "execution_s": 2.4,
+        "reason": "Continue white toward bin center and position the right fingers below yellow's cap."
+      },
+      {
+        "decision": 43,
+        "start": 215,
+        "end": 220,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 28.62,
+        "execution_s": 2.51,
+        "reason": "Close the right fingers around yellow's body and move white above the bin interior."
+      },
+      {
+        "decision": 44,
+        "start": 220,
+        "end": 225,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 18.905,
+        "execution_s": 2.935,
+        "reason": "Lower white into the bin opening and lift yellow to verify its grasp."
+      },
+      {
+        "decision": 45,
+        "start": 225,
+        "end": 230,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 17.424,
+        "execution_s": 2.514,
+        "reason": "Release white over the bin interior; continue lifting the securely held yellow bottle."
+      },
+      {
+        "decision": 46,
+        "start": 230,
+        "end": 235,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 25.786,
+        "execution_s": 2.484,
+        "reason": "Withdraw the empty left hand vertically and move yellow leftward at clearance height."
+      },
+      {
+        "decision": 47,
+        "start": 235,
+        "end": 240,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 23.402,
+        "execution_s": 2.479,
+        "reason": "White has dropped into the bin. Move yellow toward a clear central table location accessible to the left hand."
+      },
+      {
+        "decision": 48,
+        "start": 240,
+        "end": 245,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 21.698,
+        "execution_s": 2.547,
+        "reason": "Continue yellow toward the left-side transfer area, keeping the left hand clear."
+      },
+      {
+        "decision": 49,
+        "start": 245,
+        "end": 250,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 23.912,
+        "execution_s": 2.529,
+        "reason": "Move yellow closer to the left arm while leaving room for the right hand to withdraw after placement."
+      },
+      {
+        "decision": 50,
+        "start": 250,
+        "end": 255,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.286,
+        "execution_s": 2.552,
+        "reason": "Move yellow to the clear left-center table area and keep the left hand behind its future approach."
+      },
+      {
+        "decision": 51,
+        "start": 255,
+        "end": 260,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 19.946,
+        "execution_s": 2.368,
+        "reason": "Lower yellow toward the table while positioning the left arm for the next grasp."
+      },
+      {
+        "decision": 52,
+        "start": 260,
+        "end": 265,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 21.693,
+        "execution_s": 2.457,
+        "reason": "Set yellow down at the original grasp height in its new accessible location."
+      },
+      {
+        "decision": 53,
+        "start": 265,
+        "end": 270,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 29.851,
+        "execution_s": 2.485,
+        "reason": "Release yellow onto the table and begin backing the right gripper away."
+      },
+      {
+        "decision": 54,
+        "start": 270,
+        "end": 275,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.925,
+        "execution_s": 2.557,
+        "reason": "Clear the right fingers from the placed yellow bottle and bring the left hand behind it."
+      },
+      {
+        "decision": 55,
+        "start": 275,
+        "end": 280,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.426,
+        "execution_s": 2.693,
+        "reason": "Yellow is upright on the table. Align the left gripper behind it while moving the right arm clear toward the last bottle."
+      },
+      {
+        "decision": 56,
+        "start": 280,
+        "end": 285,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 20.745,
+        "execution_s": 2.492,
+        "reason": "Continue centering the left gripper on yellow and move the right gripper away from the transfer area."
+      },
+      {
+        "decision": 57,
+        "start": 285,
+        "end": 290,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 23.43,
+        "execution_s": 2.541,
+        "reason": "Center the left fingers behind yellow and continue moving the right hand toward the lying bottle."
+      },
+      {
+        "decision": 58,
+        "start": 290,
+        "end": 295,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 24.952,
+        "execution_s": 2.762,
+        "reason": "The left side finger nudged yellow during alignment. Retract the open gripper to clear it before recentering."
+      },
+      {
+        "decision": 59,
+        "start": 295,
+        "end": 300,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 22.783,
+        "execution_s": 2.589,
+        "reason": "Recenter the left approach behind yellow as it settles, and continue right toward the remaining bottle."
+      },
+      {
+        "decision": 60,
+        "start": 300,
+        "end": 305,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 44.247,
+        "execution_s": 2.59,
+        "reason": "Yellow has tipped onto its side. Reorient both grippers along the lying bottles so their jaws can close across each bottle body."
+      },
+      {
+        "decision": 61,
+        "start": 305,
+        "end": 310,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 65.529,
+        "execution_s": 2.841,
+        "reason": "Reorient both open wrists while moving clear above the bottles with corrected bounded translation."
+      },
+      {
+        "decision": 62,
+        "start": 310,
+        "end": 315,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.051,
+        "execution_s": 2.808,
+        "reason": "Test a small combined wrist yaw and downward pitch while holding clear of the table."
+      },
+      {
+        "decision": 63,
+        "start": 315,
+        "end": 320,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 27.884,
+        "execution_s": 2.652,
+        "reason": "Continue rotating the stationary wrists toward lengthwise approaches to the lying bottles."
+      },
+      {
+        "decision": 64,
+        "start": 320,
+        "end": 325,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 38.18,
+        "execution_s": 2.662,
+        "reason": "Pitch the grippers downward as they rotate, preparing angled grasps on the horizontal bottles."
+      },
+      {
+        "decision": 65,
+        "start": 325,
+        "end": 330,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 35.967,
+        "execution_s": 2.73,
+        "reason": "Continue the left wrist turn and raise the right fingers clear of the table before further rotation."
+      },
+      {
+        "decision": 66,
+        "start": 330,
+        "end": 335,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 29.787,
+        "execution_s": 2.441,
+        "reason": "Turn the left gripper farther along yellow's length and reposition the right wrist above the final bottle's right side."
+      },
+      {
+        "decision": 67,
+        "start": 335,
+        "end": 340,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 29.506,
+        "execution_s": 2.551,
+        "reason": "Align the left fingers more closely with yellow's long axis and move the right hand toward its approach position."
+      },
+      {
+        "decision": 68,
+        "start": 340,
+        "end": 345,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 32.624,
+        "execution_s": 2.509,
+        "reason": "Finish turning the left approach toward yellow and reposition right above the outer end of the last bottle."
+      },
+      {
+        "decision": 69,
+        "start": 345,
+        "end": 350,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 78.745,
+        "execution_s": 2.566,
+        "reason": "Continue lengthwise wrist alignment using a smaller permitted rotation."
+      },
+      {
+        "decision": 70,
+        "start": 350,
+        "end": 355,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 32.449,
+        "execution_s": 2.563,
+        "reason": "Translate the angled left gripper toward yellow and move right to the outer approach position for the last bottle."
+      },
+      {
+        "decision": 71,
+        "start": 355,
+        "end": 360,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 36.885,
+        "execution_s": 2.81,
+        "reason": "Move the angled left fingers toward the center of yellow's body and complete the right-side approach position."
+      },
+      {
+        "decision": 72,
+        "start": 360,
+        "end": 365,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 32.109,
+        "execution_s": 2.465,
+        "reason": "Center yellow between the left fingers and turn the right wrist down toward the last bottle."
+      },
+      {
+        "decision": 73,
+        "start": 365,
+        "end": 370,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 30.983,
+        "execution_s": 2.479,
+        "reason": "Close the left fingers across yellow's body and continue orienting the right gripper over the final bottle."
+      },
+      {
+        "decision": 74,
+        "start": 370,
+        "end": 375,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.424,
+        "execution_s": 2.408,
+        "reason": "The left fingers closed above yellow rather than securing it. Reopen and lower toward the body; continue the right wrist adjustment."
+      },
+      {
+        "decision": 75,
+        "start": 375,
+        "end": 380,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.083,
+        "execution_s": 2.754,
+        "reason": "Refine the left body's lateral alignment and rotate the right wrist relative to its measured orientation."
+      },
+      {
+        "decision": 76,
+        "start": 380,
+        "end": 385,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 30.561,
+        "execution_s": 2.46,
+        "reason": "Close around the centered yellow bottle body and continue turning right toward a lengthwise approach."
+      },
+      {
+        "decision": 77,
+        "start": 385,
+        "end": 390,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.483,
+        "execution_s": 2.376,
+        "reason": "Lift yellow to verify the regrasp and continue the right wrist's final alignment."
+      },
+      {
+        "decision": 78,
+        "start": 390,
+        "end": 395,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 40.885,
+        "execution_s": 2.565,
+        "reason": "Yellow slipped during the lift. Reopen and approach deeper around its body while finishing right wrist alignment."
+      },
+      {
+        "decision": 79,
+        "start": 395,
+        "end": 400,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 36.63,
+        "execution_s": 2.576,
+        "reason": "Lower the left fingers more deeply around yellow; correct the right wrist roll and pitch for a stable side grasp."
+      },
+      {
+        "decision": 80,
+        "start": 400,
+        "end": 405,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 37.817,
+        "execution_s": 2.523,
+        "reason": "Close the deeper left grasp on yellow and complete the right gripper's downward approach angle."
+      },
+      {
+        "decision": 81,
+        "start": 405,
+        "end": 410,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 32.079,
+        "execution_s": 2.708,
+        "reason": "Verify yellow with a short lift and align the right gripper laterally over the remaining bottle."
+      },
+      {
+        "decision": 82,
+        "start": 410,
+        "end": 415,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 30.566,
+        "execution_s": 2.506,
+        "reason": "Yellow remains secured during the lift. Raise it for rim clearance and lower the right fingers toward the final bottle body."
+      },
+      {
+        "decision": 83,
+        "start": 415,
+        "end": 420,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 31.842,
+        "execution_s": 2.422,
+        "reason": "Carry the raised yellow bottle toward the bin and bring the right fingers farther around the last bottle."
+      },
+      {
+        "decision": 84,
+        "start": 420,
+        "end": 425,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.321,
+        "execution_s": 2.405,
+        "reason": "Continue carrying yellow and lower the right fingers to grasp across the final bottle's body."
+      },
+      {
+        "decision": 85,
+        "start": 425,
+        "end": 430,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.302,
+        "execution_s": 2.554,
+        "reason": "Close the right gripper across the final bottle while continuing yellow's carry."
+      },
+      {
+        "decision": 86,
+        "start": 430,
+        "end": 435,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 43.761,
+        "execution_s": 2.373,
+        "reason": "Verify the final bottle with a short lift while moving yellow farther left so its full length will clear the bin rim."
+      },
+      {
+        "decision": 87,
+        "start": 435,
+        "end": 440,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 35.133,
+        "execution_s": 2.456,
+        "reason": "Raise the final bottle above the rim and continue yellow's carry toward the bin interior."
+      },
+      {
+        "decision": 88,
+        "start": 440,
+        "end": 445,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 45.811,
+        "execution_s": 2.521,
+        "reason": "Both remaining bottles are securely elevated. Carry yellow over the bin and bring the last bottle inward."
+      },
+      {
+        "decision": 89,
+        "start": 445,
+        "end": 450,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 41.034,
+        "execution_s": 2.553,
+        "reason": "Continue both carries with the objects and fingers above the rim."
+      },
+      {
+        "decision": 90,
+        "start": 450,
+        "end": 455,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 39.343,
+        "execution_s": 2.712,
+        "reason": "Move yellow fully over the bin opening and continue bringing the last bottle toward the left side."
+      },
+      {
+        "decision": 91,
+        "start": 455,
+        "end": 460,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.619,
+        "execution_s": 2.442,
+        "reason": "Continue inward positioning for yellow's full-length clearance and transport the last bottle leftward."
+      },
+      {
+        "decision": 92,
+        "start": 460,
+        "end": 465,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 34.091,
+        "execution_s": 2.454,
+        "reason": "Center yellow fully inside the opening and maintain the last bottle's elevated carry."
+      },
+      {
+        "decision": 93,
+        "start": 465,
+        "end": 470,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 35.755,
+        "execution_s": 2.41,
+        "reason": "Lower yellow into the bin opening and continue carrying the last bottle toward the left."
+      },
+      {
+        "decision": 94,
+        "start": 470,
+        "end": 475,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 33.205,
+        "execution_s": 2.489,
+        "reason": "Release yellow inside the bin and move the final bottle farther left."
+      },
+      {
+        "decision": 95,
+        "start": 475,
+        "end": 480,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 39.707,
+        "execution_s": 2.57,
+        "reason": "Withdraw the empty left fingers upward from the bin and continue the final bottle's carry."
+      },
+      {
+        "decision": 96,
+        "start": 480,
+        "end": 485,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 56.921,
+        "execution_s": 2.555,
+        "reason": "Three bottles are visible inside the bin. Retract the left arm toward its start while carrying the final bottle leftward."
+      },
+      {
+        "decision": 97,
+        "start": 485,
+        "end": 490,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 47.594,
+        "execution_s": 2.79,
+        "reason": "Move the empty left hand toward its start and gradually restore its orientation while carrying the final bottle."
+      },
+      {
+        "decision": 98,
+        "start": 490,
+        "end": 495,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 38.061,
+        "execution_s": 3.176,
+        "reason": "Continue returning the left arm and carrying the final bottle toward the bin."
+      },
+      {
+        "decision": 99,
+        "start": 495,
+        "end": 500,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 39.09,
+        "execution_s": 2.525,
+        "reason": "Continue the left-arm return and approach the bin with the last bottle."
+      },
+      {
+        "decision": 100,
+        "start": 500,
+        "end": 505,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 44.086,
+        "execution_s": 2.977,
+        "reason": "The right arm is nearing its lateral reach; bring the bottle slightly back along the bin opening while preserving clearance."
+      },
+      {
+        "decision": 101,
+        "start": 505,
+        "end": 510,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 63.917,
+        "execution_s": 2.793,
+        "reason": "Set the final bottle in a clear left-side table position for the left hand, since the right arm cannot carry its full length into the bin comfortably."
+      },
+      {
+        "decision": 102,
+        "start": 510,
+        "end": 515,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 45.062,
+        "execution_s": 2.939,
+        "reason": "Release the final bottle onto the table and prepare the left gripper for its pickup."
+      },
+      {
+        "decision": 103,
+        "start": 515,
+        "end": 520,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 59.981,
+        "execution_s": 2.533,
+        "reason": "Withdraw the right fingers upward from the placed bottle and move the left hand clear above the table for pickup."
+      },
+      {
+        "decision": 104,
+        "start": 520,
+        "end": 525,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 41.121,
+        "execution_s": 2.562,
+        "reason": "Clear the right arm from the pickup area and align the left gripper lengthwise above the final bottle."
+      },
+      {
+        "decision": 105,
+        "start": 525,
+        "end": 530,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 38.004,
+        "execution_s": 2.54,
+        "reason": "Move the right arm away and bring the left fingers over the final bottle's center."
+      },
+      {
+        "decision": 106,
+        "start": 530,
+        "end": 535,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 39.315,
+        "execution_s": 2.536,
+        "reason": "Center and lower the left fingers around the final bottle while returning the right wrist toward its starting orientation."
+      },
+      {
+        "decision": 107,
+        "start": 535,
+        "end": 540,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 38.634,
+        "execution_s": 2.571,
+        "reason": "Lower the left fingers to a secure depth around the bottle body and move the right arm away."
+      },
+      {
+        "decision": 108,
+        "start": 540,
+        "end": 545,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 42.457,
+        "execution_s": 2.775,
+        "reason": "Close the left fingers around the centered final bottle and continue the right-arm return."
+      },
+      {
+        "decision": 109,
+        "start": 545,
+        "end": 550,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 43.701,
+        "execution_s": 2.574,
+        "reason": "Verify the final left-hand grasp with a short lift while returning the right arm."
+      },
+      {
+        "decision": 110,
+        "start": 550,
+        "end": 555,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 48.47,
+        "execution_s": 2.664,
+        "reason": "The final bottle followed the left hand. Raise it for rim clearance and continue the right-arm return."
+      },
+      {
+        "decision": 111,
+        "start": 555,
+        "end": 560,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 43.256,
+        "execution_s": 2.627,
+        "reason": "Carry the final bottle left at clearance height and move the right arm nearer its starting position."
+      },
+      {
+        "decision": 112,
+        "start": 560,
+        "end": 565,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 42.256,
+        "execution_s": 2.826,
+        "reason": "Continue the final bottle carry and right-arm return."
+      },
+      {
+        "decision": 113,
+        "start": 565,
+        "end": 570,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 54.98,
+        "execution_s": 2.583,
+        "reason": "Continue transporting the final bottle over the bin and bring the right hand toward home."
+      },
+      {
+        "decision": 114,
+        "start": 570,
+        "end": 575,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 45.14,
+        "execution_s": 2.645,
+        "reason": "Move the full bottle length farther over the opening and continue the right hand's final approach to its start pose."
+      },
+      {
+        "decision": 115,
+        "start": 575,
+        "end": 580,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.135,
+        "execution_s": 2.643,
+        "reason": "Center the final bottle over the bin interior and finish moving the right arm toward its start."
+      },
+      {
+        "decision": 116,
+        "start": 580,
+        "end": 585,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 68.315,
+        "execution_s": 2.635,
+        "reason": "Move the bottle deeper over the opening and command the right arm's episode-start pose."
+      },
+      {
+        "decision": 117,
+        "start": 585,
+        "end": 590,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 43.606,
+        "execution_s": 2.735,
+        "reason": "Lower the final bottle vertically into the opening and settle the right arm at its start pose."
+      },
+      {
+        "decision": 118,
+        "start": 590,
+        "end": 595,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 45.366,
+        "execution_s": 2.548,
+        "reason": "Release the final bottle inside the bin while holding the right arm at its start pose."
+      },
+      {
+        "decision": 119,
+        "start": 595,
+        "end": 600,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 48.446,
+        "execution_s": 2.589,
+        "reason": "Withdraw the left fingers straight upward from the final placement before any lateral movement."
+      },
+      {
+        "decision": 120,
+        "start": 600,
+        "end": 605,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.213,
+        "execution_s": 2.605,
+        "reason": "Raise the empty left gripper farther above the bin before returning across the rim."
+      },
+      {
+        "decision": 121,
+        "start": 605,
+        "end": 610,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 94.19,
+        "execution_s": 2.656,
+        "reason": "Return the empty left arm above the rim while gradually restoring its starting orientation."
+      },
+      {
+        "decision": 122,
+        "start": 610,
+        "end": 615,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 41.995,
+        "execution_s": 2.676,
+        "reason": "Continue the left-arm return with the fingers open and above the container."
+      },
+      {
+        "decision": 123,
+        "start": 615,
+        "end": 620,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.372,
+        "execution_s": 2.634,
+        "reason": "Continue moving the left wrist toward its start while restoring the starting orientation."
+      },
+      {
+        "decision": 124,
+        "start": 620,
+        "end": 625,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 45.661,
+        "execution_s": 2.652,
+        "reason": "Continue the final arm return using measured poses to keep each motion bounded."
+      },
+      {
+        "decision": 125,
+        "start": 625,
+        "end": 630,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 48.885,
+        "execution_s": 2.849,
+        "reason": "Bring the left wrist inward toward its base to complete the return without excessive reach."
+      },
+      {
+        "decision": 126,
+        "start": 630,
+        "end": 635,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.382,
+        "execution_s": 2.668,
+        "reason": "Hold the current left wrist orientation while moving inward and down toward its starting position."
+      },
+      {
+        "decision": 127,
+        "start": 635,
+        "end": 640,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 43.263,
+        "execution_s": 2.675,
+        "reason": "Continue lowering and centering the left arm while holding its orientation steady."
+      },
+      {
+        "decision": 128,
+        "start": 640,
+        "end": 645,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 47.147,
+        "execution_s": 2.648,
+        "reason": "Bring the left hand closer to its episode-start height and lateral position."
+      },
+      {
+        "decision": 129,
+        "start": 645,
+        "end": 650,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.988,
+        "execution_s": 2.717,
+        "reason": "Restore the left wrist orientation as it approaches the starting position."
+      },
+      {
+        "decision": 130,
+        "start": 650,
+        "end": 655,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 67.294,
+        "execution_s": 2.756,
+        "reason": "Move the left wrist close to the start position before completing its orientation correction."
+      },
+      {
+        "decision": 131,
+        "start": 655,
+        "end": 660,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 67.485,
+        "execution_s": 2.657,
+        "reason": "Complete the left hand's position return, then correct the remaining wrist rotation."
+      },
+      {
+        "decision": 132,
+        "start": 660,
+        "end": 665,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.157,
+        "execution_s": 2.727,
+        "reason": "Set the left hand at its starting position and reduce its remaining wrist orientation error."
+      },
+      {
+        "decision": 133,
+        "start": 665,
+        "end": 670,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.883,
+        "execution_s": 2.86,
+        "reason": "Continue correcting the left wrist orientation at the starting position."
+      },
+      {
+        "decision": 134,
+        "start": 670,
+        "end": 675,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 49.393,
+        "execution_s": 2.684,
+        "reason": "Command both episode-start poses to complete the required arm return and check native success."
+      },
+      {
+        "decision": 135,
+        "start": 675,
+        "end": 680,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 49.915,
+        "execution_s": 2.73,
+        "reason": "Settle both arms at their exact starting poses to satisfy the remaining return tolerance."
+      },
+      {
+        "decision": 136,
+        "start": 680,
+        "end": 685,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 65.529,
+        "execution_s": 2.768,
+        "reason": "Both arms match their start poses. Hold them clear while the bottles settle and native placement conditions are checked."
+      },
+      {
+        "decision": 137,
+        "start": 685,
+        "end": 690,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 46.379,
+        "execution_s": 2.686,
+        "reason": "Maintain both returned arm poses and check whether the bottle-placement evaluation completes after settling."
+      },
+      {
+        "decision": 138,
+        "start": 690,
+        "end": 695,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 48.407,
+        "execution_s": 2.726,
+        "reason": "The placement condition remains unconfirmed. Keep both arms returned and clear for the final native evaluation steps."
+      },
+      {
+        "decision": 139,
+        "start": 695,
+        "end": 700,
+        "executed_steps": 5,
+        "stop": null,
+        "model_wait_s": 45.639,
+        "execution_s": 3.163,
+        "reason": "Hold both returned arm poses through the remaining five steps and read the episode's native outcome."
+      }
+    ]
+  },
+  "fixed50": {
+    "summary": {
+      "decisions": 14,
+      "steps": 700,
+      "chunk_min": 50,
+      "chunk_median": 50.0,
+      "chunk_mean": 50,
+      "chunk_p90": 50,
+      "chunk_max": 50,
+      "wall_seconds": 1142.136564542,
+      "total_tokens": 1272058,
+      "input_tokens": 1264573,
+      "cached_input_tokens": 1177856,
+      "output_tokens": 7485,
+      "reasoning_tokens": 3164,
+      "avg_model_wait_s": 52.461396966661724,
+      "median_model_wait_s": 41.48705995082855,
+      "total_model_wait_s": 734.4595575332642,
+      "avg_execution_s": 24.97267230919429,
+      "total_execution_s": 349.6174123287201,
+      "stop_reasons": {
+        "fixed_or_budget": 14
+      }
+    },
+    "per_decision": [
+      {
+        "decision": 0,
+        "start": 0,
+        "end": 50,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 60.12,
+        "execution_s": 25.077,
+        "reason": "Pink bottle is ahead and inward of the left fingers; advance left diagonally and right forward with open grippers to approach visible bottles."
+      },
+      {
+        "decision": 1,
+        "start": 50,
+        "end": 100,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 21.511,
+        "execution_s": 24.867,
+        "reason": "The pink bottle remains to the right of the left wrist view center. Shift left fingers inward and slightly forward; move right inward toward the small yellow bottle."
+      },
+      {
+        "decision": 2,
+        "start": 100,
+        "end": 150,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 20.036,
+        "execution_s": 26.304,
+        "reason": "Pink bottle is centered in the left wrist view but still ahead of the fingers; advance open fingers along its approach. Continue right lateral alignment toward yellow bottle."
+      },
+      {
+        "decision": 3,
+        "start": 150,
+        "end": 200,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 20.593,
+        "execution_s": 24.844,
+        "reason": "Left bottle remains upright and centered as fingers approach. Advance farther around its body; lift right fingers to clear the yellow cap after lateral contact displaced it slightly."
+      },
+      {
+        "decision": 4,
+        "start": 200,
+        "end": 250,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 28.906,
+        "execution_s": 24.424,
+        "reason": "Pink body is between left fingers. Close while lifting vertically to test retention and gain rim clearance. Move right arm back away from the fallen yellow bottle."
+      },
+      {
+        "decision": 5,
+        "start": 250,
+        "end": 300,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 14.748,
+        "execution_s": 25.129,
+        "reason": "Left gripper is partly closed around the pink bottle and the bottle moved with the lift. Continue straight upward for bottle and finger clearance before lateral travel; retract right toward home."
+      },
+      {
+        "decision": 6,
+        "start": 300,
+        "end": 350,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 21.435,
+        "execution_s": 24.923,
+        "reason": "Pink bottle remains retained after vertical lift. Translate left at the raised height toward the visible dustbin opening; finish right arm return."
+      },
+      {
+        "decision": 7,
+        "start": 350,
+        "end": 400,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 20.389,
+        "execution_s": 24.826,
+        "reason": "Held pink bottle is approaching the bin right edge but is not centered above the opening. Continue left at constant raised height."
+      },
+      {
+        "decision": 8,
+        "start": 400,
+        "end": 450,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 82.475,
+        "execution_s": 25.427,
+        "reason": "Bottle bottom remains near the dustbin right rim. Move one more bounded increment left to place its footprint fully inside the opening before release."
+      },
+      {
+        "decision": 9,
+        "start": 450,
+        "end": 500,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 72.273,
+        "execution_s": 24.174,
+        "reason": "Pink bottle is above the dark bin opening with clearance from the right rim. Lower vertically while retaining it before releasing into the bin."
+      },
+      {
+        "decision": 10,
+        "start": 500,
+        "end": 550,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 87.753,
+        "execution_s": 24.661,
+        "reason": "The lowered pink bottle projects close to the right rim; increase inward clearance while lifting slightly so its full footprint can fall inside the bin."
+      },
+      {
+        "decision": 11,
+        "start": 550,
+        "end": 600,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 54.068,
+        "execution_s": 25.359,
+        "reason": "Pink bottle is above the bin interior with visible right-rim clearance. Open the left gripper and withdraw vertically before sideways retraction."
+      },
+      {
+        "decision": 12,
+        "start": 600,
+        "end": 650,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 164.362,
+        "execution_s": 24.681,
+        "reason": "Pink bottle has left the open gripper and disappeared into the bin opening. Fingers have withdrawn upward; retract left toward its episode-start pose while right holds home."
+      },
+      {
+        "decision": 13,
+        "start": 650,
+        "end": 700,
+        "executed_steps": 50,
+        "stop": null,
+        "model_wait_s": 65.79,
+        "execution_s": 24.92,
+        "reason": "Three bottles remain on the table, and the left arm is still displaced from home. Use the final bounded action to continue safe return with both grippers open."
+      }
+    ]
+  },
+  "adaptive": {
+    "summary": {
+      "decisions": 64,
+      "steps": 700,
+      "chunk_min": 5,
+      "chunk_median": 9.0,
+      "chunk_mean": 10.9375,
+      "chunk_p90": 15,
+      "chunk_max": 26,
+      "wall_seconds": 2583.5769980839996,
+      "total_tokens": 5987634,
+      "input_tokens": 5962199,
+      "cached_input_tokens": 5815680,
+      "output_tokens": 25435,
+      "reasoning_tokens": 8256,
+      "avg_model_wait_s": 30.629178404808044,
+      "median_model_wait_s": 28.391778469085693,
+      "total_model_wait_s": 1960.2674179077148,
+      "avg_execution_s": 5.449586931616068,
+      "total_execution_s": 348.77356362342834,
+      "stop_reasons": {
+        "target_settled": 45,
+        "motion_stalled": 18,
+        "terminal": 1
+      }
+    },
+    "per_decision": [
+      {
+        "decision": 0,
+        "start": 0,
+        "end": 23,
+        "executed_steps": 23,
+        "stop": "target_settled",
+        "model_wait_s": 70.419,
+        "execution_s": 11.345,
+        "reason": "The pink and white upright bottles are ahead of the open grippers. Advance both hands toward their bodies."
+      },
+      {
+        "decision": 1,
+        "start": 23,
+        "end": 36,
+        "executed_steps": 13,
+        "stop": "target_settled",
+        "model_wait_s": 23.306,
+        "execution_s": 6.813,
+        "reason": "Wrist views place both upright bottles to the right of each gripper center. Shift right while approaching."
+      },
+      {
+        "decision": 2,
+        "start": 36,
+        "end": 46,
+        "executed_steps": 10,
+        "stop": "target_settled",
+        "model_wait_s": 17.908,
+        "execution_s": 5.06,
+        "reason": "The pink bottle is nearly centered; the white bottle remains right of center. Refine alignment and bring fingers alongside both bottles."
+      },
+      {
+        "decision": 3,
+        "start": 46,
+        "end": 54,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 20.59,
+        "execution_s": 3.907,
+        "reason": "The pink bottle is centered between the left fingers. Close around its body while aligning the right hand with the white bottle."
+      },
+      {
+        "decision": 4,
+        "start": 54,
+        "end": 66,
+        "executed_steps": 12,
+        "stop": "target_settled",
+        "model_wait_s": 16.875,
+        "execution_s": 6.111,
+        "reason": "Left fingers contact the pink bottle on both sides. Lift to verify the grasp, and close the centered right fingers around the white bottle."
+      },
+      {
+        "decision": 5,
+        "start": 66,
+        "end": 76,
+        "executed_steps": 10,
+        "stop": "target_settled",
+        "model_wait_s": 18.751,
+        "execution_s": 4.891,
+        "reason": "Both bottles remain between their fingers. Raise them vertically to establish clearance before transport."
+      },
+      {
+        "decision": 6,
+        "start": 76,
+        "end": 85,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 17.461,
+        "execution_s": 4.574,
+        "reason": "Both lifted bottles remain secure. Add height while beginning the leftward transport above the table."
+      },
+      {
+        "decision": 7,
+        "start": 85,
+        "end": 94,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 13.558,
+        "execution_s": 4.279,
+        "reason": "The pink bottle is elevated above the rim level. Carry it toward the left bin while bringing the white bottle toward the shared workspace."
+      },
+      {
+        "decision": 8,
+        "start": 94,
+        "end": 103,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 16.352,
+        "execution_s": 4.526,
+        "reason": "Continue the elevated leftward transfer; both wrist views show stable bottle contact."
+      },
+      {
+        "decision": 9,
+        "start": 103,
+        "end": 112,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 14.821,
+        "execution_s": 4.611,
+        "reason": "Move the pink bottle farther inside the bin opening and continue bringing the white bottle inward."
+      },
+      {
+        "decision": 10,
+        "start": 112,
+        "end": 121,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 20.265,
+        "execution_s": 4.527,
+        "reason": "Pink bottle is above the visible bin opening. Lower it within the opening while advancing the held white bottle inward."
+      },
+      {
+        "decision": 11,
+        "start": 121,
+        "end": 129,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 14.323,
+        "execution_s": 4.403,
+        "reason": "Release the pink bottle inside the bin; maintain the white grasp while moving it closer to the center."
+      },
+      {
+        "decision": 12,
+        "start": 129,
+        "end": 138,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 18.873,
+        "execution_s": 4.363,
+        "reason": "The released pink bottle is descending into the bin. Withdraw left fingers upward and continue the white bottle transfer."
+      },
+      {
+        "decision": 13,
+        "start": 138,
+        "end": 146,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 25.586,
+        "execution_s": 3.962,
+        "reason": "Pink bottle is below the bin rim. Move the empty left hand inward and slightly lower for a grasp below the right hand on the white bottle."
+      },
+      {
+        "decision": 14,
+        "start": 146,
+        "end": 154,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 16.897,
+        "execution_s": 3.92,
+        "reason": "Approach the central handover area with the left fingers open and below the white bottle's current grasp."
+      },
+      {
+        "decision": 15,
+        "start": 154,
+        "end": 163,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 19.747,
+        "execution_s": 4.28,
+        "reason": "Continue converging with vertical separation between grippers for the white bottle handover."
+      },
+      {
+        "decision": 16,
+        "start": 163,
+        "end": 172,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 28.727,
+        "execution_s": 4.412,
+        "reason": "Bring the white bottle to the left side of the central workspace and lower the receiving gripper below the holding fingers."
+      },
+      {
+        "decision": 17,
+        "start": 172,
+        "end": 180,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 18.021,
+        "execution_s": 3.934,
+        "reason": "Hold the white bottle stationary and approach its lower body with the open left gripper."
+      },
+      {
+        "decision": 18,
+        "start": 180,
+        "end": 189,
+        "executed_steps": 9,
+        "stop": "motion_stalled",
+        "model_wait_s": 22.993,
+        "execution_s": 4.661,
+        "reason": "The white bottle's lower body enters the right edge of the left wrist view. Translate the receiving hand rightward at its lower grasp height."
+      },
+      {
+        "decision": 19,
+        "start": 189,
+        "end": 196,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 24.942,
+        "execution_s": 3.429,
+        "reason": "Measured motion stalled as the gripper housings approached. Increase vertical separation and advance the receiving fingers toward the lower bottle body."
+      },
+      {
+        "decision": 20,
+        "start": 196,
+        "end": 203,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 20.39,
+        "execution_s": 3.457,
+        "reason": "With greater housing clearance, slide the left fingers beneath the right grasp toward the visible white bottle base."
+      },
+      {
+        "decision": 21,
+        "start": 203,
+        "end": 212,
+        "executed_steps": 9,
+        "stop": "motion_stalled",
+        "model_wait_s": 22.983,
+        "execution_s": 4.652,
+        "reason": "The receiving side finger displaced the bottle slightly. Back the left fingers away to align from the front while the right hand maintains its grasp."
+      },
+      {
+        "decision": 22,
+        "start": 212,
+        "end": 223,
+        "executed_steps": 11,
+        "stop": "target_settled",
+        "model_wait_s": 20.898,
+        "execution_s": 5.816,
+        "reason": "Align the receiving hand with the bottle's displaced lower body while retaining a rearward approach offset."
+      },
+      {
+        "decision": 23,
+        "start": 223,
+        "end": 230,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 22.823,
+        "execution_s": 3.472,
+        "reason": "The white bottle has returned to the right gripper center. Align the left fingers under its lower body and approach from the front."
+      },
+      {
+        "decision": 24,
+        "start": 230,
+        "end": 237,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 21.295,
+        "execution_s": 3.524,
+        "reason": "The white bottle's lower body is centered between the receiving fingers. Close the left gripper while keeping the right grasp engaged."
+      },
+      {
+        "decision": 25,
+        "start": 237,
+        "end": 244,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 22.242,
+        "execution_s": 3.575,
+        "reason": "Both hands contact the bottle. Release and withdraw the right fingers while the left hand holds the lower body."
+      },
+      {
+        "decision": 26,
+        "start": 244,
+        "end": 254,
+        "executed_steps": 10,
+        "stop": "motion_stalled",
+        "model_wait_s": 38.669,
+        "execution_s": 5.074,
+        "reason": "The bottle remains stable in the left gripper after release. Lift it for bin clearance and separate the empty right arm."
+      },
+      {
+        "decision": 27,
+        "start": 254,
+        "end": 274,
+        "executed_steps": 20,
+        "stop": "target_settled",
+        "model_wait_s": 32.56,
+        "execution_s": 10.203,
+        "reason": "Transport the white bottle leftward at clearance height. Move the empty right hand toward the horizontal bottle and begin orienting for a top-down grasp across its width."
+      },
+      {
+        "decision": 28,
+        "start": 274,
+        "end": 292,
+        "executed_steps": 18,
+        "stop": "target_settled",
+        "model_wait_s": 25.25,
+        "execution_s": 8.623,
+        "reason": "Continue elevated transport toward the bin while rotating the right gripper to approach the horizontal bottle from above."
+      },
+      {
+        "decision": 29,
+        "start": 292,
+        "end": 302,
+        "executed_steps": 10,
+        "stop": "target_settled",
+        "model_wait_s": 34.721,
+        "execution_s": 4.942,
+        "reason": "White bottle remains secure. Continue toward the bin and move the right hand above the horizontal bottle as its downward orientation develops."
+      },
+      {
+        "decision": 30,
+        "start": 302,
+        "end": 311,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 23.141,
+        "execution_s": 4.296,
+        "reason": "Advance the white bottle over the bin side and continue aligning the right wrist above the horizontal bottle."
+      },
+      {
+        "decision": 31,
+        "start": 311,
+        "end": 321,
+        "executed_steps": 10,
+        "stop": "target_settled",
+        "model_wait_s": 24.7,
+        "execution_s": 4.844,
+        "reason": "Maintain the stable white-bottle grasp while completing the right-hand downward approach above the remaining horizontal bottle."
+      },
+      {
+        "decision": 32,
+        "start": 321,
+        "end": 330,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 28.073,
+        "execution_s": 4.472,
+        "reason": "Carry the white bottle over the opening and finish rotating the right gripper toward a vertical approach."
+      },
+      {
+        "decision": 33,
+        "start": 330,
+        "end": 337,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 28.711,
+        "execution_s": 3.395,
+        "reason": "Lower the white bottle over the bin interior. The horizontal bottle appears ahead and left in the downward wrist view; translate the right hand to center it."
+      },
+      {
+        "decision": 34,
+        "start": 337,
+        "end": 344,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 32.77,
+        "execution_s": 3.691,
+        "reason": "Release the white bottle within the bin. Shift the overhead right gripper toward the horizontal bottle's center before descending."
+      },
+      {
+        "decision": 35,
+        "start": 344,
+        "end": 353,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 30.913,
+        "execution_s": 4.474,
+        "reason": "Withdraw left fingers upward after the white release. Center the horizontal bottle between the overhead fingers and begin lowering."
+      },
+      {
+        "decision": 36,
+        "start": 353,
+        "end": 361,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 37.76,
+        "execution_s": 4.258,
+        "reason": "White bottle has fallen into the bin. Lower the right fingers around the centered horizontal bottle; move the left hand toward the small yellow bottle."
+      },
+      {
+        "decision": 37,
+        "start": 361,
+        "end": 369,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 23.007,
+        "execution_s": 4.227,
+        "reason": "The horizontal bottle body is bracketed by the downward fingers. Close the right gripper and continue the left approach toward the yellow bottle."
+      },
+      {
+        "decision": 38,
+        "start": 369,
+        "end": 378,
+        "executed_steps": 9,
+        "stop": "target_settled",
+        "model_wait_s": 29.823,
+        "execution_s": 4.36,
+        "reason": "Lift the horizontal bottle vertically to verify its grasp; continue positioning the empty left hand for the yellow bottle."
+      },
+      {
+        "decision": 39,
+        "start": 378,
+        "end": 389,
+        "executed_steps": 11,
+        "stop": "target_settled",
+        "model_wait_s": 42.077,
+        "execution_s": 5.266,
+        "reason": "The horizontal bottle rose with the right hand. Lift it farther and begin leftward transport while the left hand approaches the yellow bottle."
+      },
+      {
+        "decision": 40,
+        "start": 389,
+        "end": 400,
+        "executed_steps": 11,
+        "stop": "target_settled",
+        "model_wait_s": 23.753,
+        "execution_s": 5.55,
+        "reason": "Continue toward the two remaining bottle placements with the horizontal bottle held above the table and the left fingers open for the yellow bottle."
+      },
+      {
+        "decision": 41,
+        "start": 400,
+        "end": 410,
+        "executed_steps": 10,
+        "stop": "target_settled",
+        "model_wait_s": 32.27,
+        "execution_s": 4.832,
+        "reason": "Move the left hand closer to the yellow bottle at its body height while transporting the raised horizontal bottle leftward."
+      },
+      {
+        "decision": 42,
+        "start": 410,
+        "end": 420,
+        "executed_steps": 10,
+        "stop": "target_settled",
+        "model_wait_s": 24.048,
+        "execution_s": 4.848,
+        "reason": "Continue the measured approach and elevated transfer; the horizontal bottle remains fixed between the right fingers."
+      },
+      {
+        "decision": 43,
+        "start": 420,
+        "end": 428,
+        "executed_steps": 8,
+        "stop": "target_settled",
+        "model_wait_s": 30.647,
+        "execution_s": 3.917,
+        "reason": "Bring the left gripper behind the yellow bottle at a suitable side-grasp height and continue carrying the horizontal bottle toward the bin."
+      },
+      {
+        "decision": 44,
+        "start": 428,
+        "end": 435,
+        "executed_steps": 7,
+        "stop": "target_settled",
+        "model_wait_s": 28.729,
+        "execution_s": 3.569,
+        "reason": "Advance the left hand toward the yellow bottle's lateral alignment while the right maintains height on its leftward path."
+      },
+      {
+        "decision": 45,
+        "start": 435,
+        "end": 446,
+        "executed_steps": 11,
+        "stop": "motion_stalled",
+        "model_wait_s": 27.328,
+        "execution_s": 5.252,
+        "reason": "Continue the left hand's approach behind the yellow bottle while transporting the held bottle across the center."
+      },
+      {
+        "decision": 46,
+        "start": 446,
+        "end": 459,
+        "executed_steps": 13,
+        "stop": "target_settled",
+        "model_wait_s": 32.002,
+        "execution_s": 6.171,
+        "reason": "The left approach stalled near the rear workspace. Shift forward while aligning with the yellow bottle; continue the right-hand transfer."
+      },
+      {
+        "decision": 47,
+        "start": 459,
+        "end": 474,
+        "executed_steps": 15,
+        "stop": "motion_stalled",
+        "model_wait_s": 34.011,
+        "execution_s": 7.366,
+        "reason": "The yellow bottle tipped during the side approach. Withdraw the open left fingers to realign with its new pose while maintaining the other bottle's transport."
+      },
+      {
+        "decision": 48,
+        "start": 474,
+        "end": 483,
+        "executed_steps": 9,
+        "stop": "motion_stalled",
+        "model_wait_s": 47.942,
+        "execution_s": 4.377,
+        "reason": "Separate the crossing arms by lifting the carried bottle and moving the left hand outward from the obstructed approach."
+      },
+      {
+        "decision": 49,
+        "start": 483,
+        "end": 497,
+        "executed_steps": 14,
+        "stop": "target_settled",
+        "model_wait_s": 39.252,
+        "execution_s": 6.996,
+        "reason": "The right arm cannot advance farther with its current reach. Bring the left gripper toward the horizontal bottle's exposed neck for a handover."
+      },
+      {
+        "decision": 50,
+        "start": 497,
+        "end": 506,
+        "executed_steps": 9,
+        "stop": "motion_stalled",
+        "model_wait_s": 42.205,
+        "execution_s": 4.594,
+        "reason": "The exposed cap and neck are adjacent to the left fingers. Align and close on that end while retaining the right body grasp."
+      },
+      {
+        "decision": 51,
+        "start": 506,
+        "end": 515,
+        "executed_steps": 9,
+        "stop": "motion_stalled",
+        "model_wait_s": 51.301,
+        "execution_s": 4.566,
+        "reason": "The neck grasp did not secure the bottle. Open and move the left hand away; move the right grasp forward and left to clear the crossing arms."
+      },
+      {
+        "decision": 52,
+        "start": 515,
+        "end": 526,
+        "executed_steps": 11,
+        "stop": "motion_stalled",
+        "model_wait_s": 45.095,
+        "execution_s": 5.744,
+        "reason": "Clear the receiving fingers backward from the bottle and restore the right wrist's vertical orientation before another transport attempt."
+      },
+      {
+        "decision": 53,
+        "start": 526,
+        "end": 536,
+        "executed_steps": 10,
+        "stop": "motion_stalled",
+        "model_wait_s": 38.422,
+        "execution_s": 5.36,
+        "reason": "Move the empty left hand away from the right forearm and lift the held bottle forward to separate the contact region."
+      },
+      {
+        "decision": 54,
+        "start": 536,
+        "end": 562,
+        "executed_steps": 26,
+        "stop": "target_settled",
+        "model_wait_s": 55.268,
+        "execution_s": 12.67,
+        "reason": "Lower the horizontal bottle to the central table for a stable regrasp. Raise and rotate the left gripper for an overhead approach."
+      },
+      {
+        "decision": 55,
+        "start": 562,
+        "end": 583,
+        "executed_steps": 21,
+        "stop": "motion_stalled",
+        "model_wait_s": 38.801,
+        "execution_s": 10.178,
+        "reason": "Release the horizontal bottle onto the table and withdraw the right fingers upward while preparing the left overhead regrasp."
+      },
+      {
+        "decision": 56,
+        "start": 583,
+        "end": 605,
+        "executed_steps": 22,
+        "stop": "motion_stalled",
+        "model_wait_s": 56.628,
+        "execution_s": 10.726,
+        "reason": "Separate the empty right arm from the regrasp area and rotate the left hand downward above the bottle."
+      },
+      {
+        "decision": 57,
+        "start": 605,
+        "end": 624,
+        "executed_steps": 19,
+        "stop": "motion_stalled",
+        "model_wait_s": 42.103,
+        "execution_s": 9.332,
+        "reason": "Center the left approach over the bottle body and lower as the fingers become more vertical; continue clearing the right arm."
+      },
+      {
+        "decision": 58,
+        "start": 624,
+        "end": 637,
+        "executed_steps": 13,
+        "stop": "motion_stalled",
+        "model_wait_s": 52.194,
+        "execution_s": 6.155,
+        "reason": "The bottle body is centered between the left fingers at the slanted overhead approach. Lower and close to regrasp while the right hand clears laterally."
+      },
+      {
+        "decision": 59,
+        "start": 637,
+        "end": 650,
+        "executed_steps": 13,
+        "stop": "motion_stalled",
+        "model_wait_s": 38.724,
+        "execution_s": 6.522,
+        "reason": "The left fingers closed without securing the bottle. Reopen, improve the downward orientation, and continue clearing the right arm."
+      },
+      {
+        "decision": 60,
+        "start": 650,
+        "end": 665,
+        "executed_steps": 15,
+        "stop": "motion_stalled",
+        "model_wait_s": 40.039,
+        "execution_s": 7.216,
+        "reason": "Align the left fingers over the displaced bottle body with a nearly vertical wrist while moving the right arm back toward its starting side."
+      },
+      {
+        "decision": 61,
+        "start": 665,
+        "end": 680,
+        "executed_steps": 15,
+        "stop": "motion_stalled",
+        "model_wait_s": 39.916,
+        "execution_s": 7.329,
+        "reason": "Shift the left wrist toward the bottle center seen to the left in its downward image, retaining clearance for the fingers."
+      },
+      {
+        "decision": 62,
+        "start": 680,
+        "end": 695,
+        "executed_steps": 15,
+        "stop": "motion_stalled",
+        "model_wait_s": 59.22,
+        "execution_s": 7.689,
+        "reason": "Raise the left fingers clear of side contact and center them above the bottle for a final grasp attempt; continue retracting the right arm."
+      },
+      {
+        "decision": 63,
+        "start": 695,
+        "end": 700,
+        "executed_steps": 5,
+        "stop": "terminal",
+        "model_wait_s": 37.152,
+        "execution_s": 3.185,
+        "reason": "Use the final available controls to align the left gripper over the bottle body while continuing the right arm's return."
+      }
+    ]
+  }
+}

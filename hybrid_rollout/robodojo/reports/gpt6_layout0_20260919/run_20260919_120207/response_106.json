@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "cc9f0e01473a46d69acf590b6a511721",
+  "reason": "Center and lower the left fingers around the final bottle while returning the right wrist toward its starting orientation.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.329,
+        -0.191,
+        0.928
+      ],
+      "quaternion_wxyz": [
+        0.9240912199020386,
+        -0.0017091321060433984,
+        0.38215282559394836,
+        0.0034230088349431753
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.071,
+        -0.215,
+        1.019
+      ],
+      "quaternion_wxyz": [
+        0.3078531623265326,
+        -0.23787551349553648,
+        -0.056327108492249825,
+        0.9194937951720059
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

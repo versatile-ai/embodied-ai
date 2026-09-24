@@ -1,0 +1,86 @@
+{
+  "request_id": "230ced3599f64079b8627b94830121c7",
+  "mode": "student",
+  "steps": 15,
+  "reason": "The tall white bottle is suspended securely in the right hand; approach it with the open left hand.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into the dustbin opening.",
+        "Small yellow bottle handed over and dropped into the dustbin.",
+        "Tall white bottle lifted with the right hand."
+      ],
+      "currently_attempting": "Approach the white bottle for handover.",
+      "remaining": [
+        "Handover and place the tall white bottle.",
+        "Place the pale bottle.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Approach for white-bottle handover.",
+    "execution_status": "progressing",
+    "execution_evidence": "The white bottle moved inward and upward with the right hand and is visibly suspended above the table.",
+    "expected_next_intent": "Hold the right grasp and approach with the left fingers open.",
+    "predicted_next_intent": "Right arm settles into handover pose; left arm rises and approaches.",
+    "intent_status": "aligned",
+    "intent_evidence": "Right opening stays about 0.45; left FK moves inward to x=-0.167 m and z=1.009 m with opening 1."
+  },
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  }
+}

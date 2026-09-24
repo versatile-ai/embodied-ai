@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "afec1eb99e5348198527c44e46d013bb",
+  "reason": "The receiving side finger displaced the bottle slightly. Back the left fingers away to align from the front while the right hand maintains its grasp.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.09229613292217255,
+        -0.24756000757217406,
+        0.9297173023223877
+      ],
+      "quaternion_wxyz": [
+        0.70710678,
+        0,
+        0,
+        0.70710678
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07467468082904816,
+        -0.19925101101398468,
+        1.0633341073989868
+      ],
+      "quaternion_wxyz": [
+        0.70710678,
+        0,
+        0,
+        0.70710678
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

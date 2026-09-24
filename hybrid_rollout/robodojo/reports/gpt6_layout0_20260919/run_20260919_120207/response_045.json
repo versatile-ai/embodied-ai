@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "4b0c349cbf844d3da072eea130e2732a",
+  "reason": "Release white over the bin interior; continue lifting the securely held yellow bottle.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.4599631428718567,
+        -0.15500789880752563,
+        0.9160696864128113
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.113,
+        -0.365,
+        0.943
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

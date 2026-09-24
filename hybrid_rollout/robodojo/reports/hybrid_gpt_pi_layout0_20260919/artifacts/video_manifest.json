@@ -1,0 +1,22 @@
+{
+  "status": "ready",
+  "source": "GPU RoboDojo official simulator recording",
+  "episode_id": "f4906c5d56d54c6d9d9aa371e30fc32f",
+  "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/hybrid_gpt_pi_layout0_20260919/run_20260919_152000/remote_sim/sensors.mp4",
+  "frames": 503,
+  "fps": 25,
+  "duration_seconds": 20.12,
+  "resolution": "1280x720",
+  "covers": "reset first frame through native success at control step 502",
+  "checks": {
+    "success": true,
+    "complete": true,
+    "native_step": true,
+    "decisions_result": true,
+    "metrics_decisions": true,
+    "raw_frames": true,
+    "actions": true,
+    "decision_receipts": true,
+    "video_exists": true
+  }
+}

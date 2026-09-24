@@ -1,0 +1,26 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "xhigh",
+  "provider": "openai",
+  "usage": {
+    "total": {
+      "totalTokens": 8636113,
+      "inputTokens": 8617829,
+      "cachedInputTokens": 8426624,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 18284,
+      "reasoningOutputTokens": 395
+    },
+    "last": {
+      "totalTokens": 183010,
+      "inputTokens": 182877,
+      "cachedInputTokens": 181120,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 133,
+      "reasoningOutputTokens": 0
+    },
+    "modelContextWindow": 258400
+  },
+  "total_tokens_include_cached_input": true,
+  "configured_limit": 0
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "39cd9cfebc6946de8a5b322a616b9c8e",
+  "reason": "Hold the white bottle stationary and approach its lower body with the open left gripper.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.19824540793895723,
+        -0.2184944450855255,
+        0.9541973538398743
+      ],
+      "quaternion_wxyz": [
+        0.7072476148605347,
+        -0.0015450955834239721,
+        -0.0018148182425647974,
+        0.7069617509841919
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07947414368391037,
+        -0.20222802460193634,
+        1.0307520627975464
+      ],
+      "quaternion_wxyz": [
+        0.7071049213409424,
+        -0.0018426466267555952,
+        -0.0005195270059630275,
+        0.7071059346199036
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

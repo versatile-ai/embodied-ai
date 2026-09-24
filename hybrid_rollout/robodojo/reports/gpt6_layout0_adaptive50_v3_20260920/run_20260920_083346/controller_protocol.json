@@ -1,0 +1,9 @@
+{
+  "controller_version": "recoverable_tool_input_v1",
+  "context_version": "v3",
+  "recoverable_input_error_limit": null,
+  "validation_unchanged": true,
+  "same_thread": true,
+  "simulator_reset_on_input_error": false,
+  "action_replay_on_input_error": false
+}

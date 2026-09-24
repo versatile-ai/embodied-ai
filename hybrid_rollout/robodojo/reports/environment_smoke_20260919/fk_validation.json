@@ -1,0 +1,16 @@
+{
+  "arms": {
+    "left": {
+      "position_error_m": 5.8316152276378426e-08,
+      "rotation_error_rad": 1.7029852903777004e-07,
+      "passed": true
+    },
+    "right": {
+      "position_error_m": 5.8316152276378426e-08,
+      "rotation_error_rad": 1.7029852903923996e-07,
+      "passed": true
+    }
+  },
+  "passed": true,
+  "physical_steps": 0
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "ca8d082cd95c4c4ca9c835b3c4e509da",
+  "reason": "Test a small combined wrist yaw and downward pitch while holding clear of the table.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.16855034232139587,
+        -0.30727484822273254,
+        0.9376941323280334
+      ],
+      "quaternion_wxyz": [
+        0.7728886745659858,
+        -0.06578189337943825,
+        0.08123387308576022,
+        0.6258729081007872
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.18725956976413727,
+        -0.3122636079788208,
+        0.8780909180641174
+      ],
+      "quaternion_wxyz": [
+        0.6122888173461011,
+        -0.08236955311289618,
+        0.06435414790888741,
+        0.7836939482475386
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

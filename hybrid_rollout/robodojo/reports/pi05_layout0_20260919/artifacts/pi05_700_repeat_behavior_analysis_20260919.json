@@ -1,0 +1,203 @@
+{
+  "runs": [
+    {
+      "run_id": "pi_closed_loop_layout0_700_video_20260919_174926",
+      "wall_time_s": 251.02,
+      "steps": 700,
+      "decisions": 14,
+      "observation_ms": {
+        "mean": 78.226,
+        "median": 71.838,
+        "p95": 80.259,
+        "min": 67.504,
+        "max": 158.107,
+        "total": 1095.163
+      },
+      "inference_roundtrip_ms_runner": {
+        "mean": 8607.539,
+        "median": 7895.525,
+        "p95": 11179.081,
+        "min": 4889.42,
+        "max": 14675.838,
+        "total": 120505.54
+      },
+      "inference_roundtrip_ms_service_trace": {
+        "mean": 8579.752,
+        "median": 7865.345,
+        "p95": 11151.287,
+        "min": 4861.794,
+        "max": 14648.108,
+        "total": 120116.527
+      },
+      "npu_inference_ms": {
+        "mean": 550.493,
+        "median": 542.7,
+        "p95": 573.0,
+        "min": 533.3,
+        "max": 598.0,
+        "total": 7706.9
+      },
+      "chunk_execution_ms": {
+        "mean": 9231.772,
+        "median": 9151.049,
+        "p95": 9582.633,
+        "min": 8989.788,
+        "max": 9594.507,
+        "total": 129244.81
+      },
+      "left_arm_path_l2_rad": 40.395476,
+      "right_arm_path_l2_rad": 27.281541,
+      "left_tracking_error_rad": {
+        "mean": 0.001,
+        "median": 0.0,
+        "p95": 0.004,
+        "min": 0.0,
+        "max": 0.069,
+        "total": 4.303
+      },
+      "right_tracking_error_rad": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.002,
+        "min": 0.0,
+        "max": 0.031,
+        "total": 1.553
+      },
+      "left_gripper": {
+        "min": 0.41177722811698914,
+        "max": 1.001551628112793,
+        "mean": 0.8451617564048086,
+        "threshold_0_5_crossings": 10,
+        "final": 1.0008426904678345
+      },
+      "right_gripper": {
+        "min": 0.38630324602127075,
+        "max": 1.0087721347808838,
+        "mean": 0.8587013744882175,
+        "threshold_0_5_crossings": 8,
+        "final": 0.5131173133850098
+      }
+    },
+    {
+      "run_id": "pi_closed_loop_layout0_700_video_repeat_20260919_180809",
+      "wall_time_s": 179.027,
+      "steps": 700,
+      "decisions": 14,
+      "observation_ms": {
+        "mean": 79.475,
+        "median": 73.727,
+        "p95": 76.669,
+        "min": 68.754,
+        "max": 161.837,
+        "total": 1112.655
+      },
+      "inference_roundtrip_ms_runner": {
+        "mean": 3602.464,
+        "median": 3133.779,
+        "p95": 5046.856,
+        "min": 2244.327,
+        "max": 5585.697,
+        "total": 50434.493
+      },
+      "inference_roundtrip_ms_service_trace": {
+        "mean": 3575.16,
+        "median": 3106.082,
+        "p95": 5021.19,
+        "min": 2220.712,
+        "max": 5558.443,
+        "total": 50052.247
+      },
+      "npu_inference_ms": {
+        "mean": 556.864,
+        "median": 550.95,
+        "p95": 582.9,
+        "min": 547.0,
+        "max": 583.2,
+        "total": 7796.1
+      },
+      "chunk_execution_ms": {
+        "mean": 9091.224,
+        "median": 9035.226,
+        "p95": 9417.426,
+        "min": 8847.293,
+        "max": 9425.989,
+        "total": 127277.135
+      },
+      "left_arm_path_l2_rad": 45.672905,
+      "right_arm_path_l2_rad": 20.583194,
+      "left_tracking_error_rad": {
+        "mean": 0.000764,
+        "median": 0.000218,
+        "p95": 0.003154,
+        "min": 0.0,
+        "max": 0.024892,
+        "total": 3.208646
+      },
+      "right_tracking_error_rad": {
+        "mean": 0.000276,
+        "median": 4.3e-05,
+        "p95": 0.001167,
+        "min": 0.0,
+        "max": 0.030941,
+        "total": 1.16119
+      },
+      "left_gripper": {
+        "min": 0.431365966796875,
+        "max": 1.00291907787323,
+        "mean": 0.8312515022073473,
+        "threshold_0_5_crossings": 18,
+        "final": 0.997902512550354
+      },
+      "right_gripper": {
+        "min": 0.41315218806266785,
+        "max": 1.0026795864105225,
+        "mean": 0.8693497440218926,
+        "threshold_0_5_crossings": 8,
+        "final": 0.5200930833816528
+      }
+    }
+  ],
+  "comparison": {
+    "matching_step_action_l2": {
+      "mean": 1.589954,
+      "median": 0.709541,
+      "p95": 4.321845,
+      "first_50_mean": 0.160353,
+      "last_50_mean": 2.920425
+    },
+    "observed_completion": {
+      "pi_closed_loop_layout0_700_video_20260919_174926": {
+        "bottles_deposited_or_removed_from_table": 2,
+        "bottles_remaining_on_table": 2,
+        "terminal_state": "yellow and white remain on table; robot not home"
+      },
+      "pi_closed_loop_layout0_700_video_repeat_20260919_180809": {
+        "bottles_deposited_or_removed_from_table": 3,
+        "bottles_remaining_on_table": 0,
+        "bottle_held_at_cutoff": 1,
+        "terminal_state": "right gripper holds final green bottle above table; release and return-home unfinished"
+      }
+    },
+    "interpretation": [
+      "The first 50 actions are similar, but the trajectories diverge later, consistent with stochastic policy sampling and closed-loop scene differences.",
+      "Both runs make coherent progress and fail at the fixed horizon, so failure is not explained by a dead actuator, invalid action mapping, or inference outage.",
+      "The second run is much faster in wall-clock inference but still fails at step 700; network latency affects test duration, not the simulated control-step budget."
+    ]
+  },
+  "root_cause_assessment": {
+    "primary": "The policy uses mostly sequential pick-and-place behavior. Its observed per-object cycle time leaves insufficient horizon to deposit four bottles and satisfy the terminal return-home condition within 700 controls (28 simulated seconds).",
+    "secondary": [
+      "Late-run stochastic divergence changes whether two or three bottles are completed by the cutoff.",
+      "The action chunk is open-loop for 50 controls between observations, limiting correction opportunities during each grasp/transfer cycle."
+    ],
+    "not_supported_by_evidence": [
+      "Mechanical control failure: joint tracking errors remain small.",
+      "NPU compute failure: all 14 inferences completed with stable ~0.56 s device time.",
+      "Network delay as the task failure cause: wall-clock latency changed greatly between repeats while both had the same 700-step failure."
+    ],
+    "remaining_uncertainty": [
+      "Automatic reward integration is still invalid because reward_manager.step() is not called.",
+      "Camera/action/state alignment matches the configured adapter, but official success-rate equivalence still requires the official evaluator path and multiple seeds."
+    ]
+  }
+}

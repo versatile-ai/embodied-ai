@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "7b320e40b12c46cbb69a2b6ea0206171",
+  "reason": "Move the left hand closer to the yellow bottle at its body height while transporting the raised horizontal bottle leftward.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.1750246263742447,
+        -0.3170941405296326,
+        0.9123212552070618
+      ],
+      "quaternion_wxyz": [
+        0.7077452540397644,
+        -0.0011855736374855042,
+        0.008349178358912468,
+        0.7064173817634583
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.23252438998222352,
+        -0.14577414095401764,
+        1.0487291812896729
+      ],
+      "quaternion_wxyz": [
+        0.7071201205253601,
+        0.000301020365441218,
+        0.7070931792259216,
+        0.0004925242392346263
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "ac4807cddedf4e27a3602bd6e4b43be9",
+  "reason": "Advance the aligned open fingers around the upright bottles, keeping the grip near the body below the caps.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.223,
+        -0.2,
+        0.925
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.418,
+        -0.232,
+        0.949
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

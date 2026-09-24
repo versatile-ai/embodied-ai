@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "06adb9050d574c69a6c4c64fe5335d70",
+  "reason": "Command both episode-start poses to complete the required arm return and check native success.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.299529076,
+        -0.352299869,
+        0.921500027
+      ],
+      "quaternion_wxyz": [
+        0.7069999576,
+        0,
+        0,
+        0.707213521
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.300470948,
+        -0.352299869,
+        0.921500027
+      ],
+      "quaternion_wxyz": [
+        0.7069999576,
+        0,
+        0,
+        0.707213521
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

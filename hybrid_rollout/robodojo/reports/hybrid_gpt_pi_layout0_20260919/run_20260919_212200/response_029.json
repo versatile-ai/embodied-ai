@@ -1,0 +1,83 @@
+{
+  "request_id": "d4e660a647a8416381b1275d63917ccb",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The right wrist shows the last bottle below the open fingers; continue aligning above it for a top grasp.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink, yellow, and white bottles released into dustbin."
+      ],
+      "currently_attempting": "Align right hand above pale horizontal bottle.",
+      "remaining": [
+        "Grasp final bottle and place it in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Align final-bottle top grasp.",
+    "execution_status": "progressing",
+    "execution_evidence": "The right hand has rotated above the pale horizontal bottle. Its body is visible between the open fingers in the right wrist view.",
+    "expected_next_intent": "Advance over the body and rotate downward, keeping fingers open.",
+    "predicted_next_intent": "Right hand advances toward y -0.155 and pitches down to about 73 degrees while open.",
+    "intent_status": "aligned",
+    "intent_evidence": "Rows 0–14 maintain opening near 1 with EEF height near 1.0; left stays near its starting pose."
+  }
+}

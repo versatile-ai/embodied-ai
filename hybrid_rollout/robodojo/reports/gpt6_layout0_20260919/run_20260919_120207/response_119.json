@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "482826dd75904d4bb870290641ab3205",
+  "reason": "Withdraw the left fingers straight upward from the final placement before any lateral movement.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.597,
+        -0.175,
+        0.982
+      ],
+      "quaternion_wxyz": [
+        0.9264958500862122,
+        0.01621362939476967,
+        0.37534475326538086,
+        0.021422015503048897
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004409372806549,
+        -0.35221797227859497,
+        0.9215080142021179
+      ],
+      "quaternion_wxyz": [
+        0.7070021033287048,
+        3.053428599741892e-06,
+        -3.0759510991629213e-06,
+        0.7072113752365112
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

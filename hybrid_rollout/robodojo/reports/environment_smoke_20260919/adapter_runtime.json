@@ -1,0 +1,28 @@
+{
+  "schema": "robodojo_rollout.adapter_runtime.v1",
+  "task": "put_bottles_into_dustbin",
+  "layout_id": 0,
+  "simulator_device": "cuda:0",
+  "physics_dt": 0.004,
+  "control_frequency_hz": 25,
+  "policy_cameras": [
+    "cam_high",
+    "cam_left_wrist",
+    "cam_right_wrist"
+  ],
+  "monitor_camera": "cam_monitor_overview",
+  "direct_rgb_capture": true,
+  "skip_duplicate_scene_setup": true,
+  "post_reset_warmup_renders": 3,
+  "monitor_fill_light": {
+    "intensity": 250.0,
+    "color": [
+      1.0,
+      0.95,
+      0.9
+    ]
+  },
+  "compatibility_fixes": [
+    "geometry_env_origin_cpu_cuda_alignment"
+  ]
+}

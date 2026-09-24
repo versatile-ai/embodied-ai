@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "9d80c3c142234c7185748d77ea74b5a4",
+  "reason": "The pink bottle rose with the left hand, confirming its grasp. Lift it for rim clearance and close the right fingers around the white bottle.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.224,
+        -0.19,
+        1.031
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.434,
+        -0.151,
+        0.929
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

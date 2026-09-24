@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "1b3dc3836fdc4e90b0437f24fd6494ed",
+  "reason": "Center yellow between the left fingers and turn the right wrist down toward the last bottle.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.134,
+        -0.18,
+        0.941
+      ],
+      "quaternion_wxyz": [
+        0.9197546243667603,
+        -0.004453603178262711,
+        0.38304373621940613,
+        -0.08549351245164871
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.4327842891216278,
+        -0.17409799993038177,
+        0.9498623013496399
+      ],
+      "quaternion_wxyz": [
+        0.3339129002834378,
+        -0.2033867080633861,
+        0.07402670778046237,
+        0.917418153593348
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

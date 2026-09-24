@@ -1,0 +1,84 @@
+{
+  "request_id": "43efb3b33d6743adbef0e8c3a590cd3f",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 12,
+  "reason": "The bottle has shifted with the left hand. Continue the lift and transport, stopping before the proposed release to inspect bin alignment.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "The left hand has acquired the pink bottle."
+      ],
+      "currently_attempting": "Carry pink bottle over the dustbin.",
+      "remaining": [
+        "Release pink bottle inside dustbin.",
+        "Place the other three bottles in dustbin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Lift and transport pink bottle to bin.",
+    "execution_status": "progressing",
+    "execution_evidence": "The pink bottle is held between the left fingers and has moved left from its original position; its body remains close in the left wrist view.",
+    "expected_next_intent": "Lift and move the held bottle above the bin while maintaining its grasp.",
+    "predicted_next_intent": "The left hand rises toward z 0.943 and travels left toward the bin, with opening about 0.60.",
+    "intent_status": "aligned",
+    "intent_evidence": "Rows 0–11 move left to x -0.452 while raising the EEF; the release starts after the selected prefix."
+  }
+}

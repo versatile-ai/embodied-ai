@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "07ea799b7cec4de29fafeb8d1223a360",
+  "reason": "Carry white toward the bin at clearance height; move the right hand behind and above the small yellow bottle.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.15,
+        -0.146,
+        0.955
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.05,
+        -0.28,
+        1.039
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

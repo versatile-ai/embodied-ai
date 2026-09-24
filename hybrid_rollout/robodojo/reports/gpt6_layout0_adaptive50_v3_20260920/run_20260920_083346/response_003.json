@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "d8192bfb717346a099c7ecc058b2577c",
+  "reason": "The pink bottle is centered between the left fingers. Close around its body while aligning the right hand with the white bottle.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.2225421816110611,
+        -0.21947393894195558,
+        0.9216880798339844
+      ],
+      "quaternion_wxyz": [
+        0.7070006132125854,
+        -1.706397597445175e-05,
+        2.3406009859172627e-05,
+        0.7072128057479858
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.4304572927951813,
+        -0.21747326493263244,
+        0.9216866493225098
+      ],
+      "quaternion_wxyz": [
+        0.7070006728172302,
+        -1.6893713109311648e-05,
+        2.3755774236633442e-05,
+        0.7072128057479858
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

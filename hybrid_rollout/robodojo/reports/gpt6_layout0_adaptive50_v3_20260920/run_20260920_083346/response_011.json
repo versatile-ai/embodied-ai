@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "d322d13b843d4700adc57cacec4c62b4",
+  "reason": "Release the pink bottle inside the bin; maintain the white grasp while moving it closer to the center.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.4152265191078186,
+        -0.2184881567955017,
+        1.0191925764083862
+      ],
+      "quaternion_wxyz": [
+        0.7072432637214661,
+        -0.0015465576434507966,
+        -0.0018156209262087941,
+        0.7069661617279053
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.16561327373981477,
+        -0.20229749381542206,
+        1.0316931009292603
+      ],
+      "quaternion_wxyz": [
+        0.7071104645729065,
+        -0.000384923187084496,
+        -0.0004989991430193186,
+        0.7071027159690857
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

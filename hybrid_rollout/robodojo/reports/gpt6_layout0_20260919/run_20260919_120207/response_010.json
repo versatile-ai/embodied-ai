@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "c6ba751add9a414380eddcc866d646cd",
+  "reason": "Raise both secured upright bottles above the table and bin rim before lateral transport.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.224,
+        -0.19,
+        1.083
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.434,
+        -0.151,
+        0.978
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

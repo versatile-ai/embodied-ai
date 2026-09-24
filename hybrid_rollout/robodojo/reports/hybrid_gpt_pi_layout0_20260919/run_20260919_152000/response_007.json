@@ -1,0 +1,85 @@
+{
+  "request_id": "61c5745a9d7140d6aed4c4733174e40c",
+  "mode": "student",
+  "steps": 15,
+  "reason": "The right hand visibly retains the lifted bottle; allow the left hand to approach for handover.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into the dustbin opening.",
+        "Small yellow bottle lifted with the right hand."
+      ],
+      "currently_attempting": "Bring the left hand to the small bottle for handover.",
+      "remaining": [
+        "Complete the handover and place the small bottle.",
+        "Place the pale and tall white bottles.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Approach for handover.",
+    "execution_status": "progressing",
+    "execution_evidence": "The yellow bottle is suspended with the right gripper above its former tabletop position.",
+    "expected_next_intent": "Hold the bottle steady and approach with the open left fingers.",
+    "predicted_next_intent": "Left arm approaches centrally while the right holds the bottle.",
+    "intent_status": "aligned",
+    "intent_evidence": "Left FK moves toward x=-0.156 m and z=1.010 m with opening 1; right FK remains around its current pose with opening 0.39."
+  },
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  }
+}

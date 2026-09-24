@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b17a6ba593df4e38a7d55ac2262ecbdf",
+  "reason": "Bring the left hand closer to its episode-start height and lateral position.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.391,
+        -0.332,
+        1.016
+      ],
+      "quaternion_wxyz": [
+        0.8311659097671509,
+        0.15663376450538635,
+        0.20095574855804443,
+        0.49421238899230957
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004409968852997,
+        -0.35221824049949646,
+        0.9215083718299866
+      ],
+      "quaternion_wxyz": [
+        0.7070017457008362,
+        3.7380507365014637e-06,
+        -3.7322949992812937e-06,
+        0.7072116732597351
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,123 @@
+{
+  "run_id": "pi_closed_loop_layout0_700_video_repeat4_20260919_210134",
+  "tested_at": "2026-09-19T21:01:34+08:00",
+  "scenario": {
+    "task": "put_bottles_into_dustbin",
+    "layout": 0,
+    "seed": 0,
+    "policy": "pi0.5 only",
+    "decision_budget": 14,
+    "chunk_size": 50,
+    "control_step_budget": 700,
+    "control_hz": 25,
+    "physics_hz": 250
+  },
+  "result": {
+    "passed": true,
+    "pass_basis": "visual evidence only; official reward invalid",
+    "logged_reward_at_step_700": 0.0,
+    "reward_valid": false,
+    "visual_result": "all four bottles removed from table toward dustbin; both arms returned home by step 700",
+    "estimated_visual_completion_step": 656,
+    "simulated_time_s": 28.0,
+    "wall_time_s": 172.979
+  },
+  "metrics": {
+    "run_id": "pi_closed_loop_layout0_700_video_repeat4_20260919_210134",
+    "wall_time_s": 172.979,
+    "steps": 700,
+    "decisions": 14,
+    "observation_ms": {
+      "mean": 79.350143,
+      "median": 73.3435,
+      "p95": 106.44675,
+      "min": 67.638,
+      "max": 156.864,
+      "total": 1110.902
+    },
+    "inference_roundtrip_ms": {
+      "mean": 3014.073214,
+      "median": 2890.495,
+      "p95": 4620.1549,
+      "min": 2135.737,
+      "max": 7397.38,
+      "total": 42197.025
+    },
+    "npu_inference_ms": {
+      "mean": 549.742857,
+      "median": 540.1,
+      "p95": 597.57,
+      "min": 531.3,
+      "max": 664.0,
+      "total": 7696.4
+    },
+    "chunk_execution_ms": {
+      "mean": 9250.5535,
+      "median": 9176.652,
+      "p95": 9509.0269,
+      "min": 9012.5,
+      "max": 9540.548,
+      "total": 129507.749
+    },
+    "left_arm_path_l2_rad": 42.906943,
+    "left_tracking_error_rad": {
+      "mean": 0.000621,
+      "median": 0.000187,
+      "p95": 0.002177,
+      "min": 0.0,
+      "max": 0.041813,
+      "total": 2.609212
+    },
+    "left_gripper": {
+      "min": 0.44755691289901733,
+      "max": 1.0059561729431152,
+      "mean": 0.8421582219004631,
+      "threshold_0_5_crossings": 12,
+      "final": 1.0002140998840332
+    },
+    "right_arm_path_l2_rad": 24.000285,
+    "right_tracking_error_rad": {
+      "mean": 0.000251,
+      "median": 5.5e-05,
+      "p95": 0.001061,
+      "min": 0.0,
+      "max": 0.029015,
+      "total": 1.053384
+    },
+    "right_gripper": {
+      "min": 0.36238715052604675,
+      "max": 1.0058045387268066,
+      "mean": 0.8719444103751863,
+      "threshold_0_5_crossings": 6,
+      "final": 0.9984293580055237
+    }
+  },
+  "video_validation": {
+    "decoded_frames": 701,
+    "fps": 25,
+    "resolution": [
+      1280,
+      960
+    ],
+    "duration_s": 28.04,
+    "initial_frame_plus_all_controls": true
+  },
+  "artifacts": {
+    "pi_closed_loop_layout0_700_video_repeat4_20260919_210134.jsonl": {
+      "bytes": 205185,
+      "sha256": "f27316eba223216b8437ff29f1cd13bf7a67fc4ddc1851c39e43107cba53348c"
+    },
+    "pi_closed_loop_layout0_700_video_repeat4_20260919_210134_executed.jsonl": {
+      "bytes": 553417,
+      "sha256": "51691f880409f25b94db786cbde0f6ceca70fe86398866d6161e332097d468a0"
+    },
+    "pi_closed_loop_layout0_700_video_repeat4_20260919_210134_performance.jsonl": {
+      "bytes": 2826,
+      "sha256": "66258275c3400cde5c01abf24031ddc33a83a96ee08f57b15680f0bba52e8d99"
+    },
+    "pi_closed_loop_layout0_700_video_repeat4_20260919_210134_four_views.mp4": {
+      "bytes": 7103882,
+      "sha256": "2a596b1f040638df2b12b2dee508038b9b12b66533cded61888ec6773c5158e5"
+    }
+  }
+}

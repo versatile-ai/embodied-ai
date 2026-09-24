@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "7e9a8269984045809ca0c87c0e218cd1",
+  "reason": "Continue the white-bottle carry and lower the right hand toward the yellow-bottle approach height.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.198,
+        -0.146,
+        0.955
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.074,
+        -0.307,
+        1.007
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

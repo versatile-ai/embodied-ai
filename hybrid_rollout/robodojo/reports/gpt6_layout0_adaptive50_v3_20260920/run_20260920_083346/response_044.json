@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "31053db1a5cc49bf9c258980736ddd65",
+  "reason": "Advance the left hand toward the yellow bottle's lateral alignment while the right maintains height on its leftward path.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.046063778519630436,
+        -0.3791010529994965,
+        0.890416145324707
+      ],
+      "quaternion_wxyz": [
+        0.7077494859695435,
+        -0.0011915501672774553,
+        0.00836840271949768,
+        0.7064127922058105
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.08550720906257629,
+        -0.1457190364599228,
+        1.0484970808029175
+      ],
+      "quaternion_wxyz": [
+        0.7072259783744812,
+        7.325437036342919e-05,
+        0.7069874405860901,
+        0.00019109973800368607
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,84 @@
+{
+  "request_id": "a1af4f784239487b9878e31dc109b85b",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The open left hand is approaching the fallen yellow bottle from above with clear table space around it.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into dustbin."
+      ],
+      "currently_attempting": "Align top grasp on fallen yellow bottle.",
+      "remaining": [
+        "Grasp and dispose of yellow bottle.",
+        "Place white and pale horizontal bottles in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Align above yellow bottle.",
+    "execution_status": "progressing",
+    "execution_evidence": "The left wrist view shows the yellow bottle ahead on the table and the open fingers moving toward it; the other bottles remain undisturbed.",
+    "expected_next_intent": "Move above the bottle with open fingers and rotate for a top grasp.",
+    "predicted_next_intent": "Left hand advances to y 0.005 at z 1.022 and pitches downward while staying open.",
+    "intent_status": "aligned",
+    "intent_evidence": "Rows 0–14 advance the left EEF toward the bottle and increase pitch to about 59 degrees; right arm remains at its starting area."
+  }
+}

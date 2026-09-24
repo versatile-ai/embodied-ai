@@ -1,0 +1,247 @@
+{
+  "episode_id": "b917bb001a3f41568bda3486647feb39",
+  "step_id": 665,
+  "task": "put_bottles_into_dustbin",
+  "max_episode_steps": 700,
+  "instruction": "Pick up the bottles and throw them into the dustbin, using handover when needed.",
+  "remaining_steps": 35,
+  "require_native_termination": false,
+  "current_state": [
+    -0.6112919449806213,
+    1.8255900144577026,
+    1.3812556266784668,
+    -1.040412425994873,
+    0.013993348926305771,
+    0.903531551361084,
+    0.8455702662467957,
+    0.5608982443809509,
+    3.16249418258667,
+    4.7851104736328125,
+    -2.1451926231384277,
+    0.513684868812561,
+    1.3805850744247437,
+    1.0
+  ],
+  "images": [
+    {
+      "camera": "cam_high",
+      "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/061/cam_high.png"
+    },
+    {
+      "camera": "cam_left_wrist",
+      "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/061/cam_left_wrist.png"
+    },
+    {
+      "camera": "cam_right_wrist",
+      "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/061/cam_right_wrist.png"
+    }
+  ],
+  "current_eef": {
+    "left": {
+      "position": [
+        -0.1041303277015686,
+        -0.17192471027374268,
+        0.96988445520401
+      ],
+      "quaternion_wxyz": [
+        0.728270411491394,
+        0.0017987692262977362,
+        0.6840525269508362,
+        0.04112296923995018
+      ],
+      "frame": "environment_origin",
+      "link": "link6",
+      "gripper_opening_command": 0.8455702662467957,
+      "rpy_deg": [
+        42.5529143061233,
+        85.00513353952731,
+        45.74273534228927
+      ]
+    },
+    "right": {
+      "position": [
+        0.15499593317508698,
+        -0.19166341423988342,
+        1.0553535223007202
+      ],
+      "quaternion_wxyz": [
+        0.673517644405365,
+        0.23142601549625397,
+        0.49406641721725464,
+        0.4987126290798187
+      ],
+      "frame": "environment_origin",
+      "link": "link6",
+      "gripper_opening_command": 1.0,
+      "rpy_deg": [
+        63.29758062542878,
+        25.765873633172504,
+        89.08584595886865
+      ]
+    }
+  },
+  "robot_profile": "robodojo",
+  "observation_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/061/observation.json",
+  "arrays_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/061/observation.npz",
+  "history_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/history.json",
+  "previous_result": {
+    "decision": 60,
+    "start_tick": 650,
+    "end_tick": 665,
+    "response": {
+      "mode": "eef",
+      "request_id": "3008321e3f8d475f855ecad8b0d2ed02",
+      "reason": "Align the left fingers over the displaced bottle body with a nearly vertical wrist while moving the right arm back toward its starting side.",
+      "steps": 50,
+      "target": {
+        "left": {
+          "position": [
+            -0.10157364410161972,
+            -0.17202522039413454,
+            0.9655789976119995
+          ],
+          "quaternion_wxyz": [
+            0.7273831791381877,
+            0.0008893208916140984,
+            0.6853132406626652,
+            0.03547783027244669
+          ],
+          "gripper_closed": false
+        },
+        "right": {
+          "position": [
+            0.15691672831773756,
+            -0.19482981491088866,
+            1.0497398376464844
+          ],
+          "quaternion_wxyz": [
+            0.6885712457020734,
+            0.20500490625439718,
+            0.49517818483418613,
+            0.48850914569685716
+          ],
+          "gripper_closed": false
+        }
+      },
+      "evaluation_method": "gpt_only"
+    },
+    "evaluation_method": "gpt_only",
+    "simulator_decision_receipt": {
+      "episode_id": "b917bb001a3f41568bda3486647feb39",
+      "step_id": 650,
+      "physical_steps": 0,
+      "decision": 60,
+      "record_path": "/root/gpt6_adaptive50_v3_layout0_20260920003305/sim/b917bb001a3f41568bda3486647feb39/codex_decisions/060.json",
+      "status": "decision_received_not_execution_ack"
+    },
+    "executed_steps": 15,
+    "source": "gpt_eef",
+    "source_detail": "eef",
+    "prediction_id": null,
+    "adaptive_stop_reason": "motion_stalled",
+    "adaptive_stop_evidence": {
+      "at_target": false,
+      "joints_stable": true,
+      "grippers_stable": true,
+      "stalled_before_target": true,
+      "position_error_m": {
+        "left": 0.005008579786130407,
+        "right": 0.006725229698466634
+      },
+      "rotation_error_rad": {
+        "left": 0.011844565747715577,
+        "right": 0.0641906034323781
+      },
+      "max_joint_delta_rad": 0.00019532442092895508,
+      "max_gripper_error": 0.15442973375320435,
+      "max_gripper_delta": 0.0002639889717102051,
+      "position_improvement_m_over_3": -1.4015964996709311e-05,
+      "rotation_improvement_rad_over_3": -0.00010560758776322066
+    },
+    "executed_gripper_closed": [
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      },
+      {
+        "left": false,
+        "right": false
+      }
+    ],
+    "terminal": false,
+    "native_success": false
+  },
+  "counters": {
+    "student_steps": 0,
+    "edited_steps": 0,
+    "recovery_steps": 0,
+    "predictions": 0,
+    "gpt_joint_steps": 0,
+    "gpt_eef_steps": 665
+  },
+  "result": null,
+  "rollout_finished": false,
+  "next_call": {
+    "tool": "robodojo_act",
+    "observation_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/061/observation.json",
+    "output_dir": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_adaptive50_v3_20260920/run_20260920_083346/observations/062",
+    "response": "Choose bounded dual-arm EEF action from current observation"
+  },
+  "evaluation_method": "gpt_only",
+  "request_id": "26b172ca7d9e4a0f88978a9bcc4bef88",
+  "decision": 61,
+  "prediction_id": null,
+  "gate_policy": "gpt_only"
+}

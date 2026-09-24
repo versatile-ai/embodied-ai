@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "a8f7e81cb6a445ef958a64ca6b569bd5",
+  "reason": "Wrist views place both upright bottles to the right of each gripper center. Shift right while approaching.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.239524028301239,
+        -0.27943220448493955,
+        0.9216068983078003
+      ],
+      "quaternion_wxyz": [
+        0.7070002555847168,
+        -1.047655678121373e-05,
+        1.2738843906845432e-05,
+        0.7072132229804993
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3604759061336517,
+        -0.27943217468261716,
+        0.9216068387031555
+      ],
+      "quaternion_wxyz": [
+        0.7070002555847168,
+        -1.043557858793065e-05,
+        1.2615909326996189e-05,
+        0.7072132229804993
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

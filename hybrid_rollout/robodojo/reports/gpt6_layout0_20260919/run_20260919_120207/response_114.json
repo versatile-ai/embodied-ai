@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "c65159a59d7f4facb7bbee4b412b7405",
+  "reason": "Move the full bottle length farther over the opening and continue the right hand's final approach to its start pose.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.51,
+        -0.172,
+        0.992
+      ],
+      "quaternion_wxyz": [
+        0.9227352142333984,
+        0.023973887786269188,
+        0.383910596370697,
+        0.024442683905363083
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.25,
+        -0.336,
+        0.95
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "26710ab102a64ba48a324a5eafa7a08f",
+  "reason": "Raise the final bottle above the rim and continue yellow's carry toward the bin interior.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.329,
+        -0.206,
+        0.978
+      ],
+      "quaternion_wxyz": [
+        0.9223669171333313,
+        -0.030970433726906776,
+        0.3802492916584015,
+        -0.060748714953660965
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.4,
+        -0.146,
+        0.981
+      ],
+      "quaternion_wxyz": [
+        0.0561324805021286,
+        -0.33252251148223877,
+        -0.0684979259967804,
+        0.9389280676841736
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,33 @@
+{
+  "episode_id": "a79b8e51e0b44b9595f4bed7561eebe4",
+  "step_id": 0,
+  "initial_state_hash": "0b8068846d84c7ca8f1b04d79ccd2f6efd75f91f398bd528da0ac3539746875b",
+  "instruction": "Pick up the bottles and throw them into the dustbin, using handover when needed.",
+  "metadata": {
+    "task": "put_bottles_into_dustbin",
+    "instruction": "Pick up the bottles and throw them into the dustbin, using handover when needed.",
+    "simulator": "RoboDojo",
+    "robot_adapter": "dual_arx_x5",
+    "control_dt": 0.04,
+    "max_episode_steps": 700,
+    "action_dim": 14,
+    "action_horizon": 50,
+    "frame": "environment_origin",
+    "eef_link": "link6",
+    "no_rollback": true,
+    "supports_fk_preview": true,
+    "supports_codex_decision_recording": true,
+    "cameras": [
+      "cam_high",
+      "cam_left_wrist",
+      "cam_right_wrist"
+    ],
+    "gripper_semantics": "continuous_0_closed_1_open",
+    "layout_id": 0,
+    "eval_seed": 0,
+    "evaluation_case": null,
+    "initial_state_hash_scope": "robot_proprio_only_not_complete_scene",
+    "policy_version": "frozen-profile-smoke",
+    "native_reset_settling_not_counted_as_policy_controls": true
+  }
+}

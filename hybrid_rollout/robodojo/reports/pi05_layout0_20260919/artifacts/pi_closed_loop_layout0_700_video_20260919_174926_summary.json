@@ -1,0 +1,94 @@
+{
+  "run_id": "pi_closed_loop_layout0_700_video_20260919_174926",
+  "tested_at": "2026-09-19T17:49:26+08:00",
+  "scenario": {
+    "task": "put_bottles_into_dustbin",
+    "layout": 0,
+    "seed": 0,
+    "policy": "pi0.5 only",
+    "decision_budget": 14,
+    "chunk_size": 50,
+    "control_step_budget": 700,
+    "control_hz": 25,
+    "physics_hz": 250,
+    "physics_substeps_per_control": 10
+  },
+  "result": {
+    "passed": false,
+    "native_reward_at_step_700": 0.0,
+    "executed_steps": 700,
+    "decisions": 14,
+    "wall_time_s": 251.02,
+    "simulated_time_s": 28.0,
+    "visual_assessment": "partial completion: two bottles appear deposited; yellow and white bottles remain on the table; arms are not in the required terminal home/open state"
+  },
+  "performance": {
+    "observation_ms": {
+      "mean": 78.226,
+      "median": 71.838,
+      "p95": 80.259,
+      "min": 67.504,
+      "max": 158.107,
+      "total": 1095.163
+    },
+    "inference_roundtrip_ms": {
+      "mean": 8607.539,
+      "median": 7895.525,
+      "p95": 11179.081,
+      "min": 4889.42,
+      "max": 14675.838,
+      "total": 120505.54
+    },
+    "npu_inference_ms": {
+      "mean": 550.493,
+      "median": 542.7,
+      "p95": 573.0,
+      "min": 533.3,
+      "max": 598.0,
+      "total": 7706.9
+    },
+    "chunk_execution_ms": {
+      "mean": 9231.772,
+      "median": 9151.049,
+      "p95": 9582.633,
+      "min": 8989.788,
+      "max": 9594.507,
+      "total": 129244.81
+    }
+  },
+  "video_validation": {
+    "codec": "H.264",
+    "resolution": [
+      1280,
+      960
+    ],
+    "fps": 25,
+    "decoded_frames": 701,
+    "duration_s": 28.04,
+    "contains_initial_frame": true,
+    "contains_every_control_step": true
+  },
+  "artifacts": {
+    "pi_closed_loop_layout0_700_video_20260919_174926.jsonl": {
+      "bytes": 204230,
+      "sha256": "9f051eba5fcbf1fd8339c8433e19134e114cda63d02e5897a863548b982caf17"
+    },
+    "pi_closed_loop_layout0_700_video_20260919_174926_executed.jsonl": {
+      "bytes": 551476,
+      "sha256": "d156cbe1ebb2ed103a4c11d0cc85510257e1acfb330c2f78ba5a0c6699639950"
+    },
+    "pi_closed_loop_layout0_700_video_20260919_174926_performance.jsonl": {
+      "bytes": 2809,
+      "sha256": "b778817851c43f580fea6b1c1275a272542b833a4d79609144a763d544fc2835"
+    },
+    "pi_closed_loop_layout0_700_video_20260919_174926_four_views.mp4": {
+      "bytes": 7424657,
+      "sha256": "c2bfc8b643b031a5462e90bb2d2efe0479d5f31f51478966ae4967b141386312"
+    }
+  },
+  "notes": [
+    "The overview monitor camera is not provided to pi0.5.",
+    "The official task budget is 700 control steps.",
+    "Reward remained zero at all 14 chunk boundaries; the visual result independently confirms incomplete task execution."
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "request_id": "1db6677130da460fa3b123420ff99f31",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The yellow bottle is visibly lifted in the right hand. Allow the left hand to approach for handover while the right retains its grasp.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into dustbin.",
+        "Yellow bottle lifted in right hand."
+      ],
+      "currently_attempting": "Position both hands for yellow-bottle handover.",
+      "remaining": [
+        "Complete yellow-bottle handover and disposal.",
+        "Place white and pale horizontal bottles in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Approach yellow bottle with left hand.",
+    "execution_status": "progressing",
+    "execution_evidence": "The yellow bottle moved upward and inward with the right hand, remaining between its fingers; its former table position is empty.",
+    "expected_next_intent": "Hold the bottle steady with the right arm and bring the open left fingers toward it.",
+    "predicted_next_intent": "The right arm holds its elevated bottle while the open left arm moves inward and up.",
+    "intent_status": "aligned",
+    "intent_evidence": "Right pose settles near [0.154,-0.260,1.056] with opening 0.38; left moves to [-0.163,-0.364,1.002] with opening 1."
+  }
+}

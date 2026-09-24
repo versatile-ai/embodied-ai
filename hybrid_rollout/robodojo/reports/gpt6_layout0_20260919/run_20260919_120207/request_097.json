@@ -1,0 +1,187 @@
+{
+  "episode_id": "596392a01b6046b0bdcd20ab65f742f6",
+  "step_id": 485,
+  "task": "put_bottles_into_dustbin",
+  "max_episode_steps": 700,
+  "instruction": "Pick up the bottles and throw them into the dustbin, using handover when needed.",
+  "remaining_steps": 215,
+  "require_native_termination": false,
+  "current_state": [
+    0.902349054813385,
+    2.075833797454834,
+    1.7478647232055664,
+    -1.9304009675979614,
+    0.3351672887802124,
+    2.6221866607666016,
+    1.0,
+    0.7974072694778442,
+    2.0209827423095703,
+    1.5629839897155762,
+    -0.2986578643321991,
+    -0.4516816735267639,
+    -0.6493696570396423,
+    0.6045070290565491
+  ],
+  "images": [
+    {
+      "camera": "cam_high",
+      "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/097/cam_high.png"
+    },
+    {
+      "camera": "cam_left_wrist",
+      "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/097/cam_left_wrist.png"
+    },
+    {
+      "camera": "cam_right_wrist",
+      "path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/097/cam_right_wrist.png"
+    }
+  ],
+  "current_eef": {
+    "left": {
+      "position": [
+        -0.5586110353469849,
+        -0.233123779296875,
+        0.997153103351593
+      ],
+      "quaternion_wxyz": [
+        0.914443850517273,
+        -0.030314648523926735,
+        0.4006425142288208,
+        -0.04856980964541435
+      ],
+      "frame": "environment_origin",
+      "link": "link6",
+      "gripper_opening_command": 1.0,
+      "rpy_deg": [
+        -7.9332335673773136,
+        46.86840847813739,
+        -9.523815814861115
+      ]
+    },
+    "right": {
+      "position": [
+        -0.028838779777288437,
+        -0.14611183106899261,
+        0.9807062745094299
+      ],
+      "quaternion_wxyz": [
+        0.04450996592640877,
+        -0.3338910937309265,
+        -0.09140773862600327,
+        0.9371126294136047
+      ],
+      "frame": "environment_origin",
+      "link": "link6",
+      "gripper_opening_command": 0.6045070290565491,
+      "rpy_deg": [
+        -14.8109714604758,
+        38.144734720540654,
+        169.41533557457666
+      ]
+    }
+  },
+  "robot_profile": "robodojo",
+  "observation_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/097/observation.json",
+  "arrays_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/097/observation.npz",
+  "history_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/history.json",
+  "previous_result": {
+    "decision": 96,
+    "start_tick": 480,
+    "end_tick": 485,
+    "response": {
+      "mode": "eef",
+      "request_id": "7c90cd30a6ac498485a04cab25ecdaec",
+      "reason": "Three bottles are visible inside the bin. Retract the left arm toward its start while carrying the final bottle leftward.",
+      "steps": 5,
+      "target": {
+        "left": {
+          "position": [
+            -0.55,
+            -0.24,
+            0.982
+          ],
+          "quaternion_wxyz": [
+            0.9222599267959595,
+            -0.044939734041690826,
+            0.3798366189002991,
+            -0.05604511499404907
+          ],
+          "gripper_closed": false
+        },
+        "right": {
+          "position": [
+            -0.029,
+            -0.146,
+            0.981
+          ],
+          "quaternion_wxyz": [
+            0.044563036412000656,
+            -0.33369120955467224,
+            -0.09161343425512314,
+            0.9371612668037415
+          ],
+          "gripper_closed": true
+        }
+      },
+      "evaluation_method": "gpt_only"
+    },
+    "evaluation_method": "gpt_only",
+    "simulator_decision_receipt": {
+      "episode_id": "596392a01b6046b0bdcd20ab65f742f6",
+      "step_id": 480,
+      "physical_steps": 0,
+      "decision": 96,
+      "record_path": "/root/gpt6_direct_layout0_20260919_120207/sim/596392a01b6046b0bdcd20ab65f742f6/codex_decisions/096.json",
+      "status": "decision_received_not_execution_ack"
+    },
+    "executed_steps": 5,
+    "source": "gpt_eef",
+    "source_detail": "eef",
+    "prediction_id": null,
+    "executed_gripper_closed": [
+      {
+        "left": false,
+        "right": true
+      },
+      {
+        "left": false,
+        "right": true
+      },
+      {
+        "left": false,
+        "right": true
+      },
+      {
+        "left": false,
+        "right": true
+      },
+      {
+        "left": false,
+        "right": true
+      }
+    ],
+    "terminal": false,
+    "native_success": false
+  },
+  "counters": {
+    "student_steps": 0,
+    "edited_steps": 0,
+    "recovery_steps": 0,
+    "predictions": 0,
+    "gpt_joint_steps": 0,
+    "gpt_eef_steps": 485
+  },
+  "result": null,
+  "rollout_finished": false,
+  "next_call": {
+    "tool": "robodojo_act",
+    "observation_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/097/observation.json",
+    "output_dir": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207/observations/098",
+    "response": "Choose bounded dual-arm EEF action from current observation"
+  },
+  "evaluation_method": "gpt_only",
+  "request_id": "6612dbdb213a4c218061fe584b0332e0",
+  "decision": 97,
+  "prediction_id": null,
+  "gate_policy": "gpt_only"
+}

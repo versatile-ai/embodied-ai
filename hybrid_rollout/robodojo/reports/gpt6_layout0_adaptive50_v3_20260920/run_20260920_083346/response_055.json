@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "3c6b4229e0db4499a73d217c3cbc3d64",
+  "reason": "Release the horizontal bottle onto the table and withdraw the right fingers upward while preparing the left overhead regrasp.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.07277476787567139,
+        -0.30319991350173947,
+        0.9934144225120545
+      ],
+      "quaternion_wxyz": [
+        0.812354878511265,
+        -0.003848406448641026,
+        0.26760468874765236,
+        0.5181239648538123
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.04169006645679474,
+        -0.15334783494472504,
+        1.0513444890975951
+      ],
+      "quaternion_wxyz": [
+        -0.7045294642448425,
+        -0.009015534073114395,
+        -0.7096155285835266,
+        -0.0016189950983971357
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

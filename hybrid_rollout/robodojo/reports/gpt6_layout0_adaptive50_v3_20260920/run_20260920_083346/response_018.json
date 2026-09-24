@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "ccab35cb597e4042bbfe26aed6969d89",
+  "reason": "The white bottle's lower body enters the right edge of the left wrist view. Translate the receiving hand rightward at its lower grasp height.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.14927507436275483,
+        -0.21849805116653442,
+        0.95417320728302
+      ],
+      "quaternion_wxyz": [
+        0.7072159051895142,
+        -0.0015678070485591888,
+        -0.0017601302824914455,
+        0.7069936394691467
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07945084571838379,
+        -0.2021729201078415,
+        1.0306497812271118
+      ],
+      "quaternion_wxyz": [
+        0.7071603536605835,
+        -0.0019700522534549236,
+        -0.0005441252724267542,
+        0.7070501446723938
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

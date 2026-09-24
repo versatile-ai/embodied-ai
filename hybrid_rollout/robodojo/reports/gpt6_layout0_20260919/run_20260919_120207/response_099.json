@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "a269bfbbb6424505a9fcf18f84dcd08a",
+  "reason": "Continue the left-arm return and approach the bin with the last bottle.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.465,
+        -0.299,
+        0.987
+      ],
+      "quaternion_wxyz": [
+        0.9002160233379726,
+        0.0014822520548754229,
+        0.2835417410917543,
+        0.33047394721762674
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.167,
+        -0.149,
+        0.972
+      ],
+      "quaternion_wxyz": [
+        0.041123297065496445,
+        -0.3436416983604431,
+        -0.08460124582052231,
+        0.9343777298927307
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

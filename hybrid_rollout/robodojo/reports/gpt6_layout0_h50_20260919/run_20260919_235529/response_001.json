@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "912c2193a0ed4615a430c103636af9af",
+  "steps": 50,
+  "reason": "The pink bottle remains to the right of the left wrist view center. Shift left fingers inward and slightly forward; move right inward toward the small yellow bottle.",
+  "target": {
+    "left": {
+      "position": [
+        -0.223,
+        -0.297,
+        0.9215
+      ],
+      "quaternion_wxyz": [
+        0.7069998383522034,
+        -4.197436709318936e-08,
+        -1.5341547054958937e-07,
+        0.7072136998176575
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.2555,
+        -0.321,
+        0.9215
+      ],
+      "quaternion_wxyz": [
+        0.7069997191429138,
+        5.1839638359751916e-08,
+        -8.649880101074814e-08,
+        0.7072137594223022
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

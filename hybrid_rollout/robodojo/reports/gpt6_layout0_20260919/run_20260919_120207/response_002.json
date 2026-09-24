@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "7f008359953c4628bf9eff5d38a2f5b0",
+  "reason": "Continue aligning the open grippers with the two upright bottles.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.237,
+        -0.296,
+        0.91
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.351,
+        -0.307,
+        0.921
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

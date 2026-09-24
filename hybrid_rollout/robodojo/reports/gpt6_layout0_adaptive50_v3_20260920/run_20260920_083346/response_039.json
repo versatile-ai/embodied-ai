@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b032c5d5148d4caf8d021f4b03ee50cd",
+  "reason": "The horizontal bottle rose with the right hand. Lift it farther and begin leftward transport while the left hand approaches the yellow bottle.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.2609837181568146,
+        -0.2810741894245148,
+        0.9422765827178955
+      ],
+      "quaternion_wxyz": [
+        0.7077410221099854,
+        -0.0011818588245660067,
+        0.008342022076249123,
+        0.7064216732978821
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3305220859050751,
+        -0.145807683467865,
+        1.0488645076751708
+      ],
+      "quaternion_wxyz": [
+        0.707119882106781,
+        0.0004520096117630601,
+        0.7070931196212769,
+        0.0006915116682648659
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

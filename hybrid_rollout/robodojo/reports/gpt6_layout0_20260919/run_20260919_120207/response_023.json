@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "786f72b543514b61a16f8ebb09867afd",
+  "reason": "Lower the receiving hand beneath the right gripper while keeping white stationary.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.249,
+        -0.2,
+        0.975
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.08067376166582108,
+        -0.15117263793945312,
+        1.0497244596481323
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

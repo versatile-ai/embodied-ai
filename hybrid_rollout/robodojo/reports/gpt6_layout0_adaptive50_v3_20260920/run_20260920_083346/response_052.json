@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "83f8bf4b2ae44c7fb2fd92fc1503dcd9",
+  "reason": "Clear the receiving fingers backward from the bottle and restore the right wrist's vertical orientation before another transport attempt.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.028435489324852823,
+        -0.36520532608032225,
+        0.9215632081031799
+      ],
+      "quaternion_wxyz": [
+        0.70710678,
+        0,
+        0,
+        0.70710678
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07419172674417496,
+        -0.17531578242778778,
+        1.0630587577819823
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0.7071067811865476,
+        0
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

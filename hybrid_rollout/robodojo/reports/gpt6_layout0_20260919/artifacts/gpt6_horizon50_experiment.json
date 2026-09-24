@@ -1,0 +1,3841 @@
+{
+  "performance_comparison": {
+    "experiment": "GPT-6 Astra GPT-only fixed 50-step EEF horizon",
+    "controlled_comparison": {
+      "same_layout": 0,
+      "same_seed": 0,
+      "same_initial_state_hash": true,
+      "baseline_5_step": {
+        "run": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_20260919/run_20260919_120207",
+        "decisions": 140,
+        "steps": 700,
+        "wall_seconds": 5471.343127332861,
+        "model_wait_seconds": 4757.103932380676,
+        "model_wait_mean_seconds": 33.97931380271912,
+        "model_wait_median_seconds": 33.82146179676056,
+        "model_wait_p95_seconds": 65.52895331382751,
+        "model_wait_min_seconds": 7.44898533821106,
+        "model_wait_max_seconds": 94.19044613838196,
+        "tokens": {
+          "totalTokens": 20765748,
+          "inputTokens": 20736710,
+          "cachedInputTokens": 20490624,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 29038,
+          "reasoningOutputTokens": 13189
+        }
+      },
+      "fixed_50_step": {
+        "run": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_h50_20260919/run_20260919_235529",
+        "decisions": 14,
+        "steps": 700,
+        "wall_seconds": 1142.136564542,
+        "model_wait_seconds": 734.4595575332642,
+        "model_wait_mean_seconds": 52.461396966661724,
+        "model_wait_median_seconds": 41.48705995082855,
+        "model_wait_p95_seconds": 164.36236143112183,
+        "model_wait_min_seconds": 14.747806549072266,
+        "model_wait_max_seconds": 164.36236143112183,
+        "tokens": {
+          "totalTokens": 1272058,
+          "inputTokens": 1264573,
+          "cachedInputTokens": 1177856,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 7485,
+          "reasoningOutputTokens": 3164
+        }
+      }
+    },
+    "fixed_50_outcome": {
+      "evaluation_case": null,
+      "complete": true,
+      "valid_for_success_rate": true,
+      "native_success": false,
+      "native_score": 0.1,
+      "status": "native_completed",
+      "reason": "terminal",
+      "native_control_steps": 700,
+      "native_step_limit": 700
+    },
+    "derived": {
+      "wall_speedup_x": 4.790445641259095,
+      "wall_reduction_percent": 79.12511538828014,
+      "model_wait_reduction_x": 6.477012768896024,
+      "decision_reduction_x": 10.0,
+      "token_reduction_x": 16.324529227440888,
+      "visual_bottles_in_bin": 1,
+      "visual_total_bottles": 4
+    },
+    "per_decision_model_wait_seconds": [
+      60.12,
+      21.511,
+      20.036,
+      20.593,
+      28.906,
+      14.748,
+      21.435,
+      20.389,
+      82.475,
+      72.273,
+      87.753,
+      54.068,
+      164.362,
+      65.79
+    ]
+  },
+  "run": {
+    "schema": "robodojo_rollout.run.v1",
+    "evaluation_method": "gpt_only",
+    "teacher": "codex_tools",
+    "context_version": "v3",
+    "teacher_model": "gpt-6-astra",
+    "teacher_model_provider": "openai",
+    "teacher_reasoning_effort": "xhigh",
+    "task": "put_bottles_into_dustbin",
+    "instruction": "Pick up the bottles and throw them into the dustbin, using handover when needed.",
+    "seed": 0,
+    "evaluation_case": null,
+    "robot_profile": "robodojo",
+    "checkpoint": null,
+    "student_backend": null,
+    "student_identity_sha256": null,
+    "student_server_metadata": null,
+    "pi05_enabled": false,
+    "pi05_inference_calls": 0,
+    "action_horizon": 50,
+    "action_dim": 14,
+    "action_space": "eef_only",
+    "action_chunk_policy": "fixed_horizon",
+    "gate_policy": "gpt_only",
+    "no_rollback": true,
+    "teacher_prompt_sha256": "96a8418eac31f7726bf51d59a3f99c52579a71efde903ff357369b40b96fe35b",
+    "initial_state_hash": "0b8068846d84c7ca8f1b04d79ccd2f6efd75f91f398bd528da0ac3539746875b",
+    "reset_metadata": {
+      "task": "put_bottles_into_dustbin",
+      "instruction": "Pick up the bottles and throw them into the dustbin, using handover when needed.",
+      "simulator": "RoboDojo",
+      "robot_adapter": "dual_arx_x5",
+      "control_dt": 0.04,
+      "max_episode_steps": 700,
+      "action_dim": 14,
+      "action_horizon": 50,
+      "frame": "environment_origin",
+      "eef_link": "link6",
+      "no_rollback": true,
+      "supports_fk_preview": true,
+      "supports_codex_decision_recording": true,
+      "cameras": [
+        "cam_high",
+        "cam_left_wrist",
+        "cam_right_wrist"
+      ],
+      "gripper_semantics": "continuous_0_closed_1_open",
+      "layout_id": 0,
+      "eval_seed": 0,
+      "evaluation_case": null,
+      "initial_state_hash_scope": "robot_proprio_only_not_complete_scene",
+      "policy_version": "gpt_only",
+      "native_reset_settling_not_counted_as_policy_controls": true
+    },
+    "max_episode_steps": 700,
+    "control_dt": 0.04,
+    "max_decisions": 180,
+    "require_native_termination": false,
+    "training_steps": 0,
+    "training_bundle_ready": false
+  },
+  "result": {
+    "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+    "step_id": 700,
+    "success": false,
+    "terminated": false,
+    "truncated": true,
+    "video_frames": 701,
+    "control_dt": 0.04,
+    "reason": "terminal",
+    "evaluation_case": null,
+    "student_steps": 0,
+    "edited_steps": 0,
+    "recovery_steps": 0,
+    "predictions": 0,
+    "gpt_joint_steps": 0,
+    "gpt_eef_steps": 700,
+    "decisions": 14,
+    "context_version": "v3",
+    "complete": true,
+    "wall_seconds": 1142.136564542,
+    "training_bundle_ready": false,
+    "trajectory_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_h50_20260919/sim",
+    "history_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_h50_20260919/run_20260919_235529/history.json",
+    "debug_video_path": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_h50_20260919/run_20260919_235529/debug_video/debug_rollout.mp4",
+    "debug_video_manifest": "/Users/max/code/ai/GPT-as-Policy/hybrid_rollout/robodojo/reports/gpt6_layout0_h50_20260919/run_20260919_235529/debug_video/manifest.json",
+    "evaluation_method": "gpt_only",
+    "pi05_enabled": false,
+    "pi05_inference_calls": 0
+  },
+  "token_usage": {
+    "model": "gpt-6-astra",
+    "effort": "xhigh",
+    "provider": "openai",
+    "usage": {
+      "total": {
+        "totalTokens": 1272058,
+        "inputTokens": 1264573,
+        "cachedInputTokens": 1177856,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 7485,
+        "reasoningOutputTokens": 3164
+      },
+      "last": {
+        "totalTokens": 84755,
+        "inputTokens": 84606,
+        "cachedInputTokens": 81152,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 149,
+        "reasoningOutputTokens": 0
+      },
+      "modelContextWindow": 258400
+    },
+    "total_tokens_include_cached_input": true,
+    "configured_limit": 0
+  },
+  "native_evaluation_outcome": {
+    "evaluation_case": null,
+    "complete": true,
+    "valid_for_success_rate": true,
+    "native_success": false,
+    "native_score": 0.1,
+    "status": "native_completed",
+    "reason": "terminal",
+    "native_control_steps": 700,
+    "native_step_limit": 700
+  },
+  "history": [
+    {
+      "decision": 0,
+      "start_tick": 0,
+      "end_tick": 50,
+      "response": {
+        "mode": "eef",
+        "request_id": "068fc88c64c544d1954a2a24146fa834",
+        "steps": 50,
+        "reason": "Pink bottle is ahead and inward of the left fingers; advance left diagonally and right forward with open grippers to approach visible bottles.",
+        "target": {
+          "left": {
+            "position": [
+              -0.268,
+              -0.315,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.30047,
+              -0.304,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 0,
+        "physical_steps": 0,
+        "decision": 0,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/000.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 1,
+      "start_tick": 50,
+      "end_tick": 100,
+      "response": {
+        "mode": "eef",
+        "request_id": "912c2193a0ed4615a430c103636af9af",
+        "steps": 50,
+        "reason": "The pink bottle remains to the right of the left wrist view center. Shift left fingers inward and slightly forward; move right inward toward the small yellow bottle.",
+        "target": {
+          "left": {
+            "position": [
+              -0.223,
+              -0.297,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.7069998383522034,
+              -4.197436709318936e-08,
+              -1.5341547054958937e-07,
+              0.7072136998176575
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.2555,
+              -0.321,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.7069997191429138,
+              5.1839638359751916e-08,
+              -8.649880101074814e-08,
+              0.7072137594223022
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 50,
+        "physical_steps": 0,
+        "decision": 1,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/001.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 2,
+      "start_tick": 100,
+      "end_tick": 150,
+      "response": {
+        "mode": "eef",
+        "request_id": "05e11775043e4841923917a160bc1655",
+        "steps": 50,
+        "reason": "Pink bottle is centered in the left wrist view but still ahead of the fingers; advance open fingers along its approach. Continue right lateral alignment toward yellow bottle.",
+        "target": {
+          "left": {
+            "position": [
+              -0.223,
+              -0.248,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.706999659538269,
+              6.445391420584201e-08,
+              -6.41705639736756e-07,
+              0.707213819026947
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.2065,
+              -0.321,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.7069997191429138,
+              -1.0233563330075413e-07,
+              3.988392904830107e-08,
+              0.7072137594223022
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 100,
+        "physical_steps": 0,
+        "decision": 2,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/002.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 3,
+      "start_tick": 150,
+      "end_tick": 200,
+      "response": {
+        "mode": "eef",
+        "request_id": "54725edb608a44a0baffbd14548ea29d",
+        "steps": 50,
+        "reason": "Left bottle remains upright and centered as fingers approach. Advance farther around its body; lift right fingers to clear the yellow cap after lateral contact displaced it slightly.",
+        "target": {
+          "left": {
+            "position": [
+              -0.223,
+              -0.199,
+              0.9215
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              1.8101609100540372e-07,
+              -9.06466254946281e-07,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.1795,
+              -0.3195,
+              0.969
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 150,
+        "physical_steps": 0,
+        "decision": 3,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/003.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 4,
+      "start_tick": 200,
+      "end_tick": 250,
+      "response": {
+        "mode": "eef",
+        "request_id": "fdac7870336a47a2ab7e31769250644d",
+        "steps": 50,
+        "reason": "Pink body is between left fingers. Close while lifting vertically to test retention and gain rim clearance. Move right arm back away from the fallen yellow bottle.",
+        "target": {
+          "left": {
+            "position": [
+              -0.223,
+              -0.199,
+              0.967
+            ],
+            "quaternion_wxyz": [
+              0.7069998979568481,
+              3.1222336360769987e-07,
+              -9.83600898507575e-07,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.221,
+              -0.33,
+              0.945
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 200,
+        "physical_steps": 0,
+        "decision": 4,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/004.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 5,
+      "start_tick": 250,
+      "end_tick": 300,
+      "response": {
+        "mode": "eef",
+        "request_id": "40e91bb3311141458d244d7f2ae59ade",
+        "steps": 50,
+        "reason": "Left gripper is partly closed around the pink bottle and the bottle moved with the lift. Continue straight upward for bottle and finger clearance before lateral travel; retract right toward home.",
+        "target": {
+          "left": {
+            "position": [
+              -0.223,
+              -0.199,
+              1.0155
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.267,
+              -0.343,
+              0.934
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 250,
+        "physical_steps": 0,
+        "decision": 5,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/005.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 6,
+      "start_tick": 300,
+      "end_tick": 350,
+      "response": {
+        "mode": "eef",
+        "request_id": "2da1c92120864a2cabae8e7cb29d9ce3",
+        "steps": 50,
+        "reason": "Pink bottle remains retained after vertical lift. Translate left at the raised height toward the visible dustbin opening; finish right arm return.",
+        "target": {
+          "left": {
+            "position": [
+              -0.2719,
+              -0.199,
+              1.0155
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229986906051636,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 300,
+        "physical_steps": 0,
+        "decision": 6,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/006.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 7,
+      "start_tick": 350,
+      "end_tick": 400,
+      "response": {
+        "mode": "eef",
+        "request_id": "9ad25da8e8294033b4df1e7f5a0ddf74",
+        "steps": 50,
+        "reason": "Held pink bottle is approaching the bin right edge but is not centered above the opening. Continue left at constant raised height.",
+        "target": {
+          "left": {
+            "position": [
+              -0.3208,
+              -0.199,
+              1.0155
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.9214999079704285
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -9.542829104702832e-08,
+              1.0749342038707255e-07,
+              0.7072135806083679
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 350,
+        "physical_steps": 0,
+        "decision": 7,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/007.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 8,
+      "start_tick": 400,
+      "end_tick": 450,
+      "response": {
+        "mode": "eef",
+        "request_id": "4882c2cd5e3849d898c030660dde06c4",
+        "steps": 50,
+        "reason": "Bottle bottom remains near the dustbin right rim. Move one more bounded increment left to place its footprint fully inside the opening before release.",
+        "target": {
+          "left": {
+            "position": [
+              -0.3697,
+              -0.199,
+              1.0155
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              1.633044277582485e-08,
+              -2.661703035755636e-08,
+              0.7072135806083679
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 400,
+        "physical_steps": 0,
+        "decision": 8,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/008.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 9,
+      "start_tick": 450,
+      "end_tick": 500,
+      "response": {
+        "mode": "eef",
+        "request_id": "d2d18e30cd55414193adacb8184ba07d",
+        "steps": 50,
+        "reason": "Pink bottle is above the dark bin opening with clearance from the right rim. Lower vertically while retaining it before releasing into the bin.",
+        "target": {
+          "left": {
+            "position": [
+              -0.3697,
+              -0.199,
+              0.967
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              1.633044277582485e-08,
+              -2.661703035755636e-08,
+              0.7072135806083679
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 450,
+        "physical_steps": 0,
+        "decision": 9,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/009.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 10,
+      "start_tick": 500,
+      "end_tick": 550,
+      "response": {
+        "mode": "eef",
+        "request_id": "be3559dfb93449eb8ac6fd18f3e53a39",
+        "steps": 50,
+        "reason": "The lowered pink bottle projects close to the right rim; increase inward clearance while lifting slightly so its full footprint can fall inside the bin.",
+        "target": {
+          "left": {
+            "position": [
+              -0.412,
+              -0.199,
+              0.99
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": true
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              1.633044277582485e-08,
+              -2.661703035755636e-08,
+              0.7072135806083679
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 500,
+        "physical_steps": 0,
+        "decision": 10,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/010.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        },
+        {
+          "left": true,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 11,
+      "start_tick": 550,
+      "end_tick": 600,
+      "response": {
+        "mode": "eef",
+        "request_id": "65737ad6c1604cca85a085aa05e45937",
+        "steps": 50,
+        "reason": "Pink bottle is above the bin interior with visible right-rim clearance. Open the left gripper and withdraw vertically before sideways retraction.",
+        "target": {
+          "left": {
+            "position": [
+              -0.412,
+              -0.199,
+              1.012
+            ],
+            "quaternion_wxyz": [
+              0.7070006132125854,
+              -0.0007814473938196898,
+              0.0002613492833916098,
+              0.7072123289108276
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              1.633044277582485e-08,
+              -2.661703035755636e-08,
+              0.7072135806083679
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 550,
+        "physical_steps": 0,
+        "decision": 11,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/011.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 12,
+      "start_tick": 600,
+      "end_tick": 650,
+      "response": {
+        "mode": "eef",
+        "request_id": "2d926f0bd2874f3a86449f75ca812cf1",
+        "steps": 50,
+        "reason": "Pink bottle has left the open gripper and disappeared into the bin opening. Fingers have withdrawn upward; retract left toward its episode-start pose while right holds home.",
+        "target": {
+          "left": {
+            "position": [
+              -0.3858282735488525,
+              -0.2346727394562959,
+              0.9909405429347683
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 600,
+        "physical_steps": 0,
+        "decision": 12,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/012.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": false,
+      "native_success": false
+    },
+    {
+      "decision": 13,
+      "start_tick": 650,
+      "end_tick": 700,
+      "response": {
+        "mode": "eef",
+        "request_id": "86d48b360e2748b6b33e40c69cbd764a",
+        "steps": 50,
+        "reason": "Three bottles remain on the table, and the left arm is still displaced from home. Use the final bounded action to continue safe return with both grippers open.",
+        "target": {
+          "left": {
+            "position": [
+              -0.3596565022179235,
+              -0.2703453360679756,
+              0.9698813133579354
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              -4.327419134142474e-08,
+              -6.000607299938565e-08,
+              0.7072135210037231
+            ],
+            "gripper_closed": false
+          },
+          "right": {
+            "position": [
+              0.3004709482192993,
+              -0.35229983925819397,
+              0.921500027179718
+            ],
+            "quaternion_wxyz": [
+              0.7069999575614929,
+              1.633044277582485e-08,
+              -2.661703035755636e-08,
+              0.7072135806083679
+            ],
+            "gripper_closed": false
+          }
+        },
+        "evaluation_method": "gpt_only"
+      },
+      "evaluation_method": "gpt_only",
+      "simulator_decision_receipt": {
+        "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+        "step_id": 650,
+        "physical_steps": 0,
+        "decision": 13,
+        "record_path": "/root/gpt6_direct50_fixed_layout0_20260919155439/sim/f6f1159ff44e40619b9efafe953125e5/codex_decisions/013.json",
+        "status": "decision_received_not_execution_ack"
+      },
+      "executed_steps": 50,
+      "source": "gpt_eef",
+      "source_detail": "eef",
+      "prediction_id": null,
+      "executed_gripper_closed": [
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        },
+        {
+          "left": false,
+          "right": false
+        }
+      ],
+      "terminal": true,
+      "native_success": false
+    }
+  ]
+}

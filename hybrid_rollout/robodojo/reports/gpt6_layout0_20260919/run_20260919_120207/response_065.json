@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b88d08639e504b188132cf1ce3f00435",
+  "reason": "Continue the left wrist turn and raise the right fingers clear of the table before further rotation.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.1663571149110794,
+        -0.3065145015716553,
+        0.9407373070716858
+      ],
+      "quaternion_wxyz": [
+        0.8912663244874977,
+        -0.10325557088077568,
+        0.2555665060290024,
+        0.36009496929665585
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.218,
+        -0.312,
+        0.911
+      ],
+      "quaternion_wxyz": [
+        0.46674844622612,
+        -0.12337066978216171,
+        0.06002962589263916,
+        0.8736829161643982
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "07e4d01f8fe046d29d27012dd7c840e2",
+  "reason": "Translate the receiving left gripper toward white while the right arm maintains its grasp.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.164,
+        -0.2,
+        0.944
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.08073151111602783,
+        -0.15111708641052246,
+        1.0493165254592896
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

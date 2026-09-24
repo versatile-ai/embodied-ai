@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "62e17f1b9e8947fc90c35458793278a3",
+  "reason": "Withdraw the empty left fingers upward from the bin and continue the final bottle's carry.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.585,
+        -0.206,
+        0.982
+      ],
+      "quaternion_wxyz": [
+        0.9223067164421082,
+        -0.0450272336602211,
+        0.37970471382141113,
+        -0.05609959736466408
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.019,
+        -0.146,
+        0.981
+      ],
+      "quaternion_wxyz": [
+        0.04459341987967491,
+        -0.33355486392974854,
+        -0.09177789092063904,
+        0.9371922016143799
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

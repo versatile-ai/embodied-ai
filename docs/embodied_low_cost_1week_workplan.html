@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>云端 LLM + 端侧 WAM/VLA：一周测试验证计划</title>
+  <style>
+    :root{--bg:#f5f7fb;--paper:#fff;--ink:#172033;--muted:#667085;--line:#dfe5ef;--blue:#2563eb;--blue2:#dbeafe;--green:#16835f;--green2:#dff6ec;--amber:#b76e00;--amber2:#fff2d5;--red:#c23b3b;--red2:#fee7e7;--purple:#7557c8;--purple2:#ede9fe;--shadow:0 12px 34px rgba(30,50,90,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}button{font:inherit}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+    aside{position:sticky;top:0;height:100vh;padding:28px 20px;background:#111a2e;color:#dce5f5;overflow:auto}aside h2{font-size:17px;margin:0 0 6px;color:#fff}aside p{font-size:12px;color:#9ba8bf;margin:0 0 22px}.nav a{display:block;padding:8px 10px;margin:3px 0;border-radius:7px;color:#bdc9dc;font-size:13px}.nav a:hover{background:#1e2b46;color:#fff;text-decoration:none}.nav .strong{color:#fff;background:#23375f}.print{width:100%;margin-top:20px;border:1px solid #455674;background:transparent;color:#fff;border-radius:7px;padding:8px;cursor:pointer}
+    main{max-width:1280px;width:100%;margin:0 auto;padding:44px 48px 80px}.hero{background:linear-gradient(135deg,#112449,#1b4a8e 58%,#2467ba);color:#fff;padding:38px;border-radius:16px;box-shadow:var(--shadow)}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9d5ff}.hero h1{font-size:32px;line-height:1.25;margin:8px 0 12px}.hero p{max-width:880px;color:#d9e8ff;margin:0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.chip{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);border-radius:999px;padding:5px 10px;font-size:12px}
+    section{scroll-margin-top:24px;margin-top:34px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}.section-head h2{margin:0;font-size:23px}.section-head p{margin:0;color:var(--muted);font-size:13px}.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(5,1fr)}.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 4px 16px rgba(30,50,90,.04)}.card h3{margin:0 0 8px;font-size:16px}.kpi .value{font-size:25px;font-weight:750;letter-spacing:-.02em}.kpi .label{font-size:12px;color:var(--muted)}.kpi.blue{border-top:4px solid var(--blue)}.kpi.green{border-top:4px solid var(--green)}.kpi.amber{border-top:4px solid var(--amber)}.kpi.red{border-top:4px solid var(--red)}.kpi.purple{border-top:4px solid var(--purple)}
+    .callout{padding:15px 17px;border-radius:10px;border-left:4px solid var(--amber);background:var(--amber2)}.callout strong{display:block;margin-bottom:3px}.callout.info{border-color:var(--blue);background:var(--blue2)}
+    .bars{display:grid;gap:12px}.bar-row{display:grid;grid-template-columns:150px 1fr 95px;gap:12px;align-items:center}.track{height:18px;background:#eef2f7;border-radius:999px;overflow:hidden}.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#376fd1,#76a5ef)}.fill.green{background:linear-gradient(90deg,#16835f,#54bd93)}.bar-label{font-weight:650}.bar-value{text-align:right;font-variant-numeric:tabular-nums;font-weight:650}
+    .architecture{grid-template-columns:repeat(4,1fr)}.layer{position:relative;min-height:185px}.layer .freq{font-size:12px;font-weight:700;border-radius:999px;padding:3px 8px;display:inline-block}.freq.cloud{background:var(--blue2);color:#174d9d}.freq.edge{background:var(--green2);color:#116b4d}.freq.vla{background:var(--amber2);color:#865000}.freq.ctrl{background:var(--purple2);color:#5a42a0}.layer ul{padding-left:18px;margin:8px 0 0}.layer:after{content:"→";position:absolute;right:-17px;top:72px;color:#9ba8bf;font-size:20px}.layer:last-child:after{display:none}
+    .timeline{display:grid;grid-template-columns:84px 1fr;gap:0}.day{display:contents}.day-label{padding:18px 10px;border-top:1px solid var(--line);font-weight:800;color:var(--blue)}.day-body{padding:16px 18px;border-top:1px solid var(--line)}.day:first-child .day-label,.day:first-child .day-body{border-top:0}.day-body h3{margin:0 0 5px}.day-body p{margin:0 0 8px;color:var(--muted)}.tasks{display:flex;flex-wrap:wrap;gap:7px}.task{font-size:12px;background:#eef3fa;padding:4px 8px;border-radius:6px}.deliver{display:inline-block;margin-top:9px;color:var(--green);font-weight:700;font-size:13px}
+    table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eef3fa;font-size:12px;color:#475467;letter-spacing:.02em}tbody tr:last-child td{border-bottom:0}td.num{text-align:right;font-variant-numeric:tabular-nums}.tag{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}.tag.must{background:var(--red2);color:#963232}.tag.core{background:var(--blue2);color:#174d9d}.tag.stretch{background:#eef0f4;color:#596273}.tag.done{background:var(--green2);color:#116b4d}
+    .waterfall{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;align-items:stretch}.phase{padding:12px 9px;border-radius:8px;background:#edf2f9;text-align:center;font-size:12px;min-height:82px}.phase b{display:block;font-size:13px;margin-bottom:5px}.phase.hot{background:var(--red2);border:1px solid #efb6b6}.phase.measure{background:var(--blue2);border:1px solid #b9d5ff}.phase.local{background:var(--green2);border:1px solid #b8e5d1}
+    .two{grid-template-columns:1fr 1fr}.checklist{list-style:none;padding:0;margin:0}.checklist li{position:relative;padding:7px 0 7px 27px;border-bottom:1px dashed var(--line)}.checklist li:last-child{border:0}.checklist li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}.gate{border-left:4px solid var(--blue)}.gate h3{display:flex;justify-content:space-between;gap:8px}.gate small{color:var(--muted);font-weight:500}.sources{font-size:13px;color:var(--muted)}.footer{margin-top:38px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media(max-width:1000px){.shell{grid-template-columns:1fr}aside{display:none}main{padding:24px}.kpis{grid-template-columns:repeat(2,1fr)}.architecture{grid-template-columns:1fr 1fr}.layer:after{display:none}.waterfall{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:640px){main{padding:14px}.hero{padding:24px}.hero h1{font-size:25px}.kpis,.architecture,.two{grid-template-columns:1fr}.bar-row{grid-template-columns:110px 1fr 70px}.waterfall{grid-template-columns:1fr 1fr}.section-head{display:block}.section-head p{margin-top:4px}}
+    @media print{aside{display:none}.shell{display:block}main{max-width:none;padding:0}.hero{box-shadow:none}.card{box-shadow:none}section{break-inside:avoid}.print{display:none}body{background:#fff}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <h2>一周测试验证计划</h2>
+    <p>Cloud LLM + Edge WAM/VLA<br>2026-09-21 — 2026-09-25</p>
+    <nav class="nav">
+      <a class="strong" href="#summary">执行摘要</a><a href="#baseline">现有基线</a><a href="#architecture">目标架构</a><a href="#schedule">五天排期</a><a href="#experiments">实验矩阵</a><a href="#latency">时延拆解</a><a href="#acceptance">验收门槛</a><a href="#deliverables">交付清单</a><a href="#sources">公开资料</a>
+    </nav>
+    <button class="print" onclick="window.print()">打印 / 导出 PDF</button>
+  </aside>
+  <main>
+    <header class="hero" id="summary">
+      <div class="eyebrow">Execution plan · one week validation sprint</div>
+      <h1>云端 LLM + 端侧 WAM/VLA<br>低成本具身方案：一周测试验证计划</h1>
+      <p>基于已完成的 GPT-6 Astra、π0.5 和 GPT+π0.5 四瓶入桶实验，在 5 个工作日内完成全链路测量、VLA 流式验证、GPT 15-step/自适应验证、NPU 视觉模型选型以及云边联合对比，形成可复现的工程结论。</p>
+      <div class="chips"><span class="chip">核心场景：RoboDojo 四瓶入桶</span><span class="chip">主平台：GPU 仿真 + NPU 推理 + Cloud GPT</span><span class="chip">控制频率：25 Hz</span><span class="chip">关键目标：90min → ≤9s 阻塞云等待</span></div>
+    </header>
+
+    <section>
+      <div class="section-head"><h2>本周目标与边界</h2><p>优先完成可测量、可流水、可对比、可复现</p></div>
+      <div class="grid kpis">
+        <div class="card kpi blue"><div class="value">≥90%</div><div class="label">墙钟时间可归因</div></div>
+        <div class="card kpi red"><div class="value">P95 ≤9s</div><div class="label">云端首动作挑战目标</div></div>
+        <div class="card kpi green"><div class="value">Idle &lt;5%</div><div class="label">VLA 动作队列空闲率</div></div>
+        <div class="card kpi amber"><div class="value">≥5 轮</div><div class="label">每个核心方案独立重复</div></div>
+        <div class="card kpi purple"><div class="value">1 套</div><div class="label">可复现云边联合方案</div></div>
+      </div>
+      <div class="callout" style="margin-top:14px"><strong>“90 分钟降到 9 秒”的正确口径</strong>700 个控制步在 25 Hz 下对应 28 秒物理/仿真时间，完整任务不可能压缩到 9 秒。本周将目标定义为：单次云端高层规划 P95 不超过 9 秒，并通过异步执行将一轮累计阻塞云等待压到 9 秒以内；整轮目标约为物理任务时间 28 秒加不超过 9 秒阻塞等待。</div>
+    </section>
+
+    <section id="baseline">
+      <div class="section-head"><h2>现有实验基线</h2><p>同一四瓶入桶任务；视觉复核与原生 evaluator 分开保存</p></div>
+      <div class="card bars">
+        <div class="bar-row"><div class="bar-label">GPT 固定 5</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="bar-value">91.19 min</div></div>
+        <div class="bar-row"><div class="bar-label">GPT 自适应</div><div class="track"><div class="fill" style="width:47.2%"></div></div><div class="bar-value">43.06 min</div></div>
+        <div class="bar-row"><div class="bar-label">GPT + π0.5</div><div class="track"><div class="fill" style="width:34.7%"></div></div><div class="bar-value">31.65 min</div></div>
+        <div class="bar-row"><div class="bar-label">GPT 固定 50</div><div class="track"><div class="fill" style="width:20.9%"></div></div><div class="bar-value">19.04 min</div></div>
+        <div class="bar-row"><div class="bar-label">π0.5</div><div class="track"><div class="fill green" style="width:4.6%"></div></div><div class="bar-value">2.85–4.18 min</div></div>
+      </div>
+      <table style="margin-top:14px"><thead><tr><th>方案</th><th>已知结果</th><th>主要性能事实</th><th>本周要回答的问题</th></tr></thead><tbody>
+        <tr><td><b>GPT 固定 5</b></td><td>视觉 4/4；140 次决策</td><td>模型等待 79.14 min，占总墙钟 86.8%；约 20.77M Token</td><td>TTFT 中排队、网络、视觉、prefill、隐藏推理各占多少</td></tr>
+        <tr><td><b>GPT 固定 50</b></td><td>视觉 1/4；14 次决策</td><td>调用少但开环过长，到位后保持目标</td><td>15-step 是否处于速度与成功率的平衡点</td></tr>
+        <tr><td><b>GPT 自适应</b></td><td>视觉 2/4；64 次决策</td><td>平均段长 10.94，中位数 9</td><td>按自由空间、接触和恢复动态选择 5–30 步是否更稳</td></tr>
+        <tr><td><b>π0.5</b></td><td>已有轮次 2/3/3/4 瓶</td><td>模型约 0.55s；端到端约 2.8–3.1s；50 步执行约 9s</td><td>异步 50/15 能否隐藏推理并提升恢复能力</td></tr>
+        <tr><td><b>GPT + π0.5</b></td><td>两次视觉均成功</td><td>GPT 审核约 20.97s，仍是主要阻塞</td><td>事件触发云调用能否减少 80% 且保持成功率</td></tr>
+      </tbody></table>
+    </section>
+
+    <section id="architecture">
+      <div class="section-head"><h2>本周验证的目标架构</h2><p>云端处理语义与恢复，端侧保证连续控制</p></div>
+      <div class="grid architecture">
+        <div class="card layer"><span class="freq cloud">Cloud · 0.2–1 Hz</span><h3>GPT / VLM</h3><ul><li>任务分解与子目标</li><li>异常归因与恢复</li><li>阶段/事件触发调用</li></ul></div>
+        <div class="card layer"><span class="freq edge">Edge · 0.5–2 Hz</span><h3>Qwen VLM 门控</h3><ul><li>在手/在桶/滑落</li><li>阶段与停滞判断</li><li>低置信度升级云端</li></ul></div>
+        <div class="card layer"><span class="freq vla">Edge · 10–25 Hz</span><h3>WAM / π0.5</h3><ul><li>异步 50/15 动作块</li><li>双缓冲与版本号</li><li>过期丢弃与平滑融合</li></ul></div>
+        <div class="card layer"><span class="freq ctrl">Control · 100–1000 Hz</span><h3>安全与伺服</h3><ul><li>碰撞、限位和跟踪</li><li>停滞与急停</li><li>云端不可用时保持安全</li></ul></div>
+      </div>
+      <div class="callout info" style="margin-top:14px"><strong>15-step 与 1 Hz 的约束</strong>15 步在 25 Hz 下只覆盖 0.6 秒；云端 1 Hz 返回时，动作队列至少需要 25 步安全缓冲，或者由端侧 VLA/WAM 在等待期间持续补动作。云端不直接承担 25 Hz 连续关节控制。</div>
+    </section>
+
+    <section id="schedule">
+      <div class="section-head"><h2>5 个工作日执行计划</h2><p>2026-09-21 至 2026-09-25；每天产生可审计交付件</p></div>
+      <div class="card timeline">
+        <div class="day"><div class="day-label">D1<br><small>周一</small></div><div class="day-body"><h3>冻结基线 + 全链路打点 + 物理组网</h3><p>统一所有模型、场景、seed、配置和实验 ID；在 Mac、GPU 仿真、NPU 服务、云端 GPT 全链路接入单调时钟事件。</p><div class="tasks"><span class="task">trace_event.jsonl</span><span class="task">capture/encode/send/first-token/action</span><span class="task">RTT/带宽/抖动</span><span class="task">图像与上下文字节</span><span class="task">NPU/GPU 利用率</span></div><span class="deliver">交付：指标字典、run manifest、组网图、链路预算；≥90% 墙钟可归因</span></div></div>
+        <div class="day"><div class="day-label">D2<br><small>周二</small></div><div class="day-body"><h3>GPT 90 分钟拆解 + 15-step / 自适应实验</h3><p>精确记录客户端和服务端 TTFT/TPOT；测试固定 15 与自适应 5–30，复用固定 5/50 历史结果，夜间自动补足核心方案重复。</p><div class="tasks"><span class="task">网络/排队/视觉/prefill/decode</span><span class="task">短上下文</span><span class="task">1 图 vs 3 图</span><span class="task">reasoning effort</span><span class="task">每组 ≥5 轮</span></div><span class="deliver">交付：GPT 延迟瀑布、Token—TTFT 回归、15-step 成功率—时延—成本结果</span></div></div>
+        <div class="day"><div class="day-label">D3<br><small>周三</small></div><div class="day-body"><h3>π0.5 流式 50/15 + 异步动作队列</h3><p>实现执行与下一次推理并行；用版本号和观测时间戳丢弃过期块，增加 3–5 步动作融合、事件提前刷新和队列欠载保护。</p><div class="tasks"><span class="task">同步 50/50 基线</span><span class="task">滚动 50/15</span><span class="task">异步 50/15</span><span class="task">动作融合</span><span class="task">每组 ≥5 轮</span></div><span class="deliver">交付：流式控制器、轨迹/录像、队列空闲率、过期率及墙钟对比</span></div></div>
+        <div class="day"><div class="day-label">D4<br><small>周四</small></div><div class="day-body"><h3>NPU 视觉门控 + 开源数据小规模验证</h3><p>优先跑通 Qwen2.5-VL-3B MindIE/NPU，7B 只做质量上界；DROID-100 验证真实多相机状态判断，LIBERO 选择抓取放置子集做闭环冒烟。</p><div class="tasks"><span class="task">JSON 状态协议</span><span class="task">TTFT/TPOT/功耗</span><span class="task">100 条固定样本</span><span class="task">DROID-100</span><span class="task">LIBERO 子集</span></div><span class="deliver">交付：NPU 选型表、性能遥测、离线准确率和闭环冒烟结果</span></div></div>
+        <div class="day"><div class="day-label">D5<br><small>周五</small></div><div class="day-body"><h3>云边联合最终对比 + 冻结交付</h3><p>π0.5/WAM 连续控制，本地 VLM 做状态门控，GPT 只在开始、阶段切换、低置信度和失败恢复时调用；完成最终复测与报告。</p><div class="tasks"><span class="task">GPT only</span><span class="task">π0.5 only</span><span class="task">GPT+π0.5 event-driven</span><span class="task">成本/功耗</span><span class="task">完整视频</span></div><span class="deliver">交付：HTML 总报告、原始数据、代码/配置、录像、复现命令和技术选型结论</span></div></div>
+      </div>
+    </section>
+
+    <section id="experiments">
+      <div class="section-head"><h2>一周实验矩阵</h2><p>集中验证关键假设；非关键扩展移出本周</p></div>
+      <table><thead><tr><th>优先级</th><th>实验</th><th>方案</th><th>重复</th><th>核心指标</th><th>通过条件</th></tr></thead><tbody>
+        <tr><td><span class="tag must">P0</span></td><td>GPT horizon</td><td>历史固定 5/50；新增固定 15、自适应 5–30</td><td>新增各 5 轮</td><td>成功率、墙钟、Token、恢复、碰撞</td><td>找到 15-step 是否达到可接受成功率与调用数平衡</td></tr>
+        <tr><td><span class="tag must">P0</span></td><td>VLA streaming</td><td>同步 50/50、滚动 50/15、异步 50/15</td><td>各 5 轮</td><td>成功率、idle、过期率、切换抖动</td><td>Idle &lt;5%；墙钟降低 ≥30%；成功率不低于同步基线</td></tr>
+        <tr><td><span class="tag must">P0</span></td><td>Hybrid</td><td>每 15 步审核 vs 阶段/事件触发</td><td>各 5 轮</td><td>云调用数、阻塞等待、完成瓶数、成本</td><td>云调用减少 ≥80%；任务成功率不低于现有混合方案</td></tr>
+        <tr><td><span class="tag core">P1</span></td><td>Local VLM</td><td>Qwen2.5-VL-3B；7B 上界</td><td>固定 100 样本</td><td>准确率、JSON、P50/P95、功耗</td><td>JSON ≥99%；3 路图像 P95 ≤2s 为挑战目标</td></tr>
+        <tr><td><span class="tag core">P1</span></td><td>Open data</td><td>DROID-100 离线；LIBERO 抓取放置子集</td><td>固定划分</td><td>阶段识别、失败判断、闭环冒烟</td><td>数据流水可复现；离线和闭环结论分开</td></tr>
+        <tr><td><span class="tag stretch">后续</span></td><td>扩展研究</td><td>DeepSeek-VL2 NPU 深度适配、完整 DROID、RoboTwin、真机长测</td><td>下一阶段</td><td>泛化与产品化</td><td>不占用本周 P0 关键路径</td></tr>
+      </tbody></table>
+    </section>
+
+    <section id="latency">
+      <div class="section-head"><h2>时延与数据链路拆解</h2><p>客户端业务 SLA 与服务端模型性能分别报告</p></div>
+      <div class="waterfall">
+        <div class="phase measure"><b>感知</b>capture<br>render<br>resize</div><div class="phase measure"><b>编码</b>PNG/JPEG<br>序列化<br>排队</div><div class="phase measure"><b>网络</b>上行 RTT<br>抖动<br>远端接收</div><div class="phase hot"><b>模型</b>视觉编码<br>prefill<br>TTFT / decode</div><div class="phase measure"><b>响应</b>下行<br>解析<br>动作派发</div><div class="phase local"><b>执行</b>队列<br>IK/动作<br>物理推进</div><div class="phase local"><b>反馈</b>渲染<br>新观测<br>事件判断</div>
+      </div>
+      <div class="grid two" style="margin-top:14px">
+        <div class="card"><h3>现有数据量基线</h3><ul class="checklist"><li>3 张 640×480 PNG 合计约 959 KB/观测</li><li>顶视角约 370 KB，左腕约 284 KB，右腕约 305 KB</li><li>GPT 自适应一轮 65 组观测，图像载荷约 62 MB</li><li>请求 JSON 平均约 6.8 KB，动作响应约 0.9 KB</li><li>网络和视觉输入远大于动作响应载荷</li></ul></div>
+        <div class="card"><h3>必须同时给出的两类指标</h3><ul class="checklist"><li>客户端 TTFT：排队 + 网络 + 服务端全部处理</li><li>服务端 TTFT：model_start 到 first_output</li><li>客户端 TPOT：业务可观察的 token 间隔</li><li>服务端 TPOT：decode 阶段真实吞吐</li><li>每成功任务：Token、NPU/GPU 秒、网络字节、功耗与费用</li></ul></div>
+      </div>
+    </section>
+
+    <section id="acceptance">
+      <div class="section-head"><h2>每日 Gate 与最终验收</h2><p>当天 Gate 未通过时先修链路，不扩大实验量</p></div>
+      <div class="grid two">
+        <div class="card gate"><h3>D1 · 可测量 <small>周一晚</small></h3><ul class="checklist"><li>≥90% 墙钟时间进入明确阶段</li><li>所有运行具备配置、模型、seed、场景哈希</li><li>跨机时钟偏差、RTT、带宽和图像字节可追溯</li></ul></div>
+        <div class="card gate"><h3>D2 · GPT 可解释 <small>周二晚</small></h3><ul class="checklist"><li>TTFT/TPOT 有客户端和服务端口径</li><li>固定 15 与自适应实验自动运行稳定</li><li>能够排序网络、排队、prefill、decode 和执行瓶颈</li></ul></div>
+        <div class="card gate"><h3>D3 · VLA 可流水 <small>周三晚</small></h3><ul class="checklist"><li>推理与动作执行真实重叠</li><li>旧观测动作不会被继续执行</li><li>队列空闲率、过期率、融合抖动可量化</li></ul></div>
+        <div class="card gate"><h3>D4 · 端侧可选型 <small>周四晚</small></h3><ul class="checklist"><li>Qwen2.5-VL-3B NPU 推理可复现</li><li>TTFT、TPOT、显存、利用率、功耗完整</li><li>开源数据只承担离线/冒烟结论，不替代闭环成功率</li></ul></div>
+        <div class="card gate" style="grid-column:1/-1"><h3>D5 · 可决策 <small>周五晚</small></h3><ul class="checklist"><li>GPT、π0.5、Hybrid 均有 ≥5 轮核心配置结果和完整录像</li><li>给出成功率—P95 时延—成本—功耗四维 Pareto</li><li>明确云端调用频率、端侧模型、动作 horizon、组网和算力建议</li><li>最终结论能够通过脚本、镜像、配置和原始数据复现</li></ul></div>
+      </div>
+    </section>
+
+    <section id="deliverables">
+      <div class="section-head"><h2>周五最终交付件</h2><p>工程资产、实验数据和技术决策同时交付</p></div>
+      <div class="grid two">
+        <div class="card"><h3>工程与数据</h3><ul class="checklist"><li>统一 trace_event.jsonl、run manifest 与采集脚本</li><li>π0.5 异步 50/15 控制器和测试配置</li><li>Qwen2.5-VL NPU 镜像、启动命令和遥测脚本</li><li>全部原始 JSON、轨迹、配置、视频和 evaluator 输出</li><li>一键复现命令与环境说明</li></ul></div>
+        <div class="card"><h3>报告与决策</h3><ul class="checklist"><li>GPT / VLA / Hybrid 全链路时延瀑布</li><li>GPT 15-step 与自适应效果和成本对比</li><li>流式 VLA 成功率、吞吐、idle 与过期动作分析</li><li>云—边—控制器组网图和数据量模型</li><li>低成本方案选型与下一阶段 4–6 周路线</li></ul></div>
+      </div>
+      <div class="callout info" style="margin-top:14px"><strong>本周主结论假设</strong>性能提升的主要来源应是减少云端调用、控制上下文增长、让动作执行和下一次推理重叠，并把高频连续控制交给端侧 WAM/VLA；本周实验将用成功率、P95 时延、成本和功耗验证或否定该假设。</div>
+    </section>
+
+    <section id="sources">
+      <div class="section-head"><h2>公开资料</h2><p>模型支持和数据集范围以官方资料为准</p></div>
+      <div class="card sources">
+        <a href="https://github.com/Ascend/MindIE-LLM/blob/master/docs/zh/user_guide/model_support_list.md">MindIE 模型支持列表</a> · <a href="https://github.com/QwenLM-corp/Qwen2.5-VL">Qwen2.5-VL</a> · <a href="https://github.com/deepseek-ai/deepseek-vl2">DeepSeek-VL2</a> · <a href="https://droid-dataset.github.io/">DROID</a> · <a href="https://github.com/Lifelong-Robot-Learning/LIBERO">LIBERO</a> · <a href="https://robotics-transformer-x.github.io/">Open X-Embodiment</a> · <a href="https://github.com/huggingface/lerobot">LeRobot</a>
+      </div>
+    </section>
+
+    <div class="footer">生成日期：2026-09-20　｜　基于 GPT-as-Policy / RoboDojo 当前 GPT-6 Astra、π0.5 与混合策略正式实验　｜　文档版本：1.0</div>
+  </main>
+</div>
+</body>
+</html>

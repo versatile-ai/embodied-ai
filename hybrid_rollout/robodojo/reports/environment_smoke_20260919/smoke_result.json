@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "task": "put_bottles_into_dustbin",
+  "layout_id": 0,
+  "simulator_device": "cuda:0",
+  "control_dt": 0.04,
+  "reset_completed": true,
+  "native_reward_registered": true,
+  "fk_validation_completed": true,
+  "hold_action_steps": 1,
+  "hold_action_completed": true,
+  "camera_means_rgb": {
+    "cam_high": [79.7, 62.9, 56.3],
+    "cam_left_wrist": [89.4, 51.0, 53.4],
+    "cam_right_wrist": [112.7, 95.8, 81.7]
+  },
+  "notes": [
+    "Validated through the frozen run_gpu_sim_server.sh entry point after remote deployment.",
+    "The first control action exercised the native reward path and did not reproduce the CPU/CUDA geometry error.",
+    "Warm RGB channel means confirm that post-reset RTX warmup and monitor lighting are active."
+  ]
+}

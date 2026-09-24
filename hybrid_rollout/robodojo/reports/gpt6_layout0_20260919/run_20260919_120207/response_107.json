@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "8ef71a7b8fb345c6a533f083ab7586b8",
+  "reason": "Lower the left fingers to a secure depth around the bottle body and move the right arm away.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.316,
+        -0.177,
+        0.905
+      ],
+      "quaternion_wxyz": [
+        0.9240569472312927,
+        0.006859022192656994,
+        0.38210272789001465,
+        0.008310489356517792
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.035,
+        -0.225,
+        1.023
+      ],
+      "quaternion_wxyz": [
+        0.4321066508383138,
+        -0.16889026288418243,
+        -0.04249010766381919,
+        0.884847169261433
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

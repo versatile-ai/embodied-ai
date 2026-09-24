@@ -1,0 +1,4187 @@
+[
+  {
+    "event": 0,
+    "timestamp_ms": 1789790703945,
+    "delta": {
+      "totalTokens": 16821,
+      "inputTokens": 16680,
+      "cachedInputTokens": 0,
+      "outputTokens": 141,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 16821,
+      "inputTokens": 16680,
+      "cachedInputTokens": 0,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 141,
+      "reasoningOutputTokens": 0
+    },
+    "reported_last": {
+      "totalTokens": 16821,
+      "inputTokens": 16680,
+      "cachedInputTokens": 0,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 141,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 1,
+    "timestamp_ms": 1789790710513,
+    "delta": {
+      "totalTokens": 16947,
+      "inputTokens": 16844,
+      "cachedInputTokens": 16512,
+      "outputTokens": 103,
+      "reasoningOutputTokens": 69
+    },
+    "cumulative": {
+      "totalTokens": 33768,
+      "inputTokens": 33524,
+      "cachedInputTokens": 16512,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 244,
+      "reasoningOutputTokens": 69
+    },
+    "reported_last": {
+      "totalTokens": 16947,
+      "inputTokens": 16844,
+      "cachedInputTokens": 16512,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 103,
+      "reasoningOutputTokens": 69
+    }
+  },
+  {
+    "event": 2,
+    "timestamp_ms": 1789790715105,
+    "delta": {
+      "totalTokens": 17004,
+      "inputTokens": 16971,
+      "cachedInputTokens": 16640,
+      "outputTokens": 33,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 50772,
+      "inputTokens": 50495,
+      "cachedInputTokens": 33152,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 277,
+      "reasoningOutputTokens": 69
+    },
+    "reported_last": {
+      "totalTokens": 17004,
+      "inputTokens": 16971,
+      "cachedInputTokens": 16640,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 33,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 3,
+    "timestamp_ms": 1789790729700,
+    "delta": {
+      "totalTokens": 17572,
+      "inputTokens": 17529,
+      "cachedInputTokens": 16768,
+      "outputTokens": 43,
+      "reasoningOutputTokens": 8
+    },
+    "cumulative": {
+      "totalTokens": 68344,
+      "inputTokens": 68024,
+      "cachedInputTokens": 49920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 320,
+      "reasoningOutputTokens": 77
+    },
+    "reported_last": {
+      "totalTokens": 17572,
+      "inputTokens": 17529,
+      "cachedInputTokens": 16768,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 43,
+      "reasoningOutputTokens": 8
+    }
+  },
+  {
+    "event": 4,
+    "timestamp_ms": 1789790741574,
+    "delta": {
+      "totalTokens": 18059,
+      "inputTokens": 17925,
+      "cachedInputTokens": 17408,
+      "outputTokens": 134,
+      "reasoningOutputTokens": 30
+    },
+    "cumulative": {
+      "totalTokens": 86403,
+      "inputTokens": 85949,
+      "cachedInputTokens": 67328,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 454,
+      "reasoningOutputTokens": 107
+    },
+    "reported_last": {
+      "totalTokens": 18059,
+      "inputTokens": 17925,
+      "cachedInputTokens": 17408,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 134,
+      "reasoningOutputTokens": 30
+    }
+  },
+  {
+    "event": 5,
+    "timestamp_ms": 1789790755069,
+    "delta": {
+      "totalTokens": 18301,
+      "inputTokens": 18155,
+      "cachedInputTokens": 17792,
+      "outputTokens": 146,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 104704,
+      "inputTokens": 104104,
+      "cachedInputTokens": 85120,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 600,
+      "reasoningOutputTokens": 107
+    },
+    "reported_last": {
+      "totalTokens": 18301,
+      "inputTokens": 18155,
+      "cachedInputTokens": 17792,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 146,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 6,
+    "timestamp_ms": 1789790780462,
+    "delta": {
+      "totalTokens": 21395,
+      "inputTokens": 20823,
+      "cachedInputTokens": 17920,
+      "outputTokens": 572,
+      "reasoningOutputTokens": 260
+    },
+    "cumulative": {
+      "totalTokens": 126099,
+      "inputTokens": 124927,
+      "cachedInputTokens": 103040,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 1172,
+      "reasoningOutputTokens": 367
+    },
+    "reported_last": {
+      "totalTokens": 21395,
+      "inputTokens": 20823,
+      "cachedInputTokens": 17920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 572,
+      "reasoningOutputTokens": 260
+    }
+  },
+  {
+    "event": 7,
+    "timestamp_ms": 1789790788587,
+    "delta": {
+      "totalTokens": 47015,
+      "inputTokens": 46885,
+      "cachedInputTokens": 20608,
+      "outputTokens": 130,
+      "reasoningOutputTokens": 21
+    },
+    "cumulative": {
+      "totalTokens": 173114,
+      "inputTokens": 171812,
+      "cachedInputTokens": 123648,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 1302,
+      "reasoningOutputTokens": 388
+    },
+    "reported_last": {
+      "totalTokens": 47015,
+      "inputTokens": 46885,
+      "cachedInputTokens": 20608,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 130,
+      "reasoningOutputTokens": 21
+    }
+  },
+  {
+    "event": 8,
+    "timestamp_ms": 1789790806348,
+    "delta": {
+      "totalTokens": 62729,
+      "inputTokens": 62418,
+      "cachedInputTokens": 46720,
+      "outputTokens": 311,
+      "reasoningOutputTokens": 93
+    },
+    "cumulative": {
+      "totalTokens": 235843,
+      "inputTokens": 234230,
+      "cachedInputTokens": 170368,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 1613,
+      "reasoningOutputTokens": 481
+    },
+    "reported_last": {
+      "totalTokens": 62729,
+      "inputTokens": 62418,
+      "cachedInputTokens": 46720,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 311,
+      "reasoningOutputTokens": 93
+    }
+  },
+  {
+    "event": 9,
+    "timestamp_ms": 1789790822002,
+    "delta": {
+      "totalTokens": 64021,
+      "inputTokens": 63662,
+      "cachedInputTokens": 62208,
+      "outputTokens": 359,
+      "reasoningOutputTokens": 82
+    },
+    "cumulative": {
+      "totalTokens": 299864,
+      "inputTokens": 297892,
+      "cachedInputTokens": 232576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 1972,
+      "reasoningOutputTokens": 563
+    },
+    "reported_last": {
+      "totalTokens": 64021,
+      "inputTokens": 63662,
+      "cachedInputTokens": 62208,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 359,
+      "reasoningOutputTokens": 82
+    }
+  },
+  {
+    "event": 10,
+    "timestamp_ms": 1789790835964,
+    "delta": {
+      "totalTokens": 64104,
+      "inputTokens": 64075,
+      "cachedInputTokens": 63488,
+      "outputTokens": 29,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 363968,
+      "inputTokens": 361967,
+      "cachedInputTokens": 296064,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2001,
+      "reasoningOutputTokens": 563
+    },
+    "reported_last": {
+      "totalTokens": 64104,
+      "inputTokens": 64075,
+      "cachedInputTokens": 63488,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 29,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 11,
+    "timestamp_ms": 1789790848893,
+    "delta": {
+      "totalTokens": 65193,
+      "inputTokens": 65042,
+      "cachedInputTokens": 63872,
+      "outputTokens": 151,
+      "reasoningOutputTokens": 74
+    },
+    "cumulative": {
+      "totalTokens": 429161,
+      "inputTokens": 427009,
+      "cachedInputTokens": 359936,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2152,
+      "reasoningOutputTokens": 637
+    },
+    "reported_last": {
+      "totalTokens": 65193,
+      "inputTokens": 65042,
+      "cachedInputTokens": 63872,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 151,
+      "reasoningOutputTokens": 74
+    }
+  },
+  {
+    "event": 12,
+    "timestamp_ms": 1789790859627,
+    "delta": {
+      "totalTokens": 66241,
+      "inputTokens": 66126,
+      "cachedInputTokens": 64896,
+      "outputTokens": 115,
+      "reasoningOutputTokens": 27
+    },
+    "cumulative": {
+      "totalTokens": 495402,
+      "inputTokens": 493135,
+      "cachedInputTokens": 424832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2267,
+      "reasoningOutputTokens": 664
+    },
+    "reported_last": {
+      "totalTokens": 66241,
+      "inputTokens": 66126,
+      "cachedInputTokens": 64896,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 115,
+      "reasoningOutputTokens": 27
+    }
+  },
+  {
+    "event": 13,
+    "timestamp_ms": 1789790894131,
+    "delta": {
+      "totalTokens": 67423,
+      "inputTokens": 67176,
+      "cachedInputTokens": 65920,
+      "outputTokens": 247,
+      "reasoningOutputTokens": 162
+    },
+    "cumulative": {
+      "totalTokens": 562825,
+      "inputTokens": 560311,
+      "cachedInputTokens": 490752,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2514,
+      "reasoningOutputTokens": 826
+    },
+    "reported_last": {
+      "totalTokens": 67423,
+      "inputTokens": 67176,
+      "cachedInputTokens": 65920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 247,
+      "reasoningOutputTokens": 162
+    }
+  },
+  {
+    "event": 14,
+    "timestamp_ms": 1789790907218,
+    "delta": {
+      "totalTokens": 68525,
+      "inputTokens": 68358,
+      "cachedInputTokens": 67072,
+      "outputTokens": 167,
+      "reasoningOutputTokens": 50
+    },
+    "cumulative": {
+      "totalTokens": 631350,
+      "inputTokens": 628669,
+      "cachedInputTokens": 557824,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2681,
+      "reasoningOutputTokens": 876
+    },
+    "reported_last": {
+      "totalTokens": 68525,
+      "inputTokens": 68358,
+      "cachedInputTokens": 67072,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 167,
+      "reasoningOutputTokens": 50
+    }
+  },
+  {
+    "event": 15,
+    "timestamp_ms": 1789790923490,
+    "delta": {
+      "totalTokens": 69660,
+      "inputTokens": 69456,
+      "cachedInputTokens": 68224,
+      "outputTokens": 204,
+      "reasoningOutputTokens": 113
+    },
+    "cumulative": {
+      "totalTokens": 701010,
+      "inputTokens": 698125,
+      "cachedInputTokens": 626048,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2885,
+      "reasoningOutputTokens": 989
+    },
+    "reported_last": {
+      "totalTokens": 69660,
+      "inputTokens": 69456,
+      "cachedInputTokens": 68224,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 204,
+      "reasoningOutputTokens": 113
+    }
+  },
+  {
+    "event": 16,
+    "timestamp_ms": 1789790941108,
+    "delta": {
+      "totalTokens": 70831,
+      "inputTokens": 70605,
+      "cachedInputTokens": 69248,
+      "outputTokens": 226,
+      "reasoningOutputTokens": 134
+    },
+    "cumulative": {
+      "totalTokens": 771841,
+      "inputTokens": 768730,
+      "cachedInputTokens": 695296,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3111,
+      "reasoningOutputTokens": 1123
+    },
+    "reported_last": {
+      "totalTokens": 70831,
+      "inputTokens": 70605,
+      "cachedInputTokens": 69248,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 226,
+      "reasoningOutputTokens": 134
+    }
+  },
+  {
+    "event": 17,
+    "timestamp_ms": 1789790948656,
+    "delta": {
+      "totalTokens": 71159,
+      "inputTokens": 71117,
+      "cachedInputTokens": 70400,
+      "outputTokens": 42,
+      "reasoningOutputTokens": 24
+    },
+    "cumulative": {
+      "totalTokens": 843000,
+      "inputTokens": 839847,
+      "cachedInputTokens": 765696,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3153,
+      "reasoningOutputTokens": 1147
+    },
+    "reported_last": {
+      "totalTokens": 71159,
+      "inputTokens": 71117,
+      "cachedInputTokens": 70400,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 42,
+      "reasoningOutputTokens": 24
+    }
+  },
+  {
+    "event": 18,
+    "timestamp_ms": 1789790960228,
+    "delta": {
+      "totalTokens": 71848,
+      "inputTokens": 71766,
+      "cachedInputTokens": 71040,
+      "outputTokens": 82,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 914848,
+      "inputTokens": 911613,
+      "cachedInputTokens": 836736,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3235,
+      "reasoningOutputTokens": 1147
+    },
+    "reported_last": {
+      "totalTokens": 71848,
+      "inputTokens": 71766,
+      "cachedInputTokens": 71040,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 82,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 19,
+    "timestamp_ms": 1789790973045,
+    "delta": {
+      "totalTokens": 72942,
+      "inputTokens": 72789,
+      "cachedInputTokens": 71680,
+      "outputTokens": 153,
+      "reasoningOutputTokens": 55
+    },
+    "cumulative": {
+      "totalTokens": 987790,
+      "inputTokens": 984402,
+      "cachedInputTokens": 908416,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3388,
+      "reasoningOutputTokens": 1202
+    },
+    "reported_last": {
+      "totalTokens": 72942,
+      "inputTokens": 72789,
+      "cachedInputTokens": 71680,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 153,
+      "reasoningOutputTokens": 55
+    }
+  },
+  {
+    "event": 20,
+    "timestamp_ms": 1789790995502,
+    "delta": {
+      "totalTokens": 73974,
+      "inputTokens": 73891,
+      "cachedInputTokens": 72576,
+      "outputTokens": 83,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 1061764,
+      "inputTokens": 1058293,
+      "cachedInputTokens": 980992,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3471,
+      "reasoningOutputTokens": 1202
+    },
+    "reported_last": {
+      "totalTokens": 73974,
+      "inputTokens": 73891,
+      "cachedInputTokens": 72576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 83,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 21,
+    "timestamp_ms": 1789791017301,
+    "delta": {
+      "totalTokens": 75130,
+      "inputTokens": 74922,
+      "cachedInputTokens": 73728,
+      "outputTokens": 208,
+      "reasoningOutputTokens": 111
+    },
+    "cumulative": {
+      "totalTokens": 1136894,
+      "inputTokens": 1133215,
+      "cachedInputTokens": 1054720,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3679,
+      "reasoningOutputTokens": 1313
+    },
+    "reported_last": {
+      "totalTokens": 75130,
+      "inputTokens": 74922,
+      "cachedInputTokens": 73728,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 208,
+      "reasoningOutputTokens": 111
+    }
+  },
+  {
+    "event": 22,
+    "timestamp_ms": 1789791036397,
+    "delta": {
+      "totalTokens": 76340,
+      "inputTokens": 76077,
+      "cachedInputTokens": 74752,
+      "outputTokens": 263,
+      "reasoningOutputTokens": 169
+    },
+    "cumulative": {
+      "totalTokens": 1213234,
+      "inputTokens": 1209292,
+      "cachedInputTokens": 1129472,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3942,
+      "reasoningOutputTokens": 1482
+    },
+    "reported_last": {
+      "totalTokens": 76340,
+      "inputTokens": 76077,
+      "cachedInputTokens": 74752,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 263,
+      "reasoningOutputTokens": 169
+    }
+  },
+  {
+    "event": 23,
+    "timestamp_ms": 1789791053337,
+    "delta": {
+      "totalTokens": 77371,
+      "inputTokens": 77292,
+      "cachedInputTokens": 75904,
+      "outputTokens": 79,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 1290605,
+      "inputTokens": 1286584,
+      "cachedInputTokens": 1205376,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4021,
+      "reasoningOutputTokens": 1482
+    },
+    "reported_last": {
+      "totalTokens": 77371,
+      "inputTokens": 77292,
+      "cachedInputTokens": 75904,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 79,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 24,
+    "timestamp_ms": 1789791072844,
+    "delta": {
+      "totalTokens": 78484,
+      "inputTokens": 78322,
+      "cachedInputTokens": 77056,
+      "outputTokens": 162,
+      "reasoningOutputTokens": 72
+    },
+    "cumulative": {
+      "totalTokens": 1369089,
+      "inputTokens": 1364906,
+      "cachedInputTokens": 1282432,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4183,
+      "reasoningOutputTokens": 1554
+    },
+    "reported_last": {
+      "totalTokens": 78484,
+      "inputTokens": 78322,
+      "cachedInputTokens": 77056,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 162,
+      "reasoningOutputTokens": 72
+    }
+  },
+  {
+    "event": 25,
+    "timestamp_ms": 1789791093937,
+    "delta": {
+      "totalTokens": 79575,
+      "inputTokens": 79436,
+      "cachedInputTokens": 78080,
+      "outputTokens": 139,
+      "reasoningOutputTokens": 11
+    },
+    "cumulative": {
+      "totalTokens": 1448664,
+      "inputTokens": 1444342,
+      "cachedInputTokens": 1360512,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4322,
+      "reasoningOutputTokens": 1565
+    },
+    "reported_last": {
+      "totalTokens": 79575,
+      "inputTokens": 79436,
+      "cachedInputTokens": 78080,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 139,
+      "reasoningOutputTokens": 11
+    }
+  },
+  {
+    "event": 26,
+    "timestamp_ms": 1789791114129,
+    "delta": {
+      "totalTokens": 80662,
+      "inputTokens": 80528,
+      "cachedInputTokens": 79232,
+      "outputTokens": 134,
+      "reasoningOutputTokens": 45
+    },
+    "cumulative": {
+      "totalTokens": 1529326,
+      "inputTokens": 1524870,
+      "cachedInputTokens": 1439744,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4456,
+      "reasoningOutputTokens": 1610
+    },
+    "reported_last": {
+      "totalTokens": 80662,
+      "inputTokens": 80528,
+      "cachedInputTokens": 79232,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 134,
+      "reasoningOutputTokens": 45
+    }
+  },
+  {
+    "event": 27,
+    "timestamp_ms": 1789791127390,
+    "delta": {
+      "totalTokens": 81690,
+      "inputTokens": 81615,
+      "cachedInputTokens": 80384,
+      "outputTokens": 75,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 1611016,
+      "inputTokens": 1606485,
+      "cachedInputTokens": 1520128,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4531,
+      "reasoningOutputTokens": 1610
+    },
+    "reported_last": {
+      "totalTokens": 81690,
+      "inputTokens": 81615,
+      "cachedInputTokens": 80384,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 75,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 28,
+    "timestamp_ms": 1789791142585,
+    "delta": {
+      "totalTokens": 82778,
+      "inputTokens": 82639,
+      "cachedInputTokens": 81408,
+      "outputTokens": 139,
+      "reasoningOutputTokens": 52
+    },
+    "cumulative": {
+      "totalTokens": 1693794,
+      "inputTokens": 1689124,
+      "cachedInputTokens": 1601536,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4670,
+      "reasoningOutputTokens": 1662
+    },
+    "reported_last": {
+      "totalTokens": 82778,
+      "inputTokens": 82639,
+      "cachedInputTokens": 81408,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 139,
+      "reasoningOutputTokens": 52
+    }
+  },
+  {
+    "event": 29,
+    "timestamp_ms": 1789791165282,
+    "delta": {
+      "totalTokens": 83987,
+      "inputTokens": 83722,
+      "cachedInputTokens": 82560,
+      "outputTokens": 265,
+      "reasoningOutputTokens": 172
+    },
+    "cumulative": {
+      "totalTokens": 1777781,
+      "inputTokens": 1772846,
+      "cachedInputTokens": 1684096,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 4935,
+      "reasoningOutputTokens": 1834
+    },
+    "reported_last": {
+      "totalTokens": 83987,
+      "inputTokens": 83722,
+      "cachedInputTokens": 82560,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 265,
+      "reasoningOutputTokens": 172
+    }
+  },
+  {
+    "event": 30,
+    "timestamp_ms": 1789791186731,
+    "delta": {
+      "totalTokens": 85050,
+      "inputTokens": 84934,
+      "cachedInputTokens": 83584,
+      "outputTokens": 116,
+      "reasoningOutputTokens": 31
+    },
+    "cumulative": {
+      "totalTokens": 1862831,
+      "inputTokens": 1857780,
+      "cachedInputTokens": 1767680,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5051,
+      "reasoningOutputTokens": 1865
+    },
+    "reported_last": {
+      "totalTokens": 85050,
+      "inputTokens": 84934,
+      "cachedInputTokens": 83584,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 116,
+      "reasoningOutputTokens": 31
+    }
+  },
+  {
+    "event": 31,
+    "timestamp_ms": 1789791207893,
+    "delta": {
+      "totalTokens": 86082,
+      "inputTokens": 85998,
+      "cachedInputTokens": 84736,
+      "outputTokens": 84,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 1948913,
+      "inputTokens": 1943778,
+      "cachedInputTokens": 1852416,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5135,
+      "reasoningOutputTokens": 1865
+    },
+    "reported_last": {
+      "totalTokens": 86082,
+      "inputTokens": 85998,
+      "cachedInputTokens": 84736,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 84,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 32,
+    "timestamp_ms": 1789791235846,
+    "delta": {
+      "totalTokens": 87158,
+      "inputTokens": 87030,
+      "cachedInputTokens": 85760,
+      "outputTokens": 128,
+      "reasoningOutputTokens": 41
+    },
+    "cumulative": {
+      "totalTokens": 2036071,
+      "inputTokens": 2030808,
+      "cachedInputTokens": 1938176,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5263,
+      "reasoningOutputTokens": 1906
+    },
+    "reported_last": {
+      "totalTokens": 87158,
+      "inputTokens": 87030,
+      "cachedInputTokens": 85760,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 128,
+      "reasoningOutputTokens": 41
+    }
+  },
+  {
+    "event": 33,
+    "timestamp_ms": 1789791254670,
+    "delta": {
+      "totalTokens": 88239,
+      "inputTokens": 88107,
+      "cachedInputTokens": 86912,
+      "outputTokens": 132,
+      "reasoningOutputTokens": 63
+    },
+    "cumulative": {
+      "totalTokens": 2124310,
+      "inputTokens": 2118915,
+      "cachedInputTokens": 2025088,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5395,
+      "reasoningOutputTokens": 1969
+    },
+    "reported_last": {
+      "totalTokens": 88239,
+      "inputTokens": 88107,
+      "cachedInputTokens": 86912,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 132,
+      "reasoningOutputTokens": 63
+    }
+  },
+  {
+    "event": 34,
+    "timestamp_ms": 1789791271851,
+    "delta": {
+      "totalTokens": 89315,
+      "inputTokens": 89183,
+      "cachedInputTokens": 87936,
+      "outputTokens": 132,
+      "reasoningOutputTokens": 20
+    },
+    "cumulative": {
+      "totalTokens": 2213625,
+      "inputTokens": 2208098,
+      "cachedInputTokens": 2113024,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5527,
+      "reasoningOutputTokens": 1989
+    },
+    "reported_last": {
+      "totalTokens": 89315,
+      "inputTokens": 89183,
+      "cachedInputTokens": 87936,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 132,
+      "reasoningOutputTokens": 20
+    }
+  },
+  {
+    "event": 35,
+    "timestamp_ms": 1789791286866,
+    "delta": {
+      "totalTokens": 90329,
+      "inputTokens": 90260,
+      "cachedInputTokens": 89088,
+      "outputTokens": 69,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 2303954,
+      "inputTokens": 2298358,
+      "cachedInputTokens": 2202112,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5596,
+      "reasoningOutputTokens": 1989
+    },
+    "reported_last": {
+      "totalTokens": 90329,
+      "inputTokens": 90260,
+      "cachedInputTokens": 89088,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 69,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 36,
+    "timestamp_ms": 1789791305067,
+    "delta": {
+      "totalTokens": 91389,
+      "inputTokens": 91277,
+      "cachedInputTokens": 90112,
+      "outputTokens": 112,
+      "reasoningOutputTokens": 35
+    },
+    "cumulative": {
+      "totalTokens": 2395343,
+      "inputTokens": 2389635,
+      "cachedInputTokens": 2292224,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5708,
+      "reasoningOutputTokens": 2024
+    },
+    "reported_last": {
+      "totalTokens": 91389,
+      "inputTokens": 91277,
+      "cachedInputTokens": 90112,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 112,
+      "reasoningOutputTokens": 35
+    }
+  },
+  {
+    "event": 37,
+    "timestamp_ms": 1789791339286,
+    "delta": {
+      "totalTokens": 92511,
+      "inputTokens": 92334,
+      "cachedInputTokens": 91008,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 92
+    },
+    "cumulative": {
+      "totalTokens": 2487854,
+      "inputTokens": 2481969,
+      "cachedInputTokens": 2383232,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5885,
+      "reasoningOutputTokens": 2116
+    },
+    "reported_last": {
+      "totalTokens": 92511,
+      "inputTokens": 92334,
+      "cachedInputTokens": 91008,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 92
+    }
+  },
+  {
+    "event": 38,
+    "timestamp_ms": 1789791357210,
+    "delta": {
+      "totalTokens": 93554,
+      "inputTokens": 93460,
+      "cachedInputTokens": 92160,
+      "outputTokens": 94,
+      "reasoningOutputTokens": 24
+    },
+    "cumulative": {
+      "totalTokens": 2581408,
+      "inputTokens": 2575429,
+      "cachedInputTokens": 2475392,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 5979,
+      "reasoningOutputTokens": 2140
+    },
+    "reported_last": {
+      "totalTokens": 93554,
+      "inputTokens": 93460,
+      "cachedInputTokens": 92160,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 94,
+      "reasoningOutputTokens": 24
+    }
+  },
+  {
+    "event": 39,
+    "timestamp_ms": 1789791383285,
+    "delta": {
+      "totalTokens": 94592,
+      "inputTokens": 94502,
+      "cachedInputTokens": 93312,
+      "outputTokens": 90,
+      "reasoningOutputTokens": 16
+    },
+    "cumulative": {
+      "totalTokens": 2676000,
+      "inputTokens": 2669931,
+      "cachedInputTokens": 2568704,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6069,
+      "reasoningOutputTokens": 2156
+    },
+    "reported_last": {
+      "totalTokens": 94592,
+      "inputTokens": 94502,
+      "cachedInputTokens": 93312,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 90,
+      "reasoningOutputTokens": 16
+    }
+  },
+  {
+    "event": 40,
+    "timestamp_ms": 1789791418621,
+    "delta": {
+      "totalTokens": 95726,
+      "inputTokens": 95536,
+      "cachedInputTokens": 94336,
+      "outputTokens": 190,
+      "reasoningOutputTokens": 111
+    },
+    "cumulative": {
+      "totalTokens": 2771726,
+      "inputTokens": 2765467,
+      "cachedInputTokens": 2663040,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6259,
+      "reasoningOutputTokens": 2267
+    },
+    "reported_last": {
+      "totalTokens": 95726,
+      "inputTokens": 95536,
+      "cachedInputTokens": 94336,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 190,
+      "reasoningOutputTokens": 111
+    }
+  },
+  {
+    "event": 41,
+    "timestamp_ms": 1789791440279,
+    "delta": {
+      "totalTokens": 96816,
+      "inputTokens": 96672,
+      "cachedInputTokens": 95360,
+      "outputTokens": 144,
+      "reasoningOutputTokens": 68
+    },
+    "cumulative": {
+      "totalTokens": 2868542,
+      "inputTokens": 2862139,
+      "cachedInputTokens": 2758400,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6403,
+      "reasoningOutputTokens": 2335
+    },
+    "reported_last": {
+      "totalTokens": 96816,
+      "inputTokens": 96672,
+      "cachedInputTokens": 95360,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 144,
+      "reasoningOutputTokens": 68
+    }
+  },
+  {
+    "event": 42,
+    "timestamp_ms": 1789791457891,
+    "delta": {
+      "totalTokens": 97838,
+      "inputTokens": 97766,
+      "cachedInputTokens": 96512,
+      "outputTokens": 72,
+      "reasoningOutputTokens": 7
+    },
+    "cumulative": {
+      "totalTokens": 2966380,
+      "inputTokens": 2959905,
+      "cachedInputTokens": 2854912,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6475,
+      "reasoningOutputTokens": 2342
+    },
+    "reported_last": {
+      "totalTokens": 97838,
+      "inputTokens": 97766,
+      "cachedInputTokens": 96512,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 72,
+      "reasoningOutputTokens": 7
+    }
+  },
+  {
+    "event": 43,
+    "timestamp_ms": 1789791477233,
+    "delta": {
+      "totalTokens": 98895,
+      "inputTokens": 98792,
+      "cachedInputTokens": 97664,
+      "outputTokens": 103,
+      "reasoningOutputTokens": 20
+    },
+    "cumulative": {
+      "totalTokens": 3065275,
+      "inputTokens": 3058697,
+      "cachedInputTokens": 2952576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6578,
+      "reasoningOutputTokens": 2362
+    },
+    "reported_last": {
+      "totalTokens": 98895,
+      "inputTokens": 98792,
+      "cachedInputTokens": 97664,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 103,
+      "reasoningOutputTokens": 20
+    }
+  },
+  {
+    "event": 44,
+    "timestamp_ms": 1789791500672,
+    "delta": {
+      "totalTokens": 100023,
+      "inputTokens": 99839,
+      "cachedInputTokens": 98560,
+      "outputTokens": 184,
+      "reasoningOutputTokens": 68
+    },
+    "cumulative": {
+      "totalTokens": 3165298,
+      "inputTokens": 3158536,
+      "cachedInputTokens": 3051136,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6762,
+      "reasoningOutputTokens": 2430
+    },
+    "reported_last": {
+      "totalTokens": 100023,
+      "inputTokens": 99839,
+      "cachedInputTokens": 98560,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 184,
+      "reasoningOutputTokens": 68
+    }
+  },
+  {
+    "event": 45,
+    "timestamp_ms": 1789791550443,
+    "delta": {
+      "totalTokens": 101148,
+      "inputTokens": 100972,
+      "cachedInputTokens": 99712,
+      "outputTokens": 176,
+      "reasoningOutputTokens": 92
+    },
+    "cumulative": {
+      "totalTokens": 3266446,
+      "inputTokens": 3259508,
+      "cachedInputTokens": 3150848,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 6938,
+      "reasoningOutputTokens": 2522
+    },
+    "reported_last": {
+      "totalTokens": 101148,
+      "inputTokens": 100972,
+      "cachedInputTokens": 99712,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 176,
+      "reasoningOutputTokens": 92
+    }
+  },
+  {
+    "event": 46,
+    "timestamp_ms": 1789791580600,
+    "delta": {
+      "totalTokens": 102197,
+      "inputTokens": 102090,
+      "cachedInputTokens": 100864,
+      "outputTokens": 107,
+      "reasoningOutputTokens": 26
+    },
+    "cumulative": {
+      "totalTokens": 3368643,
+      "inputTokens": 3361598,
+      "cachedInputTokens": 3251712,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7045,
+      "reasoningOutputTokens": 2548
+    },
+    "reported_last": {
+      "totalTokens": 102197,
+      "inputTokens": 102090,
+      "cachedInputTokens": 100864,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 107,
+      "reasoningOutputTokens": 26
+    }
+  },
+  {
+    "event": 47,
+    "timestamp_ms": 1789791607064,
+    "delta": {
+      "totalTokens": 103374,
+      "inputTokens": 103142,
+      "cachedInputTokens": 101888,
+      "outputTokens": 232,
+      "reasoningOutputTokens": 143
+    },
+    "cumulative": {
+      "totalTokens": 3472017,
+      "inputTokens": 3464740,
+      "cachedInputTokens": 3353600,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7277,
+      "reasoningOutputTokens": 2691
+    },
+    "reported_last": {
+      "totalTokens": 103374,
+      "inputTokens": 103142,
+      "cachedInputTokens": 101888,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 232,
+      "reasoningOutputTokens": 143
+    }
+  },
+  {
+    "event": 48,
+    "timestamp_ms": 1789791638970,
+    "delta": {
+      "totalTokens": 104402,
+      "inputTokens": 104317,
+      "cachedInputTokens": 103040,
+      "outputTokens": 85,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 3576419,
+      "inputTokens": 3569057,
+      "cachedInputTokens": 3456640,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7362,
+      "reasoningOutputTokens": 2691
+    },
+    "reported_last": {
+      "totalTokens": 104402,
+      "inputTokens": 104317,
+      "cachedInputTokens": 103040,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 85,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 49,
+    "timestamp_ms": 1789791663554,
+    "delta": {
+      "totalTokens": 105545,
+      "inputTokens": 105346,
+      "cachedInputTokens": 104192,
+      "outputTokens": 199,
+      "reasoningOutputTokens": 113
+    },
+    "cumulative": {
+      "totalTokens": 3681964,
+      "inputTokens": 3674403,
+      "cachedInputTokens": 3560832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7561,
+      "reasoningOutputTokens": 2804
+    },
+    "reported_last": {
+      "totalTokens": 105545,
+      "inputTokens": 105346,
+      "cachedInputTokens": 104192,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 199,
+      "reasoningOutputTokens": 113
+    }
+  },
+  {
+    "event": 50,
+    "timestamp_ms": 1789791685058,
+    "delta": {
+      "totalTokens": 106568,
+      "inputTokens": 106489,
+      "cachedInputTokens": 105088,
+      "outputTokens": 79,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 3788532,
+      "inputTokens": 3780892,
+      "cachedInputTokens": 3665920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7640,
+      "reasoningOutputTokens": 2804
+    },
+    "reported_last": {
+      "totalTokens": 106568,
+      "inputTokens": 106489,
+      "cachedInputTokens": 105088,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 79,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 51,
+    "timestamp_ms": 1789791712731,
+    "delta": {
+      "totalTokens": 107699,
+      "inputTokens": 107512,
+      "cachedInputTokens": 106240,
+      "outputTokens": 187,
+      "reasoningOutputTokens": 69
+    },
+    "cumulative": {
+      "totalTokens": 3896231,
+      "inputTokens": 3888404,
+      "cachedInputTokens": 3772160,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7827,
+      "reasoningOutputTokens": 2873
+    },
+    "reported_last": {
+      "totalTokens": 107699,
+      "inputTokens": 107512,
+      "cachedInputTokens": 106240,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 187,
+      "reasoningOutputTokens": 69
+    }
+  },
+  {
+    "event": 52,
+    "timestamp_ms": 1789791735271,
+    "delta": {
+      "totalTokens": 108771,
+      "inputTokens": 108641,
+      "cachedInputTokens": 107392,
+      "outputTokens": 130,
+      "reasoningOutputTokens": 49
+    },
+    "cumulative": {
+      "totalTokens": 4005002,
+      "inputTokens": 3997045,
+      "cachedInputTokens": 3879552,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 7957,
+      "reasoningOutputTokens": 2922
+    },
+    "reported_last": {
+      "totalTokens": 108771,
+      "inputTokens": 108641,
+      "cachedInputTokens": 107392,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 130,
+      "reasoningOutputTokens": 49
+    }
+  },
+  {
+    "event": 53,
+    "timestamp_ms": 1789791768063,
+    "delta": {
+      "totalTokens": 109820,
+      "inputTokens": 109714,
+      "cachedInputTokens": 108544,
+      "outputTokens": 106,
+      "reasoningOutputTokens": 22
+    },
+    "cumulative": {
+      "totalTokens": 4114822,
+      "inputTokens": 4106759,
+      "cachedInputTokens": 3988096,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 8063,
+      "reasoningOutputTokens": 2944
+    },
+    "reported_last": {
+      "totalTokens": 109820,
+      "inputTokens": 109714,
+      "cachedInputTokens": 108544,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 106,
+      "reasoningOutputTokens": 22
+    }
+  },
+  {
+    "event": 54,
+    "timestamp_ms": 1789791792255,
+    "delta": {
+      "totalTokens": 110893,
+      "inputTokens": 110770,
+      "cachedInputTokens": 109568,
+      "outputTokens": 123,
+      "reasoningOutputTokens": 41
+    },
+    "cumulative": {
+      "totalTokens": 4225715,
+      "inputTokens": 4217529,
+      "cachedInputTokens": 4097664,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 8186,
+      "reasoningOutputTokens": 2985
+    },
+    "reported_last": {
+      "totalTokens": 110893,
+      "inputTokens": 110770,
+      "cachedInputTokens": 109568,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 123,
+      "reasoningOutputTokens": 41
+    }
+  },
+  {
+    "event": 55,
+    "timestamp_ms": 1789791813936,
+    "delta": {
+      "totalTokens": 111916,
+      "inputTokens": 111845,
+      "cachedInputTokens": 110592,
+      "outputTokens": 71,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 4337631,
+      "inputTokens": 4329374,
+      "cachedInputTokens": 4208256,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 8257,
+      "reasoningOutputTokens": 2985
+    },
+    "reported_last": {
+      "totalTokens": 111916,
+      "inputTokens": 111845,
+      "cachedInputTokens": 110592,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 71,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 56,
+    "timestamp_ms": 1789791843511,
+    "delta": {
+      "totalTokens": 113204,
+      "inputTokens": 112860,
+      "cachedInputTokens": 111616,
+      "outputTokens": 344,
+      "reasoningOutputTokens": 264
+    },
+    "cumulative": {
+      "totalTokens": 4450835,
+      "inputTokens": 4442234,
+      "cachedInputTokens": 4319872,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 8601,
+      "reasoningOutputTokens": 3249
+    },
+    "reported_last": {
+      "totalTokens": 113204,
+      "inputTokens": 112860,
+      "cachedInputTokens": 111616,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 344,
+      "reasoningOutputTokens": 264
+    }
+  },
+  {
+    "event": 57,
+    "timestamp_ms": 1789791870396,
+    "delta": {
+      "totalTokens": 114381,
+      "inputTokens": 114149,
+      "cachedInputTokens": 112640,
+      "outputTokens": 232,
+      "reasoningOutputTokens": 146
+    },
+    "cumulative": {
+      "totalTokens": 4565216,
+      "inputTokens": 4556383,
+      "cachedInputTokens": 4432512,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 8833,
+      "reasoningOutputTokens": 3395
+    },
+    "reported_last": {
+      "totalTokens": 114381,
+      "inputTokens": 114149,
+      "cachedInputTokens": 112640,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 232,
+      "reasoningOutputTokens": 146
+    }
+  },
+  {
+    "event": 58,
+    "timestamp_ms": 1789791895541,
+    "delta": {
+      "totalTokens": 115422,
+      "inputTokens": 115325,
+      "cachedInputTokens": 113920,
+      "outputTokens": 97,
+      "reasoningOutputTokens": 17
+    },
+    "cumulative": {
+      "totalTokens": 4680638,
+      "inputTokens": 4671708,
+      "cachedInputTokens": 4546432,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 8930,
+      "reasoningOutputTokens": 3412
+    },
+    "reported_last": {
+      "totalTokens": 115422,
+      "inputTokens": 115325,
+      "cachedInputTokens": 113920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 97,
+      "reasoningOutputTokens": 17
+    }
+  },
+  {
+    "event": 59,
+    "timestamp_ms": 1789791923376,
+    "delta": {
+      "totalTokens": 116545,
+      "inputTokens": 116368,
+      "cachedInputTokens": 115200,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 46
+    },
+    "cumulative": {
+      "totalTokens": 4797183,
+      "inputTokens": 4788076,
+      "cachedInputTokens": 4661632,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9107,
+      "reasoningOutputTokens": 3458
+    },
+    "reported_last": {
+      "totalTokens": 116545,
+      "inputTokens": 116368,
+      "cachedInputTokens": 115200,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 46
+    }
+  },
+  {
+    "event": 60,
+    "timestamp_ms": 1789791949439,
+    "delta": {
+      "totalTokens": 117668,
+      "inputTokens": 117492,
+      "cachedInputTokens": 116224,
+      "outputTokens": 176,
+      "reasoningOutputTokens": 92
+    },
+    "cumulative": {
+      "totalTokens": 4914851,
+      "inputTokens": 4905568,
+      "cachedInputTokens": 4777856,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9283,
+      "reasoningOutputTokens": 3550
+    },
+    "reported_last": {
+      "totalTokens": 117668,
+      "inputTokens": 117492,
+      "cachedInputTokens": 116224,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 176,
+      "reasoningOutputTokens": 92
+    }
+  },
+  {
+    "event": 61,
+    "timestamp_ms": 1789791974639,
+    "delta": {
+      "totalTokens": 118725,
+      "inputTokens": 118611,
+      "cachedInputTokens": 117376,
+      "outputTokens": 114,
+      "reasoningOutputTokens": 34
+    },
+    "cumulative": {
+      "totalTokens": 5033576,
+      "inputTokens": 5024179,
+      "cachedInputTokens": 4895232,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9397,
+      "reasoningOutputTokens": 3584
+    },
+    "reported_last": {
+      "totalTokens": 118725,
+      "inputTokens": 118611,
+      "cachedInputTokens": 117376,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 114,
+      "reasoningOutputTokens": 34
+    }
+  },
+  {
+    "event": 62,
+    "timestamp_ms": 1789792000345,
+    "delta": {
+      "totalTokens": 119786,
+      "inputTokens": 119668,
+      "cachedInputTokens": 118528,
+      "outputTokens": 118,
+      "reasoningOutputTokens": 48
+    },
+    "cumulative": {
+      "totalTokens": 5153362,
+      "inputTokens": 5143847,
+      "cachedInputTokens": 5013760,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9515,
+      "reasoningOutputTokens": 3632
+    },
+    "reported_last": {
+      "totalTokens": 119786,
+      "inputTokens": 119668,
+      "cachedInputTokens": 118528,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 118,
+      "reasoningOutputTokens": 48
+    }
+  },
+  {
+    "event": 63,
+    "timestamp_ms": 1789792034097,
+    "delta": {
+      "totalTokens": 120815,
+      "inputTokens": 120735,
+      "cachedInputTokens": 119424,
+      "outputTokens": 80,
+      "reasoningOutputTokens": 13
+    },
+    "cumulative": {
+      "totalTokens": 5274177,
+      "inputTokens": 5264582,
+      "cachedInputTokens": 5133184,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9595,
+      "reasoningOutputTokens": 3645
+    },
+    "reported_last": {
+      "totalTokens": 120815,
+      "inputTokens": 120735,
+      "cachedInputTokens": 119424,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 80,
+      "reasoningOutputTokens": 13
+    }
+  },
+  {
+    "event": 64,
+    "timestamp_ms": 1789792063620,
+    "delta": {
+      "totalTokens": 121873,
+      "inputTokens": 121760,
+      "cachedInputTokens": 120576,
+      "outputTokens": 113,
+      "reasoningOutputTokens": 33
+    },
+    "cumulative": {
+      "totalTokens": 5396050,
+      "inputTokens": 5386342,
+      "cachedInputTokens": 5253760,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9708,
+      "reasoningOutputTokens": 3678
+    },
+    "reported_last": {
+      "totalTokens": 121873,
+      "inputTokens": 121760,
+      "cachedInputTokens": 120576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 113,
+      "reasoningOutputTokens": 33
+    }
+  },
+  {
+    "event": 65,
+    "timestamp_ms": 1789792091893,
+    "delta": {
+      "totalTokens": 122937,
+      "inputTokens": 122810,
+      "cachedInputTokens": 121600,
+      "outputTokens": 127,
+      "reasoningOutputTokens": 39
+    },
+    "cumulative": {
+      "totalTokens": 5518987,
+      "inputTokens": 5509152,
+      "cachedInputTokens": 5375360,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9835,
+      "reasoningOutputTokens": 3717
+    },
+    "reported_last": {
+      "totalTokens": 122937,
+      "inputTokens": 122810,
+      "cachedInputTokens": 121600,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 127,
+      "reasoningOutputTokens": 39
+    }
+  },
+  {
+    "event": 66,
+    "timestamp_ms": 1789792118025,
+    "delta": {
+      "totalTokens": 123971,
+      "inputTokens": 123872,
+      "cachedInputTokens": 122624,
+      "outputTokens": 99,
+      "reasoningOutputTokens": 15
+    },
+    "cumulative": {
+      "totalTokens": 5642958,
+      "inputTokens": 5633024,
+      "cachedInputTokens": 5497984,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 9934,
+      "reasoningOutputTokens": 3732
+    },
+    "reported_last": {
+      "totalTokens": 123971,
+      "inputTokens": 123872,
+      "cachedInputTokens": 122624,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 99,
+      "reasoningOutputTokens": 15
+    }
+  },
+  {
+    "event": 67,
+    "timestamp_ms": 1789792146231,
+    "delta": {
+      "totalTokens": 125070,
+      "inputTokens": 124908,
+      "cachedInputTokens": 123776,
+      "outputTokens": 162,
+      "reasoningOutputTokens": 48
+    },
+    "cumulative": {
+      "totalTokens": 5768028,
+      "inputTokens": 5757932,
+      "cachedInputTokens": 5621760,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 10096,
+      "reasoningOutputTokens": 3780
+    },
+    "reported_last": {
+      "totalTokens": 125070,
+      "inputTokens": 124908,
+      "cachedInputTokens": 123776,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 162,
+      "reasoningOutputTokens": 48
+    }
+  },
+  {
+    "event": 68,
+    "timestamp_ms": 1789792176781,
+    "delta": {
+      "totalTokens": 126195,
+      "inputTokens": 126007,
+      "cachedInputTokens": 124800,
+      "outputTokens": 188,
+      "reasoningOutputTokens": 101
+    },
+    "cumulative": {
+      "totalTokens": 5894223,
+      "inputTokens": 5883939,
+      "cachedInputTokens": 5746560,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 10284,
+      "reasoningOutputTokens": 3881
+    },
+    "reported_last": {
+      "totalTokens": 126195,
+      "inputTokens": 126007,
+      "cachedInputTokens": 124800,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 188,
+      "reasoningOutputTokens": 101
+    }
+  },
+  {
+    "event": 69,
+    "timestamp_ms": 1789792204225,
+    "delta": {
+      "totalTokens": 127250,
+      "inputTokens": 127133,
+      "cachedInputTokens": 125824,
+      "outputTokens": 117,
+      "reasoningOutputTokens": 35
+    },
+    "cumulative": {
+      "totalTokens": 6021473,
+      "inputTokens": 6011072,
+      "cachedInputTokens": 5872384,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 10401,
+      "reasoningOutputTokens": 3916
+    },
+    "reported_last": {
+      "totalTokens": 127250,
+      "inputTokens": 127133,
+      "cachedInputTokens": 125824,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 117,
+      "reasoningOutputTokens": 35
+    }
+  },
+  {
+    "event": 70,
+    "timestamp_ms": 1789792252212,
+    "delta": {
+      "totalTokens": 128939,
+      "inputTokens": 128187,
+      "cachedInputTokens": 126976,
+      "outputTokens": 752,
+      "reasoningOutputTokens": 629
+    },
+    "cumulative": {
+      "totalTokens": 6150412,
+      "inputTokens": 6139259,
+      "cachedInputTokens": 5999360,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 11153,
+      "reasoningOutputTokens": 4545
+    },
+    "reported_last": {
+      "totalTokens": 128939,
+      "inputTokens": 128187,
+      "cachedInputTokens": 126976,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 752,
+      "reasoningOutputTokens": 629
+    }
+  },
+  {
+    "event": 71,
+    "timestamp_ms": 1789792283995,
+    "delta": {
+      "totalTokens": 130271,
+      "inputTokens": 129876,
+      "cachedInputTokens": 128000,
+      "outputTokens": 395,
+      "reasoningOutputTokens": 246
+    },
+    "cumulative": {
+      "totalTokens": 6280683,
+      "inputTokens": 6269135,
+      "cachedInputTokens": 6127360,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 11548,
+      "reasoningOutputTokens": 4791
+    },
+    "reported_last": {
+      "totalTokens": 130271,
+      "inputTokens": 129876,
+      "cachedInputTokens": 128000,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 395,
+      "reasoningOutputTokens": 246
+    }
+  },
+  {
+    "event": 72,
+    "timestamp_ms": 1789792323324,
+    "delta": {
+      "totalTokens": 130675,
+      "inputTokens": 130549,
+      "cachedInputTokens": 129664,
+      "outputTokens": 126,
+      "reasoningOutputTokens": 13
+    },
+    "cumulative": {
+      "totalTokens": 6411358,
+      "inputTokens": 6399684,
+      "cachedInputTokens": 6257024,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 11674,
+      "reasoningOutputTokens": 4804
+    },
+    "reported_last": {
+      "totalTokens": 130675,
+      "inputTokens": 130549,
+      "cachedInputTokens": 129664,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 126,
+      "reasoningOutputTokens": 13
+    }
+  },
+  {
+    "event": 73,
+    "timestamp_ms": 1789792362301,
+    "delta": {
+      "totalTokens": 131892,
+      "inputTokens": 131613,
+      "cachedInputTokens": 130432,
+      "outputTokens": 279,
+      "reasoningOutputTokens": 153
+    },
+    "cumulative": {
+      "totalTokens": 6543250,
+      "inputTokens": 6531297,
+      "cachedInputTokens": 6387456,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 11953,
+      "reasoningOutputTokens": 4957
+    },
+    "reported_last": {
+      "totalTokens": 131892,
+      "inputTokens": 131613,
+      "cachedInputTokens": 130432,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 279,
+      "reasoningOutputTokens": 153
+    }
+  },
+  {
+    "event": 74,
+    "timestamp_ms": 1789792394790,
+    "delta": {
+      "totalTokens": 133043,
+      "inputTokens": 132824,
+      "cachedInputTokens": 131456,
+      "outputTokens": 219,
+      "reasoningOutputTokens": 95
+    },
+    "cumulative": {
+      "totalTokens": 6676293,
+      "inputTokens": 6664121,
+      "cachedInputTokens": 6518912,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 12172,
+      "reasoningOutputTokens": 5052
+    },
+    "reported_last": {
+      "totalTokens": 133043,
+      "inputTokens": 132824,
+      "cachedInputTokens": 131456,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 219,
+      "reasoningOutputTokens": 95
+    }
+  },
+  {
+    "event": 75,
+    "timestamp_ms": 1789792436979,
+    "delta": {
+      "totalTokens": 134561,
+      "inputTokens": 133975,
+      "cachedInputTokens": 132736,
+      "outputTokens": 586,
+      "reasoningOutputTokens": 458
+    },
+    "cumulative": {
+      "totalTokens": 6810854,
+      "inputTokens": 6798096,
+      "cachedInputTokens": 6651648,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 12758,
+      "reasoningOutputTokens": 5510
+    },
+    "reported_last": {
+      "totalTokens": 134561,
+      "inputTokens": 133975,
+      "cachedInputTokens": 132736,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 586,
+      "reasoningOutputTokens": 458
+    }
+  },
+  {
+    "event": 76,
+    "timestamp_ms": 1789792476832,
+    "delta": {
+      "totalTokens": 135796,
+      "inputTokens": 135493,
+      "cachedInputTokens": 133888,
+      "outputTokens": 303,
+      "reasoningOutputTokens": 121
+    },
+    "cumulative": {
+      "totalTokens": 6946650,
+      "inputTokens": 6933589,
+      "cachedInputTokens": 6785536,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 13061,
+      "reasoningOutputTokens": 5631
+    },
+    "reported_last": {
+      "totalTokens": 135796,
+      "inputTokens": 135493,
+      "cachedInputTokens": 133888,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 303,
+      "reasoningOutputTokens": 121
+    }
+  },
+  {
+    "event": 77,
+    "timestamp_ms": 1789792510589,
+    "delta": {
+      "totalTokens": 136968,
+      "inputTokens": 136729,
+      "cachedInputTokens": 135296,
+      "outputTokens": 239,
+      "reasoningOutputTokens": 102
+    },
+    "cumulative": {
+      "totalTokens": 7083618,
+      "inputTokens": 7070318,
+      "cachedInputTokens": 6920832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 13300,
+      "reasoningOutputTokens": 5733
+    },
+    "reported_last": {
+      "totalTokens": 136968,
+      "inputTokens": 136729,
+      "cachedInputTokens": 135296,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 239,
+      "reasoningOutputTokens": 102
+    }
+  },
+  {
+    "event": 78,
+    "timestamp_ms": 1789792544091,
+    "delta": {
+      "totalTokens": 138067,
+      "inputTokens": 137900,
+      "cachedInputTokens": 136576,
+      "outputTokens": 167,
+      "reasoningOutputTokens": 32
+    },
+    "cumulative": {
+      "totalTokens": 7221685,
+      "inputTokens": 7208218,
+      "cachedInputTokens": 7057408,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 13467,
+      "reasoningOutputTokens": 5765
+    },
+    "reported_last": {
+      "totalTokens": 138067,
+      "inputTokens": 137900,
+      "cachedInputTokens": 136576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 167,
+      "reasoningOutputTokens": 32
+    }
+  },
+  {
+    "event": 79,
+    "timestamp_ms": 1789792580443,
+    "delta": {
+      "totalTokens": 139234,
+      "inputTokens": 138999,
+      "cachedInputTokens": 137728,
+      "outputTokens": 235,
+      "reasoningOutputTokens": 102
+    },
+    "cumulative": {
+      "totalTokens": 7360919,
+      "inputTokens": 7347217,
+      "cachedInputTokens": 7195136,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 13702,
+      "reasoningOutputTokens": 5867
+    },
+    "reported_last": {
+      "totalTokens": 139234,
+      "inputTokens": 138999,
+      "cachedInputTokens": 137728,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 235,
+      "reasoningOutputTokens": 102
+    }
+  },
+  {
+    "event": 80,
+    "timestamp_ms": 1789792608315,
+    "delta": {
+      "totalTokens": 140352,
+      "inputTokens": 140166,
+      "cachedInputTokens": 138880,
+      "outputTokens": 186,
+      "reasoningOutputTokens": 56
+    },
+    "cumulative": {
+      "totalTokens": 7501271,
+      "inputTokens": 7487383,
+      "cachedInputTokens": 7334016,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 13888,
+      "reasoningOutputTokens": 5923
+    },
+    "reported_last": {
+      "totalTokens": 140352,
+      "inputTokens": 140166,
+      "cachedInputTokens": 138880,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 186,
+      "reasoningOutputTokens": 56
+    }
+  },
+  {
+    "event": 81,
+    "timestamp_ms": 1789792633485,
+    "delta": {
+      "totalTokens": 140675,
+      "inputTokens": 140625,
+      "cachedInputTokens": 140032,
+      "outputTokens": 50,
+      "reasoningOutputTokens": 22
+    },
+    "cumulative": {
+      "totalTokens": 7641946,
+      "inputTokens": 7628008,
+      "cachedInputTokens": 7474048,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 13938,
+      "reasoningOutputTokens": 5945
+    },
+    "reported_last": {
+      "totalTokens": 140675,
+      "inputTokens": 140625,
+      "cachedInputTokens": 140032,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 50,
+      "reasoningOutputTokens": 22
+    }
+  },
+  {
+    "event": 82,
+    "timestamp_ms": 1789792662783,
+    "delta": {
+      "totalTokens": 140832,
+      "inputTokens": 140709,
+      "cachedInputTokens": 140544,
+      "outputTokens": 123,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 7782778,
+      "inputTokens": 7768717,
+      "cachedInputTokens": 7614592,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 14061,
+      "reasoningOutputTokens": 5945
+    },
+    "reported_last": {
+      "totalTokens": 140832,
+      "inputTokens": 140709,
+      "cachedInputTokens": 140544,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 123,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 83,
+    "timestamp_ms": 1789792698895,
+    "delta": {
+      "totalTokens": 142000,
+      "inputTokens": 141763,
+      "cachedInputTokens": 140544,
+      "outputTokens": 237,
+      "reasoningOutputTokens": 115
+    },
+    "cumulative": {
+      "totalTokens": 7924778,
+      "inputTokens": 7910480,
+      "cachedInputTokens": 7755136,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 14298,
+      "reasoningOutputTokens": 6060
+    },
+    "reported_last": {
+      "totalTokens": 142000,
+      "inputTokens": 141763,
+      "cachedInputTokens": 140544,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 237,
+      "reasoningOutputTokens": 115
+    }
+  },
+  {
+    "event": 84,
+    "timestamp_ms": 1789792741935,
+    "delta": {
+      "totalTokens": 143052,
+      "inputTokens": 142932,
+      "cachedInputTokens": 141696,
+      "outputTokens": 120,
+      "reasoningOutputTokens": 37
+    },
+    "cumulative": {
+      "totalTokens": 8067830,
+      "inputTokens": 8053412,
+      "cachedInputTokens": 7896832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 14418,
+      "reasoningOutputTokens": 6097
+    },
+    "reported_last": {
+      "totalTokens": 143052,
+      "inputTokens": 142932,
+      "cachedInputTokens": 141696,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 120,
+      "reasoningOutputTokens": 37
+    }
+  },
+  {
+    "event": 85,
+    "timestamp_ms": 1789792778322,
+    "delta": {
+      "totalTokens": 144208,
+      "inputTokens": 143984,
+      "cachedInputTokens": 142720,
+      "outputTokens": 224,
+      "reasoningOutputTokens": 94
+    },
+    "cumulative": {
+      "totalTokens": 8212038,
+      "inputTokens": 8197396,
+      "cachedInputTokens": 8039552,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 14642,
+      "reasoningOutputTokens": 6191
+    },
+    "reported_last": {
+      "totalTokens": 144208,
+      "inputTokens": 143984,
+      "cachedInputTokens": 142720,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 224,
+      "reasoningOutputTokens": 94
+    }
+  },
+  {
+    "event": 86,
+    "timestamp_ms": 1789792813026,
+    "delta": {
+      "totalTokens": 145381,
+      "inputTokens": 145140,
+      "cachedInputTokens": 143744,
+      "outputTokens": 241,
+      "reasoningOutputTokens": 114
+    },
+    "cumulative": {
+      "totalTokens": 8357419,
+      "inputTokens": 8342536,
+      "cachedInputTokens": 8183296,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 14883,
+      "reasoningOutputTokens": 6305
+    },
+    "reported_last": {
+      "totalTokens": 145381,
+      "inputTokens": 145140,
+      "cachedInputTokens": 143744,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 241,
+      "reasoningOutputTokens": 114
+    }
+  },
+  {
+    "event": 87,
+    "timestamp_ms": 1789792850992,
+    "delta": {
+      "totalTokens": 146651,
+      "inputTokens": 146319,
+      "cachedInputTokens": 145024,
+      "outputTokens": 332,
+      "reasoningOutputTokens": 191
+    },
+    "cumulative": {
+      "totalTokens": 8504070,
+      "inputTokens": 8488855,
+      "cachedInputTokens": 8328320,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 15215,
+      "reasoningOutputTokens": 6496
+    },
+    "reported_last": {
+      "totalTokens": 146651,
+      "inputTokens": 146319,
+      "cachedInputTokens": 145024,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 332,
+      "reasoningOutputTokens": 191
+    }
+  },
+  {
+    "event": 88,
+    "timestamp_ms": 1789792892338,
+    "delta": {
+      "totalTokens": 147894,
+      "inputTokens": 147582,
+      "cachedInputTokens": 146176,
+      "outputTokens": 312,
+      "reasoningOutputTokens": 157
+    },
+    "cumulative": {
+      "totalTokens": 8651964,
+      "inputTokens": 8636437,
+      "cachedInputTokens": 8474496,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 15527,
+      "reasoningOutputTokens": 6653
+    },
+    "reported_last": {
+      "totalTokens": 147894,
+      "inputTokens": 147582,
+      "cachedInputTokens": 146176,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 312,
+      "reasoningOutputTokens": 157
+    }
+  },
+  {
+    "event": 89,
+    "timestamp_ms": 1789792928708,
+    "delta": {
+      "totalTokens": 149029,
+      "inputTokens": 148827,
+      "cachedInputTokens": 147456,
+      "outputTokens": 202,
+      "reasoningOutputTokens": 63
+    },
+    "cumulative": {
+      "totalTokens": 8800993,
+      "inputTokens": 8785264,
+      "cachedInputTokens": 8621952,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 15729,
+      "reasoningOutputTokens": 6716
+    },
+    "reported_last": {
+      "totalTokens": 149029,
+      "inputTokens": 148827,
+      "cachedInputTokens": 147456,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 202,
+      "reasoningOutputTokens": 63
+    }
+  },
+  {
+    "event": 90,
+    "timestamp_ms": 1789792967762,
+    "delta": {
+      "totalTokens": 150242,
+      "inputTokens": 149967,
+      "cachedInputTokens": 148736,
+      "outputTokens": 275,
+      "reasoningOutputTokens": 126
+    },
+    "cumulative": {
+      "totalTokens": 8951235,
+      "inputTokens": 8935231,
+      "cachedInputTokens": 8770688,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 16004,
+      "reasoningOutputTokens": 6842
+    },
+    "reported_last": {
+      "totalTokens": 150242,
+      "inputTokens": 149967,
+      "cachedInputTokens": 148736,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 275,
+      "reasoningOutputTokens": 126
+    }
+  },
+  {
+    "event": 91,
+    "timestamp_ms": 1789793013703,
+    "delta": {
+      "totalTokens": 151575,
+      "inputTokens": 151174,
+      "cachedInputTokens": 149760,
+      "outputTokens": 401,
+      "reasoningOutputTokens": 249
+    },
+    "cumulative": {
+      "totalTokens": 9102810,
+      "inputTokens": 9086405,
+      "cachedInputTokens": 8920448,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 16405,
+      "reasoningOutputTokens": 7091
+    },
+    "reported_last": {
+      "totalTokens": 151575,
+      "inputTokens": 151174,
+      "cachedInputTokens": 149760,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 401,
+      "reasoningOutputTokens": 249
+    }
+  },
+  {
+    "event": 92,
+    "timestamp_ms": 1789793054569,
+    "delta": {
+      "totalTokens": 152867,
+      "inputTokens": 152507,
+      "cachedInputTokens": 150912,
+      "outputTokens": 360,
+      "reasoningOutputTokens": 110
+    },
+    "cumulative": {
+      "totalTokens": 9255677,
+      "inputTokens": 9238912,
+      "cachedInputTokens": 9071360,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 16765,
+      "reasoningOutputTokens": 7201
+    },
+    "reported_last": {
+      "totalTokens": 152867,
+      "inputTokens": 152507,
+      "cachedInputTokens": 150912,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 360,
+      "reasoningOutputTokens": 110
+    }
+  },
+  {
+    "event": 93,
+    "timestamp_ms": 1789793096293,
+    "delta": {
+      "totalTokens": 154092,
+      "inputTokens": 153795,
+      "cachedInputTokens": 152320,
+      "outputTokens": 297,
+      "reasoningOutputTokens": 90
+    },
+    "cumulative": {
+      "totalTokens": 9409769,
+      "inputTokens": 9392707,
+      "cachedInputTokens": 9223680,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 17062,
+      "reasoningOutputTokens": 7291
+    },
+    "reported_last": {
+      "totalTokens": 154092,
+      "inputTokens": 153795,
+      "cachedInputTokens": 152320,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 297,
+      "reasoningOutputTokens": 90
+    }
+  },
+  {
+    "event": 94,
+    "timestamp_ms": 1789793133678,
+    "delta": {
+      "totalTokens": 155176,
+      "inputTokens": 155030,
+      "cachedInputTokens": 153600,
+      "outputTokens": 146,
+      "reasoningOutputTokens": 61
+    },
+    "cumulative": {
+      "totalTokens": 9564945,
+      "inputTokens": 9547737,
+      "cachedInputTokens": 9377280,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 17208,
+      "reasoningOutputTokens": 7352
+    },
+    "reported_last": {
+      "totalTokens": 155176,
+      "inputTokens": 155030,
+      "cachedInputTokens": 153600,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 146,
+      "reasoningOutputTokens": 61
+    }
+  },
+  {
+    "event": 95,
+    "timestamp_ms": 1789793168020,
+    "delta": {
+      "totalTokens": 156271,
+      "inputTokens": 156113,
+      "cachedInputTokens": 154880,
+      "outputTokens": 158,
+      "reasoningOutputTokens": 69
+    },
+    "cumulative": {
+      "totalTokens": 9721216,
+      "inputTokens": 9703850,
+      "cachedInputTokens": 9532160,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 17366,
+      "reasoningOutputTokens": 7421
+    },
+    "reported_last": {
+      "totalTokens": 156271,
+      "inputTokens": 156113,
+      "cachedInputTokens": 154880,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 158,
+      "reasoningOutputTokens": 69
+    }
+  },
+  {
+    "event": 96,
+    "timestamp_ms": 1789793203341,
+    "delta": {
+      "totalTokens": 157372,
+      "inputTokens": 157210,
+      "cachedInputTokens": 156032,
+      "outputTokens": 162,
+      "reasoningOutputTokens": 77
+    },
+    "cumulative": {
+      "totalTokens": 9878588,
+      "inputTokens": 9861060,
+      "cachedInputTokens": 9688192,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 17528,
+      "reasoningOutputTokens": 7498
+    },
+    "reported_last": {
+      "totalTokens": 157372,
+      "inputTokens": 157210,
+      "cachedInputTokens": 156032,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 162,
+      "reasoningOutputTokens": 77
+    }
+  },
+  {
+    "event": 97,
+    "timestamp_ms": 1789793240997,
+    "delta": {
+      "totalTokens": 158504,
+      "inputTokens": 158310,
+      "cachedInputTokens": 157056,
+      "outputTokens": 194,
+      "reasoningOutputTokens": 71
+    },
+    "cumulative": {
+      "totalTokens": 10037092,
+      "inputTokens": 10019370,
+      "cachedInputTokens": 9845248,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 17722,
+      "reasoningOutputTokens": 7569
+    },
+    "reported_last": {
+      "totalTokens": 158504,
+      "inputTokens": 158310,
+      "cachedInputTokens": 157056,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 194,
+      "reasoningOutputTokens": 71
+    }
+  },
+  {
+    "event": 98,
+    "timestamp_ms": 1789793278743,
+    "delta": {
+      "totalTokens": 159578,
+      "inputTokens": 159442,
+      "cachedInputTokens": 158080,
+      "outputTokens": 136,
+      "reasoningOutputTokens": 53
+    },
+    "cumulative": {
+      "totalTokens": 10196670,
+      "inputTokens": 10178812,
+      "cachedInputTokens": 10003328,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 17858,
+      "reasoningOutputTokens": 7622
+    },
+    "reported_last": {
+      "totalTokens": 159578,
+      "inputTokens": 159442,
+      "cachedInputTokens": 158080,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 136,
+      "reasoningOutputTokens": 53
+    }
+  },
+  {
+    "event": 99,
+    "timestamp_ms": 1789793325729,
+    "delta": {
+      "totalTokens": 160976,
+      "inputTokens": 160522,
+      "cachedInputTokens": 159232,
+      "outputTokens": 454,
+      "reasoningOutputTokens": 363
+    },
+    "cumulative": {
+      "totalTokens": 10357646,
+      "inputTokens": 10339334,
+      "cachedInputTokens": 10162560,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 18312,
+      "reasoningOutputTokens": 7985
+    },
+    "reported_last": {
+      "totalTokens": 160976,
+      "inputTokens": 160522,
+      "cachedInputTokens": 159232,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 454,
+      "reasoningOutputTokens": 363
+    }
+  },
+  {
+    "event": 100,
+    "timestamp_ms": 1789793364099,
+    "delta": {
+      "totalTokens": 162031,
+      "inputTokens": 161922,
+      "cachedInputTokens": 160384,
+      "outputTokens": 109,
+      "reasoningOutputTokens": 24
+    },
+    "cumulative": {
+      "totalTokens": 10519677,
+      "inputTokens": 10501256,
+      "cachedInputTokens": 10322944,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 18421,
+      "reasoningOutputTokens": 8009
+    },
+    "reported_last": {
+      "totalTokens": 162031,
+      "inputTokens": 161922,
+      "cachedInputTokens": 160384,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 109,
+      "reasoningOutputTokens": 24
+    }
+  },
+  {
+    "event": 101,
+    "timestamp_ms": 1789793413232,
+    "delta": {
+      "totalTokens": 163578,
+      "inputTokens": 162975,
+      "cachedInputTokens": 161792,
+      "outputTokens": 603,
+      "reasoningOutputTokens": 516
+    },
+    "cumulative": {
+      "totalTokens": 10683255,
+      "inputTokens": 10664231,
+      "cachedInputTokens": 10484736,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19024,
+      "reasoningOutputTokens": 8525
+    },
+    "reported_last": {
+      "totalTokens": 163578,
+      "inputTokens": 162975,
+      "cachedInputTokens": 161792,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 603,
+      "reasoningOutputTokens": 516
+    }
+  },
+  {
+    "event": 102,
+    "timestamp_ms": 1789793457612,
+    "delta": {
+      "totalTokens": 164602,
+      "inputTokens": 164524,
+      "cachedInputTokens": 162816,
+      "outputTokens": 78,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 10847857,
+      "inputTokens": 10828755,
+      "cachedInputTokens": 10647552,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19102,
+      "reasoningOutputTokens": 8525
+    },
+    "reported_last": {
+      "totalTokens": 164602,
+      "inputTokens": 164524,
+      "cachedInputTokens": 162816,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 78,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 103,
+    "timestamp_ms": 1789793501179,
+    "delta": {
+      "totalTokens": 165653,
+      "inputTokens": 165546,
+      "cachedInputTokens": 164352,
+      "outputTokens": 107,
+      "reasoningOutputTokens": 21
+    },
+    "cumulative": {
+      "totalTokens": 11013510,
+      "inputTokens": 10994301,
+      "cachedInputTokens": 10811904,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19209,
+      "reasoningOutputTokens": 8546
+    },
+    "reported_last": {
+      "totalTokens": 165653,
+      "inputTokens": 165546,
+      "cachedInputTokens": 164352,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 107,
+      "reasoningOutputTokens": 21
+    }
+  },
+  {
+    "event": 104,
+    "timestamp_ms": 1789793539524,
+    "delta": {
+      "totalTokens": 166736,
+      "inputTokens": 166598,
+      "cachedInputTokens": 165376,
+      "outputTokens": 138,
+      "reasoningOutputTokens": 16
+    },
+    "cumulative": {
+      "totalTokens": 11180246,
+      "inputTokens": 11160899,
+      "cachedInputTokens": 10977280,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19347,
+      "reasoningOutputTokens": 8562
+    },
+    "reported_last": {
+      "totalTokens": 166736,
+      "inputTokens": 166598,
+      "cachedInputTokens": 165376,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 138,
+      "reasoningOutputTokens": 16
+    }
+  },
+  {
+    "event": 105,
+    "timestamp_ms": 1789793577113,
+    "delta": {
+      "totalTokens": 167796,
+      "inputTokens": 167679,
+      "cachedInputTokens": 166400,
+      "outputTokens": 117,
+      "reasoningOutputTokens": 34
+    },
+    "cumulative": {
+      "totalTokens": 11348042,
+      "inputTokens": 11328578,
+      "cachedInputTokens": 11143680,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19464,
+      "reasoningOutputTokens": 8596
+    },
+    "reported_last": {
+      "totalTokens": 167796,
+      "inputTokens": 167679,
+      "cachedInputTokens": 166400,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 117,
+      "reasoningOutputTokens": 34
+    }
+  },
+  {
+    "event": 106,
+    "timestamp_ms": 1789793616601,
+    "delta": {
+      "totalTokens": 168917,
+      "inputTokens": 168740,
+      "cachedInputTokens": 167552,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 93
+    },
+    "cumulative": {
+      "totalTokens": 11516959,
+      "inputTokens": 11497318,
+      "cachedInputTokens": 11311232,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19641,
+      "reasoningOutputTokens": 8689
+    },
+    "reported_last": {
+      "totalTokens": 168917,
+      "inputTokens": 168740,
+      "cachedInputTokens": 167552,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 93
+    }
+  },
+  {
+    "event": 107,
+    "timestamp_ms": 1789793654325,
+    "delta": {
+      "totalTokens": 169985,
+      "inputTokens": 169861,
+      "cachedInputTokens": 168576,
+      "outputTokens": 124,
+      "reasoningOutputTokens": 53
+    },
+    "cumulative": {
+      "totalTokens": 11686944,
+      "inputTokens": 11667179,
+      "cachedInputTokens": 11479808,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 19765,
+      "reasoningOutputTokens": 8742
+    },
+    "reported_last": {
+      "totalTokens": 169985,
+      "inputTokens": 169861,
+      "cachedInputTokens": 168576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 124,
+      "reasoningOutputTokens": 53
+    }
+  },
+  {
+    "event": 108,
+    "timestamp_ms": 1789793698604,
+    "delta": {
+      "totalTokens": 171179,
+      "inputTokens": 170923,
+      "cachedInputTokens": 169728,
+      "outputTokens": 256,
+      "reasoningOutputTokens": 174
+    },
+    "cumulative": {
+      "totalTokens": 11858123,
+      "inputTokens": 11838102,
+      "cachedInputTokens": 11649536,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 20021,
+      "reasoningOutputTokens": 8916
+    },
+    "reported_last": {
+      "totalTokens": 171179,
+      "inputTokens": 170923,
+      "cachedInputTokens": 169728,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 256,
+      "reasoningOutputTokens": 174
+    }
+  },
+  {
+    "event": 109,
+    "timestamp_ms": 1789793761207,
+    "delta": {
+      "totalTokens": 172293,
+      "inputTokens": 172116,
+      "cachedInputTokens": 170752,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 46
+    },
+    "cumulative": {
+      "totalTokens": 12030416,
+      "inputTokens": 12010218,
+      "cachedInputTokens": 11820288,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 20198,
+      "reasoningOutputTokens": 8962
+    },
+    "reported_last": {
+      "totalTokens": 172293,
+      "inputTokens": 172116,
+      "cachedInputTokens": 170752,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 46
+    }
+  },
+  {
+    "event": 110,
+    "timestamp_ms": 1789793814973,
+    "delta": {
+      "totalTokens": 173783,
+      "inputTokens": 173230,
+      "cachedInputTokens": 172032,
+      "outputTokens": 553,
+      "reasoningOutputTokens": 294
+    },
+    "cumulative": {
+      "totalTokens": 12204199,
+      "inputTokens": 12183448,
+      "cachedInputTokens": 11992320,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 20751,
+      "reasoningOutputTokens": 9256
+    },
+    "reported_last": {
+      "totalTokens": 173783,
+      "inputTokens": 173230,
+      "cachedInputTokens": 172032,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 553,
+      "reasoningOutputTokens": 294
+    }
+  },
+  {
+    "event": 111,
+    "timestamp_ms": 1789793858697,
+    "delta": {
+      "totalTokens": 174828,
+      "inputTokens": 174723,
+      "cachedInputTokens": 173056,
+      "outputTokens": 105,
+      "reasoningOutputTokens": 11
+    },
+    "cumulative": {
+      "totalTokens": 12379027,
+      "inputTokens": 12358171,
+      "cachedInputTokens": 12165376,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 20856,
+      "reasoningOutputTokens": 9267
+    },
+    "reported_last": {
+      "totalTokens": 174828,
+      "inputTokens": 174723,
+      "cachedInputTokens": 173056,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 105,
+      "reasoningOutputTokens": 11
+    }
+  },
+  {
+    "event": 112,
+    "timestamp_ms": 1789793901888,
+    "delta": {
+      "totalTokens": 175893,
+      "inputTokens": 175766,
+      "cachedInputTokens": 174592,
+      "outputTokens": 127,
+      "reasoningOutputTokens": 33
+    },
+    "cumulative": {
+      "totalTokens": 12554920,
+      "inputTokens": 12533937,
+      "cachedInputTokens": 12339968,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 20983,
+      "reasoningOutputTokens": 9300
+    },
+    "reported_last": {
+      "totalTokens": 175893,
+      "inputTokens": 175766,
+      "cachedInputTokens": 174592,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 127,
+      "reasoningOutputTokens": 33
+    }
+  },
+  {
+    "event": 113,
+    "timestamp_ms": 1789793950267,
+    "delta": {
+      "totalTokens": 177191,
+      "inputTokens": 176830,
+      "cachedInputTokens": 175616,
+      "outputTokens": 361,
+      "reasoningOutputTokens": 259
+    },
+    "cumulative": {
+      "totalTokens": 12732111,
+      "inputTokens": 12710767,
+      "cachedInputTokens": 12515584,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 21344,
+      "reasoningOutputTokens": 9559
+    },
+    "reported_last": {
+      "totalTokens": 177191,
+      "inputTokens": 176830,
+      "cachedInputTokens": 175616,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 361,
+      "reasoningOutputTokens": 259
+    }
+  },
+  {
+    "event": 114,
+    "timestamp_ms": 1789794018679,
+    "delta": {
+      "totalTokens": 179149,
+      "inputTokens": 178130,
+      "cachedInputTokens": 176640,
+      "outputTokens": 1019,
+      "reasoningOutputTokens": 757
+    },
+    "cumulative": {
+      "totalTokens": 12911260,
+      "inputTokens": 12888897,
+      "cachedInputTokens": 12692224,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 22363,
+      "reasoningOutputTokens": 10316
+    },
+    "reported_last": {
+      "totalTokens": 179149,
+      "inputTokens": 178130,
+      "cachedInputTokens": 176640,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 1019,
+      "reasoningOutputTokens": 757
+    }
+  },
+  {
+    "event": 115,
+    "timestamp_ms": 1789794068496,
+    "delta": {
+      "totalTokens": 180416,
+      "inputTokens": 180086,
+      "cachedInputTokens": 178048,
+      "outputTokens": 330,
+      "reasoningOutputTokens": 183
+    },
+    "cumulative": {
+      "totalTokens": 13091676,
+      "inputTokens": 13068983,
+      "cachedInputTokens": 12870272,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 22693,
+      "reasoningOutputTokens": 10499
+    },
+    "reported_last": {
+      "totalTokens": 180416,
+      "inputTokens": 180086,
+      "cachedInputTokens": 178048,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 330,
+      "reasoningOutputTokens": 183
+    }
+  },
+  {
+    "event": 116,
+    "timestamp_ms": 1789794131979,
+    "delta": {
+      "totalTokens": 181600,
+      "inputTokens": 181344,
+      "cachedInputTokens": 179968,
+      "outputTokens": 256,
+      "reasoningOutputTokens": 137
+    },
+    "cumulative": {
+      "totalTokens": 13273276,
+      "inputTokens": 13250327,
+      "cachedInputTokens": 13050240,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 22949,
+      "reasoningOutputTokens": 10636
+    },
+    "reported_last": {
+      "totalTokens": 181600,
+      "inputTokens": 181344,
+      "cachedInputTokens": 179968,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 256,
+      "reasoningOutputTokens": 137
+    }
+  },
+  {
+    "event": 117,
+    "timestamp_ms": 1789794176551,
+    "delta": {
+      "totalTokens": 182763,
+      "inputTokens": 182531,
+      "cachedInputTokens": 181120,
+      "outputTokens": 232,
+      "reasoningOutputTokens": 131
+    },
+    "cumulative": {
+      "totalTokens": 13456039,
+      "inputTokens": 13432858,
+      "cachedInputTokens": 13231360,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 23181,
+      "reasoningOutputTokens": 10767
+    },
+    "reported_last": {
+      "totalTokens": 182763,
+      "inputTokens": 182531,
+      "cachedInputTokens": 181120,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 232,
+      "reasoningOutputTokens": 131
+    }
+  },
+  {
+    "event": 118,
+    "timestamp_ms": 1789794218055,
+    "delta": {
+      "totalTokens": 183852,
+      "inputTokens": 183698,
+      "cachedInputTokens": 182272,
+      "outputTokens": 154,
+      "reasoningOutputTokens": 60
+    },
+    "cumulative": {
+      "totalTokens": 13639891,
+      "inputTokens": 13616556,
+      "cachedInputTokens": 13413632,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 23335,
+      "reasoningOutputTokens": 10827
+    },
+    "reported_last": {
+      "totalTokens": 183852,
+      "inputTokens": 183698,
+      "cachedInputTokens": 182272,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 154,
+      "reasoningOutputTokens": 60
+    }
+  },
+  {
+    "event": 119,
+    "timestamp_ms": 1789794260688,
+    "delta": {
+      "totalTokens": 184985,
+      "inputTokens": 184787,
+      "cachedInputTokens": 183552,
+      "outputTokens": 198,
+      "reasoningOutputTokens": 99
+    },
+    "cumulative": {
+      "totalTokens": 13824876,
+      "inputTokens": 13801343,
+      "cachedInputTokens": 13597184,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 23533,
+      "reasoningOutputTokens": 10926
+    },
+    "reported_last": {
+      "totalTokens": 184985,
+      "inputTokens": 184787,
+      "cachedInputTokens": 183552,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 198,
+      "reasoningOutputTokens": 99
+    }
+  },
+  {
+    "event": 120,
+    "timestamp_ms": 1789794302644,
+    "delta": {
+      "totalTokens": 186063,
+      "inputTokens": 185916,
+      "cachedInputTokens": 184576,
+      "outputTokens": 147,
+      "reasoningOutputTokens": 49
+    },
+    "cumulative": {
+      "totalTokens": 14010939,
+      "inputTokens": 13987259,
+      "cachedInputTokens": 13781760,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 23680,
+      "reasoningOutputTokens": 10975
+    },
+    "reported_last": {
+      "totalTokens": 186063,
+      "inputTokens": 185916,
+      "cachedInputTokens": 184576,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 147,
+      "reasoningOutputTokens": 49
+    }
+  },
+  {
+    "event": 121,
+    "timestamp_ms": 1789794348671,
+    "delta": {
+      "totalTokens": 187120,
+      "inputTokens": 186995,
+      "cachedInputTokens": 185728,
+      "outputTokens": 125,
+      "reasoningOutputTokens": 37
+    },
+    "cumulative": {
+      "totalTokens": 14198059,
+      "inputTokens": 14174254,
+      "cachedInputTokens": 13967488,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 23805,
+      "reasoningOutputTokens": 11012
+    },
+    "reported_last": {
+      "totalTokens": 187120,
+      "inputTokens": 186995,
+      "cachedInputTokens": 185728,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 125,
+      "reasoningOutputTokens": 37
+    }
+  },
+  {
+    "event": 122,
+    "timestamp_ms": 1789794395689,
+    "delta": {
+      "totalTokens": 188220,
+      "inputTokens": 188056,
+      "cachedInputTokens": 186880,
+      "outputTokens": 164,
+      "reasoningOutputTokens": 29
+    },
+    "cumulative": {
+      "totalTokens": 14386279,
+      "inputTokens": 14362310,
+      "cachedInputTokens": 14154368,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 23969,
+      "reasoningOutputTokens": 11041
+    },
+    "reported_last": {
+      "totalTokens": 188220,
+      "inputTokens": 188056,
+      "cachedInputTokens": 186880,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 164,
+      "reasoningOutputTokens": 29
+    }
+  },
+  {
+    "event": 123,
+    "timestamp_ms": 1789794447576,
+    "delta": {
+      "totalTokens": 189317,
+      "inputTokens": 189157,
+      "cachedInputTokens": 187776,
+      "outputTokens": 160,
+      "reasoningOutputTokens": 50
+    },
+    "cumulative": {
+      "totalTokens": 14575596,
+      "inputTokens": 14551467,
+      "cachedInputTokens": 14342144,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 24129,
+      "reasoningOutputTokens": 11091
+    },
+    "reported_last": {
+      "totalTokens": 189317,
+      "inputTokens": 189157,
+      "cachedInputTokens": 187776,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 160,
+      "reasoningOutputTokens": 50
+    }
+  },
+  {
+    "event": 124,
+    "timestamp_ms": 1789794494278,
+    "delta": {
+      "totalTokens": 190410,
+      "inputTokens": 190254,
+      "cachedInputTokens": 188928,
+      "outputTokens": 156,
+      "reasoningOutputTokens": 48
+    },
+    "cumulative": {
+      "totalTokens": 14766006,
+      "inputTokens": 14741721,
+      "cachedInputTokens": 14531072,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 24285,
+      "reasoningOutputTokens": 11139
+    },
+    "reported_last": {
+      "totalTokens": 190410,
+      "inputTokens": 190254,
+      "cachedInputTokens": 188928,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 156,
+      "reasoningOutputTokens": 48
+    }
+  },
+  {
+    "event": 125,
+    "timestamp_ms": 1789794540119,
+    "delta": {
+      "totalTokens": 191446,
+      "inputTokens": 191350,
+      "cachedInputTokens": 190080,
+      "outputTokens": 96,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 14957452,
+      "inputTokens": 14933071,
+      "cachedInputTokens": 14721152,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 24381,
+      "reasoningOutputTokens": 11139
+    },
+    "reported_last": {
+      "totalTokens": 191446,
+      "inputTokens": 191350,
+      "cachedInputTokens": 190080,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 96,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 126,
+    "timestamp_ms": 1789794598420,
+    "delta": {
+      "totalTokens": 192490,
+      "inputTokens": 192388,
+      "cachedInputTokens": 191232,
+      "outputTokens": 102,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 15149942,
+      "inputTokens": 15125459,
+      "cachedInputTokens": 14912384,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 24483,
+      "reasoningOutputTokens": 11139
+    },
+    "reported_last": {
+      "totalTokens": 192490,
+      "inputTokens": 192388,
+      "cachedInputTokens": 191232,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 102,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 127,
+    "timestamp_ms": 1789794646891,
+    "delta": {
+      "totalTokens": 193616,
+      "inputTokens": 193430,
+      "cachedInputTokens": 192256,
+      "outputTokens": 186,
+      "reasoningOutputTokens": 76
+    },
+    "cumulative": {
+      "totalTokens": 15343558,
+      "inputTokens": 15318889,
+      "cachedInputTokens": 15104640,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 24669,
+      "reasoningOutputTokens": 11215
+    },
+    "reported_last": {
+      "totalTokens": 193616,
+      "inputTokens": 193430,
+      "cachedInputTokens": 192256,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 186,
+      "reasoningOutputTokens": 76
+    }
+  },
+  {
+    "event": 128,
+    "timestamp_ms": 1789794696438,
+    "delta": {
+      "totalTokens": 194725,
+      "inputTokens": 194554,
+      "cachedInputTokens": 193280,
+      "outputTokens": 171,
+      "reasoningOutputTokens": 26
+    },
+    "cumulative": {
+      "totalTokens": 15538283,
+      "inputTokens": 15513443,
+      "cachedInputTokens": 15297920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 24840,
+      "reasoningOutputTokens": 11241
+    },
+    "reported_last": {
+      "totalTokens": 194725,
+      "inputTokens": 194554,
+      "cachedInputTokens": 193280,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 171,
+      "reasoningOutputTokens": 26
+    }
+  },
+  {
+    "event": 129,
+    "timestamp_ms": 1789794768091,
+    "delta": {
+      "totalTokens": 195832,
+      "inputTokens": 195663,
+      "cachedInputTokens": 194432,
+      "outputTokens": 169,
+      "reasoningOutputTokens": 64
+    },
+    "cumulative": {
+      "totalTokens": 15734115,
+      "inputTokens": 15709106,
+      "cachedInputTokens": 15492352,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25009,
+      "reasoningOutputTokens": 11305
+    },
+    "reported_last": {
+      "totalTokens": 195832,
+      "inputTokens": 195663,
+      "cachedInputTokens": 194432,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 169,
+      "reasoningOutputTokens": 64
+    }
+  },
+  {
+    "event": 130,
+    "timestamp_ms": 1789794815170,
+    "delta": {
+      "totalTokens": 196906,
+      "inputTokens": 196771,
+      "cachedInputTokens": 195456,
+      "outputTokens": 135,
+      "reasoningOutputTokens": 29
+    },
+    "cumulative": {
+      "totalTokens": 15931021,
+      "inputTokens": 15905877,
+      "cachedInputTokens": 15687808,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25144,
+      "reasoningOutputTokens": 11334
+    },
+    "reported_last": {
+      "totalTokens": 196906,
+      "inputTokens": 196771,
+      "cachedInputTokens": 195456,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 135,
+      "reasoningOutputTokens": 29
+    }
+  },
+  {
+    "event": 131,
+    "timestamp_ms": 1789794864163,
+    "delta": {
+      "totalTokens": 197962,
+      "inputTokens": 197848,
+      "cachedInputTokens": 196608,
+      "outputTokens": 114,
+      "reasoningOutputTokens": 19
+    },
+    "cumulative": {
+      "totalTokens": 16128983,
+      "inputTokens": 16103725,
+      "cachedInputTokens": 15884416,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25258,
+      "reasoningOutputTokens": 11353
+    },
+    "reported_last": {
+      "totalTokens": 197962,
+      "inputTokens": 197848,
+      "cachedInputTokens": 196608,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 114,
+      "reasoningOutputTokens": 19
+    }
+  },
+  {
+    "event": 132,
+    "timestamp_ms": 1789794916353,
+    "delta": {
+      "totalTokens": 199154,
+      "inputTokens": 198900,
+      "cachedInputTokens": 197632,
+      "outputTokens": 254,
+      "reasoningOutputTokens": 188
+    },
+    "cumulative": {
+      "totalTokens": 16328137,
+      "inputTokens": 16302625,
+      "cachedInputTokens": 16082048,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25512,
+      "reasoningOutputTokens": 11541
+    },
+    "reported_last": {
+      "totalTokens": 199154,
+      "inputTokens": 198900,
+      "cachedInputTokens": 197632,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 254,
+      "reasoningOutputTokens": 188
+    }
+  },
+  {
+    "event": 133,
+    "timestamp_ms": 1789794966201,
+    "delta": {
+      "totalTokens": 200273,
+      "inputTokens": 200094,
+      "cachedInputTokens": 198784,
+      "outputTokens": 179,
+      "reasoningOutputTokens": 70
+    },
+    "cumulative": {
+      "totalTokens": 16528410,
+      "inputTokens": 16502719,
+      "cachedInputTokens": 16280832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25691,
+      "reasoningOutputTokens": 11611
+    },
+    "reported_last": {
+      "totalTokens": 200273,
+      "inputTokens": 200094,
+      "cachedInputTokens": 198784,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 179,
+      "reasoningOutputTokens": 70
+    }
+  },
+  {
+    "event": 134,
+    "timestamp_ms": 1789795013191,
+    "delta": {
+      "totalTokens": 0,
+      "inputTokens": 0,
+      "cachedInputTokens": 0,
+      "outputTokens": 0,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 16528410,
+      "inputTokens": 16502719,
+      "cachedInputTokens": 16280832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25691,
+      "reasoningOutputTokens": 11611
+    },
+    "reported_last": {
+      "totalTokens": 200273,
+      "inputTokens": 200094,
+      "cachedInputTokens": 198784,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 179,
+      "reasoningOutputTokens": 70
+    }
+  },
+  {
+    "event": 135,
+    "timestamp_ms": 1789795063974,
+    "delta": {
+      "totalTokens": 201472,
+      "inputTokens": 201208,
+      "cachedInputTokens": 201088,
+      "outputTokens": 264,
+      "reasoningOutputTokens": 182
+    },
+    "cumulative": {
+      "totalTokens": 16729882,
+      "inputTokens": 16703927,
+      "cachedInputTokens": 16481920,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 25955,
+      "reasoningOutputTokens": 11793
+    },
+    "reported_last": {
+      "totalTokens": 201472,
+      "inputTokens": 201208,
+      "cachedInputTokens": 201088,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 264,
+      "reasoningOutputTokens": 182
+    }
+  },
+  {
+    "event": 136,
+    "timestamp_ms": 1789795110047,
+    "delta": {
+      "totalTokens": 202549,
+      "inputTokens": 202409,
+      "cachedInputTokens": 201088,
+      "outputTokens": 140,
+      "reasoningOutputTokens": 59
+    },
+    "cumulative": {
+      "totalTokens": 16932431,
+      "inputTokens": 16906336,
+      "cachedInputTokens": 16683008,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26095,
+      "reasoningOutputTokens": 11852
+    },
+    "reported_last": {
+      "totalTokens": 202549,
+      "inputTokens": 202409,
+      "cachedInputTokens": 201088,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 140,
+      "reasoningOutputTokens": 59
+    }
+  },
+  {
+    "event": 137,
+    "timestamp_ms": 1789795160526,
+    "delta": {
+      "totalTokens": 203622,
+      "inputTokens": 203484,
+      "cachedInputTokens": 202240,
+      "outputTokens": 138,
+      "reasoningOutputTokens": 57
+    },
+    "cumulative": {
+      "totalTokens": 17136053,
+      "inputTokens": 17109820,
+      "cachedInputTokens": 16885248,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26233,
+      "reasoningOutputTokens": 11909
+    },
+    "reported_last": {
+      "totalTokens": 203622,
+      "inputTokens": 203484,
+      "cachedInputTokens": 202240,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 138,
+      "reasoningOutputTokens": 57
+    }
+  },
+  {
+    "event": 138,
+    "timestamp_ms": 1789795210021,
+    "delta": {
+      "totalTokens": 204693,
+      "inputTokens": 204559,
+      "cachedInputTokens": 203264,
+      "outputTokens": 134,
+      "reasoningOutputTokens": 53
+    },
+    "cumulative": {
+      "totalTokens": 17340746,
+      "inputTokens": 17314379,
+      "cachedInputTokens": 17088512,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26367,
+      "reasoningOutputTokens": 11962
+    },
+    "reported_last": {
+      "totalTokens": 204693,
+      "inputTokens": 204559,
+      "cachedInputTokens": 203264,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 134,
+      "reasoningOutputTokens": 53
+    }
+  },
+  {
+    "event": 139,
+    "timestamp_ms": 1789795262779,
+    "delta": {
+      "totalTokens": 205910,
+      "inputTokens": 205631,
+      "cachedInputTokens": 204416,
+      "outputTokens": 279,
+      "reasoningOutputTokens": 163
+    },
+    "cumulative": {
+      "totalTokens": 17546656,
+      "inputTokens": 17520010,
+      "cachedInputTokens": 17292928,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26646,
+      "reasoningOutputTokens": 12125
+    },
+    "reported_last": {
+      "totalTokens": 205910,
+      "inputTokens": 205631,
+      "cachedInputTokens": 204416,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 279,
+      "reasoningOutputTokens": 163
+    }
+  },
+  {
+    "event": 140,
+    "timestamp_ms": 1789795312723,
+    "delta": {
+      "totalTokens": 206979,
+      "inputTokens": 206849,
+      "cachedInputTokens": 205440,
+      "outputTokens": 130,
+      "reasoningOutputTokens": 61
+    },
+    "cumulative": {
+      "totalTokens": 17753635,
+      "inputTokens": 17726859,
+      "cachedInputTokens": 17498368,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26776,
+      "reasoningOutputTokens": 12186
+    },
+    "reported_last": {
+      "totalTokens": 206979,
+      "inputTokens": 206849,
+      "cachedInputTokens": 205440,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 130,
+      "reasoningOutputTokens": 61
+    }
+  },
+  {
+    "event": 141,
+    "timestamp_ms": 1789795359526,
+    "delta": {
+      "totalTokens": 208026,
+      "inputTokens": 207917,
+      "cachedInputTokens": 206720,
+      "outputTokens": 109,
+      "reasoningOutputTokens": 42
+    },
+    "cumulative": {
+      "totalTokens": 17961661,
+      "inputTokens": 17934776,
+      "cachedInputTokens": 17705088,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26885,
+      "reasoningOutputTokens": 12228
+    },
+    "reported_last": {
+      "totalTokens": 208026,
+      "inputTokens": 207917,
+      "cachedInputTokens": 206720,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 109,
+      "reasoningOutputTokens": 42
+    }
+  },
+  {
+    "event": 142,
+    "timestamp_ms": 1789795410200,
+    "delta": {
+      "totalTokens": 209029,
+      "inputTokens": 208964,
+      "cachedInputTokens": 207744,
+      "outputTokens": 65,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 18170690,
+      "inputTokens": 18143740,
+      "cachedInputTokens": 17912832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 26950,
+      "reasoningOutputTokens": 12228
+    },
+    "reported_last": {
+      "totalTokens": 209029,
+      "inputTokens": 208964,
+      "cachedInputTokens": 207744,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 65,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 143,
+    "timestamp_ms": 1789795460797,
+    "delta": {
+      "totalTokens": 210100,
+      "inputTokens": 209968,
+      "cachedInputTokens": 208896,
+      "outputTokens": 132,
+      "reasoningOutputTokens": 55
+    },
+    "cumulative": {
+      "totalTokens": 18380790,
+      "inputTokens": 18353708,
+      "cachedInputTokens": 18121728,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27082,
+      "reasoningOutputTokens": 12283
+    },
+    "reported_last": {
+      "totalTokens": 210100,
+      "inputTokens": 209968,
+      "cachedInputTokens": 208896,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 132,
+      "reasoningOutputTokens": 55
+    }
+  },
+  {
+    "event": 144,
+    "timestamp_ms": 1789795532200,
+    "delta": {
+      "totalTokens": 211148,
+      "inputTokens": 211040,
+      "cachedInputTokens": 209792,
+      "outputTokens": 108,
+      "reasoningOutputTokens": 42
+    },
+    "cumulative": {
+      "totalTokens": 18591938,
+      "inputTokens": 18564748,
+      "cachedInputTokens": 18331520,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27190,
+      "reasoningOutputTokens": 12325
+    },
+    "reported_last": {
+      "totalTokens": 211148,
+      "inputTokens": 211040,
+      "cachedInputTokens": 209792,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 108,
+      "reasoningOutputTokens": 42
+    }
+  },
+  {
+    "event": 145,
+    "timestamp_ms": 1789795603542,
+    "delta": {
+      "totalTokens": 212186,
+      "inputTokens": 212087,
+      "cachedInputTokens": 210816,
+      "outputTokens": 99,
+      "reasoningOutputTokens": 33
+    },
+    "cumulative": {
+      "totalTokens": 18804124,
+      "inputTokens": 18776835,
+      "cachedInputTokens": 18542336,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27289,
+      "reasoningOutputTokens": 12358
+    },
+    "reported_last": {
+      "totalTokens": 212186,
+      "inputTokens": 212087,
+      "cachedInputTokens": 210816,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 99,
+      "reasoningOutputTokens": 33
+    }
+  },
+  {
+    "event": 146,
+    "timestamp_ms": 1789795654081,
+    "delta": {
+      "totalTokens": 213229,
+      "inputTokens": 213124,
+      "cachedInputTokens": 211968,
+      "outputTokens": 105,
+      "reasoningOutputTokens": 18
+    },
+    "cumulative": {
+      "totalTokens": 19017353,
+      "inputTokens": 18989959,
+      "cachedInputTokens": 18754304,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27394,
+      "reasoningOutputTokens": 12376
+    },
+    "reported_last": {
+      "totalTokens": 213229,
+      "inputTokens": 213124,
+      "cachedInputTokens": 211968,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 105,
+      "reasoningOutputTokens": 18
+    }
+  },
+  {
+    "event": 147,
+    "timestamp_ms": 1789795706194,
+    "delta": {
+      "totalTokens": 214293,
+      "inputTokens": 214168,
+      "cachedInputTokens": 212992,
+      "outputTokens": 125,
+      "reasoningOutputTokens": 43
+    },
+    "cumulative": {
+      "totalTokens": 19231646,
+      "inputTokens": 19204127,
+      "cachedInputTokens": 18967296,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27519,
+      "reasoningOutputTokens": 12419
+    },
+    "reported_last": {
+      "totalTokens": 214293,
+      "inputTokens": 214168,
+      "cachedInputTokens": 212992,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 125,
+      "reasoningOutputTokens": 43
+    }
+  },
+  {
+    "event": 148,
+    "timestamp_ms": 1789795759417,
+    "delta": {
+      "totalTokens": 215406,
+      "inputTokens": 215232,
+      "cachedInputTokens": 214016,
+      "outputTokens": 174,
+      "reasoningOutputTokens": 16
+    },
+    "cumulative": {
+      "totalTokens": 19447052,
+      "inputTokens": 19419359,
+      "cachedInputTokens": 19181312,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27693,
+      "reasoningOutputTokens": 12435
+    },
+    "reported_last": {
+      "totalTokens": 215406,
+      "inputTokens": 215232,
+      "cachedInputTokens": 214016,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 174,
+      "reasoningOutputTokens": 16
+    }
+  },
+  {
+    "event": 149,
+    "timestamp_ms": 1789795812998,
+    "delta": {
+      "totalTokens": 216589,
+      "inputTokens": 216348,
+      "cachedInputTokens": 215168,
+      "outputTokens": 241,
+      "reasoningOutputTokens": 118
+    },
+    "cumulative": {
+      "totalTokens": 19663641,
+      "inputTokens": 19635707,
+      "cachedInputTokens": 19396480,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 27934,
+      "reasoningOutputTokens": 12553
+    },
+    "reported_last": {
+      "totalTokens": 216589,
+      "inputTokens": 216348,
+      "cachedInputTokens": 215168,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 241,
+      "reasoningOutputTokens": 118
+    }
+  },
+  {
+    "event": 150,
+    "timestamp_ms": 1789795882335,
+    "delta": {
+      "totalTokens": 218312,
+      "inputTokens": 217534,
+      "cachedInputTokens": 216320,
+      "outputTokens": 778,
+      "reasoningOutputTokens": 605
+    },
+    "cumulative": {
+      "totalTokens": 19881953,
+      "inputTokens": 19853241,
+      "cachedInputTokens": 19612800,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 28712,
+      "reasoningOutputTokens": 13158
+    },
+    "reported_last": {
+      "totalTokens": 218312,
+      "inputTokens": 217534,
+      "cachedInputTokens": 216320,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 778,
+      "reasoningOutputTokens": 605
+    }
+  },
+  {
+    "event": 151,
+    "timestamp_ms": 1789795932469,
+    "delta": {
+      "totalTokens": 219336,
+      "inputTokens": 219260,
+      "cachedInputTokens": 217344,
+      "outputTokens": 76,
+      "reasoningOutputTokens": 22
+    },
+    "cumulative": {
+      "totalTokens": 20101289,
+      "inputTokens": 20072501,
+      "cachedInputTokens": 19830144,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 28788,
+      "reasoningOutputTokens": 13180
+    },
+    "reported_last": {
+      "totalTokens": 219336,
+      "inputTokens": 219260,
+      "cachedInputTokens": 217344,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 76,
+      "reasoningOutputTokens": 22
+    }
+  },
+  {
+    "event": 152,
+    "timestamp_ms": 1789795984507,
+    "delta": {
+      "totalTokens": 220353,
+      "inputTokens": 220286,
+      "cachedInputTokens": 219136,
+      "outputTokens": 67,
+      "reasoningOutputTokens": 9
+    },
+    "cumulative": {
+      "totalTokens": 20321642,
+      "inputTokens": 20292787,
+      "cachedInputTokens": 20049280,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 28855,
+      "reasoningOutputTokens": 13189
+    },
+    "reported_last": {
+      "totalTokens": 220353,
+      "inputTokens": 220286,
+      "cachedInputTokens": 219136,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 67,
+      "reasoningOutputTokens": 9
+    }
+  },
+  {
+    "event": 153,
+    "timestamp_ms": 1789796034253,
+    "delta": {
+      "totalTokens": 221352,
+      "inputTokens": 221298,
+      "cachedInputTokens": 220160,
+      "outputTokens": 54,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 20542994,
+      "inputTokens": 20514085,
+      "cachedInputTokens": 20269440,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 28909,
+      "reasoningOutputTokens": 13189
+    },
+    "reported_last": {
+      "totalTokens": 221352,
+      "inputTokens": 221298,
+      "cachedInputTokens": 220160,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 54,
+      "reasoningOutputTokens": 0
+    }
+  },
+  {
+    "event": 154,
+    "timestamp_ms": 1789796092004,
+    "delta": {
+      "totalTokens": 222754,
+      "inputTokens": 222625,
+      "cachedInputTokens": 221184,
+      "outputTokens": 129,
+      "reasoningOutputTokens": 0
+    },
+    "cumulative": {
+      "totalTokens": 20765748,
+      "inputTokens": 20736710,
+      "cachedInputTokens": 20490624,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 29038,
+      "reasoningOutputTokens": 13189
+    },
+    "reported_last": {
+      "totalTokens": 222754,
+      "inputTokens": 222625,
+      "cachedInputTokens": 221184,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 129,
+      "reasoningOutputTokens": 0
+    }
+  }
+]

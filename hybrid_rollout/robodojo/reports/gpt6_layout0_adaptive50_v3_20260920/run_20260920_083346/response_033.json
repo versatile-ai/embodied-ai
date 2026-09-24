@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "1fdf6b572abf43a2b2e9a1bc4fac6d77",
+  "reason": "Lower the white bottle over the bin interior. The horizontal bottle appears ahead and left in the downward wrist view; translate the right hand to center it.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.4329761946201324,
+        -0.20905721187591553,
+        0.9573768186569214
+      ],
+      "quaternion_wxyz": [
+        0.7077378630638123,
+        -0.0009819591650739312,
+        0.008281413465738297,
+        0.7064259052276611
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.29171399521827696,
+        -0.19078442573547363,
+        1.0473390817642212
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0.7071067811865476,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

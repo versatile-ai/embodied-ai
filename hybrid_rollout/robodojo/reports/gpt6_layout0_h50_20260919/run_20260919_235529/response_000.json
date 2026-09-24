@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "068fc88c64c544d1954a2a24146fa834",
+  "steps": 50,
+  "reason": "Pink bottle is ahead and inward of the left fingers; advance left diagonally and right forward with open grippers to approach visible bottles.",
+  "target": {
+    "left": {
+      "position": [
+        -0.268,
+        -0.315,
+        0.9215
+      ],
+      "quaternion_wxyz": [
+        0.7069999575614929,
+        -4.327419134142474e-08,
+        -6.000607299938565e-08,
+        0.7072135210037231
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.30047,
+        -0.304,
+        0.9215
+      ],
+      "quaternion_wxyz": [
+        0.7069999575614929,
+        -4.327419134142474e-08,
+        -6.000607299938565e-08,
+        0.7072135210037231
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

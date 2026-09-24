@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "717f55e1bd184754857b4e148cf9f1db",
+  "reason": "Align the receiving hand with the bottle's displaced lower body while retaining a rearward approach offset.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.05025046294927597,
+        -0.26542884528636934,
+        0.9319241046905518
+      ],
+      "quaternion_wxyz": [
+        0.70710678,
+        0,
+        0,
+        0.70710678
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07458432018756866,
+        -0.19866056740283966,
+        1.0582503080368042
+      ],
+      "quaternion_wxyz": [
+        0.70710678,
+        0,
+        0,
+        0.70710678
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

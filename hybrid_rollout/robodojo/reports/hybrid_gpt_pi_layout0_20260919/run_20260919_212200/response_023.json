@@ -1,0 +1,85 @@
+{
+  "request_id": "b691b72f53984e29b530f77c11d4ef5d",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The white bottle is held steadily at the handover location; the left hand approaches with open fingers.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink and yellow bottles placed in dustbin.",
+        "White bottle lifted and presented by right hand."
+      ],
+      "currently_attempting": "Approach white bottle with left hand.",
+      "remaining": [
+        "Complete white-bottle handover and disposal.",
+        "Place pale horizontal bottle in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Position receiving left hand.",
+    "execution_status": "progressing",
+    "execution_evidence": "The white bottle is suspended near the center of the table in the right fingers; it remains upright and retained.",
+    "expected_next_intent": "Bring open left fingers toward exposed lower white-bottle body.",
+    "predicted_next_intent": "The left hand moves inward and upward while the right pose and grip remain stable.",
+    "intent_status": "aligned",
+    "intent_evidence": "Rows 0–14 move the left EEF to [-0.128,-0.315,1.007] with opening near 1; right stays near [0.166,-0.223,1.072] with opening about 0.456."
+  }
+}

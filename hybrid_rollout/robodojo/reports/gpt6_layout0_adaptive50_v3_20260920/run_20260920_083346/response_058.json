@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b1441ffd7ed249e7816dddfdf73f756d",
+  "reason": "The bottle body is centered between the left fingers at the slanted overhead approach. Lower and close to regrasp while the right hand clears laterally.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.09325896948575974,
+        -0.23253199458122253,
+        0.9466677665710449
+      ],
+      "quaternion_wxyz": [
+        0.8155704736709595,
+        -0.0022663683630526066,
+        0.500788688659668,
+        0.28991448879241943
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.07660379990935326,
+        -0.1740809030532837,
+        1.0359840393066406
+      ],
+      "quaternion_wxyz": [
+        -0.7344600558280945,
+        -0.11931158602237701,
+        -0.5826292037963867,
+        -0.32691919803619385
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

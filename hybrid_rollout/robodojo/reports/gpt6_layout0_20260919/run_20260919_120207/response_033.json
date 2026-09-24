@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b842b142b6b14084a2743ada9aa56b10",
+  "reason": "The left gripper closed against the bottle body. Release the right grip and retract it to verify the handover.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.056958675384521484,
+        -0.14303641021251678,
+        0.9210123419761658
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        -0.061,
+        -0.173,
+        1.048
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

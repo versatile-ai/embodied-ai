@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "72abb91cf75b4e32b373ca67669f4c3a",
+  "reason": "Move yellow fully over the bin opening and continue bringing the last bottle toward the left side.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.47,
+        -0.206,
+        0.978
+      ],
+      "quaternion_wxyz": [
+        0.9217984676361084,
+        -0.04391646012663841,
+        0.38116249442100525,
+        -0.05544401705265045
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.258,
+        -0.146,
+        0.981
+      ],
+      "quaternion_wxyz": [
+        0.050354864448308945,
+        -0.33269202709198,
+        -0.08059954643249512,
+        0.9382345080375671
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

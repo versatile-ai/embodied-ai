@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "ddab3d378b3b45b8a364db051ef8d3fe",
+  "reason": "Use the final available controls to align the left gripper over the bottle body while continuing the right arm's return.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.06639208155870438,
+        -0.07485500568151474,
+        1.002166946411133
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0.7071067811865476,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.24727385640144348,
+        -0.26775174736976626,
+        0.9994435024261474
+      ],
+      "quaternion_wxyz": [
+        0.713908295564758,
+        0.05822780331939299,
+        0.09157494967145179,
+        0.691779218716522
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

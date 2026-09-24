@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "02caf17eab03411494366493c57c65e3",
+  "reason": "Release the final bottle inside the bin while holding the right arm at its start pose.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.5973139405250549,
+        -0.17481395602226257,
+        0.9333167672157288
+      ],
+      "quaternion_wxyz": [
+        0.9264950156211853,
+        0.016213780269026756,
+        0.37534669041633606,
+        0.021423829719424248
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.300470948,
+        -0.352299869,
+        0.921500027
+      ],
+      "quaternion_wxyz": [
+        0.7069999576,
+        0,
+        0,
+        0.707213521
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

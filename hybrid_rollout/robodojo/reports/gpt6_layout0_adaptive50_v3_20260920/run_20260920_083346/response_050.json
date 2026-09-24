@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "5bf5caa1c2b94f06bd8c452c941b5434",
+  "reason": "The exposed cap and neck are adjacent to the left fingers. Align and close on that end while retaining the right body grasp.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        0.03419977244734764,
+        -0.3107856693267822,
+        0.9149226980209351
+      ],
+      "quaternion_wxyz": [
+        0.7099265456199646,
+        0.004322201944887638,
+        0.005513916257768869,
+        0.7042407393455505
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        -0.04768780246376991,
+        -0.17480702698230743,
+        1.0648258924484253
+      ],
+      "quaternion_wxyz": [
+        0.702407956123352,
+        0.0031584405805915594,
+        0.7117569446563721,
+        0.0038827010430395603
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

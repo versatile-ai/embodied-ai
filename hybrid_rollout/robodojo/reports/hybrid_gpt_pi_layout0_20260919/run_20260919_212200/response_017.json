@@ -1,0 +1,85 @@
+{
+  "request_id": "5c32848a726241acbdc36fc569c1450a",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The yellow bottle rose with the left hand and remains between the fingers. Continue elevated transport toward the bin.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into dustbin.",
+        "Yellow bottle recovered and lifted by left hand."
+      ],
+      "currently_attempting": "Carry yellow bottle to dustbin.",
+      "remaining": [
+        "Release yellow bottle into bin.",
+        "Place white and pale horizontal bottles in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Transport recovered yellow bottle.",
+    "execution_status": "recovered",
+    "execution_evidence": "The yellow bottle is visibly off the table in the left hand, with the body retained in the wrist view after the lift.",
+    "expected_next_intent": "Carry the held bottle above the bin while maintaining clearance and grip.",
+    "predicted_next_intent": "The left hand carries the bottle left at z about 1.05–1.08 with opening near 0.43.",
+    "intent_status": "aligned",
+    "intent_evidence": "The selected prefix moves left toward x -0.353 at elevated height without opening the fingers; right remains clear."
+  }
+}

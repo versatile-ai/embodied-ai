@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "50d3f4f1b0364467bd46951e10b903eb",
+  "reason": "Separate the empty right arm from the regrasp area and rotate the left hand downward above the bottle.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.07325882464647293,
+        -0.2595311272144318,
+        1.0016677379608154
+      ],
+      "quaternion_wxyz": [
+        0.8278967767655724,
+        -0.0032101466906921967,
+        0.38203456761808496,
+        0.4106411200703097
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.010870472878217699,
+        -0.14515602588653564,
+        1.0417418479919434
+      ],
+      "quaternion_wxyz": [
+        0.7701225052683947,
+        0.010334171919090234,
+        0.6240631760298664,
+        0.1317178166301756
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

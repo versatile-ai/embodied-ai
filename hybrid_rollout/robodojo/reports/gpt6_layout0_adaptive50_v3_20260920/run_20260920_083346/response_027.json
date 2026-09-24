@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "f3f7c91120a04a0f87a4cc1d90982de1",
+  "reason": "Transport the white bottle leftward at clearance height. Move the empty right hand toward the horizontal bottle and begin orienting for a top-down grasp across its width.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.14797823631763457,
+        -0.20900774002075195,
+        0.9780734181404114
+      ],
+      "quaternion_wxyz": [
+        0.7077428698539734,
+        -0.0002002884284593165,
+        0.007135570049285889,
+        0.7064339518547058
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.020690464764833452,
+        -0.25680214166641235,
+        1.0833566188812256
+      ],
+      "quaternion_wxyz": [
+        0.7632054511963312,
+        0.007478852194112488,
+        0.13305819721135975,
+        0.632263306650857
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

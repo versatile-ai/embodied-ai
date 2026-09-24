@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "6c9e7e94c37f43d1b67af558e739502c",
+  "reason": "Both hands contact the bottle. Release and withdraw the right fingers while the left hand holds the lower body.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.07220093160867691,
+        -0.20848432183265686,
+        0.9419838190078735
+      ],
+      "quaternion_wxyz": [
+        0.7071893811225891,
+        -2.86149497696897e-05,
+        -0.0001618904498172924,
+        0.707024097442627
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        -0.07463100552558899,
+        -0.2385207498073578,
+        1.0778076839447022
+      ],
+      "quaternion_wxyz": [
+        0.7071691751480103,
+        -0.00047931348672136664,
+        -6.726592255290598e-05,
+        0.7070441246032715
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

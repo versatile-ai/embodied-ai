@@ -1,0 +1,83 @@
+{
+  "request_id": "fc13010b3ef044b09a8cbdcea90f425b",
+  "mode": "student",
+  "steps": 15,
+  "reason": "The small yellow bottle is centered between the right fingers; complete the approach and grasp.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into the dustbin opening."
+      ],
+      "currently_attempting": "Grasp the small yellow bottle.",
+      "remaining": [
+        "Place the other three bottles inside the dustbin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Grasp the small yellow bottle.",
+    "execution_status": "progressing",
+    "execution_evidence": "Right wrist RGB centers the upright small yellow bottle between the open fingers; left arm has retracted.",
+    "expected_next_intent": "Advance the right fingers around the bottle and close.",
+    "predicted_next_intent": "Right EEF advances toward the bottle and gradually closes.",
+    "intent_status": "aligned",
+    "intent_evidence": "Selected FK advances right y from -0.400 to -0.347 m and reduces opening from 1 to 0.39 before the lift."
+  },
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  }
+}

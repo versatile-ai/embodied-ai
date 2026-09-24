@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "e03132b08a064529a2127a399d6a51df",
+  "reason": "Separate the two arms laterally while carrying white toward the bin.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.102,
+        -0.146,
+        0.955
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.025,
+        -0.248,
+        1.065
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

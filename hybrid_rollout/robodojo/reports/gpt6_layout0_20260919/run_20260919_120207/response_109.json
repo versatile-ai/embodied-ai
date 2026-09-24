@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "5b8110f116894a848192c1c50ae04620",
+  "reason": "Verify the final left-hand grasp with a short lift while returning the right arm.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.32,
+        -0.172,
+        0.944
+      ],
+      "quaternion_wxyz": [
+        0.9227616786956787,
+        0.026573115959763527,
+        0.3838031589984894,
+        0.0223540011793375
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.045,
+        -0.255,
+        1.03
+      ],
+      "quaternion_wxyz": [
+        0.6463134352631985,
+        -0.03397962480564582,
+        -0.010243610056806456,
+        0.7622462809829204
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

@@ -1,0 +1,11 @@
+{
+  "episode_id": "f6f1159ff44e40619b9efafe953125e5",
+  "step_id": 700,
+  "evaluation_method": "gpt_only",
+  "student_steps": 0,
+  "edited_steps": 0,
+  "recovery_steps": 0,
+  "predictions": 0,
+  "gpt_joint_steps": 0,
+  "gpt_eef_steps": 700
+}

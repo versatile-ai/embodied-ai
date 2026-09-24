@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "13c2e4a92b9b417dbce848670d473a97",
+  "reason": "White is centered in the receiving wrist view. Advance the open left fingers around the lower body.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.071,
+        -0.186,
+        0.94
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        -0.07593456655740738,
+        -0.14512670040130615,
+        1.048302412033081
+      ],
+      "quaternion_wxyz": [
+        0.7071067811865476,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "gripper_closed": true
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

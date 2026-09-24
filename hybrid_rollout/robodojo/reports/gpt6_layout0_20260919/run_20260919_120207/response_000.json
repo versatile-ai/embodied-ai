@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "reason": "The pink bottle is ahead of the left gripper. Approach it with the gripper open while holding the right arm.",
+  "request_id": "f851c9cb465244aebf85a7b33511d487",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.275,
+        -0.312,
+        0.91
+      ],
+      "quaternion_wxyz": [
+        0.7069999576,
+        0,
+        0,
+        0.707213521
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.30047095,
+        -0.35229987,
+        0.92150003
+      ],
+      "quaternion_wxyz": [
+        0.7069999576,
+        0,
+        0,
+        0.707213521
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

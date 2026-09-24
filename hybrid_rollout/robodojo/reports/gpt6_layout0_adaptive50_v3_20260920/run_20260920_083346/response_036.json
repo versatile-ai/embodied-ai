@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "b9424860610f438dbf93607d68e96135",
+  "reason": "White bottle has fallen into the bin. Lower the right fingers around the centered horizontal bottle; move the left hand toward the small yellow bottle.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.3899635202884674,
+        -0.2270693563222885,
+        0.9872734403610229
+      ],
+      "quaternion_wxyz": [
+        0.7077370882034302,
+        -0.0011813158635050058,
+        0.008340712636709213,
+        0.7064255475997925
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3727048933506012,
+        -0.14579437673091888,
+        0.9863317775726318
+      ],
+      "quaternion_wxyz": [
+        0.7071075439453125,
+        5.850828983966494e-06,
+        0.7071059346199036,
+        2.903672339016339e-06
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

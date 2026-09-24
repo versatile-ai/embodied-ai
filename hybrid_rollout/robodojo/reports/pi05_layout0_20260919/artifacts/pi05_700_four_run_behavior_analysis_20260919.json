@@ -1,0 +1,56 @@
+{
+  "scenario": "official RoboDojo Layout 0, seed 0, pi0.5 only, 700 controls",
+  "visual_success_rate": "1/4",
+  "completion_counts": [
+    2,
+    3,
+    3,
+    4
+  ],
+  "visual_completion_step_run4": 656,
+  "pairwise_action_divergence": [
+    {
+      "pair": "run1_vs_run2",
+      "all_mean_l2": 1.58995389289163,
+      "first50_mean_l2": 0.16035346004509798,
+      "last50_mean_l2": 2.920424627154414,
+      "max_l2": 4.85050137986161
+    },
+    {
+      "pair": "run1_vs_run3",
+      "all_mean_l2": 1.7700372372112045,
+      "first50_mean_l2": 0.15440297967896865,
+      "last50_mean_l2": 3.344997093964375,
+      "max_l2": 4.3143048468929335
+    },
+    {
+      "pair": "run1_vs_run4",
+      "all_mean_l2": 1.4674820709941203,
+      "first50_mean_l2": 0.13849358258780944,
+      "last50_mean_l2": 2.255206689441435,
+      "max_l2": 5.208250045828026
+    },
+    {
+      "pair": "run2_vs_run3",
+      "all_mean_l2": 1.1181212197705794,
+      "first50_mean_l2": 0.07495703103918533,
+      "last50_mean_l2": 2.367705572410341,
+      "max_l2": 4.088240559098893
+    },
+    {
+      "pair": "run2_vs_run4",
+      "all_mean_l2": 1.4969431348525957,
+      "first50_mean_l2": 0.06009636518768414,
+      "last50_mean_l2": 3.265657234699639,
+      "max_l2": 4.481811693085634
+    },
+    {
+      "pair": "run3_vs_run4",
+      "all_mean_l2": 1.4024627859356402,
+      "first50_mean_l2": 0.07481566357305189,
+      "last50_mean_l2": 3.5062428662784257,
+      "max_l2": 3.892873364394517
+    }
+  ],
+  "interpretation": "All runs begin similarly, then diverge as sampled actions alter scene state. Run 4 visually completed all four bottles and returned both arms home within the same 700-step budget, while runs 1-3 stopped at 2/4, 3/4, 3/4. This demonstrates non-deterministic run-to-run variance at a tight horizon; 700 steps are sufficient in some trajectories but not robust."
+}

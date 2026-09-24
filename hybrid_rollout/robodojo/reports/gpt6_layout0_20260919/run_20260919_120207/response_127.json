@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "e737c6ffaba34a17b799da776807e351",
+  "reason": "Continue lowering and centering the left arm while holding its orientation steady.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.421,
+        -0.321,
+        1.045
+      ],
+      "quaternion_wxyz": [
+        0.8325854539871216,
+        0.15081241726875305,
+        0.19807645678520203,
+        0.4947955012321472
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004409968852997,
+        -0.35221824049949646,
+        0.9215083718299866
+      ],
+      "quaternion_wxyz": [
+        0.7070017457008362,
+        3.7380507365014637e-06,
+        -3.7322949992812937e-06,
+        0.7072116732597351
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

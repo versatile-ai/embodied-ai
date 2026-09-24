@@ -1,0 +1,85 @@
+{
+  "request_id": "cd0515cdcb944b99a65247b73313f249",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The yellow bottle is visibly in the bin. Allow the left arm to retract while the right begins approaching the white bottle.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into dustbin.",
+        "Yellow bottle visibly inside dustbin after direct left-hand recovery."
+      ],
+      "currently_attempting": "Approach upright white bottle with right hand.",
+      "remaining": [
+        "Place white bottle in dustbin.",
+        "Place pale horizontal bottle in dustbin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Withdraw left hand and approach white bottle.",
+    "execution_status": "progressing",
+    "execution_evidence": "The left fingers are empty and the yellow bottle is visible below them inside the black bin. Two bottles remain on the table.",
+    "expected_next_intent": "Retract the left hand and position the right hand for the white bottle.",
+    "predicted_next_intent": "Left arm rises and returns toward home; the open right hand moves toward the upright white bottle.",
+    "intent_status": "aligned",
+    "intent_evidence": "The left EEF rises from the release pose before moving inward; right x increases to 0.361 and y advances to -0.300 with opening near 1."
+  }
+}

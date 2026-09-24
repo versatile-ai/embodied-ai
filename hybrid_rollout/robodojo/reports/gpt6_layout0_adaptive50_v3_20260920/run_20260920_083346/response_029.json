@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "ea5118b378ff444eb06ee426d058ac4c",
+  "reason": "White bottle remains secure. Continue toward the bin and move the right hand above the horizontal bottle as its downward orientation develops.",
+  "steps": 50,
+  "target": {
+    "left": {
+      "position": [
+        -0.24598673486709594,
+        -0.20902162790298462,
+        0.9778416752815247
+      ],
+      "quaternion_wxyz": [
+        0.7077406644821167,
+        -0.0002974685630761087,
+        0.007622649427503347,
+        0.7064310908317566
+      ],
+      "gripper_closed": true
+    },
+    "right": {
+      "position": [
+        0.1147055459022522,
+        -0.2447876875400543,
+        1.071346128463745
+      ],
+      "quaternion_wxyz": [
+        0.8158358916717636,
+        0.005008507705655087,
+        0.39393366067980845,
+        0.42332366690116047
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}

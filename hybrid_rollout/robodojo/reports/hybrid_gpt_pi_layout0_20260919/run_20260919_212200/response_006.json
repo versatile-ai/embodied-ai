@@ -1,0 +1,84 @@
+{
+  "request_id": "12baa33b21bb404ba67eb08eaad093e5",
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  },
+  "mode": "student",
+  "steps": 15,
+  "reason": "The fingers surround the yellow bottle; a controlled lift is appropriate to verify the grasp and prepare handover.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into dustbin."
+      ],
+      "currently_attempting": "Lift yellow bottle and verify the right-hand grasp.",
+      "remaining": [
+        "Hand yellow bottle to left arm and place in bin.",
+        "Place white and pale horizontal bottles in bin.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Lift yellow bottle.",
+    "execution_status": "progressing",
+    "execution_evidence": "The right fingers have narrowed around the yellow bottle body. The cap is centered in the wrist view; the lift has not yet established transport.",
+    "expected_next_intent": "Lift the yellow bottle with the right hand while retaining grip.",
+    "predicted_next_intent": "Right EEF lifts from z 0.947 to 1.059 and rotates inward while holding opening near 0.38.",
+    "intent_status": "aligned",
+    "intent_evidence": "The selected prefix maintains the narrowed gripper and raises the hand; the left arm remains near its start, clear of the lift."
+  }
+}

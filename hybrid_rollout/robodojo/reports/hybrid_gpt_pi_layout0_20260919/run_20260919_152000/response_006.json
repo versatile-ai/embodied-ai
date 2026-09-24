@@ -1,0 +1,84 @@
+{
+  "request_id": "7ebd62eb2adb4222bef276f5f23867a1",
+  "mode": "student",
+  "steps": 15,
+  "reason": "Lift the small bottle with the right hand and verify retention before the handover.",
+  "assessment": {
+    "task_progress": {
+      "verified_completed": [
+        "Pink bottle released into the dustbin opening."
+      ],
+      "currently_attempting": "Lift the small yellow bottle for handover.",
+      "remaining": [
+        "Transfer and place the small yellow bottle.",
+        "Place the pale and tall white bottles.",
+        "Return both arms to their starting poses."
+      ]
+    },
+    "current_subgoal": "Lift the small yellow bottle.",
+    "execution_status": "progressing",
+    "execution_evidence": "The right fingers have closed around the bottle, whose white cap is centered in the wrist view; lift retention is pending.",
+    "expected_next_intent": "Lift while holding the bottle.",
+    "predicted_next_intent": "Right arm raises the grasp and moves toward a central handover pose.",
+    "intent_status": "aligned",
+    "intent_evidence": "Right FK rises from z=0.940 to 1.054 m with opening maintained near 0.39; left arm stays clear in the selected interval."
+  },
+  "edit": {
+    "left": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    },
+    "right": {
+      "delta_position": [
+        0,
+        0,
+        0
+      ],
+      "delta_rotation_vector": [
+        0,
+        0,
+        0
+      ],
+      "gripper": "keep"
+    }
+  },
+  "target": {
+    "left": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion_wxyz": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "gripper_closed": false
+    }
+  }
+}

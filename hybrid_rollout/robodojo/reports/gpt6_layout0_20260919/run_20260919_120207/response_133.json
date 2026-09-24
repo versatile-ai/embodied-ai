@@ -1,0 +1,37 @@
+{
+  "mode": "eef",
+  "request_id": "9bcae3204c814c0c8e0249db2baa1f06",
+  "reason": "Continue correcting the left wrist orientation at the starting position.",
+  "steps": 5,
+  "target": {
+    "left": {
+      "position": [
+        -0.299529076,
+        -0.352299869,
+        0.921500027
+      ],
+      "quaternion_wxyz": [
+        0.7494183131004266,
+        0.05576647149062683,
+        0.04843069696741834,
+        0.6579640973902413
+      ],
+      "gripper_closed": false
+    },
+    "right": {
+      "position": [
+        0.3004409968852997,
+        -0.35221824049949646,
+        0.9215083718299866
+      ],
+      "quaternion_wxyz": [
+        0.7070017457008362,
+        3.7380507365014637e-06,
+        -3.7322949992812937e-06,
+        0.7072116732597351
+      ],
+      "gripper_closed": false
+    }
+  },
+  "evaluation_method": "gpt_only"
+}
