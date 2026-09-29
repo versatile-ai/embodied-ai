@@ -1,5 +1,7 @@
 # 实验结果与证据索引
 
+可从[九回合逐轮交互报告](robodojo-decision-report-20260929.html)切换 GPT、π0.5 与混合路线，查看 357 轮决策的输入、输出、动作、耗时和录像片段；[离线单文件版](robodojo-decision-report-20260929-offline.html)内嵌九段 MP4。
+
 任务是官方 RoboDojo 的 `put_bottles_into_dustbin`，Layout 0 / seed 0，双 ARX X5 机械臂，250 Hz 物理与 25 Hz 控制，控制上限 700 步。墙钟耗时包括模型等待、仿真执行、数据交换及未单独埋点的开销；录像按 25 fps 编码，因此 700 控制步约 28 秒视频，不能用视频长度推断墙钟耗时。
 
 | 策略与记录 | 控制步 / 决策 | 墙钟 | 完成情况 | 入口 |

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline archive check: integrity, report media links, and outcome semantics."""
 from html.parser import HTMLParser
+import base64
 import hashlib
 import json
 from pathlib import Path
@@ -88,6 +89,35 @@ def check():
     if len(pi) != 4:
         errors.append(f"expected four π summaries, found {len(pi)}")
     print(f"π-only: {len(pi)} run summaries")
+    for filename, inline in (("robodojo-decision-report-20260929.html", False),
+                             ("robodojo-decision-report-20260929-offline.html", True)):
+        report = ROOT / "docs" / filename
+        if not report.is_file():
+            errors.append(f"decision report missing: {filename}")
+            continue
+        source = report.read_text()
+        marker = '<script id="report-data" type="application/json">'
+        try:
+            start = source.index(marker) + len(marker)
+            data = json.loads(source[start:source.index("</script>", start)])
+            episodes = data["episodes"]
+            if len(episodes) != 9 or sum(len(e["decisions"]) for e in episodes) != 357:
+                errors.append(f"decision count mismatch: {filename}")
+            for episode in episodes:
+                video = episode["video"]
+                if inline:
+                    raw = base64.b64decode(video["data"].split(",", 1)[1])
+                else:
+                    raw = (report.parent / video["data"]).read_bytes()
+                if hashlib.sha256(raw).hexdigest() != video["sha256"]:
+                    errors.append(f"decision video mismatch: {filename}: {episode['name']}")
+                if episode["decisions"][-1]["end"] != episode["steps"]:
+                    errors.append(f"decision step mismatch: {filename}: {episode['name']}")
+            print(f"{filename}: {len(episodes)} episodes, "
+                  f"{sum(len(e['decisions']) for e in episodes)} decisions, "
+                  f"{len(episodes)} video hashes checked")
+        except (ValueError, KeyError, IndexError, OSError) as error:
+            errors.append(f"invalid decision report {filename}: {error}")
     for error in errors:
         print("ERROR:", error, file=sys.stderr)
     return 1 if errors else 0
