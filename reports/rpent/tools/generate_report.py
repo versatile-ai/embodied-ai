@@ -140,6 +140,7 @@ for i, r in enumerate(recs, 1):
     orig_kb = r.get("body_bytes",0)//1024
     fwd_kb = r.get("fwd_body_bytes",0)//1024
     imgs = r.get("image_files") or []
+    tpot_ms = round(gen/out*1000, 1) if out > 0 else None
     real_infer = round(api_wait + dec_s, 1)
     pth = int((inp-cached)/ttft) if ttft else 0
     hit = round(100*cached/max(inp,1))
@@ -166,7 +167,7 @@ for i, r in enumerate(recs, 1):
         ttft=round(ttft,2), prep=prep, up_chat=up_chat, api=round(api_wait,2),
         orig_kb=orig_kb, fwd_kb=fwd_kb, think_s=think_s, dec_s=dec_s, est=est_mark,
         dur=round(dur,1), real=real_infer, gen=round(gen,1),
-        inp=inp, cached=cached, hit=hit, th_tok=th_tok, dec_tok=dec_tok, out=out,
+        inp=inp, cached=cached, hit=hit, th_tok=th_tok, dec_tok=dec_tok, out=out, tpot=tpot_ms,
         pth=pth, delta=delta_in, new_i=new_imgs, tot_i=len(imgs),
         tool=tool_str, tool_out=tool_out, tool_exec=tool_exec_str,
         content=r.get("content") or "", thinking=r.get("thinking") or "",
@@ -187,7 +188,7 @@ for r in rows:
            f"<td>{r['inp']:,}</td><td>+{r['delta']:,}</td>"
            f"<td>{r['new_i']}/{r['tot_i']}</td>"
            f"<td>{r['th_tok']}</td><td>{r['dec_tok']}</td><td>{r['out']}</td>"
-           f"<td>{r['pth']}</td><td>{r['hit']}%</td>"
+           f"<td>{r['pth']}</td><td>{r['tpot'] if r['tpot'] is not None else '—'}</td><td>{r['hit']}%</td>"
            f"<td>{esc(r['tool'])}</td>"
            f"<td style='color:#9a3412'><b>{r['tool_exec']}</b></td>"
            f"<td>{r['tool_out'] if r['tool_out'] is not None else '—'}</td></tr>")
@@ -411,7 +412,7 @@ footer{{color:#9ca3af;font-size:12px;margin-top:26px}}
 <th>推理总耗时<br>(实测)</th>
 <th>prompt<br>长度</th><th>本轮新增<br>prompt长度</th><th>新增/总<br>图片数</th>
 <th>Thinking<br>长度</th><th>Decode<br>长度</th><th>输出总<br>Token</th>
-<th>prefill吞吐<br>(Token/s)</th><th>Cache<br>命中率</th>
+<th>prefill吞吐<br>(Token/s)</th><th>TPOT<br>(ms/Token)</th><th>Cache<br>命中率</th>
 <th>本轮发出的<br>工具调用</th><th style="color:#9a3412">工具执行<br>耗时</th><th>工具输出<br>Token</th></tr>{tt}</table>
 
 <h2>4 · 逐轮完整输入输出（含图像 + 中文翻译）</h2>
