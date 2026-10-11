@@ -11,6 +11,7 @@
 | `ds_flash_v5_report.html` | t2/s0 | 15 | 182.5s | 流式转换首测 |
 | `ds_flash_t8_report.html` | t8/s0（巧克力布丁，复杂任务） | 17 | 399.7s | 复杂任务对照 |
 | `ds_flash_10swap_t0_report.html` | **libero_10_swap t0/s0（双物体长程任务）** | **34** | **888.7s** | 长程多步压测：34轮无服务端退化 |
+| `ds_flash_10swap_t2_report.html` | **libero_10_swap t2/s0（开炉+放壶，异构技能序列）** | **38** | **1268.3s** | 最长局：pi0_doubled(按钮)+pi0_pick×2+move_to×13 |
 
 报告为自包含 HTML（内嵌双视角视频 + 全部上下文图片 + 中文翻译），浏览器直接打开。
 
