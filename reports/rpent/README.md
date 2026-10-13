@@ -13,6 +13,7 @@
 | `ds_flash_10swap_t0_report.html` | **libero_10_swap t0/s0（双物体长程任务）** | **34** | **888.7s** | 长程多步压测：34轮无服务端退化 |
 | `ds_flash_10swap_t2_report.html` | **libero_10_swap t2/s0（开炉+放壶，异构技能序列）** | **38** | **1268.3s** | 谓词级成功⚠️：壶侧躺灶台（cook_region宽松），非直立炉圈 |
 | `ds_flash_t2_lowthink_report.html` | **t2/s0 · reasoning_effort=low（去think实验）** | **10** | **136.3s** | 3/3成功：thinking↓65%、端到端↓26%，2秒决策前提验证 ✓ |
+| `ds_flash_t2_async_report.html` | **t2/s0 · 异步预演（RPENT_ASYNC_REHEARSE=1）** | **13** | **176.7s** | 预演 2/2 命中：长技能窗口内藏掉 2 次 LLM 决策，LLM总耗时-24s |
 
 报告为自包含 HTML（内嵌双视角视频 + 全部上下文图片 + 中文翻译），浏览器直接打开。
 
@@ -84,6 +85,9 @@ DS（0.5Hz 语义决策）与 π0.5（20Hz 闭环控制）频率差 40 倍——
 - `generate_report.py`：本仓库全部 HTML 报告的生成器（编辑顶部 CONFIG 指向数据文件后运行）
 - `translate_rounds.py`：逐轮轨迹中文翻译（thinking+正文+输入），幂等缓存
 - `pi0_bench.py`：π0.5 VLA 推理延迟基准（直连 vla.predict，384ms/chunk 实测来源）
+- `rpent_patches/api_loop_async_rehearse.py`：异步预演补丁（`_RehearseModel` 包装器：
+  长技能执行时后台推测下一决策，技能成功则注入预演响应跳过真实调用。
+  原版备份在同机 api_loop.py.bak）
 
 测量口径规范与模板见 skill：`llm-perf-report`。
 
