@@ -12,6 +12,7 @@
 | `ds_flash_t8_report.html` | t8/s0（巧克力布丁，复杂任务） | 17 | 399.7s | 复杂任务对照 |
 | `ds_flash_10swap_t0_report.html` | **libero_10_swap t0/s0（双物体长程任务）** | **34** | **888.7s** | 长程多步压测：34轮无服务端退化 |
 | `ds_flash_10swap_t2_report.html` | **libero_10_swap t2/s0（开炉+放壶，异构技能序列）** | **38** | **1268.3s** | 谓词级成功⚠️：壶侧躺灶台（cook_region宽松），非直立炉圈 |
+| `ds_flash_t2_lowthink_report.html` | **t2/s0 · reasoning_effort=low（去think实验）** | **10** | **136.3s** | 3/3成功：thinking↓65%、端到端↓26%，2秒决策前提验证 ✓ |
 
 报告为自包含 HTML（内嵌双视角视频 + 全部上下文图片 + 中文翻译），浏览器直接打开。
 
@@ -53,6 +54,9 @@ T_llm = TTFT + T_think + T_decode = 7.4 s/轮
    方差 <1ms 极稳定；pi0_pick 的 46s 中推理仅占 15%，85% 是仿真器 CPU 软件渲染步进（真机无此开销）。
 6. **长程任务无退化**：34 轮双物体任务中 DS 服务端 prefill 依旧 ~0.48s——任务复杂度只增加轮次，
    不降低单轮服务质量（LLM 侧随轮次线性扩展）。
+7. **去 Think 验证（reasoning_effort=low）**：t2 任务 3/3 成功（env terminated 全真），
+   thinking 总量 15.5K→5.1K Token（↓65%），端到端 205→152s（↓26%），轮次 15→10-14（更少决策）。
+   「2 秒单轮决策」前提成立——为 Agent+VLA 异步分层架构奠定地基。
 
 ### 端到端耗时构成
 
