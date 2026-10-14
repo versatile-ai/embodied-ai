@@ -14,6 +14,7 @@
 | `ds_flash_10swap_t2_report.html` | **libero_10_swap t2/s0（开炉+放壶，异构技能序列）** | **38** | **1268.3s** | 谓词级成功⚠️：壶侧躺灶台（cook_region宽松），非直立炉圈 |
 | `ds_flash_t2_lowthink_report.html` | **t2/s0 · reasoning_effort=low（去think实验）** | **10** | **136.3s** | 3/3成功：thinking↓65%、端到端↓26%，2秒决策前提验证 ✓ |
 | `ds_flash_t2_async_report.html` | **t2/s0 · 异步预演（RPENT_ASYNC_REHEARSE=1）** | **13** | **176.7s** | 预演 2/2 命中：长技能窗口内藏掉 2 次 LLM 决策，LLM总耗时-24s |
+| `ds_flash_t2_combo_report.html` | **t2/s0 · 低think+多分支异步+Jev仲裁** | **14** | **180.8s** | 双分支预演4/4完成、2/2注入；Jev隧道中断走规则兜底（线下6/6验证） |
 
 报告为自包含 HTML（内嵌双视角视频 + 全部上下文图片 + 中文翻译），浏览器直接打开。
 
